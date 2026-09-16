@@ -16,24 +16,11 @@ const EVENT_NAMES = [
   'mousedown', 'mousemove', 'mouseup', 'mouseover', 'mouseout', 'click', 'dblclick',
   'wheel', 'scroll', 'contextmenu', 'keydown', 'keyup',
 ];
+const REDACT_SELECTOR = 'input, textarea, select, [contenteditable], [data-finger-redact]';
 
 const number = (value) => Number.isFinite(Number(value)) ? Number(value) : undefined;
 const uuid = () => globalThis.crypto?.randomUUID?.()
   ?? `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
-
-function associationId() {
-  const key = 'concord.finger.association';
-  try {
-    let value = localStorage.getItem(key);
-    if (!value) {
-      value = uuid();
-      localStorage.setItem(key, value);
-    }
-    return value;
-  } catch {
-    return uuid();
-  }
-}
 
 function visitId() {
   const key = 'concord.finger.visit';
@@ -128,7 +115,7 @@ function eventValue(event, startedAt) {
     deltaX: event.deltaX, deltaY: event.deltaY, deltaZ: event.deltaZ, deltaMode: event.deltaMode,
   });
   if ('key' in event) Object.assign(value, {
-    key: event.key, code: event.code, location: event.location, repeat: event.repeat,
+    code: event.code, location: event.location, repeat: event.repeat,
   });
   if ('touches' in event) Object.assign(value, {
     touches: [...event.touches].map(contactValue),
@@ -138,14 +125,41 @@ function eventValue(event, startedAt) {
   return value;
 }
 
+function redactElement(element) {
+  if (!(element instanceof Element)) return;
+  if (element.matches('input')) {
+    element.removeAttribute('value');
+    element.removeAttribute('checked');
+    element.setAttribute('data-finger-redacted', '');
+    return;
+  }
+  if (element.matches('textarea, select, [contenteditable], [data-finger-redact]')) {
+    element.replaceChildren(document.createTextNode('[redacted]'));
+    element.setAttribute('data-finger-redacted', '');
+  }
+}
+
+function redactTree(root) {
+  if (!(root instanceof Element)) return root;
+  if (root.matches(REDACT_SELECTOR)) redactElement(root);
+  root.querySelectorAll(REDACT_SELECTOR).forEach(redactElement);
+  return root;
+}
+
 function nodeValue(node) {
-  if (node instanceof Element) return node.outerHTML;
+  if (node instanceof Element) {
+    const clone = node.cloneNode(true);
+    redactTree(clone);
+    return clone.outerHTML;
+  }
+  if (node.parentElement?.closest(REDACT_SELECTOR)) return '[redacted]';
   return node.textContent;
 }
 
 function domSnapshot() {
   const root = document.documentElement.cloneNode(true);
   root.querySelectorAll('concord-finger').forEach((element) => element.remove());
+  redactTree(root);
   return root.outerHTML;
 }
 
@@ -192,7 +206,6 @@ class ConcordFingerElement extends HTMLElement {
       schemaVersion: 1,
       sessionId: this.sessionId,
       transmissionId: uuid(),
-      associationId: associationId(),
       visitId: this._config.visitId ?? visitId(),
       fingerVersion: this._config.fingerVersion,
       concordVersion: this._config.concordVersion,
@@ -277,7 +290,9 @@ class ConcordFingerElement extends HTMLElement {
           type: mutation.type,
           target: elementContext(mutation.target instanceof Element ? mutation.target : mutation.target.parentElement),
           attributeName: mutation.attributeName,
-          oldValue: mutation.oldValue,
+          oldValue: mutation.target instanceof Element && mutation.target.closest(REDACT_SELECTOR)
+            ? '[redacted]'
+            : mutation.oldValue,
           addedNodes: [...mutation.addedNodes].map(nodeValue),
           removedNodes: [...mutation.removedNodes].map(nodeValue),
         });
@@ -372,8 +387,10 @@ class ConcordFingerElement extends HTMLElement {
     this._active = false;
     this._stopCapture();
     this.style.display = 'none';
-    const detail = { sessionId: this.sessionId, associationId: this._data.associationId };
-    this.dispatchEvent(new CustomEvent('finger:complete', { detail, bubbles: true }));
+    this.dispatchEvent(new CustomEvent('finger:complete', {
+      detail: { sessionId: this.sessionId },
+      bubbles: true,
+    }));
     this._submit(this._data);
     if (this.hasAttribute('remove-on-complete')) this.remove();
   }
@@ -384,7 +401,6 @@ class ConcordFingerElement extends HTMLElement {
       schemaVersion: data.schemaVersion,
       sessionId: data.sessionId,
       transmissionId: data.transmissionId,
-      associationId: data.associationId,
       visitId: data.visitId,
       invocation: data.invocation,
       fingerVersion: data.fingerVersion,
