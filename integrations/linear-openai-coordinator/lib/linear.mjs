@@ -106,7 +106,7 @@ export async function updateIssue(token, args) {
   }`;
   const input = {};
   for (const field of ["title", "description", "priority"]) {
-    if (args[field] !== undefined) input[field] = args[field];
+    if (args[field] !== undefined && args[field] !== null) input[field] = args[field];
   }
   if (!Object.keys(input).length) return { skipped: true, reason: "No mutable fields supplied" };
   const data = await linearGraphQL(token, query, { id: args.id, input });
