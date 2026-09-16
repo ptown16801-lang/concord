@@ -1,0 +1,38 @@
+[
+  {
+    "id": "BALLOT-FIRST-VALID-IMMUTABLE",
+    "sourceRule": "JON-58/JON-80: the first valid accepted ballot is final and cannot be replaced.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-voter-a"], "eligible": ["synthetic-voter-a"], "acceptedBallots": [] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "submit valid YES ballot attempt a-1" },
+      { "step": 2, "mode": "ordered", "operation": "submit valid NO ballot attempt a-2" }
+    ],
+    "expected": { "status": "DEFINED", "acceptedAttempt": "a-1", "acceptedChoice": "YES", "rejectedAttempts": ["a-2"], "acceptedBallotCount": 1 },
+    "adapterObserves": ["immutable receipt for a-1", "a-2 recorded as duplicate without mutating a-1"]
+  },
+  {
+    "id": "BALLOT-MALFORMED-CORRECTION",
+    "sourceRule": "JON-58/JON-80: rejection of a malformed attempt does not consume the eligible voter's first valid ballot.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-voter-b"], "eligible": ["synthetic-voter-b"], "acceptedBallots": [] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "submit malformed attempt b-1 with unknown choice" },
+      { "step": 2, "mode": "ordered", "operation": "submit valid ABSTAIN attempt b-2 before close" }
+    ],
+    "expected": { "status": "DEFINED", "acceptedAttempt": "b-2", "acceptedChoice": "ABSTAIN", "rejectedAttempts": ["b-1"], "acceptedBallotCount": 1 },
+    "adapterObserves": ["separate records and reasons for b-1 and b-2", "only b-2 enters constitutional ballot state"]
+  },
+  {
+    "id": "BALLOT-RETRY-DUPLICATE-LATE",
+    "sourceRule": "JON-58/JON-80: retries, duplicate submissions, and late attempts remain auditable but cannot mutate an accepted ballot.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-voter-c"], "eligible": ["synthetic-voter-c"], "acceptedBallots": [] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "submit valid YES attempt c-1 with idempotency key k1" },
+      { "step": 2, "mode": "ordered", "operation": "redeliver c-1 with idempotency key k1" },
+      { "step": 3, "mode": "ordered", "operation": "submit valid YES attempt c-2 with key k2" },
+      { "step": 4, "mode": "ordered", "operation": "close poll" },
+      { "step": 5, "mode": "ordered", "operation": "submit valid NO attempt c-3 after close" }
+    ],
+    "expected": { "status": "DEFINED", "acceptedAttempt": "c-1", "acceptedChoice": "YES", "idempotentRetries": ["c-1"], "rejectedAttempts": ["c-2", "c-3"], "acceptedBallotCount": 1 },
+    "adapterObserves": ["retry, new duplicate, and late rejection are distinguishable", "accepted receipt and choice never change"]
+  }
+]

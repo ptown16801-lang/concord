@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ACCOUNTING-SETS-ABSTENTION",
+    "sourceRule": "JON-58/JON-81: B contains valid abstentions; B and U are disjoint unique opening-roll identity sets; D = |B| + |U|.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-yes", "synthetic-abstain", "synthetic-nonvoter"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "accept YES from synthetic-yes" },
+      { "step": 2, "mode": "ordered", "operation": "accept ABSTAIN from synthetic-abstain" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": ["synthetic-abstain", "synthetic-yes"], "U": ["synthetic-nonvoter"], "D": 3 }, "abstentionsInB": ["synthetic-abstain"] },
+    "adapterObserves": ["identity-keyed B and U", "abstention contributes to B and D but not YES votes"]
+  },
+  {
+    "id": "ACCOUNTING-EXACT-THRESHOLDS",
+    "sourceRule": "JON-58/JON-81: thresholds use exact integer comparison against D, with strict majority strictly greater than one half.",
+    "initialState": { "denominatorSource": "D = |B| + |U|", "arithmetic": "integer cross-multiplication" },
+    "schedule": [{ "step": 1, "mode": "ordered", "operation": "evaluate every declared threshold vector without floating point" }],
+    "expected": {
+      "status": "DEFINED",
+      "thresholdVectors": [
+        { "name": "60-percent-below", "kind": "fraction", "yesVotes": 2, "D": 5, "numerator": 3, "denominator": 5, "passes": false },
+        { "name": "60-percent-exact", "kind": "fraction", "yesVotes": 3, "D": 5, "numerator": 3, "denominator": 5, "passes": true },
+        { "name": "two-thirds-below", "kind": "fraction", "yesVotes": 3, "D": 6, "numerator": 2, "denominator": 3, "passes": false },
+        { "name": "two-thirds-exact", "kind": "fraction", "yesVotes": 4, "D": 6, "numerator": 2, "denominator": 3, "passes": true },
+        { "name": "three-quarters-below", "kind": "fraction", "yesVotes": 5, "D": 8, "numerator": 3, "denominator": 4, "passes": false },
+        { "name": "three-quarters-exact", "kind": "fraction", "yesVotes": 6, "D": 8, "numerator": 3, "denominator": 4, "passes": true },
+        { "name": "strict-majority-tie", "kind": "strict-majority", "yesVotes": 2, "D": 4, "passes": false },
+        { "name": "strict-majority-pass", "kind": "strict-majority", "yesVotes": 3, "D": 4, "passes": true },
+        { "name": "unanimity-below", "kind": "unanimity", "yesVotes": 6, "D": 7, "passes": false },
+        { "name": "unanimity-exact", "kind": "unanimity", "yesVotes": 7, "D": 7, "passes": true },
+        { "name": "zero-fraction", "kind": "fraction", "yesVotes": 0, "D": 0, "numerator": 3, "denominator": 5, "passes": false },
+        { "name": "zero-majority", "kind": "strict-majority", "yesVotes": 0, "D": 0, "passes": false },
+        { "name": "zero-unanimity", "kind": "unanimity", "yesVotes": 0, "D": 0, "passes": false }
+      ]
+    },
+    "adapterObserves": ["D and YES count as integers", "result for each threshold", "D=0 never passes"]
+  }
+]
