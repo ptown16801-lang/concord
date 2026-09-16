@@ -3,7 +3,10 @@ import path from "node:path";
 import {
   createFingerHttpHandler,
   createFingerIngestionService,
-  FileFingerStore,
+  FileObjectStore,
+  FingerPersistence,
+  FingerSqliteRepository,
+  PersistentFingerStore,
   resolveVersions,
 } from "./finger/index.js";
 
@@ -11,12 +14,22 @@ const port = Number.parseInt(process.env.PORT ?? "3000", 10);
 const identitySecret = process.env.FINGER_IDENTITY_SECRET;
 if (!identitySecret) throw new Error("FINGER_IDENTITY_SECRET must be configured");
 
-const store = new FileFingerStore(
+const dataDirectory = path.resolve(
   process.env.FINGER_DATA_DIR ?? path.resolve("var/finger"),
 );
+const versions = resolveVersions();
+const persistence = new FingerPersistence({
+  repository: new FingerSqliteRepository(
+    process.env.FINGER_DATABASE ?? path.join(dataDirectory, "finger.sqlite"),
+  ),
+  objectStore: new FileObjectStore(
+    process.env.FINGER_OBJECT_DIR ?? path.join(dataDirectory, "objects"),
+  ),
+});
+const store = new PersistentFingerStore(persistence, versions);
 const ingestionService = createFingerIngestionService({
   store,
-  versions: resolveVersions(),
+  versions,
 });
 const fingerHandler = createFingerHttpHandler({
   ingestionService,
