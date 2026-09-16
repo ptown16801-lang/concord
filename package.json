@@ -6,8 +6,13 @@
   "engines": {
     "node": ">=22.5"
   },
+  "exports": {
+    "./finger": "./src/finger/index.js",
+    "./finger/processing": "./src/finger/processing/index.js"
+  },
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js"
   }
 }

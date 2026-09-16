@@ -1,3 +1,4 @@
+import { createHash, randomUUID } from "node:crypto";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -11,10 +12,16 @@ export class FileFingerStore {
   }
 
   async saveSession(session, rawPayload) {
+    if (!session || typeof session.id !== "string" || session.id.length === 0) {
+      throw new TypeError("Finger session.id must be a non-empty string");
+    }
     return this.#serialize(async () => {
       const sessionsDirectory = path.join(this.#directory, "sessions");
-      const sessionDirectory = path.join(sessionsDirectory, session.id);
-      await mkdir(sessionDirectory, { recursive: true });
+      // Never use a caller-controlled session identifier as a filesystem path
+      // segment. The original id remains inside the stored metadata/index.
+      const storageKey = createHash("sha256").update(session.id).digest("hex");
+      const sessionDirectory = path.join(sessionsDirectory, storageKey);
+      await mkdir(sessionDirectory, { recursive: true, mode: 0o700 });
 
       const rawFile = path.join(sessionDirectory, "raw.json");
       const metadataFile = path.join(sessionDirectory, "session.json");
@@ -28,6 +35,7 @@ export class FileFingerStore {
       } catch (error) {
         if (error.code !== "ENOENT") throw error;
       }
+      await mkdir(this.#directory, { recursive: true, mode: 0o700 });
       await atomicWrite(indexFile, `${existing}${JSON.stringify(session)}\n`);
     });
   }
@@ -54,7 +62,7 @@ async function atomicJsonWrite(file, value) {
 }
 
 async function atomicWrite(file, contents) {
-  const temporary = `${file}.${process.pid}.${crypto.randomUUID()}.tmp`;
-  await writeFile(temporary, contents, { encoding: "utf8", mode: 0o600 });
+  const temporary = `${file}.${process.pid}.${randomUUID()}.tmp`;
+  await writeFile(temporary, contents, { encoding: "utf8", mode: 0o600, flag: "wx" });
   await rename(temporary, file);
 }

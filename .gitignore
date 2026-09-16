@@ -1,6 +1,7 @@
 node_modules/
 .env
 var/
+.finger-data/
 coverage/
 *.log
 .DS_Store

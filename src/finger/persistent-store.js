@@ -38,15 +38,11 @@ export class PersistentFingerStore {
 }
 
 function normalizeEvent(event, sequence) {
-  const occurredAtMs = finiteNonNegative(
-    event?.timeStamp ?? event?.timestamp ?? sequence,
-    sequence,
-  );
   return {
     sequence,
-    occurredAtMs,
+    occurredAtMs: occurredAtMs(event, sequence),
     eventType: text(event?.type) ?? "unknown",
-    pointerKind: text(event?.pointerType),
+    pointerKind: pointerKind(event),
     contactId: event?.pointerId ?? event?.identifier,
     rawX: finite(event?.clientX),
     rawY: finite(event?.clientY),
@@ -56,12 +52,28 @@ function normalizeEvent(event, sequence) {
   };
 }
 
-function finite(value) {
-  return Number.isFinite(value) ? value : undefined;
+function occurredAtMs(event, fallback) {
+  for (const value of [event?.elapsedMs, event?.occurredAtMs, event?.eventTimestamp, event?.timeStamp]) {
+    if (Number.isFinite(value) && value >= 0) return value;
+  }
+  if (typeof event?.timestamp === "number" && Number.isFinite(event.timestamp) && event.timestamp >= 0) {
+    return event.timestamp;
+  }
+  const parsed = typeof event?.timestamp === "string" ? Date.parse(event.timestamp) : Number.NaN;
+  return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function finiteNonNegative(value, fallback) {
-  return Number.isFinite(value) && value >= 0 ? value : fallback;
+function pointerKind(event) {
+  const explicit = text(event?.pointerType);
+  if (explicit) return explicit === "pen" ? "stylus" : explicit;
+  const type = text(event?.type)?.toLowerCase() ?? "";
+  if (type.startsWith("touch")) return "touch";
+  if (type.startsWith("mouse") || type === "click" || type === "dblclick") return "mouse";
+  return undefined;
+}
+
+function finite(value) {
+  return Number.isFinite(value) ? value : undefined;
 }
 
 function text(value) {
