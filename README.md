@@ -2,6 +2,8 @@
 
 Concord is an implementation and UI surface inside the wider Vote project. This repository currently contains the deployable **Finger** beta: a browser interaction collector, a non-blocking ingestion service, dedicated historical persistence, and replay/heat-map processing utilities.
 
+The `./governance` library export also provides the constitutional `BallotBox` intake. It stores every submission attempt, accepts only the first valid ballot per election and opening-roll identity, and protects accepted receipts with database uniqueness and immutability constraints. Callers must supply a synchronous `authorizeSubmission` adapter that reads the authoritative opening-roll, current-eligibility, and election-close state; that callback runs inside the ballot write transaction and receives its SQLite connection so co-located authoritative state can be read atomically. Forum and social reaction source types are rejected and audited rather than interpreted as ballots.
+
 Finger is deliberately separated from Concord's main application data. The browser collector records only while its overlay is active. The server assigns the authoritative capture identity, stores the raw capture and queryable event history, and returns a reference without making login, admission, or navigation depend on backend success.
 
 ## Current Finger flow

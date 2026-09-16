@@ -6,6 +6,8 @@ This file consolidates the implementation history that was previously split acro
 
 ### Added
 
+- Added an atomic, append-only constitutional ballot intake with immutable first-valid receipts, authoritative eligibility callbacks, audited rejection/duplicate/late records, and strict separation from forum/social reactions.
+- Added regression coverage for concurrent submissions, retries, corrections, disqualification, election close, social objects, and restart reconstruction.
 - Reconciled the deployable Finger browser collector with the canonical single-request ingestion API.
 - Added a standalone Finger demo page and static-file serving.
 - Added deterministic replay and touch/mouse/stylus/combined heat-map processing utilities from the replay-processing branch.
