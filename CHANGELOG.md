@@ -2,6 +2,13 @@
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — Linear workflow fixes, 2026-09-16
+
+- Add an independent, reusable dispatch validator for exact project identity, scope, base commit, environment, permissions, source revisions, accepted dependencies, authorization, and duplicate active work.
+- Preserve incomplete Concord native settings as unresolved and record recovered artifacts as published candidates rather than accepted pins.
+- Explicitly run the standalone governance-fixture validator in CI when that pack is present; report absence honestly.
+- Keep workflow validation separate from production governance integration and native environment acceptance.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added

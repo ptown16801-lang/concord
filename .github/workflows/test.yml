@@ -21,3 +21,11 @@ jobs:
       - run: node --version
       - run: npm run check
       - run: npm test
+      - name: Validate governance fixtures when included
+        shell: bash
+        run: |
+          if [ -d qa/jon58 ]; then
+            node qa/jon58/validate-fixtures.mjs
+          else
+            echo 'Governance fixture pack absent from this branch; validation not run.'
+          fi
