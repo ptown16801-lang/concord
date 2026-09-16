@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-09-16",
+  "repository": "ptown16801-lang/concord",
+  "baseCommit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+  "note": "Published candidate inputs, not accepted dependency pins. Refresh PR head and review evidence before use.",
+  "candidates": [
+    {
+      "issue": "JON-78",
+      "pullRequest": 6,
+      "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+      "published": true,
+      "accepted": false,
+      "state": "In Review"
+    },
+    {
+      "issue": "JON-79",
+      "pullRequest": 7,
+      "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+      "published": true,
+      "accepted": false,
+      "state": "In Review"
+    },
+    {
+      "issue": "JON-80",
+      "pullRequest": 8,
+      "commit": "b9f2c7e3c4d6f341e704a7940f6ce2a68ca8ccaf",
+      "published": true,
+      "accepted": false,
+      "state": "In Review"
+    },
+    {
+      "issue": "JON-81",
+      "pullRequest": 9,
+      "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+      "published": true,
+      "accepted": false,
+      "state": "In Review"
+    },
+    {
+      "issue": "JON-88",
+      "pullRequest": 10,
+      "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+      "published": true,
+      "accepted": false,
+      "state": "In Review"
+    }
+  ]
+}
