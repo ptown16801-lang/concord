@@ -6,6 +6,8 @@ This file consolidates the implementation history that was previously split acro
 
 ### Added
 
+- Added authoritative exact electorate accounting for disjoint accepted-ballot
+  and eligible-nonvoter sets, including integer-only threshold decisions.
 - Reconciled the deployable Finger browser collector with the canonical single-request ingestion API.
 - Added a standalone Finger demo page and static-file serving.
 - Added deterministic replay and touch/mouse/stylus/combined heat-map processing utilities from the replay-processing branch.

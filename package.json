@@ -8,11 +8,12 @@
   },
   "exports": {
     "./finger": "./src/finger/index.js",
-    "./finger/processing": "./src/finger/processing/index.js"
+    "./finger/processing": "./src/finger/processing/index.js",
+    "./governance/electorate": "./src/governance/electorate.js"
   },
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js"
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check src/governance/electorate.js && node --check public/finger-collector.js"
   }
 }
