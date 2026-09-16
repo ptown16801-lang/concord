@@ -96,6 +96,7 @@ export async function runCoordinator({ payload, linearToken, currentIssue }) {
     response = await createResponse({
       model,
       previous_response_id: response.id,
+      instructions: SYSTEM_INSTRUCTIONS,
       input: toolOutputs,
       tools: TOOL_DEFINITIONS,
       tool_choice: "auto",
