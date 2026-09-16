@@ -1,0 +1,20 @@
+{
+  "$schema": "https://linear.app/.well-known/oauth-app-manifest.schema.json",
+  "schemaVersion": "1.0.0",
+  "distribution": "private",
+  "display": {
+    "description": "OpenAI-powered project coordinator for delegated Linear work."
+  },
+  "developer": { "name": "Concord" },
+  "oauth": {
+    "client_name": "Project Coordinator",
+    "client_uri": "https://REPLACE_WITH_VERCEL_HOST/api/health",
+    "redirect_uris": ["https://REPLACE_WITH_VERCEL_HOST/api/health"],
+    "grant_types": ["authorization_code", "client_credentials"]
+  },
+  "webhook": {
+    "enabled": true,
+    "url": "https://REPLACE_WITH_VERCEL_HOST/api/linear/webhook",
+    "resourceTypes": ["AgentSessionEvent", "AppUserNotification", "PermissionChange"]
+  }
+}
