@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, rm } from "node:fs/promises";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
@@ -13,6 +14,8 @@ import {
 
 const servers = [];
 afterEach(() => Promise.all(servers.splice(0).map((server) => server.close())));
+
+const storageKey = (id) => createHash("sha256").update(id).digest("hex");
 
 test("ingests, summarizes, stamps, associates, and references a complete session", async () => {
   const store = new MemoryFingerStore();
@@ -87,13 +90,29 @@ test("file store durably writes raw data and queryable session metadata", async 
       { identityId: "anonymous", userId: null },
     );
     const raw = JSON.parse(
-      await readFile(path.join(directory, "sessions", reference.sessionId, "raw.json")),
+      await readFile(path.join(directory, "sessions", storageKey(reference.sessionId), "raw.json")),
     );
     const index = await readFile(path.join(directory, "sessions.jsonl"), "utf8");
 
     assert.equal(raw.events[0].type, "__proto__");
     assert.equal(JSON.parse(index).id, reference.sessionId);
     assert.equal(reference.summary.eventTypes.__proto__, 1);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("file store never resolves caller-controlled session ids as paths", async () => {
+  const directory = path.join(tmpdir(), `concord-finger-path-${crypto.randomUUID()}`);
+  const store = new FileFingerStore(directory);
+  const maliciousId = "../../escape-attempt";
+  try {
+    await store.saveSession({ id: maliciousId }, { ok: true });
+    const raw = JSON.parse(
+      await readFile(path.join(directory, "sessions", storageKey(maliciousId), "raw.json")),
+    );
+    assert.deepEqual(raw, { ok: true });
+    await assert.rejects(readFile(path.resolve(directory, "..", "escape-attempt", "raw.json")));
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
