@@ -1,0 +1,43 @@
+[
+  {
+    "id": "ELIG-POST-BALLOT-RETENTION",
+    "sourceRule": "JON-58/JON-79/JON-81: post-ballot death, formal proceeding, or disqualification does not remove the valid ballot or voter from D.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-death", "synthetic-proceeding", "synthetic-disqualified"], "eligible": ["synthetic-death", "synthetic-proceeding", "synthetic-disqualified"], "acceptedBallots": [] },
+    "schedule": [
+      { "step": 1, "mode": "concurrent", "operation": "each identity submits a valid ballot", "group": "accept-all" },
+      { "step": 2, "mode": "ordered", "operation": "record death of synthetic-death" },
+      { "step": 3, "mode": "ordered", "operation": "open authenticated C4 proceeding affecting synthetic-proceeding" },
+      { "step": 4, "mode": "ordered", "operation": "disqualify synthetic-disqualified" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": ["synthetic-death", "synthetic-disqualified", "synthetic-proceeding"], "U": [], "D": 3 } },
+    "adapterObserves": ["all three accepted receipts remain", "B membership and D remain unchanged"]
+  },
+  {
+    "id": "ELIG-PREBALLOT-DISQUALIFICATION",
+    "sourceRule": "JON-58/JON-79/JON-81: a disqualified opening-roll identity that has not voted is removed from U.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-pre-disqualified", "synthetic-still-eligible"], "eligible": ["synthetic-pre-disqualified", "synthetic-still-eligible"], "acceptedBallots": [] },
+    "schedule": [{ "step": 1, "mode": "ordered", "operation": "disqualify synthetic-pre-disqualified before any ballot" }],
+    "expected": { "status": "DEFINED", "snapshot": { "B": [], "U": ["synthetic-still-eligible"], "D": 1 } },
+    "adapterObserves": ["disqualified identity is absent from U", "opening-roll provenance is retained separately"]
+  },
+  {
+    "id": "ELIG-RESTORE-BEFORE-CLOSE",
+    "sourceRule": "JON-58/JON-79/JON-81: permitted restoration before close returns an eligible opening-roll nonvoter to U.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-restored"], "eligible": [], "acceptedBallots": [] },
+    "schedule": [{ "step": 1, "mode": "ordered", "operation": "apply permitted franchise restoration to synthetic-restored before close" }],
+    "expected": { "status": "DEFINED", "snapshot": { "B": [], "U": ["synthetic-restored"], "D": 1 } },
+    "adapterObserves": ["restoration decision and effective time", "identity re-enters U without a ballot"]
+  },
+  {
+    "id": "ELIG-NO-REOPEN-AFTER-CLOSE",
+    "sourceRule": "JON-58/JON-79: closing freezes the electorate and no later restoration reopens voting.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-after-close"], "eligible": [], "acceptedBallots": [] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "close poll" },
+      { "step": 2, "mode": "ordered", "operation": "record otherwise-permitted restoration" },
+      { "step": 3, "mode": "ordered", "operation": "submit ballot" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": [], "U": [], "D": 0 }, "ballotAccepted": false },
+    "adapterObserves": ["closed snapshot does not reopen", "late ballot has an auditable rejection"]
+  }
+]

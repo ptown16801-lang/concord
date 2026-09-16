@@ -1,0 +1,36 @@
+[
+  {
+    "id": "LEGAL-ALLEGATION-NOT-DISQUALIFICATION",
+    "sourceRule": "JON-58/JON-79: an allegation or referral alone is not franchise disqualification.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-alleged"], "eligible": ["synthetic-alleged"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "record allegation against synthetic-alleged" },
+      { "step": 2, "mode": "ordered", "operation": "record unauthenticated referral mentioning synthetic-alleged" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": [], "U": ["synthetic-alleged"], "D": 1 }, "franchiseChanged": false },
+    "adapterObserves": ["allegation and referral events remain non-disqualifying", "identity remains eligible and in U"]
+  },
+  {
+    "id": "LEGAL-C4-AUTHENTICATED-AFFECTED-LIST",
+    "sourceRule": "JON-58/JON-79: authenticated C4 opening with an affected-identity list is distinct from mere referral.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-c4-affected", "synthetic-c4-unlisted"], "eligible": ["synthetic-c4-affected", "synthetic-c4-unlisted"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "record referral referencing both identities" },
+      { "step": 2, "mode": "ordered", "operation": "open authenticated C4 with affected list [synthetic-c4-affected]" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": [], "U": ["synthetic-c4-unlisted"], "D": 1 }, "affected": ["synthetic-c4-affected"] },
+    "adapterObserves": ["authentication and affected list provenance", "only listed identity undergoes the contract-defined transition"]
+  },
+  {
+    "id": "LEGAL-FELONY-CONVICTION-TIMING",
+    "sourceRule": "JON-58/JON-79: lawful felony conviction affects franchise at conviction, not at allegation, charge, or an earlier referral.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-convicted"], "eligible": ["synthetic-convicted"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "record allegation" },
+      { "step": 2, "mode": "ordered", "operation": "record charge" },
+      { "step": 3, "mode": "ordered", "operation": "record lawful felony conviction" }
+    ],
+    "expected": { "status": "DEFINED", "eligibleThroughStep": 2, "ineligibleAtStep": 3, "snapshot": { "B": [], "U": [], "D": 0 } },
+    "adapterObserves": ["effective transition timestamp equals conviction event", "pre-conviction events do not change franchise"]
+  }
+]

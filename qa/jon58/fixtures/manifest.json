@@ -1,0 +1,15 @@
+{
+  "fixturePack": "jon58-adversarial",
+  "version": "1.0.0",
+  "seed": "jon58-fixtures-v1",
+  "contractAsOf": "2026-09-16",
+  "integrationStatus": "ADAPTER_PENDING",
+  "files": [
+    "population.json",
+    "ballots.json",
+    "eligibility.json",
+    "accounting.json",
+    "legal-triggers.json",
+    "replay.json"
+  ]
+}
