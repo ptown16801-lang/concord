@@ -81,6 +81,28 @@ A simpler `FileFingerStore` remains available for development/testing. Its on-di
 
 The processing library is exported from `./finger/processing`. Raw capture persistence remains authoritative; derived analysis must not overwrite raw history.
 
+## Governance eligibility authority
+
+The `./governance` export provides `EligibilityRegistry`, an append-only franchise
+state authority. Callers register ordinary identities and submit explicit,
+effective-dated transitions. Each committed event receives a monotonically
+increasing version; `stateAt` reconstructs an identity at a historical version or
+time, and `auditLog` exposes immutable copies of the source events.
+
+Transitions deliberately remain distinct: allegations are audited without
+disqualifying anyone, formal proceedings and authenticated C4 creation events
+apply temporary restrictions, death and capital termination are terminal, and a
+felony conviction creates a permanent franchise bar. C4 opening requires both
+authentication evidence and an explicit affected-identity list. Optimistic
+`expectedVersion` checks prevent stale writers, while `applyBatch` validates on a
+cloned state and commits all transitions or none.
+
+`electionStatus` only evaluates whether a particular identity may cast a new
+ballot. It freezes eligibility at election close and reports a previously accepted
+ballot as retained after a later restriction. It intentionally does not store,
+count, replace, or reconcile ballots; those responsibilities belong to the ballot
+and electorate components.
+
 ## Privacy and security boundary
 
 Finger captures high-resolution behavioral data and can capture rendered or user-entered DOM content. Treat the data as sensitive operational data: restrict collection to the disclosed capture window, use transport encryption, authorize access server-side, exclude or redact secrets and sensitive fields where possible, and define retention/export/deletion behavior for the environment in which Concord is deployed.
