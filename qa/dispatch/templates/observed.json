@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": null,
+  "profileId": null,
+  "profileVersion": 1,
+  "project": {
+    "workspaceId": null,
+    "teamId": null,
+    "projectId": null
+  },
+  "repository": {
+    "id": null,
+    "fullName": null,
+    "directory": null
+  },
+  "base": {
+    "branch": null,
+    "commit": null
+  },
+  "runtime": {
+    "name": null,
+    "version": null,
+    "verified": false
+  },
+  "environment": {
+    "id": null,
+    "verified": false
+  },
+  "permissions": [],
+  "sources": [],
+  "dependencies": [],
+  "activeAssignments": [],
+  "authorizations": [],
+  "gates": []
+}

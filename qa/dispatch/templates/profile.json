@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "profileId": null,
+  "profileVersion": 1,
+  "project": {
+    "workspaceId": null,
+    "teamId": null,
+    "projectId": null
+  },
+  "repository": {
+    "id": null,
+    "fullName": null,
+    "directory": null
+  },
+  "base": {
+    "branch": null,
+    "commit": null
+  },
+  "runtime": {
+    "name": null,
+    "version": null
+  },
+  "environment": {
+    "id": null
+  },
+  "sources": [],
+  "maxObservationAgeSeconds": 1800,
+  "requiredPermissions": [],
+  "requiredGates": []
+}
