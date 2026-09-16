@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./finger/processing": "./src/finger/processing/index.js"
+  },
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "node --check src/finger/*.js src/finger/processing/*.js src/server.js"
   }
 }

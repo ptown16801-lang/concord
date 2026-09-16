@@ -19,3 +19,36 @@ the server-owned version stamps.
 The response is always `202 Accepted`. A successfully persisted payload
 includes its session reference; malformed or unpersistable transmissions are
 acknowledged without exposing backend state to the interacting user.
+
+## Finger replay and heat-map processing
+
+`src/finger/processing` turns a stored raw Finger session into a deterministic,
+JSON-serializable analysis artifact. It preserves the source version metadata
+and digest, reconstructs replay frames with DOM mutations, and produces
+position, dwell-time, and movement-path layers for touch, mouse, stylus, and a
+combined view.
+
+```js
+import {
+  FingerAnalysisService,
+  InMemoryAnalysisGenerationStore,
+  aggregateSessionAnalyses,
+} from "concord/finger/processing";
+
+const store = new InMemoryAnalysisGenerationStore();
+const processing = new FingerAnalysisService(store);
+const generation = await processing.process(rawSession);
+const aggregate = aggregateSessionAnalyses([generation.artifact, otherArtifact]);
+```
+
+The service only requires an append-only `save(generation)` persistence method.
+The in-memory implementation is intended for tests and local development;
+dedicated Finger storage can implement the same contract without changing the
+processor. Each call creates a new generation instead of replacing earlier
+analysis.
+
+Raw interaction events may provide `clientX`/`clientY`, `position`, or already
+normalized coordinates. Pointer Events (`touch`, `mouse`, and `pen`/`stylus`)
+and Touch Events with `changedTouches` are supported. Sessions should also carry
+`fingerVersion`, `concordVersion`, viewport information, and initial/final DOM
+snapshots when available.
