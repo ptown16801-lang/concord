@@ -36,25 +36,34 @@ const maxBodyBytes = integer(
   1024,
   100 * 1024 * 1024,
 );
+const postContinueMs = integer(
+  process.env.FINGER_POST_CONTINUE_MS ?? "0",
+  "FINGER_POST_CONTINUE_MS",
+  0,
+  60_000,
+);
+const fingerEnabled = process.env.FINGER_ENABLED !== "false";
+const trustConcordUserHeader = process.env.FINGER_TRUST_CONCORD_USER_HEADER === "true";
 const identitySecret = process.env.FINGER_IDENTITY_SECRET;
 if (!identitySecret) throw new Error("FINGER_IDENTITY_SECRET must be configured");
 
-const dataDirectory = path.resolve(
-  process.env.FINGER_DATA_DIR ?? path.resolve("var/finger"),
-);
-mkdirSync(dataDirectory, { recursive: true, mode: 0o700 });
-
-const versions = resolveVersions();
-const repository = new FingerSqliteRepository(
+const dataDirectory = path.resolve(process.env.FINGER_DATA_DIR ?? "var/finger");
+const databasePath = path.resolve(
   process.env.FINGER_DATABASE ?? path.join(dataDirectory, "finger.sqlite"),
 );
-const objectStore = new FileObjectStore(
+const objectDirectory = path.resolve(
   process.env.FINGER_OBJECT_DIR ?? path.join(dataDirectory, "objects"),
 );
+mkdirSync(dataDirectory, { recursive: true, mode: 0o700 });
+mkdirSync(path.dirname(databasePath), { recursive: true, mode: 0o700 });
+mkdirSync(objectDirectory, { recursive: true, mode: 0o700 });
+
+const versions = resolveVersions();
+const repository = new FingerSqliteRepository(databasePath);
+const objectStore = new FileObjectStore(objectDirectory);
 const persistence = new FingerPersistence({ repository, objectStore });
 const store = new PersistentFingerStore(persistence, versions);
 const ingestionService = createFingerIngestionService({ store, versions });
-const trustConcordUserHeader = process.env.FINGER_TRUST_CONCORD_USER_HEADER === "true";
 const fingerHandler = createFingerHttpHandler({
   ingestionService,
   identitySecret,
@@ -72,6 +81,7 @@ function json(response, status, value) {
   response.writeHead(status, {
     "Cache-Control": "no-store",
     "Content-Type": "application/json; charset=utf-8",
+    "X-Content-Type-Options": "nosniff",
   });
   response.end(JSON.stringify(value));
 }
@@ -91,6 +101,7 @@ function serveStatic(request, response, pathname) {
   response.writeHead(200, {
     "Content-Type": MIME.get(path.extname(candidate)) ?? "application/octet-stream",
     "Cache-Control": decoded === "/index.html" ? "no-store" : "public, max-age=300",
+    "X-Content-Type-Options": "nosniff",
   });
   if (request.method === "HEAD") response.end();
   else createReadStream(candidate).pipe(response);
@@ -100,27 +111,27 @@ function serveStatic(request, response, pathname) {
 const server = createServer((request, response) => {
   const url = new URL(request.url, "http://localhost");
   if (request.method === "GET" && url.pathname === "/health") {
-    return json(response, 200, { ok: true, finger: process.env.FINGER_ENABLED !== "false" });
+    return json(response, 200, { ok: true, finger: fingerEnabled });
   }
   if (request.method === "GET" && url.pathname === "/api/finger/config") {
     return json(response, 200, {
-      enabled: process.env.FINGER_ENABLED !== "false",
+      enabled: fingerEnabled,
       fingerVersion: versions.finger,
       concordVersion: versions.concord,
       contactMaxMs: 10_000,
       closeDelayMs: 3_000,
-      postContinueMs: integer(process.env.FINGER_POST_CONTINUE_MS ?? "0", "FINGER_POST_CONTINUE_MS", 0, 60_000),
+      postContinueMs,
     });
   }
   if (url.pathname === "/api/finger/sessions") {
-    if (process.env.FINGER_ENABLED === "false") {
+    if (!fingerEnabled) {
       // Keep the caller's flow non-blocking even when collection is disabled.
       return json(response, 202, { accepted: true });
     }
     return fingerHandler(request, response);
   }
   if (serveStatic(request, response, url.pathname)) return;
-  response.writeHead(404);
+  response.writeHead(404, { "X-Content-Type-Options": "nosniff" });
   response.end();
 });
 
