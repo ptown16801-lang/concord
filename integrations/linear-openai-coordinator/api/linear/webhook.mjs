@@ -25,18 +25,19 @@ async function processAgentSession(payload) {
     token = await getLinearAccessToken();
     await emitAgentActivity(token, sessionId, { type: "thought", body: "Reviewing the project context and authoritative Linear record." }, { ephemeral: true });
 
-    if (!isProjectAllowed(payload, process.env.AGENT_ALLOWED_PROJECTS)) {
+    const currentId = payload?.agentSession?.issue?.id || payload?.agentSession?.issue?.identifier;
+    if (!currentId) throw new Error("AgentSession payload did not include an issue ID");
+    const currentIssue = await getIssue(token, currentId);
+    if (!currentIssue) throw new Error(`Unable to load current Linear issue ${currentId}`);
+
+    const authorizationPayload = { agentSession: { issue: { project: currentIssue.project } } };
+    if (!isProjectAllowed(authorizationPayload, process.env.AGENT_ALLOWED_PROJECTS)) {
       await emitAgentActivity(token, sessionId, {
         type: "error",
         body: "This coordinator is not authorized for the issue's project. Update `AGENT_ALLOWED_PROJECTS` only after verifying the intended project boundary."
       });
       return;
     }
-
-    const currentId = payload?.agentSession?.issue?.id || payload?.agentSession?.issue?.identifier;
-    if (!currentId) throw new Error("AgentSession payload did not include an issue ID");
-    const currentIssue = await getIssue(token, currentId);
-    if (!currentIssue) throw new Error(`Unable to load current Linear issue ${currentId}`);
 
     const result = await runCoordinator({ payload, linearToken: token, currentIssue });
     if (result.decisionRequest) {
