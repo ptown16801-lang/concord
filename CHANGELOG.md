@@ -6,6 +6,10 @@ This file consolidates the implementation history that was previously split acro
 
 ### Added
 
+- Added an append-only, versioned eligibility authority with optimistic concurrency,
+  atomic transition batches, historical reconstruction, and explicit election-close
+  semantics for allegations, proceedings, C4 restrictions, terminal states, felony
+  bars, restoration, and already-accepted ballots.
 - Reconciled the deployable Finger browser collector with the canonical single-request ingestion API.
 - Added a standalone Finger demo page and static-file serving.
 - Added deterministic replay and touch/mouse/stylus/combined heat-map processing utilities from the replay-processing branch.
