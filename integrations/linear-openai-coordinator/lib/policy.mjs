@@ -48,9 +48,9 @@ export const TOOL_DEFINITIONS = [
       properties: {
         title: { type: "string", minLength: 1, maxLength: 240 },
         description: { type: "string" },
-        priority: { type: "integer", minimum: 0, maximum: 4 }
+        priority: { type: ["integer", "null"], minimum: 0, maximum: 4 }
       },
-      required: ["title", "description"],
+      required: ["title", "description", "priority"],
       additionalProperties: false
     },
     strict: true
@@ -63,11 +63,11 @@ export const TOOL_DEFINITIONS = [
       type: "object",
       properties: {
         id: { type: "string" },
-        title: { type: "string", minLength: 1, maxLength: 240 },
-        description: { type: "string" },
-        priority: { type: "integer", minimum: 0, maximum: 4 }
+        title: { type: ["string", "null"], minLength: 1, maxLength: 240 },
+        description: { type: ["string", "null"] },
+        priority: { type: ["integer", "null"], minimum: 0, maximum: 4 }
       },
-      required: ["id"],
+      required: ["id", "title", "description", "priority"],
       additionalProperties: false
     },
     strict: true
