@@ -22,7 +22,7 @@ Finger requires Node.js 22.5 or newer and an identity-signing secret.
 FINGER_IDENTITY_SECRET='replace-with-a-random-secret' npm start
 ```
 
-The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks.
+The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks. The repository requires Node.js 22.5 or newer because its authoritative SQLite stores use the built-in `node:sqlite` module; Node.js 20 is not a supported test or runtime target. Running `nvm use` selects the repository's Node.js 22 baseline, while CI verifies both supported Node.js 22 and 24 release lines.
 
 ### Environment
 
@@ -94,3 +94,22 @@ Do not trust browser-supplied names, email addresses, user IDs, access tokens, o
 - `docs/AUDIT_2026-09-16.md` records the repository/document consistency audit, fixes made, and remaining verified gaps.
 
 Historical decision snapshots and prior Workbench artifacts are provenance. They should not be silently rewritten or deleted merely because a newer canonical record exists.
+
+## Authoritative population interface
+
+`concord/population` exports `PopulationRegistry`, `POPULATION_CEILING`, and
+`CREATION_ROUTES`. The registry is the sole population-count authority: its
+`getPopulation()` result reports living, ceiling, and available capacity, while
+`hasCapacity(amount)` is the integration boundary for proposed COAIA/CRA census
+work. Capacity checks are advisory; all identity creators must call
+`createIdentity()` so its immediate SQLite transaction and database trigger can
+enforce the global ceiling atomically.
+
+Every creation requires a division, identity class, lawful creation route
+(`founding`, `executive_authorization`, or `agent_petition`), actor, authority
+reference, and timestamp. Identity class never changes capacity treatment, so
+hidden or special investigators cannot bypass the ceiling. `markTerminal()` is
+the only lifecycle transition in this scope; it permanently marks an identity
+non-living and releases one unit of capacity. Both successful transitions write
+append-only audit events in the same transaction. Validation, duplicate, cap,
+and audit-write failures roll back without leaving a partial identity or event.
