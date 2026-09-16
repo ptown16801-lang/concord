@@ -12,6 +12,7 @@ This file consolidates the implementation history that was previously split acro
 - Added processing exports from the package/module boundary.
 - Added a dependency-free `package-lock.json` matching the canonical package metadata.
 - Added a branch-safe GitHub Actions test workflow for Node.js 22 and 24.
+- Added regression coverage for filesystem traversal and collector-relative durable event timing.
 - Added `PROJECT_RECORD.md` and `docs/AUDIT_2026-09-16.md` as canonical reconciliation/audit records.
 
 ### Changed
@@ -19,9 +20,12 @@ This file consolidates the implementation history that was previously split acro
 - Preserved the previously merged server-ingestion, signed identity-cookie, SQLite-history, content-addressed object-store, analysis-generation, Concord-linkage, and audited-purge architecture as the canonical persistence foundation.
 - Reworked the collector submission format to the canonical `POST /api/finger/sessions` contract instead of adopting the divergent multi-route server implementation.
 - Made authenticated `x-concord-user` trust explicitly opt-in with `FINGER_TRUST_CONCORD_USER_HEADER=true`; anonymous association remains server-authenticated by a signed HttpOnly cookie.
+- Removed the collector's redundant persistent `localStorage` association ID; the signed server identity is the longitudinal association authority.
+- Redacted editable/form content in DOM snapshots and mutation serialization, and stopped recording literal keyboard `event.key` characters while retaining structural key metadata.
 - Preserved collector-relative timing (`elapsedMs`) when normalizing durable event rows instead of falling back to sequence numbers when browser events carry ISO timestamps.
 - Made replay processing prefer collector-relative `elapsedMs` and accept per-event viewport dimensions when a top-level viewport is unavailable.
 - Consolidated runtime environment parsing and normalized custom database/object-store paths before use.
+- Restricted content-addressed object-store directories to mode `0700` and object files to mode `0600`.
 - Extended `.gitignore` to cover both `var/` and `.finger-data/` runtime state.
 - Updated package exports/scripts and reconciled README documentation with the actual runtime/security contract.
 
