@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concord Finger</title>
+  <link rel="stylesheet" href="/finger-demo.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Concord subsystem</p>
+    <h1>Finger collector</h1>
+    <p>Start a capture to exercise the standalone collector. Collection and upload failures never prevent you from continuing.</p>
+    <button id="start-finger" type="button">Start Finger</button>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <script type="module">
+    import '/finger-collector.js';
+
+    const button = document.querySelector('#start-finger');
+    const status = document.querySelector('#status');
+    button.addEventListener('click', () => {
+      status.textContent = '';
+      const finger = ConcordFinger.open({ invocation: 'demo' });
+      finger.addEventListener('finger:complete', (event) => {
+        status.textContent = `Capture ${event.detail.sessionId} completed.`;
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>

@@ -1,13 +1,14 @@
 {
-  "name": "concord",
+  "name": "concord-finger",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=22"
-  },
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "node --check src/server.js && node --check src/finger/store.js && node --check src/finger/analysis.js && node --check public/finger-collector.js"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
