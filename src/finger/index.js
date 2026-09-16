@@ -7,3 +7,11 @@ export { FileObjectStore } from "./file-object-store.js";
 export { FingerPersistence } from "./persistence.js";
 export { PersistentFingerStore } from "./persistent-store.js";
 export { FingerSqliteRepository } from "./sqlite-repository.js";
+export {
+  DEFAULT_PROCESSING_OPTIONS,
+  FINGER_ANALYSIS_VERSION,
+  FingerAnalysisService,
+  InMemoryAnalysisGenerationStore,
+  aggregateSessionAnalyses,
+  processFingerSession,
+} from "./processing/index.js";
