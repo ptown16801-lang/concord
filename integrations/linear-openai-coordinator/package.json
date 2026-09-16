@@ -1,0 +1,14 @@
+{
+  "name": "linear-openai-coordinator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.0.0" },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check api/linear/webhook.mjs && node --check api/health.mjs && node --check lib/linear.mjs && node --check lib/openai.mjs && node --check lib/policy.mjs"
+  },
+  "dependencies": {
+    "@vercel/functions": "latest"
+  }
+}
