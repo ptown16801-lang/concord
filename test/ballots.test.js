@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync } from "node:fs";
+import { fork } from "node:child_process";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { DatabaseSync } from "node:sqlite";
 import test from "node:test";
 import { BallotBox, CONSTITUTIONAL_SOURCE } from "../src/governance/index.js";
 
@@ -28,18 +30,146 @@ function fixture(filename = ":memory:") {
   return { box, state };
 }
 
-test("two simultaneous valid submissions accept at most one immutable ballot", async () => {
-  const { box } = fixture();
-  const [first, second] = await Promise.all([
-    Promise.resolve().then(() => box.submit(valid)),
-    Promise.resolve().then(() => box.submit({ ...valid, choice: "no" })),
-  ]);
+test("competing processes persist one accepted ballot and both attempts", { timeout: 20_000 }, async (t) => {
+  const directory = mkdtempSync(path.join(tmpdir(), "concord-ballot-race-"));
+  const filename = path.join(directory, "ballots.sqlite");
+  const workers = [];
+  t.after(async () => {
+    await Promise.all(workers.map(async ({ child }) => {
+      if (child.exitCode !== null || child.signalCode !== null) return;
+      const exited = new Promise((resolve) => child.once("exit", resolve));
+      child.kill("SIGKILL");
+      await exited;
+    }));
+    rmSync(directory, { recursive: true, force: true });
+  });
+  fixture(filename).box.close();
+  workers.push(startSubmissionWorker(filename, "yes"), startSubmissionWorker(filename, "no"));
+  await Promise.all(workers.map(({ ready }) => ready));
+  for (const { child } of workers) child.send("submit");
+  const results = await Promise.all(workers.map(({ complete }) => complete));
+  assert.deepEqual(results.map(({ result }) => result.disposition).sort(), ["accepted", "duplicate"]);
+  const winner = results.find(({ result }) => result.accepted);
+  const duplicate = results.find(({ result }) => !result.accepted);
+  assert.equal(duplicate.result.receiptId, winner.result.receiptId);
 
-  assert.equal([first, second].filter((result) => result.accepted).length, 1);
-  assert.equal(box.getAccepted("election-1", "agent-1").choice, "yes");
-  assert.deepEqual(box.getAttempts("election-1", "agent-1").map((row) => row.disposition),
-    ["accepted", "duplicate"]);
-  box.close();
+  const { box } = fixture(filename);
+  try {
+    assert.equal(box.getAccepted(valid.electionId, valid.identityId).choice, winner.choice);
+    assert.equal(box.getAccepted(valid.electionId, valid.identityId).receiptId, winner.result.receiptId);
+    assert.deepEqual(box.getAttempts(valid.electionId, valid.identityId)
+      .map(({ disposition }) => disposition), ["accepted", "duplicate"]);
+  } finally {
+    box.close();
+  }
+});
+
+function startSubmissionWorker(filename, choice) {
+  const child = fork(new URL("../test-support/ballot-submit-worker.mjs", import.meta.url),
+    [filename, choice], { stdio: ["ignore", "ignore", "pipe", "ipc"] });
+  let stderr = "";
+  child.stderr.setEncoding("utf8");
+  child.stderr.on("data", (chunk) => { stderr += chunk; });
+  let readyResolve;
+  let readyReject;
+  const ready = new Promise((resolve, reject) => { readyResolve = resolve; readyReject = reject; });
+  let completeResolve;
+  let completeReject;
+  const complete = new Promise((resolve, reject) => { completeResolve = resolve; completeReject = reject; });
+  // Both promises are consumed below; attach handlers before an early worker failure.
+  ready.catch(() => {});
+  complete.catch(() => {});
+  let result;
+  const fail = (error) => { readyReject(error); completeReject(error); };
+  const deadline = setTimeout(() => {
+    fail(new Error(`Ballot worker timed out: ${stderr}`));
+    child.kill("SIGKILL");
+  }, 15_000);
+  child.on("message", (message) => {
+    if (message.type === "ready") readyResolve();
+    if (message.type === "result") result = message;
+  });
+  child.once("error", (error) => { clearTimeout(deadline); fail(error); });
+  child.once("exit", (code, signal) => {
+    clearTimeout(deadline);
+    if (code !== 0 || !result) {
+      fail(new Error(`Ballot worker failed (${code ?? signal}): ${stderr}`));
+    } else {
+      completeResolve(result);
+    }
+  });
+  return { child, ready, complete };
+}
+
+test("legacy attempt history gains durable mutation guards on every disposition", (t) => {
+  const directory = mkdtempSync(path.join(tmpdir(), "concord-ballot-upgrade-"));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const filename = path.join(directory, "ballots.sqlite");
+  const legacy = new DatabaseSync(filename);
+  try {
+    legacy.exec(readFileSync(new URL("../test-support/ballots-legacy.sql", import.meta.url), "utf8"));
+    const insert = legacy.prepare(`INSERT INTO ballot_attempts
+      (id, election_id, identity_id, source_type, submitted_at, recorded_at,
+       disposition, reason, raw_submission, accepted_receipt_id)
+      VALUES (?, 'election-1', 'agent-1', 'constitutional_ballot', ?, ?, ?, 'original', '{}', NULL)`);
+    for (const disposition of ["accepted", "duplicate", "malformed", "ineligible", "late", "wrong_source"]) {
+      insert.run(disposition, valid.submittedAt, valid.submittedAt, disposition);
+    }
+    legacy.exec(`INSERT INTO accepted_ballots VALUES
+      ('receipt-1', 'accepted', 'election-1', 'agent-1', 'yes', '2026-09-16T11:00:00.000Z', 'original-digest')`);
+    assert.equal(legacy.prepare("SELECT COUNT(*) AS count FROM sqlite_schema WHERE name = 'ballot_attempts_no_update'")
+      .get().count, 0);
+  } finally {
+    legacy.close();
+  }
+  fixture(filename).box.close(); // Existing databases receive the additive migration on open.
+  const independent = new DatabaseSync(filename);
+  let original;
+  try {
+    independent.exec("PRAGMA recursive_triggers = OFF");
+    original = independent.prepare("SELECT rowid, * FROM ballot_attempts ORDER BY rowid").all();
+    for (const row of original) {
+      assert.throws(() => independent.prepare("UPDATE ballot_attempts SET raw_submission = 'tampered' WHERE id = ?")
+        .run(row.id), /append-only/);
+      assert.throws(() => independent.prepare("DELETE FROM ballot_attempts WHERE id = ?").run(row.id), /append-only/);
+      assert.throws(() => independent.prepare(`INSERT OR REPLACE INTO ballot_attempts
+        SELECT id, election_id, identity_id, source_type, submitted_at, recorded_at,
+          disposition, 'tampered', raw_submission, accepted_receipt_id FROM ballot_attempts WHERE id = ?`)
+        .run(row.id), /append-only/);
+      assert.throws(() => independent.prepare(`INSERT OR REPLACE INTO ballot_attempts
+        (rowid, id, election_id, identity_id, source_type, submitted_at, recorded_at,
+         disposition, reason, raw_submission, accepted_receipt_id)
+        SELECT rowid, id || '-replacement', election_id, identity_id, source_type, submitted_at, recorded_at,
+          disposition, 'tampered', raw_submission, accepted_receipt_id FROM ballot_attempts WHERE id = ?`)
+        .run(row.id), /append-only/);
+    }
+    assert.deepEqual(independent.prepare("SELECT rowid, * FROM ballot_attempts ORDER BY rowid").all(), original);
+    const receipt = independent.prepare("SELECT rowid, * FROM accepted_ballots").get();
+    const columns = ["receipt_id", "attempt_id", "election_id", "identity_id", "choice", "accepted_at", "submission_digest"];
+    for (const collision of ["receipt_id", "attempt_id", "electorate", "rowid"]) {
+      const candidate = { ...receipt, receipt_id: "new-receipt", attempt_id: "malformed", election_id: "new-election", identity_id: "new-identity", choice: "no" };
+      if (collision === "electorate") {
+        candidate.election_id = receipt.election_id;
+        candidate.identity_id = receipt.identity_id;
+      } else if (collision !== "rowid") candidate[collision] = receipt[collision];
+      const keys = collision === "rowid" ? ["rowid", ...columns] : columns;
+      assert.throws(() => independent.prepare(`INSERT OR REPLACE INTO accepted_ballots
+        (${keys.join(", ")}) VALUES (${keys.map(() => "?").join(", ")})`)
+        .run(...keys.map((key) => candidate[key])), /immutable/);
+      assert.deepEqual(independent.prepare("SELECT rowid, * FROM accepted_ballots").get(), receipt);
+    }
+  } finally {
+    independent.close();
+  }
+  const { box } = fixture(filename);
+  try {
+    assert.deepEqual(box.database.prepare("SELECT rowid, * FROM ballot_attempts ORDER BY rowid").all(), original);
+    assert.equal(box.getAccepted(valid.electionId, valid.identityId).submissionDigest, "original-digest");
+    assert.equal(box.submit({ ...valid, identityId: "agent-2" }).accepted, true);
+    assert.equal(box.submit({ ...valid, identityId: "agent-2", choice: "no" }).disposition, "duplicate");
+  } finally {
+    box.close();
+  }
 });
 
 test("valid then duplicate preserves the original receipt and choice", () => {
