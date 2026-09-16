@@ -28,7 +28,7 @@ export class FileObjectStore {
     const sha256 = createHash("sha256").update(bytes).digest("hex");
     const key = `finger/sha256/${sha256.slice(0, 2)}/${sha256}`;
     const destination = this.#resolve(key);
-    await mkdir(path.dirname(destination), { recursive: true });
+    await mkdir(path.dirname(destination), { recursive: true, mode: 0o700 });
 
     const temporary = `${destination}.${process.pid}.${randomUUID()}.tmp`;
     try {
