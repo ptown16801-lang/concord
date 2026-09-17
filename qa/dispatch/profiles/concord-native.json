@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "profileId": "concord-native",
+  "profileVersion": 1,
+  "project": {
+    "workspaceId": "a99d50c3-a742-4500-836e-21c149e141b2",
+    "teamId": "836e3d20-d2cb-40ce-8069-4780848b4c2e",
+    "projectId": "e1d62b0d-51a4-43fc-ae91-b3c9e894ebe7"
+  },
+  "repository": {
+    "id": "1372818161",
+    "fullName": "ptown16801-lang/concord",
+    "directory": "."
+  },
+  "base": {
+    "branch": "ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb"
+  },
+  "runtime": {
+    "name": "node",
+    "version": null
+  },
+  "environment": {
+    "id": null
+  },
+  "sources": [
+    {
+      "id": "PROJECT_RECORD.md",
+      "revision": "40f647e5b8d23307f713fc3a3753a1d3a46611cb"
+    },
+    {
+      "id": "linear:5ab8865b-97da-4a4a-9d21-87b0b579f83f",
+      "revision": "2026-09-16T21:24:28.593Z"
+    }
+  ],
+  "maxObservationAgeSeconds": 1800,
+  "notes": {
+    "state": "INCOMPLETE_DO_NOT_DISPATCH",
+    "runtimeRequirement": ">=22.5; Node 22 preferred; Node 24 verification retained",
+    "unresolved": [
+      "Exact saved native environment ID",
+      "Exact saved runtime version and fresh native observation"
+    ],
+    "environmentGate": "JON-90",
+    "informationalOnly": [
+      "JON-84"
+    ],
+    "deploymentTarget": "linux",
+    "observedOn": "2026-09-16",
+    "profileReuse": "Keep stable identities; verify changed fields and required sources before each assignment. Null values must remain blocking."
+  },
+  "requiredPermissions": [
+    "repository.read",
+    "delivery.native"
+  ],
+  "requiredGates": [
+    "JON-90"
+  ]
+}
