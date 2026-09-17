@@ -6,9 +6,10 @@
   "engines": { "node": ">=22.0.0" },
   "scripts": {
     "test": "node --test",
-    "check": "node --check api/linear/webhook.mjs && node --check api/health.mjs && node --check lib/linear.mjs && node --check lib/openai.mjs && node --check lib/policy.mjs"
+    "check": "node --check api/linear/webhook.mjs && node --check api/health.mjs && node --check lib/assignment-store.mjs && node --check lib/linear.mjs && node --check lib/observability.mjs && node --check lib/openai.mjs && node --check lib/policy.mjs && node --check lib/regime.mjs"
   },
   "dependencies": {
+    "@upstash/redis": "1.38.4",
     "@vercel/functions": "latest"
   }
 }

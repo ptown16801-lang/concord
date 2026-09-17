@@ -8,8 +8,8 @@ test("project allowlist accepts Concord and rejects another project", () => {
   assert.equal(isProjectAllowed(payload, "Other"), false);
 });
 
-test("project allowlist defaults open when unset", () => {
-  assert.equal(isProjectAllowed({}, ""), true);
+test("project allowlist fails closed when unset", () => {
+  assert.equal(isProjectAllowed({}, ""), false);
 });
 
 test("buildAgentInput includes prompt and truncates", () => {
