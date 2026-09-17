@@ -2,6 +2,13 @@
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — protected-domain security design, 2026-09-17
+
+### Added
+
+- Added the canonical JON-17 design contract for independently isolated security domains, Linux service identities, domain-local authorization/readers/writers, synchronized AGT policy generations, SAS-style capabilities, expected-version transactions, revocation ordering, evidence-preserving recovery, protected logging, and Workbench visibility.
+- Defined threat and acceptance scenarios for separate House, Senate, and Judiciary investigatory archives without taking ownership of identity history, publication semantics, or sealed-census contents.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added
