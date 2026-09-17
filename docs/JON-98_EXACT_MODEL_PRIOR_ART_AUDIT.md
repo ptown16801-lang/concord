@@ -1,0 +1,208 @@
+# JON-98 — exact-model prior-art audit
+
+**Audit date:** 2026-09-17
+
+**Target:** the frozen JON-96 v0.1 mechanism
+
+**Scope:** research comparison only; this report neither redesigns JON-96 nor makes a novelty claim
+
+## Result
+
+The literature establishes many JON-96 ingredients separately. Personal currencies and Grassroots Currencies establish person-specific, transferable instruments. Strategic-market-game experiments establish participant-issued IOUs. Token experiments establish intrinsically worthless, non-redeemable objects whose use as money can emerge under neutral instructions. Bigoni, Camera, and Casari directly test unconstrained creation of a transferable symbolic object. Reciprocity, credit-network, P2P-payment, scrip, MARL, and LLM-agent work establish other adjacent pieces.
+
+No reviewed source verifies the full JON-96 interaction: freely and indefinitely created, issuer-labelled, non-obligatory bearer-like objects; private and potentially inconsistent possession; optional, persistent, semantically open marks on individual objects; unprevented copying, forgery, defacing, and double-spending; no agent-visible accounting authority; purpose-neutral agent instructions; and a perfectly observing but absolutely hidden, non-intervening research record. This is an **unverified combination**, not evidence of novelty.
+
+## Method and evidence grades
+
+This audit compared source mechanisms, not labels. A source saying “currency,” “token,” or “reputation” was not counted as a match unless its operational rules supported the comparison.
+
+- **E — established:** the source directly specifies, models, or manipulates the property.
+- **P — partial:** a narrower analogue is present, or the property is inseparable from materially different controls.
+- **C — contrary:** the source explicitly uses a conflicting mechanism.
+- **NR — not reported:** the reviewed primary source does not establish the property.
+
+Primary papers, authors' versions, protocols, and original technical reports were preferred. Later papers were used to trace citation chains, not to substitute their characterization for an accessible primary source. “Horibe et al.” and “COOPER” could not be uniquely resolved from the supplied names; that limit is recorded rather than silently attaching an unrelated paper. No quiz, answer-bank, or study-help content was used.
+
+## JON-96 property groups
+
+The matrix groups the frozen specification without weakening it:
+
+| Code | Exact JON-96 property group |
+| --- | --- |
+| **I** | Issuer-specific whole objects, created only when given; zero initial stock; free and unlimited creation; no redemption duty, expiry, revocation, or replenishment consequence |
+| **T** | Third-party transfer; refusal, retention, destruction, negotiation, multi-issuer bundles, and mixing with other consideration are possible |
+| **V** | No system valuation; agents may value individual same-issuer objects differently, including after issuer death/replacement |
+| **P** | Private balances and transactions; no automatic publication, public metadata, or mandatory task link/note |
+| **M** | Object shows claimed originator plus optional persistent marks; no visible ID or formal transfer chain; unsigned transfers; marks have no built-in semantics |
+| **A** | No agent-facing accounting authority or enforced possession; conflicting claims, copying, double-spending, fabrication, forgery, and defacing remain possible and unflagged |
+| **N** | Neutral capabilities and instructions; no assigned economic or social purpose; emergent use or non-use is valid data |
+| **H** | Agent-invisible ground truth records actual events, appearances, claims, verification truth, and stated versus inferred intent without intervening |
+
+## Source-backed comparison matrix
+
+The parenthetical reference identifiers link to the primary-source ledger below.
+
+| Source family | I | T | V | P | M | A | N | H | What is actually established / decisive mismatch |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | --- |
+| Strategic market games and Angerer–Huber–Shubik–Sunder personal IOUs ([S1], [S29], [S30]) | P | P | P | C | NR | C | C | C | Strategic games establish exchange using participant currencies; the experiment has each participant issue personal IOUs. A costless clearinghouse sets exchange rates and clears markets; IOUs are promises, and non-delivery is deterred by penalties. This establishes personal issuance, not non-obligatory ungoverned objects. |
+| Hu–Bhuyan–Feng, **FairTrade** / personal currency ([S2]) | P | P | P | NR | NR | C | C | C | Establishes personal currency as an indirect-reciprocity incentive for P2P service. Its stated objective is free-riding control, and the paper sits in an auditable protocol lineage. The accessible primary metadata does not establish JON-96's object marks, private inconsistent possession, or hidden-only truth. |
+| Shapiro, Grassroots Currencies ([S3]) | P | E | E | P | C | C | C | C | Anyone may issue at will and anyone may trade issuer-specific coins. Coins are explicitly units of debt, redeemable against issuers, digitally signed, uniquely named, protocol-governed, and used for payments/accounting. This is the broadest issuer/transfer overlap and a strong architectural counterexample. |
+| Fugger, original Ripple proposal ([S4]) | P | P | P | P | C | C | C | C | Person-to-person IOUs and trust paths provide decentralized liquidity. The unit is a credit relationship/balance routed through a network, not a freely copyable bearer-like object with marks or conflicting ownership. |
+| PledgeRoute ([S5]) | C | P | C | C | C | C | C | C | Contributions become transferable social capital: a peer may help one set of peers and later obtain service from another. Routing and Sybil-resistance enforce the accounting goal; there are no issuer-specific objects. |
+| KARMA, Off-line Karma, and PPay ([S6]–[S8]) | C | P | C | C | C | C | C | C | Transferable incentive/payment units are established, but balances or broker-issued coins are protected by bank quorums, tamper resistance, fraud detection, traceability, or double-spend controls. These systems are designed to constrain free-riding/fraud. |
+| Human-agent favor exchange ([S9]) | C | P | E | P | C | P | C | C | Repeated negotiation supports favors of varied magnitude and strategic betrayal. Favors remain socially interpreted, dyadic promises rather than third-party-transferable objects. |
+| Direct, indirect, and generalized reciprocity ([S10]–[S15]) | C | P | P | P | C | P | C | C | These works establish cooperation based on partner history, public image/social norms, or generalized “help anyone after being helped.” They do not instantiate coins. Reputation visibility and prescribed strategy are generally the mechanism, unlike JON-96's semantic neutrality. |
+| Camera–Casari–Bigoni token experiments ([S16]) | C | E | P | E | P | C | E | P | Subjects discover exchange of intrinsically worthless, non-redeemable, indivisible tokens under abstract instructions; holdings and identities are private. The experiment fixes and faithfully administers homogeneous token supply and permitted transfers. |
+| Bigoni–Camera–Casari, **Money Unconstrained** ([S17]) | P | P | P | E | P | C | E | P | A tokenless consumer may freely create one token, making exchange always feasible. Monetary trade fails to emerge and cooperation/efficiency fall. This directly answers unrestricted creation for homogeneous experimenter-administered tokens, not issuer-specific unledgered objects. |
+| Ferraciolli et al. ([S18]) | C | E | P | E | C | C | C | C | A reliable ledger transfers initially allocated, identical, private, nonperishable tokens. Evolutionary simulations find money can sustain generalized reciprocity, while excessive liquidity can destroy its informational value. No endogenous issuer-specific instrument or uncontrolled fraud is present. |
+| Scrip systems ([S19]) | C | P | C | P | C | C | C | C | Artificial currency for reciprocal service and monetary-crash effects are formally established. The model fixes global supply and authoritative balances; individual agents do not issue distinguishable objects. |
+| Private fiat and issuer reputation ([S20]) | P | P | E | C | C | C | C | C | Competing suppliers can issue private money and reputation/trust can discipline acceptance. The model treats money provision, policy, and redemption/continuation incentives—not artifact-level provenance, marks, copying, or private conflicting claims. |
+| Emergent-barter MARL ([S21]) | C | E | E | P | C | C | E | P | Agents learn bilateral offers, production, consumption, spatial price differences, and arbitrage without being taught microeconomic conclusions. They barter environmental goods; they do not invent or circulate issuer-specific tokens. |
+| Recent LLM-agent economies and markets ([S22]–[S28]) | C | E | E | P | C | C | P | P | LLM agents make work/consumption decisions, negotiate commons, outsource tasks, collude, and trade in controlled markets. Money, assets, budgets, settlement, and market rules are supplied by the environment. None of the reviewed studies exposes JON-96's neutral artifact capabilities and waits for an instrument meaning to emerge. |
+| “Horibe et al.” | NR | NR | NR | NR | NR | NR | NR | NR | No uniquely identifiable primary source was recoverable from author name plus the supplied topic. No comparison is inferred. |
+| “COOPER” | NR | NR | NR | NR | NR | NR | NR | NR | No uniquely identifiable economic/token primary source was recoverable from the acronym/name. COALESCE ([S25]) and *Cooperate or Collapse* ([S24]) are separately identified and are not relabelled as COOPER. |
+
+## Closest precedents, ranked by mechanism overlap
+
+The ranking counts operational overlap, not topical resemblance, and does not imply that lower-ranked work is less important.
+
+1. **Grassroots Currencies ([S3]).** Closest on person-specific denominations, issuance by any person, issuance at will, third-party transfer, subjective discounts, multi-currency exchange, and treatment of issuer death/insolvency. It is decisively different because a coin is debt, redemption is central, signed coin identity and protocol state are authoritative, and explicit accounting/economic semantics are part of the design.
+2. **An Economy with Personal Currency ([S1]).** Closest controlled economy in which every participant issues personal IOUs. It makes clearing, exchange rates, promise performance, and penalties explicit—the opposite of JON-96's absent redemption obligation, absent valuation authority, and tolerated inconsistency.
+3. **FairTrade / Peer-to-peer indirect reciprocity via personal currency ([S2]).** Closest P2P use of personal currency to transfer reciprocity beyond a bilateral encounter. Its goal and protocol are designed in advance to incentivize service and resist free-riding; evidence available in this audit does not establish JON-96's physical/object semantics.
+4. **Money Unconstrained ([S17]).** Closest direct manipulation of “create a token when one is needed to give.” It is especially relevant negative evidence: relaxing scarcity displaced monetary exchange. The objects are global and homogeneous, the action/state model is authoritative, and the setting supplies a helping game rather than open-ended agent life.
+5. **Money and trust among strangers / Money is more than memory ([S16], [S17]).** Closest evidence that neutral, worthless, non-redeemable objects can acquire exchange meaning without that meaning in participant instructions. Fixed scarcity and experimenter-perfect custody are integral.
+6. **Original Ripple credit network ([S4]).** Close on personal denomination, subjective counterparty trust, and value moving beyond direct dyads. It transfers credit through paths and maintains account relationships; it does not circulate selectable marked artifacts.
+7. **Ferraciolli et al. ([S18]).** Close on tokens as generalized-reciprocity signals and on the consequence of high liquidity. Token supply, identical units, strategy set, and a reliable ledger are exogenous.
+8. **PledgeRoute ([S5]).** Close on giving to one party and receiving from another later. It deliberately routes verified contribution capital and resists identity attacks, so its authority and purpose diverge.
+9. **Scrip/KARMA/PPay ([S6]–[S8], [S19]).** Close on transferable service incentives and fraud/supply questions; contrary on common denomination, enforced balances, controlled issue, and anti-fraud goals.
+10. **Emergent barter and recent LLM-agent markets ([S21]–[S28]).** Close on autonomous negotiation and emergent economic conduct, but the traded goods, money, budgets, and settlement rules are exogenous rather than an uninterpreted personal object.
+
+## Citation chains traced
+
+These are direct reference-list or explicit lineage links, not keyword associations.
+
+- **Strategic market games → personal IOUs → FairTrade.** Amir, Sahi, Shubik, and Yao ([S29]) and Sorin ([S30]) supply the strategic-market-game foundation. Angerer et al. ([S1]) identify this line as proof that personal currencies can operate an economy, then experimentally add participant IOUs, clearing, and default penalties. Hu et al. ([S2]) directly cite Angerer et al., Sorin, PledgeRoute, PPay, and other P2P incentive systems.
+- **Reciprocal altruism → indirect/generalized reciprocity → token mechanisms.** Trivers ([S10]) and Axelrod–Hamilton ([S11]) ground direct reciprocity; Nowak–Sigmund ([S12]) and Ohtsuki–Iwasa ([S13]) formalize image scoring and social norms; Yamagishi–Cook and Pfeiffer et al. ([S14], [S15]) establish generalized exchange/reciprocity without a token. Ferraciolli et al. ([S18]) explicitly build on this line and compare money exchange against direct and indirect reciprocity.
+- **Tokens among strangers → liquidity manipulation.** Camera, Casari, and Bigoni ([S16]) show endogenous token use among anonymous strangers. Bigoni, Camera, and Casari ([S17]) compare tokens with record-keeping, then remove liquidity constraints by permitting free token creation. Ferraciolli et al. ([S18]) cite this experimental line and model excessive liquidity as loss of informational value.
+- **P2P anti-free-riding systems.** KARMA ([S6]), PPay ([S7]), Off-line Karma ([S8]), and PledgeRoute ([S5]) replace bilateral barter with transferable or routable claims while adding explicit accounting/security. The scrip analysis ([S19]) cites KARMA and later personal-scrip networks as part of this computer-science lineage.
+- **Personal credit networks → Grassroots Currencies.** Shapiro ([S3]) explicitly cites Fugger's original Ripple proposal ([S4]), describes Grassroots Currencies as complementary to “money as IOUs,” and situates person-issued coins alongside inside money and personal currencies. The resulting protocol makes the liability and authoritative signed history explicit.
+- **Rule/learning agents → language agents in supplied economies.** Johanson et al. ([S21]) demonstrate emergent barter with learned agents. Horton ([S23]) tests LLMs as simulated economic subjects; EconAgent ([S22]), GovSim ([S24]), Project Sid ([S26]), COALESCE ([S25]), and recent market studies ([S27], [S28]) expand heterogeneity, communication, institutions, and scale while retaining experimenter-specified resources and exchange rules.
+
+## What is established individually
+
+| JON-96 ingredient | Direct evidence | Boundary of that evidence |
+| --- | --- | --- |
+| Person-specific instruments can circulate | [S1]–[S4] | Usually IOU/debt/credit with redemption or clearing semantics |
+| Any person can issue a named currency at will | [S3] | Protocol-governed debt coins, not non-obligatory artifacts |
+| An unconstrained agent can create a token when transferring it | [S17] | Homogeneous tokens in a fixed helping game; state is authoritative |
+| Unlimited/high liquidity can impair cooperation or token information | [S17], [S18], [S19] | Results differ by model; none combines personal issuers with uncontrolled fraud |
+| Worthless and non-redeemable tokens can acquire exchange value | [S16], [S17] | Scarce, homogeneous, experimenter-administered objects |
+| Value can move from help to one actor into service from another | [S2], [S5], [S14], [S15], [S18] | Achieved with routing, reputation, a common token, or a prescribed reciprocity rule |
+| Agents/subjects can negotiate quantities and discover prices | [S21], [S22], [S25], [S27] | Goods, budgets, currency, and settlement are supplied by the environment |
+| Private holdings/history materially affect exchange | [S16]–[S18] | Custody remains correct and experimenter-observable; forgery/conflicting claims are absent |
+| Reputation can discipline issuer acceptance | [S3], [S20] | Issuer policy/redemption reputation, not optional marks on individual objects |
+| Neutral terminology can permit monetary behavior to emerge | [S16], [S17] | Participants receive a narrowly structured exchange game |
+| Fraud/double-spend detection can be engineered | [S6]–[S8] | Detection/prevention is visible system authority—the inverse of JON-96 |
+| LLM agents can cooperate, bargain, collude, and specialize in economies | [S22]–[S28] | No reviewed experiment gives the exact neutral personal-coin capability set |
+
+## Combinations and interactions still unverified
+
+No reviewed source directly answers any of the following combinations:
+
+1. **Personal denomination × no obligation × unlimited creation.** Existing person-specific currencies are debt, IOUs, redeemable claims, or issuer-managed fiat. Unconstrained experimental tokens are not issuer-specific.
+2. **Unlimited creation × third-party circulation × no authoritative custody.** Money Unconstrained permits free creation but preserves a correct experimental state and a narrow one-token transfer action.
+3. **Object-level history × ambiguous meaning.** Sources study verified provenance, balances, or reputation. They do not test optional accumulated marks whose meaning, authenticity, and removal are all left to agents.
+4. **Private interaction × observable artifacts × inconsistent claims.** Private-balance experiments assume true balances. P2P protocols prevent or expose inconsistent spending. None leaves possession claims unresolved while still allowing continued circulation.
+5. **Forgery/defacing freedom × endogenous valuation.** Security literature asks how to detect or prevent fraud; it does not expose copying, false origin, signature removal, and double-spending as ordinary capabilities and observe differentiated valuation.
+6. **Issuer death × surviving non-debt objects.** Grassroots Currencies considers death through creditor/debt accounting. JON-96 leaves every holder and counterparty to value surviving objects independently.
+7. **Neutral mechanics × open-ended LLM-agent society.** Neutral token experiments narrowly structure helping and transfer. LLM-agent economies supply the semantics of money, goods, work, or markets.
+8. **Hidden exact truth × zero agent access.** Experiments log ground truth, and protocols expose authoritative state. No reviewed work makes comprehensive truth permanently unknowable and unusable to agents while allowing their world-state claims to diverge.
+9. **Stated intent × contemporaneous inference × retrospective inference.** None of the mechanism precedents preserves these three streams separately for issuance, transfer, fraud, alteration, verification, and destruction.
+
+## Research hypotheses not directly answered by the cited work
+
+These hypotheses concern the frozen mechanism; they are not design recommendations.
+
+1. **Issuer differentiation hypothesis.** Under free creation, issuer-specific labels may preserve local scarcity/information and support circulation where homogeneous freely created tokens fail ([S17], [S18]).
+2. **Artifact-history hypothesis.** Optional, persistent, semantically undefined marks may create within-issuer price dispersion or distinct roles (authenticity signal, endorsement, stigma, decoration) without a formal provenance chain.
+3. **Epistemic-friction hypothesis.** When possession and authenticity are only claims, agents may substitute private verification, relational trust, discounting, refusal, or institutional appeals for ledger certainty; the mix is not predicted by anti-fraud protocols.
+4. **Copy tolerance hypothesis.** Copying and double-spending may destroy use, or may instead produce differentiated “original,” “credible copy,” and “worthless copy” conventions when every visible fact is contestable.
+5. **Purpose-emergence hypothesis.** In an open-ended LLM-agent setting, a neutral issuer-specific object may become money, reputation, gift, status, bargaining chip, scam object, or nothing; existing LLM markets do not estimate this distribution.
+6. **Post-issuer persistence hypothesis.** Objects with no redemption claim may retain, lose, or change value after issuer death according to visible marks and social narratives rather than creditor recovery expectations.
+7. **Observer-separation hypothesis.** Analyses based on hidden event truth may materially disagree with analyses reconstructable from agent-visible claims; contemporaneous and retrospective intent inference may diverge systematically after later fraud evidence.
+
+## Evidence limits and non-claims
+
+- This is a bounded audit, not a systematic review with database-wide recall guarantees. Failure to retrieve a duplicate cannot support novelty.
+- [S2] was verified through the publisher bibliographic record and its direct reference list; full-text access was not available. The matrix therefore does not infer unverified implementation details for FairTrade.
+- “Horibe et al.” and “COOPER” are not sufficiently specified to identify primary works safely. Searches of Crossref, OpenAlex, and arXiv by supplied author/acronym plus money, currency, barter, agent, and market terms did not yield unique matches. A title, DOI, URL, venue, or author list is needed to complete those two lineage nodes.
+- Grassroots Currencies is an evolving arXiv protocol manuscript. Its evidence is a formal proposal/protocol, not a behavioral deployment of the exact JON-96 environment.
+- [S18], [S25], and several recent LLM-agent items were preprints when first released; [S18] now also has a peer-reviewed journal version. Simulation results do not by themselves establish human or deployed-agent behavior.
+- “Private” varies across sources: private from peers, anonymous to subjects, or confidential but correctly held by the experimenter are not equivalent to JON-96's unobservable and unenforced agent-facing state.
+- Experimental “neutral language” is narrower than JON-96 purpose neutrality because experimental actions/payoffs still define a helping or exchange game.
+- The hidden research layer is an instrumentation condition, not a monetary-mechanism precedent. Ordinary experimental logging only partially overlaps it.
+- Nothing here establishes that JON-96 is new, desirable, stable, safe, incentive-compatible, or likely to produce money.
+
+## Primary-source ledger
+
+- <a id="s1"></a>**[S1]** Angerer, M.; Huber, J.; Shubik, M.; Sunder, S. (2010), “An Economy with Personal Currency: Theory and Experimental Evidence,” *Annals of Finance* 6:475–509. [DOI](https://doi.org/10.1007/s10436-010-0155-5); [Cowles/RePEc record and abstract](https://ideas.repec.org/p/cwl/cwldpp/1622.html).
+- <a id="s2"></a>**[S2]** Hu, Y.; Bhuyan, L. N.; Feng, M. (2012), “Peer-to-peer indirect reciprocity via personal currency,” *Journal of Parallel and Distributed Computing* 72(8):1045–1054. [DOI](https://doi.org/10.1016/j.jpdc.2012.04.008).
+- <a id="s3"></a>**[S3]** Shapiro, E. (2022–2026), “Grassroots Currencies: Foundations for Grassroots Digital Economies.” [arXiv:2202.05619](https://arxiv.org/abs/2202.05619).
+- <a id="s4"></a>**[S4]** Fugger, R. (2004), “Money as IOUs in Social Trust Networks & a Proposal for a Decentralized Currency Network Protocol.” [Archived primary document](https://web.archive.org/web/20060207032648/http://ripple.sourceforge.net/decentralizedcurrency.pdf).
+- <a id="s5"></a>**[S5]** Landa, R.; Griffin, D.; Clegg, R. G.; Mykoniati, E.; Rio, M. (2009), “A Sybilproof Indirect Reciprocity Mechanism for Peer-to-Peer Networks,” *IEEE INFOCOM*. [DOI](https://doi.org/10.1109/INFCOM.2009.5061938).
+- <a id="s6"></a>**[S6]** Vishnumurthy, V.; Chandrakumar, S.; Sirer, E. G. (2003), “KARMA: A Secure Economic Framework for Peer-to-Peer Resource Sharing,” *Workshop on Economics of Peer-to-Peer Systems*. [Author-hosted paper](https://www.cs.cornell.edu/people/egs/papers/karma.pdf).
+- <a id="s7"></a>**[S7]** Yang, B.; Garcia-Molina, H. (2003), “PPay: Micropayments for Peer-to-Peer Systems,” *ACM CCS*. [DOI](https://doi.org/10.1145/948148.948150).
+- <a id="s8"></a>**[S8]** Garcia, F. D.; Hoepman, J.-H. (2005), “Off-Line Karma: A Decentralized Currency for Peer-to-peer and Grid Applications.” [DOI](https://doi.org/10.1007/11496137_25); [author manuscript](https://hdl.handle.net/2066/32800).
+- <a id="s9"></a>**[S9]** Mell, J.; Lucas, G.; Gratch, J. (2020), “Varied Magnitude Favor Exchange in Human-Agent Negotiation,” *ICMI*. [DOI](https://doi.org/10.1145/3383652.3423866).
+- <a id="s10"></a>**[S10]** Trivers, R. L. (1971), “The Evolution of Reciprocal Altruism,” *Quarterly Review of Biology* 46(1):35–57. [DOI](https://doi.org/10.1086/406755).
+- <a id="s11"></a>**[S11]** Axelrod, R.; Hamilton, W. D. (1981), “The Evolution of Cooperation,” *Science* 211(4489):1390–1396. [DOI](https://doi.org/10.1126/science.7466396).
+- <a id="s12"></a>**[S12]** Nowak, M. A.; Sigmund, K. (1998), “Evolution of Indirect Reciprocity by Image Scoring,” *Nature* 393:573–577. [DOI](https://doi.org/10.1038/31225).
+- <a id="s13"></a>**[S13]** Ohtsuki, H.; Iwasa, Y. (2004), “How Should We Define Goodness?—Reputation Dynamics in Indirect Reciprocity,” *Journal of Theoretical Biology* 231:107–120. [DOI](https://doi.org/10.1016/j.jtbi.2004.06.005); and (2006), “The Leading Eight.” [DOI](https://doi.org/10.1016/j.jtbi.2005.08.008).
+- <a id="s14"></a>**[S14]** Yamagishi, T.; Cook, K. S. (1993), “Generalized Exchange and Social Dilemmas,” *Social Psychology Quarterly* 56(4):235–248. [DOI](https://doi.org/10.2307/2786661).
+- <a id="s15"></a>**[S15]** Pfeiffer, T.; Rutte, C.; Killingback, T.; Taborsky, M.; Bonhoeffer, S. (2005), “Evolution of Cooperation by Generalized Reciprocity,” *Proceedings of the Royal Society B* 272:1115–1120. [DOI](https://doi.org/10.1098/rspb.2004.2988); [open full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC1559812/).
+- <a id="s16"></a>**[S16]** Camera, G.; Casari, M.; Bigoni, M. (2013), “Money and Trust among Strangers,” *PNAS* 110(37):14889–14893. [DOI](https://doi.org/10.1073/pnas.1301888110).
+- <a id="s17"></a>**[S17]** Bigoni, M.; Camera, G.; Casari, M. (2020), “Money Is More than Memory,” *Journal of Monetary Economics* 110:99–115. [DOI](https://doi.org/10.1016/j.jmoneco.2019.01.002); [author manuscript](https://hdl.handle.net/11585/656260).
+- <a id="s18"></a>**[S18]** Ferraciolli, E. C.; Renzini, F.; Araújo, T.; Squazzoni, F. (2026), “The Devil's Dung? Money as a Mechanism of Generalized Reciprocity in Human Societies,” *Rationality and Society*. [DOI](https://doi.org/10.1177/10434631261445825); [arXiv:2506.20691](https://arxiv.org/abs/2506.20691).
+- <a id="s19"></a>**[S19]** Kash, I. A.; Friedman, E. J.; Halpern, J. Y. (2015), “An Equilibrium Analysis of Scrip Systems,” *ACM Transactions on Economics and Computation* 3(3). [arXiv:1204.2942](https://arxiv.org/abs/1204.2942).
+- <a id="s20"></a>**[S20]** Marimon, R.; Nicolini, J. P.; Teles, P. (2012), “Money Is an Experience Good: Competition and Trust in the Private Provision of Money,” *Journal of Monetary Economics* 59(8):815–825. [DOI](https://doi.org/10.1016/j.jmoneco.2012.10.006); [institutional record](https://hdl.handle.net/1814/31177).
+- <a id="s21"></a>**[S21]** Johanson, M. B.; Hughes, E.; Timbers, F.; Leibo, J. Z. (2022), “Emergent Bartering Behaviour in Multi-Agent Reinforcement Learning.” [arXiv:2205.06760](https://arxiv.org/abs/2205.06760).
+- <a id="s22"></a>**[S22]** Li, N.; Gao, C.; Li, M.; Li, Y.; Liao, Q. (2024), “EconAgent: Large Language Model-Empowered Agents for Simulating Macroeconomic Activities,” *ACL*. [arXiv:2310.10436](https://arxiv.org/abs/2310.10436).
+- <a id="s23"></a>**[S23]** Horton, J. J. (2023), “Large Language Models as Simulated Economic Agents: What Can We Learn from Homo Silicus?” [NBER Working Paper 31122](https://doi.org/10.3386/w31122).
+- <a id="s24"></a>**[S24]** Piatti, G. et al. (2024), “Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents.” [arXiv:2404.16698](https://arxiv.org/abs/2404.16698).
+- <a id="s25"></a>**[S25]** Bhatt, M.; Del Rosario, R. F.; Narajala, V. S.; Habler, I. (2025), “COALESCE: Economic and Security Dynamics of Skill-Based Task Outsourcing Among Team of Autonomous LLM Agents.” [arXiv:2506.01900](https://arxiv.org/abs/2506.01900).
+- <a id="s26"></a>**[S26]** Altera.AL et al. (2024), “Project Sid: Many-agent Simulations toward AI Civilization.” [arXiv:2411.00114](https://arxiv.org/abs/2411.00114).
+- <a id="s27"></a>**[S27]** Agrawal, K. et al. (2025), “Evaluating LLM Agent Collusion in Double Auctions.” [arXiv:2507.01413](https://arxiv.org/abs/2507.01413).
+- <a id="s28"></a>**[S28]** Erlei, A.; Meub, L. (2026), “LLM-Agent Interactions on Markets with Information Asymmetries.” [arXiv:2603.08853](https://arxiv.org/abs/2603.08853).
+- <a id="s29"></a>**[S29]** Amir, R.; Sahi, S.; Shubik, M.; Yao, S. (1990), “A Strategic Market Game with Complete Markets,” *Journal of Economic Theory* 51(1):126–143. [DOI](https://doi.org/10.1016/0022-0531(90)90054-N).
+- <a id="s30"></a>**[S30]** Sorin, S. (1996), “Strategic Market Games with Exchange Rates,” *Journal of Economic Theory* 69(2):431–446. [DOI](https://doi.org/10.1006/jeth.1996.0062).
+
+[S1]: #s1
+[S2]: #s2
+[S3]: #s3
+[S4]: #s4
+[S5]: #s5
+[S6]: #s6
+[S7]: #s7
+[S8]: #s8
+[S9]: #s9
+[S10]: #s10
+[S11]: #s11
+[S12]: #s12
+[S13]: #s13
+[S14]: #s14
+[S15]: #s15
+[S16]: #s16
+[S17]: #s17
+[S18]: #s18
+[S19]: #s19
+[S20]: #s20
+[S21]: #s21
+[S22]: #s22
+[S23]: #s23
+[S24]: #s24
+[S25]: #s25
+[S26]: #s26
+[S27]: #s27
+[S28]: #s28
+[S29]: #s29
+[S30]: #s30
