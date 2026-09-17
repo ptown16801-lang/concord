@@ -13,6 +13,6 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js"
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check qa/dispatch/dispatch-gate.mjs && node --check qa/dispatch/plan-dispatch.mjs && node --check public/finger-collector.js"
   }
 }

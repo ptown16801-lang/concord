@@ -2,6 +2,10 @@
 
 This package checks a reviewed project profile and assignment against a fresh observation packet. It exits successfully only when required evidence agrees. It never launches agents, changes Linear, merges code, or installs credentials.
 
+`plan-dispatch.mjs` is the complementary queue planner. It consumes a normalized, reviewed Concord issue snapshot and proposes `continue`, `dispatch`, evidence-backed `advance`, or concise `owner-gate` actions. It excludes held/retired/duplicate/Finger-beta/quiz work, applies dependencies only to the work kinds they genuinely gate, and reserves non-overlapping scopes across both existing and newly selected work. The provider runner must recheck and reserve work before applying proposals.
+
+The snapshot uses explicit provider-reviewed facts rather than title/description heuristics. Each issue identifies its state type, work kind, exclusive scope keys, dependencies, canonical issue, subsystem, owner hold/decision, implementation authorization, and any transition evidence. A dependency may name `appliesTo` work kinds; without that field it gates every kind. `activeWork` carries the provider's queued/running/reviewing reservations and their scope keys. Scope keys are hierarchical (`governance/ballot` overlaps `governance/ballot/receipts`). The planner fails closed on malformed or non-Concord snapshots and reports concrete skip reasons when nothing is eligible.
+
 Build and improve this reusable workflow without identifying the next project. Identify each project before assigning work on its code. An unidentified or blocked assignment must not stop unrelated work with satisfied prerequisites.
 
 ## Usage
@@ -12,6 +16,7 @@ node qa/dispatch/dispatch-gate.mjs \
   --assignment /path/to/assignment.json \
   --observed /path/to/fresh-observations.json
 node --test qa/dispatch/dispatch-gate.test.mjs
+node --test qa/dispatch/plan-dispatch.test.mjs
 ```
 
 The command writes a machine-readable ready/blocked report. A nonzero exit means the coordinator must not dispatch that assignment. The nullable files in `templates/` deliberately fail closed; they are not pre-authorized jobs. `profiles/concord-native.json` preserves verified identities and explicitly unresolved environment values. It is deliberately **not ready**.
