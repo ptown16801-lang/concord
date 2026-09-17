@@ -2,6 +2,13 @@
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — scheduler/checker design, 2026-09-17
+
+### Added
+
+- Added the design-only scheduler, legality-checker, protected-envelope, continuity, and staged-rollout contract.
+- Added acceptance scenarios covering mechanical allocation, interpretive petition routing, petition-credit receipts, checker standby/outage behavior, handoffs, donations, continuations, protected visibility, and Workbench separation of capacity, priority, legality, and authorization.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added
