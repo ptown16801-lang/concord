@@ -2,6 +2,13 @@
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — identity persistence design, 2026-09-17
+
+### Added
+
+- Added the canonical JON-15 design contract for persistent governance identity, durable-state boundaries, checkpoint provenance, fail-closed reconstruction, identity-isolated memory/workfiles, authorized successor transfer, history/search semantics, Workbench lifecycle views, and acceptance cases.
+- Documented the read-only interfaces consumed from population, terminal-state, protected-domain authorization, and archival/publication owners without introducing a parallel authority or runtime implementation.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added
