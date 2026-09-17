@@ -92,5 +92,6 @@ Do not trust browser-supplied names, email addresses, user IDs, access tokens, o
 - `CHANGELOG.md` is the consolidated implementation change log.
 - `PROJECT_RECORD.md` explains source precedence, historical decision-file reconciliation, and project/subsystem boundaries.
 - `docs/AUDIT_2026-09-16.md` records the repository/document consistency audit, fixes made, and remaining verified gaps.
+- `docs/SECURITY_DOMAIN_CONTRACT.md` defines Concord's design-only protected-domain gateways, local authorization, authoritative-service, capability, transaction, recovery, and visibility contract.
 
 Historical decision snapshots and prior Workbench artifacts are provenance. They should not be silently rewritten or deleted merely because a newer canonical record exists.
