@@ -91,6 +91,7 @@ Do not trust browser-supplied names, email addresses, user IDs, access tokens, o
 
 - `CHANGELOG.md` is the consolidated implementation change log.
 - `PROJECT_RECORD.md` explains source precedence, historical decision-file reconciliation, and project/subsystem boundaries.
+- `docs/AGREEMENT_LIFECYCLE.md` is the design-only authoritative contract for exact assent, registration, amendments, breach/cure, termination, provenance, and institutional-party continuity.
 - `docs/AUDIT_2026-09-16.md` records the repository/document consistency audit, fixes made, and remaining verified gaps.
 
 Historical decision snapshots and prior Workbench artifacts are provenance. They should not be silently rewritten or deleted merely because a newer canonical record exists.

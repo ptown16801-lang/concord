@@ -84,7 +84,13 @@ The end-to-end draft branch contributed the browser interaction flow, demo conce
 
 The browser collector is instead adapted to the canonical single-request ingestion endpoint. This preserves one backend source of truth.
 
-## 6. Change-log policy
+## 6. Agreement lifecycle design
+
+`docs/AGREEMENT_LIFECYCLE.md` is the current JON-19 design contract for the authoritative agreement registry. It incorporates the adopted JON-31 Option C boundary: an agreement position cannot be transferred or substituted while its original institutional party survives. The contract is a design artifact and does not claim that this repository's current runtime implements an agreement service.
+
+Market and settlement design consumes this lifecycle rather than creating a second agreement registry. Security-domain enforcement and public-ledger publication remain owned by their separate canonical designs.
+
+## 7. Change-log policy
 
 `CHANGELOG.md` is the canonical implementation change log for this repository going forward.
 
@@ -95,7 +101,7 @@ Rules:
 - Do not duplicate the same accepted change as multiple independent milestones merely because it appears in several old files.
 - Corrections are additive: record what was wrong, what supersedes it, and retain the old source rather than silently rewriting history.
 
-## 7. Current repository branch state
+## 8. Current repository branch state
 
 At the start of this audit the repository default branch had a feature-specific name: `ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f`. It already included the merged persistence PR and was therefore used as the safest code baseline.
 
@@ -103,7 +109,7 @@ A reconciliation branch, `audit/concord-reconciliation-20260916`, was created fr
 
 Once the final exact-tree CI checks pass, the reconciliation branch is suitable to become the current code state. The unusual default-branch name is an organizational issue; changing the repository's default-branch setting is separate from code correctness and should not be confused with choosing a different implementation baseline.
 
-## 8. Records that remain historical, not current proof
+## 9. Records that remain historical, not current proof
 
 Examples found during the audit include old conflict reviews, status outputs, prior decision snapshots, and older Workbench files. A historical test status such as a prior `STATUS.json` does not prove the current Finger repository passes those same checks. Likewise, a conflict review of an older Constitution version documents that review period; it does not by itself establish the current state of a later design.
 
