@@ -63,7 +63,7 @@ async function executeTool(name, args, ctx) {
 }
 
 export async function runCoordinator({ payload, linearToken, currentIssue }) {
-  const model = process.env.OPENAI_MODEL || "gpt-5.6-terra";
+  const model = process.env.OPENAI_MODEL || "gpt-5.6-sol";
   const maxOutputTokens = Number(process.env.OPENAI_MAX_OUTPUT_TOKENS || 5000);
   const maxToolRounds = Number(process.env.AGENT_MAX_TOOL_ROUNDS || 5);
   const contextLimit = Number(process.env.AGENT_MAX_CONTEXT_CHARS || 120000);
