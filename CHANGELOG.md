@@ -14,6 +14,7 @@ This file consolidates the implementation history that was previously split acro
 - Added a branch-safe GitHub Actions test workflow for Node.js 22 and 24.
 - Added regression coverage for filesystem traversal and collector-relative durable event timing.
 - Added `PROJECT_RECORD.md` and `docs/AUDIT_2026-09-16.md` as canonical reconciliation/audit records.
+- Added the JON-116 source-verified technical, emergence, surrounding-evidence, Concord-mapping, experiment, and development-option analysis for *Generative Agents*.
 
 ### Changed
 
