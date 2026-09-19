@@ -1,8 +1,8 @@
-# JON-98 — independent source-verification table
+# JON-98 — separate source-verification pass
 
 **Verified:** 2026-09-19 against the producer draft at `e814f3ae81a2011bb86f95cf06cea44eff5fbc4c` and the frozen JON-96 contract.
 
-This is a fresh claim-to-source check, separate from the original draft’s bibliography and completion summary. It does not claim to recover the undelivered JON-106 worker’s research, reproduce experiments, or provide an independent acceptance verdict. Source IDs retain the original audit’s numbering: 30 entries, with two papers under S13, plus two unresolved labels.
+This is a fresh claim-to-source check against the producer draft and frozen JON-96 contract, separate from the original draft’s bibliography and completion summary. A separate pass does not establish independent verification. It does not claim to recover the undelivered JON-106 worker’s research, reproduce experiments, or provide an independent acceptance verdict. Source IDs retain the original audit’s numbering: 30 entries, with two papers under S13, plus two unresolved labels.
 
 **Reading the table:** “Primary text” means the cited passages were retrieved and inspected, not that every passage or result was replicated. “Abstract” supports only what that abstract states. “Metadata” verifies identity and bibliographic fields, never implementation. Unsupported means not established by the inspected evidence; it does not necessarily mean false. Links to records are distinguished from links to accessible full text. Access outcomes are from this pass and may change.
 
@@ -58,4 +58,4 @@ The exact model remains fixed: non-obligatory issuer-specific objects, free unli
 4. Correct the Grassroots version/date and full Leading Eight citation; add Ferraciolli journal details while keeping mechanism evidence tied to its preprint; clarify the treatment status and 59% token-exchange qualification for Money Unconstrained; avoid unsupported private-fiat redemption claims.
 5. Preserve only checked direct citation edges as such. Broader reciprocity and MARL/LLM groupings are thematic, not verified chains. The seven audit hypotheses remain conditional questions about combinations; none is a novelty or priority claim. Their unanswered status is limited to the inspected evidence, especially while two identities and several primary texts remain unavailable.
 
-**Acceptance limit:** this delivers a checkable verification table and corrections, not owner acceptance, JON-106 acceptance, a completed systematic review, or permission to release downstream work. Remaining source-access and identity gaps are explicit above. No application implementation, experiment redesign, or quiz material is included.
+**Acceptance limit:** owner and independent acceptance remain pending. This delivers a checkable verification table and corrections, not owner acceptance, JON-106 acceptance, a completed systematic review, or permission to release downstream work. Remaining source-access and identity gaps are explicit above. No application implementation, experiment redesign, or quiz material is included.
