@@ -81,13 +81,13 @@ This qualitative ordering prioritizes person-specific denomination and discretio
 
 ## Citation chains traced
 
-The independently checked direct links below are distinguished from conceptual groupings. A deposited reference verifies a citation edge, not the cited mechanism.
+The direct links checked in this separate source-verification pass are distinguished from conceptual groupings. A deposited reference verifies a citation edge, not the cited mechanism.
 
 - **Personal IOUs / strategic market games → FairTrade:** S2’s publisher-deposited Crossref reference list explicitly names S1’s 2007 Cowles paper, S30, S5 and S7. S1’s retrieved abstract names Sahi–Yao (1989) and Sorin (1996); do not replace Sahi–Yao with Amir et al. (S29). S29 is a related verified bibliographic identity, not a verified direct ancestor on this evidence.
 - **Token experiments → Ferraciolli:** S18 v1, references and model introduction, explicitly cites S16 and S17; S17’s accepted manuscript discusses S16. This verifies a chain into the simulated monetary-exchange strategy, not inheritance of JON-96 mechanics.
 - **Reciprocity → Ferraciolli:** S18’s model introduction explicitly cites Axelrod–Hamilton and Nowak–Sigmund. The wider S10–S15 grouping is conceptual; not every pairwise citation edge has been inspected.
 - **KARMA / PPay → Off-line Karma; KARMA → scrip:** S8’s introduction discusses S6 and S7; S19 v2 §1.1 explicitly cites KARMA. S8’s characterization of PPay is secondary evidence, not a substitute for S7’s unavailable primary text.
-- **Ripple → Grassroots Currencies:** S3 v17 reference [28] identifies Fugger’s 2004 proposal. The independently retrieved Fugger v2 text confirms credit paths; it is a proposal, not evidence of a deployed implementation.
+- **Ripple → Grassroots Currencies:** S3 v17 reference [28] identifies Fugger’s 2004 proposal. The Fugger v2 text retrieved in this separate source-verification pass confirms credit paths; it is a proposal, not evidence of a deployed implementation.
 - **MARL → recent LLM-agent studies:** this is a thematic comparison only. No direct citation chain joining every item S21–S28 was verified. COALESCE and *Cooperate or Collapse* are not substitutions for the unresolved COOPER label.
 
 ## What is established individually
