@@ -24,6 +24,8 @@ FINGER_IDENTITY_SECRET='replace-with-a-random-secret' npm start
 
 The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks.
 
+For a read-only Node/SQLite and Git checkout report, run `node qa/workflow/runtime-preflight.mjs`. See the [coding-session runtime check](qa/workflow/README.md) for its JSON output and the retirement of saved-environment, native-delivery, and shared dispatch-policy gates.
+
 ### Environment
 
 | Variable | Default | Purpose |
