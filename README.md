@@ -83,25 +83,27 @@ The processing library is exported from `./finger/processing`. Raw capture persi
 
 ## Governance eligibility authority
 
-The `./governance` export provides `EligibilityRegistry`, an append-only franchise
-state authority. Callers register ordinary identities and submit explicit,
-effective-dated transitions. Each committed event receives a monotonically
-increasing version; `stateAt` reconstructs an identity at a historical version or
-time, and `auditLog` exposes immutable copies of the source events.
+The `./governance` export provides a durable SQLite `EligibilityRegistry` writer
+and a separate `EligibilityReader` with a read-only connection. The writer
+requires an explicit database filename, authority ID, trusted Ed25519 service
+keys, transition grants, and policy generation. Every command batch needs a
+signed, expiring request and an explicit `expectedVersion`; caller-supplied
+identity strings or C4 `authentication` objects are never credentials.
 
-Transitions deliberately remain distinct: allegations are audited without
-disqualifying anyone, formal proceedings and authenticated C4 creation events
-apply temporary restrictions, death and capital termination are terminal, and a
-felony conviction creates a permanent franchise bar. C4 opening requires both
-authentication evidence and an explicit affected-identity list. Optimistic
-`expectedVersion` checks prevent stale writers, while `applyBatch` validates on a
-cloned state and commits all transitions or none.
+Events and signed request receipts commit atomically, remain append-only, and
+survive restart. Reads reconstruct from committed history. The original
+allegation, proceeding, C4, terminal-state, felony-bar, restoration, and
+previously-accepted-ballot behavior remains. No ballot or population system is
+implemented here.
 
-`electionStatus` only evaluates whether a particular identity may cast a new
-ballot. It freezes eligibility at election close and reports a previously accepted
-ballot as retained after a later restriction. It intentionally does not store,
-count, replace, or reconcile ballots; those responsibilities belong to the ballot
-and electorate components.
+Future ballot integration must call `readEligibility` through the eligibility
+Read Service and coordinate acceptance with its returned version; it must not
+maintain a second eligibility map. Historical `stateAt` and `electionStatus`
+queries are not ballot admission credentials.
+
+See [the eligibility authority contract](docs/ELIGIBILITY_AUTHORITY.md) for the
+signed request format, storage boundary, compatibility changes, and remaining
+AGT/population/ballot integration requirements.
 
 ## Privacy and security boundary
 

@@ -14,6 +14,6 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check src/governance/eligibility.js && node --check public/finger-collector.js"
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check src/governance/eligibility.js && node --check src/governance/eligibility-store.js && node --check src/governance/eligibility-authorization.js && node --check src/governance/eligibility-errors.js && node --check src/governance/index.js && node --check public/finger-collector.js"
   }
 }

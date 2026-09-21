@@ -1,3 +1,8 @@
+import { EligibilityAuthorization, canonicalJson } from "./eligibility-authorization.js";
+import { EligibilityStore } from "./eligibility-store.js";
+import { EligibilityTransitionError } from "./eligibility-errors.js";
+export { EligibilityTransitionError } from "./eligibility-errors.js";
+
 const EVENT_TYPES = Object.freeze({
   IDENTITY_REGISTERED: "IDENTITY_REGISTERED",
   ALLEGATION_RECORDED: "ALLEGATION_RECORDED",
@@ -12,126 +17,145 @@ const EVENT_TYPES = Object.freeze({
 
 export const EligibilityEventType = EVENT_TYPES;
 
-export class EligibilityTransitionError extends Error {
-  constructor(code, message) {
-    super(message);
-    this.name = "EligibilityTransitionError";
-    this.code = code;
-  }
-}
-
-/**
- * Append-only, optimistic-concurrency controlled authority for franchise state.
- * A command batch is reduced against a clone and committed only in full.
- */
-export class EligibilityRegistry {
-  #events = [];
-  #states = new Map();
+/** Queries always reconstruct from one committed store snapshot; no eligibility cache. */
+class EligibilityQueries {
+  #store;
   #clock;
 
-  constructor({ clock = () => new Date() } = {}) {
-    this.#clock = clock;
-  }
+  constructor(store, clock) { this.#store = store; this.#clock = clock; }
+  close() { this.#store.close(); }
+  get version() { return this.#store.snapshot().version; }
 
-  get version() {
-    return this.#events.length;
-  }
-
-  apply(command, options) {
-    return this.applyBatch([command], options)[0];
-  }
-
-  applyBatch(commands, { expectedVersion = this.version } = {}) {
-    if (!Number.isSafeInteger(expectedVersion) || expectedVersion !== this.version) {
-      throw transitionError("VERSION_CONFLICT", `Expected version ${expectedVersion}; current version is ${this.version}`);
-    }
-    if (!Array.isArray(commands) || commands.length === 0) {
-      throw transitionError("EMPTY_BATCH", "At least one transition is required");
-    }
-
-    const states = cloneStates(this.#states);
-    const events = [];
-    let lastTime = this.#events.at(-1)?.effectiveAt ?? null;
-    for (const command of commands) {
-      const effectiveAt = timestamp(command?.effectiveAt ?? this.#clock(), "effectiveAt");
-      if (lastTime && effectiveAt < lastTime) {
-        throw transitionError("NON_MONOTONIC_TIME", "Transitions must not predate committed or earlier batch transitions");
-      }
-      const emitted = reduceCommand(states, command, effectiveAt);
-      for (const event of emitted) {
-        events.push(freeze({
-          ...event,
-          version: this.version + events.length + 1,
-          effectiveAt,
-          recordedAt: timestamp(this.#clock(), "recordedAt"),
-        }));
-      }
-      lastTime = effectiveAt;
-    }
-
-    this.#states = states;
-    this.#events.push(...events);
-    return events.map((event) => structuredClone(event));
-  }
+  requestReceipt(requestId) { return this.#store.requestReceipt(requireId(requestId, "requestId")); }
 
   auditLog({ afterVersion = 0 } = {}) {
-    if (!Number.isSafeInteger(afterVersion) || afterVersion < 0) {
-      throw new TypeError("afterVersion must be a non-negative safe integer");
-    }
-    return this.#events
-      .filter(({ version }) => version > afterVersion)
-      .map((event) => structuredClone(event));
+    if (!Number.isSafeInteger(afterVersion) || afterVersion < 0) throw new TypeError("afterVersion must be a non-negative safe integer");
+    return this.#store.snapshot().events.filter(({ version }) => version > afterVersion);
   }
 
-  stateAt(identityId, { version = this.version, at } = {}) {
-    requireId(identityId, "identityId");
-    if (!Number.isSafeInteger(version) || version < 0 || version > this.version) {
-      throw new RangeError("version is outside the audit log");
-    }
-    const cutoff = at === undefined ? null : timestamp(at, "at");
-    const states = new Map();
-    for (const event of this.#events) {
-      if (event.version > version || (cutoff && event.effectiveAt > cutoff)) continue;
-      replayEvent(states, event);
-    }
-    const state = states.get(identityId);
-    return state ? publicState(state, version, cutoff) : null;
+  stateAt(identityId, { version, at } = {}) {
+    const snapshot = this.#store.snapshot();
+    return stateFromSnapshot(snapshot, identityId, { version: version ?? snapshot.version, at });
+  }
+
+  /** Live integration read: caller cannot supply an old time or old eligibility. */
+  readEligibility(identityId, { minimumVersion = 0 } = {}) {
+    const snapshot = this.#store.snapshot();
+    if (!Number.isSafeInteger(minimumVersion) || minimumVersion < 0) throw new TypeError("minimumVersion must be a non-negative safe integer");
+    if (snapshot.version < minimumVersion) throw transitionError("STALE_READ", "Authority has not reached the required version");
+    const observedAt = timestamp(this.#clock(), "observedAt");
+    return freeze({
+      authorityId: snapshot.authorityId, identityId: requireId(identityId, "identityId"), version: snapshot.version, observedAt,
+      ...decision(stateFromSnapshot(snapshot, identityId, { version: snapshot.version, at: observedAt })),
+    });
   }
 
   canCastNewBallot(identityId, { at = this.#clock() } = {}) {
-    const state = this.stateAt(identityId, { at });
-    return decision(state);
+    return decision(this.stateAt(identityId, { at }));
   }
 
-  electionStatus(identityId, { closesAt, acceptedBallotAt = null, at = this.#clock() }) {
+  // Historical/retention query only: acceptedBallotAt must come from the ballot authority.
+  electionStatus(identityId, { closesAt, acceptedBallotAt = null, at = this.#clock(), version }) {
+    requireId(identityId, "identityId");
     const close = timestamp(closesAt, "closesAt");
     const observed = timestamp(at, "at");
     const accepted = acceptedBallotAt === null ? null : timestamp(acceptedBallotAt, "acceptedBallotAt");
-    if (accepted && accepted > close) {
-      throw transitionError("BALLOT_AFTER_CLOSE", "An accepted ballot cannot postdate election close");
-    }
-    if (accepted) {
-      return freeze({ status: "ACCEPTED", retained: true, acceptedBallotAt: accepted });
-    }
-    if (observed > close) {
-      return freeze({ status: "CLOSED", retained: false, ...decision(this.stateAt(identityId, { at: close })) });
-    }
+    if (accepted && accepted > close) throw transitionError("BALLOT_AFTER_CLOSE", "An accepted ballot cannot postdate election close");
+    if (accepted) return freeze({ status: "ACCEPTED", retained: true, acceptedBallotAt: accepted });
     return freeze({
-      status: "OPEN",
-      retained: false,
-      ...decision(this.stateAt(identityId, { at: observed })),
+      status: observed > close ? "CLOSED" : "OPEN", retained: false,
+      ...decision(this.stateAt(identityId, { version, at: observed > close ? close : observed })),
     });
   }
 }
 
+/** A separate SQLite read-only connection, suitable for the future Read Service. */
+export class EligibilityReader extends EligibilityQueries {
+  constructor({ filename, authorityId, clock = () => new Date() } = {}) {
+    super(new EligibilityStore({ filename, authorityId, readOnly: true }), clock);
+  }
+}
+
+/** Writer-service entry point. Construction/configuration belongs to trusted bootstrap. */
+export class EligibilityRegistry extends EligibilityQueries {
+  #store;
+  #authorization;
+  #clock;
+
+  constructor({ filename, authorityId, policyGeneration, principals, maxLifetimeMs, clock = () => new Date() } = {}) {
+    const authorization = new EligibilityAuthorization({ authorityId, policyGeneration, principals, maxLifetimeMs });
+    const store = new EligibilityStore({ filename, authorityId });
+    super(store, clock);
+    this.#store = store;
+    this.#authorization = authorization;
+    this.#clock = clock;
+  }
+
+  apply(command, options) { return this.applyBatch([command], options)[0]; }
+
+  applyBatch(commands, { expectedVersion, authorization } = {}) {
+    if (!Number.isSafeInteger(expectedVersion) || expectedVersion < 0) throw transitionError("EXPECTED_VERSION_REQUIRED", "An explicit expectedVersion is required");
+    if (!Array.isArray(commands) || commands.length === 0) throw transitionError("EMPTY_BATCH", "At least one transition is required");
+    // Freeze the exact wire value before signature verification or transactional use.
+    const batch = JSON.parse(canonicalJson(commands));
+    if (batch.some((command) => !command || typeof command !== "object" || Array.isArray(command))) throw transitionError("INVALID_COMMAND", "Transitions must be objects");
+    const proof = authorization === undefined ? undefined : JSON.parse(canonicalJson(authorization));
+    const verify = () => this.#authorization.verify(batch, { expectedVersion, authorization: proof }, new Date(timestamp(this.#clock(), "recordedAt")).valueOf());
+    const evidence = verify();
+    return this.#store.append({
+      expectedVersion, commands: batch, authorization: evidence,
+      buildEvents: (snapshot) => {
+        // Recheck expiry after acquiring the writer lock, before doing any writes.
+        verify();
+        const states = reconstruct(snapshot.events);
+        const events = [];
+        let lastTime = snapshot.events.at(-1)?.effectiveAt ?? null;
+        for (const command of batch) {
+          const effectiveAt = timestamp(command.effectiveAt ?? this.#clock(), "effectiveAt");
+          if (lastTime && effectiveAt < lastTime) throw transitionError("NON_MONOTONIC_TIME", "Transitions must not predate committed or earlier batch transitions");
+          for (const event of reduceCommand(states, command, effectiveAt)) {
+            events.push({ ...event, version: snapshot.version + events.length + 1, effectiveAt,
+              recordedAt: timestamp(this.#clock(), "recordedAt"), authorization: evidence });
+          }
+          lastTime = effectiveAt;
+        }
+        verify();
+        return events;
+      },
+    });
+  }
+}
+
+function stateFromSnapshot(snapshot, identityId, { version, at }) {
+  identityId = requireId(identityId, "identityId");
+  if (!Number.isSafeInteger(version) || version < 0 || version > snapshot.version) throw new RangeError("version is outside the audit log");
+  const cutoff = at === undefined ? null : timestamp(at, "at");
+  const states = reconstruct(snapshot.events.filter((event) => event.version <= version && (!cutoff || event.effectiveAt <= cutoff)));
+  const state = states.get(identityId);
+  return state ? publicState(state, version, cutoff) : null;
+}
+
+function reconstruct(events) {
+  const states = new Map();
+  let lastTime = null;
+  try {
+    for (const event of events) {
+      if (timestamp(event.effectiveAt, "effectiveAt") !== event.effectiveAt || (lastTime && event.effectiveAt < lastTime)) throw new Error("Invalid event time");
+      reduceCommand(states, event, event.effectiveAt);
+      lastTime = event.effectiveAt;
+    }
+  } catch (error) {
+    throw transitionError("CORRUPT_HISTORY", `Invalid committed transition: ${error.message}`);
+  }
+  return states;
+}
+
 function reduceCommand(states, command, effectiveAt) {
   if (!command || typeof command !== "object") throw transitionError("INVALID_COMMAND", "Transition must be an object");
+  if (Object.hasOwn(command, "authentication")) throw transitionError("INVALID_COMMAND", "Caller-supplied authentication is not authority evidence");
   const { type } = command;
   if (type === EVENT_TYPES.C4_CREATION_EVENT_OPEN) {
     const proceedingId = requireId(command.proceedingId, "proceedingId");
-    if (!command.authentication || typeof command.authentication !== "object" || !requireOptionalId(command.authentication.authorityId)) {
-      throw transitionError("UNAUTHENTICATED_C4", "C4 creation requires authenticated authority evidence");
-    }
     if (!Array.isArray(command.affectedIdentityIds) || command.affectedIdentityIds.length === 0) {
       throw transitionError("EMPTY_AFFECTED_LIST", "C4 creation requires an affected-identity list");
     }
@@ -142,7 +166,7 @@ function reduceCommand(states, command, effectiveAt) {
       if (state.c4.has(proceedingId)) throw transitionError("REPEATED_TRANSITION", `C4 restriction ${proceedingId} is already open for ${identityId}`);
       state.c4.add(proceedingId);
     }
-    return [{ type, affectedIdentityIds: ids, proceedingId, authentication: structuredClone(command.authentication) }];
+    return [{ type, affectedIdentityIds: ids, proceedingId }];
   }
 
   const identityId = requireId(command.identityId, "identityId");
@@ -152,7 +176,8 @@ function reduceCommand(states, command, effectiveAt) {
     return [{ type, identityId }];
   }
   const state = existingState(states, identityId);
-  const proceedingId = command.proceedingId && requireId(command.proceedingId, "proceedingId");
+  const proceedingId = [EVENT_TYPES.FORMAL_PROCEEDING_OPENED, EVENT_TYPES.FORMAL_PROCEEDING_CLOSED, EVENT_TYPES.C4_RESTRICTION_CLOSED].includes(type)
+    ? requireId(command.proceedingId, "proceedingId") : undefined;
   switch (type) {
     case EVENT_TYPES.ALLEGATION_RECORDED:
       state.allegations += 1;
@@ -185,27 +210,6 @@ function reduceCommand(states, command, effectiveAt) {
   }
 }
 
-function replayEvent(states, event) {
-  if (event.type === EVENT_TYPES.IDENTITY_REGISTERED) {
-    states.set(event.identityId, initialState(event.identityId));
-    return;
-  }
-  if (event.type === EVENT_TYPES.C4_CREATION_EVENT_OPEN) {
-    for (const identityId of event.affectedIdentityIds) existingState(states, identityId).c4.add(event.proceedingId);
-    return;
-  }
-  const state = existingState(states, event.identityId);
-  if (event.type === EVENT_TYPES.ALLEGATION_RECORDED) state.allegations += 1;
-  else if (event.type === EVENT_TYPES.FORMAL_PROCEEDING_OPENED) state.formal.add(event.proceedingId);
-  else if (event.type === EVENT_TYPES.FORMAL_PROCEEDING_CLOSED) state.formal.delete(event.proceedingId);
-  else if (event.type === EVENT_TYPES.C4_RESTRICTION_CLOSED) state.c4.delete(event.proceedingId);
-  else if (event.type === EVENT_TYPES.FELONY_CONVICTION_ENTERED) state.felonyBar = true;
-  else if (event.type === EVENT_TYPES.DEATH_RECORDED || event.type === EVENT_TYPES.CAPITAL_TERMINATION_RECORDED) {
-    state.terminal = event.type === EVENT_TYPES.DEATH_RECORDED ? "DECEASED" : "CAPITAL_TERMINATED";
-    state.formal.clear(); state.c4.clear();
-  }
-}
-
 function decision(state) {
   if (!state) return freeze({ eligible: false, reason: "NOT_REGISTERED" });
   if (typeof state.eligible === "boolean") {
@@ -225,12 +229,10 @@ function publicState(state, version, at) {
     allegationCount: state.allegations, ...decision(state) });
 }
 function initialState(identityId) { return { identityId, terminal: null, felonyBar: false, allegations: 0, formal: new Set(), c4: new Set() }; }
-function cloneStates(states) { return new Map([...states].map(([id, s]) => [id, { ...s, formal: new Set(s.formal), c4: new Set(s.c4) }])); }
 function existingState(states, id) { const state = states.get(id); if (!state) throw transitionError("UNKNOWN_IDENTITY", `${id} is not registered`); return state; }
 function livingState(states, id) { const state = existingState(states, id); assertLiving(state); return state; }
 function assertLiving(state) { if (state.terminal) throw transitionError("TERMINAL_IDENTITY", "Death or capital termination is final"); }
 function requireId(value, field) { if (typeof value !== "string" || !value.trim()) throw transitionError("INVALID_IDENTIFIER", `${field} must be a non-empty string`); return value.trim(); }
-function requireOptionalId(value) { return typeof value === "string" && Boolean(value.trim()); }
 function timestamp(value, field) { const date = value instanceof Date ? value : new Date(value); if (Number.isNaN(date.valueOf())) throw transitionError("INVALID_TIME", `${field} must be a valid date`); return date.toISOString(); }
 function transitionError(code, message) { return new EligibilityTransitionError(code, message); }
 function freeze(value) { return Object.freeze(value); }
