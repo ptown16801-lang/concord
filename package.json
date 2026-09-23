@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js && node --check src/governance/eligibility.js && node --check src/governance/bootstrap-impeachment.js && node --check src/population/registry.js && node --check src/governance/impeachment-service.js && node --check src/governance/impeachment-store.js && node --check src/governance/impeachment-authorities.js",
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js && node --check src/governance/eligibility.js && node --check src/governance/bootstrap-impeachment.js && node --check src/population/registry.js && node --check src/governance/impeachment-service.js && node --check src/governance/impeachment-store.js && node --check src/governance/impeachment-authorities.js && node --check src/governance/ballots.js",
     "governance:test": "node --test test/agt-admission.test.js test/agt-sandbox.test.js test/agt-audit-regressions.test.js",
     "governance:demo": "node examples/agt-local/demo.js",
     "governance:isolation": "node examples/agt-local/isolation.js",
