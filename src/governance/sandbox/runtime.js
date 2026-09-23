@@ -79,6 +79,8 @@ export class GovernanceSandbox {
       CREATE TRIGGER IF NOT EXISTS approval_immutable BEFORE UPDATE OF request,digest,actor,evidence ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS approval_no_delete BEFORE DELETE ON operations BEGIN SELECT RAISE(ABORT,'approved actions cannot be canceled'); END;
       CREATE TRIGGER IF NOT EXISTS operation_transition BEFORE UPDATE OF status ON operations WHEN OLD.status != 'pending' OR NEW.status != 'committed' BEGIN SELECT RAISE(ABORT,'invalid operation transition'); END;
+      CREATE TRIGGER IF NOT EXISTS operation_result_immutable BEFORE UPDATE OF result ON operations WHEN OLD.status != 'pending' OR NEW.status != 'committed' OR NEW.result IS NULL BEGIN SELECT RAISE(ABORT,'immutable result'); END;
+      CREATE TRIGGER IF NOT EXISTS operation_result_required BEFORE UPDATE OF status ON operations WHEN NEW.status = 'committed' AND NEW.result IS NULL BEGIN SELECT RAISE(ABORT,'committed result required'); END;
       CREATE TRIGGER IF NOT EXISTS audit_no_update BEFORE UPDATE ON audit BEGIN SELECT RAISE(ABORT,'immutable audit'); END;
       CREATE TRIGGER IF NOT EXISTS audit_no_delete BEFORE DELETE ON audit BEGIN SELECT RAISE(ABORT,'immutable audit'); END;
     `);
@@ -202,7 +204,12 @@ export class GovernanceSandbox {
     try { return await this.admitVerified(input, attempt); }
     catch (error) {
       // Record a sanitized failure, never raw caller payloads or credential details.
-      this.log(`denied-${attempt.correlationId}`, { type: 'denied', code: typeof error.code === 'string' && /^[A-Z_]{1,64}$/.test(error.code) ? error.code : 'ADMISSION_DENIED', ...attempt });
+      let code = 'ADMISSION_DENIED';
+      try {
+        const candidate = error?.code;
+        if (typeof candidate === 'string' && /^[A-Z_]{1,64}$/.test(candidate)) code = candidate;
+      } catch { /* A rejected value may even have a throwing property getter. */ }
+      this.log(`denied-${attempt.correlationId}`, { type: 'denied', code, ...attempt });
       throw error;
     }
   }

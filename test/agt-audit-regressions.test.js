@@ -7,12 +7,47 @@ import { createFixture } from '../examples/agt-local/fixture.js';
 import { verifyPolicyEvidence } from '../src/governance/policy-evidence.js';
 import { LocalAuditCollector } from '../src/governance/sandbox/runtime.js';
 
-async function fixture(t) {
+async function fixture(t, options) {
   const dir = await mkdtemp(join(tmpdir(), 'concord-audit-regression-'));
-  const f = await createFixture(dir);
+  const f = await createFixture(dir, options);
   t.after(async () => { f.close(); await rm(dir, { recursive: true, force: true }); });
   return f;
 }
+
+test('primitive and hostile evaluator rejections retain a sanitized denial and no approval', async t => {
+  for (const reason of [null, undefined, 'private evaluator error', { get code() { throw new Error('private getter'); } }]) {
+    const f = await fixture(t, { evaluators: [() => Promise.reject(reason)] });
+    const envelope = f.signed(f.request());
+    await assert.rejects(f.runtime.admit(envelope), error => error === reason);
+    assert.equal(f.runtime.operation('operation-1'), null);
+    assert.equal(f.runtime.record('sample/one').version, 0);
+    const [entry] = f.runtime.auditEntries();
+    assert.equal(f.runtime.auditEntries().length, 1);
+    assert.equal(entry.type, 'denied');
+    assert.equal(entry.code, 'ADMISSION_DENIED');
+    assert.equal(entry.stage, 'external-policy');
+    assert.equal(entry.actorVerified, true);
+    assert.equal(JSON.stringify(entry).includes('private'), false);
+  }
+});
+
+test('committed result cannot diverge from the record or audit receipt, including after restart', async t => {
+  const f = await fixture(t);
+  await f.runtime.admit(f.signed(f.request()));
+  assert.throws(() => f.runtime.db.exec("UPDATE operations SET result='{}'"), /immutable result/);
+  const committed = f.runtime.resume('operation-1');
+  const receipt = f.collector.entries().find(e => e.payload.type === 'committed');
+  for (const pragma of [0, 1]) {
+    f.runtime.db.exec(`PRAGMA recursive_triggers=${pragma}`);
+    assert.throws(() => f.runtime.db.exec("UPDATE operations SET result='{}'"), /immutable result/);
+    assert.throws(() => f.runtime.db.exec('UPDATE operations SET result=NULL'), /immutable result/);
+  }
+  await f.restart();
+  assert.throws(() => f.runtime.db.exec("UPDATE operations SET result='{}'"), /immutable result/);
+  assert.deepEqual(f.runtime.resume('operation-1').result, committed.result);
+  assert.deepEqual(f.runtime.record('sample/one'), committed.result);
+  assert.deepEqual(f.collector.entries().find(e => e.payload.type === 'committed'), receipt);
+});
 
 test('historical policy verifies offline after upgrade, expiry and loss of current policy', async t => {
   const f = await fixture(t);

@@ -63,3 +63,17 @@ timestamp, failure stage or actor verification state.
 Add sanitized attempt correlation and timestamps, while distinguishing asserted
 identity from cryptographically verified identity. Never retain credentials or
 label an unverified actor as authenticated.
+# Follow-up correction: rejection evidence, result integrity and CI
+
+The subsequent independent audit found that null evaluator rejection could bypass
+denial logging, and trusted SQL could rewrite a committed operation's returned
+result. Admission now handles arbitrary rejection values without inspecting them
+unsafely; a stable denial receipt is retained before rethrowing the original value.
+New triggers allow a result only during pending-to-committed transition and reject
+all later result updates, including after reopening an existing database.
+
+Two focused regressions reproduced both defects before correction. All 67 tests
+pass after correction on Node 24.21.0. CI now installs the pinned dependencies
+with `npm ci --ignore-scripts` before checks and tests. This correction is delivered
+for independent review; local SQL invariants do not claim protection against an
+administrator replacing databases or removing their schema.
