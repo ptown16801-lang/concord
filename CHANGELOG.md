@@ -4,6 +4,8 @@ This file consolidates the implementation history that was previously split acro
 
 ## Unreleased — governance integration sandbox, 2026-09-23
 
+- Fixed denial evidence for arbitrary evaluator rejection values and protected committed results against trusted-SQL rewrites. Added regression coverage for absent reservations on denial and rejection of completion without a result.
+- CI installs locked dependencies before testing and lets both Node matrix jobs finish independently. Independent governance acceptance remains separate.
 - Addressed four sandbox audit findings: explicit SQLite replacement guards, collector-history reconciliation, retained signed-policy bundles with offline provenance verification, and sanitized denial correlation. Added six focused regression cases; independent acceptance remains separate.
 - Extended the existing local admission kernel with a synthetic domain runtime, signed one-use requests, durable identity/permission checks, explicit external policy evaluation, approval reservations and transactional writes.
 - Added a separate durable local audit collector, outage pause/resume and idempotent outcome delivery. Approved actions have no cancellation path and survive later revocation/expiry.
