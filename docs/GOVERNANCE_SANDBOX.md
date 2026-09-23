@@ -116,12 +116,32 @@ capabilities, invokes the rich policy API and configured external checks, and
 stores immutable local audit rows with independently decoded query results.
 Persistent actor identifiers are independent of ephemeral client factories.
 
-SQLite triggers reject direct UPDATE/DELETE attempts against protected fields,
-but the September 23 audit demonstrated an INSERT OR REPLACE bypass with trusted
-SQL access. See [the open audit findings](GOVERNANCE_AUDIT_2026-09-23.md).
+SQLite triggers reject direct UPDATE/DELETE attempts against protected fields.
+Explicit INSERT guards also reject replacement of existing approvals, audit
+entries, reservations, collector receipts and archived policy bundles with
+recursive triggers either enabled or disabled. See the
+[audit and remediation record](GOVERNANCE_AUDIT_2026-09-23.md).
 They do not protect against a privileged administrator who can replace database
 files or remove triggers. External integrity checkpoints,
 backup seals and full domain recovery authority are not implemented here.
+
+The policy archive preserves the exact YAML string and the canonical signed
+manifest with its original signature, issuer/key reference and generation.
+Approvals bind the full bundle digest. `verifyPolicyEvidence` checks historical
+policy provenance offline using separately trusted issuer keys and the approval
+time, even when the current policy is absent or expired. It does not authorize
+execution or prove every aspect of an approval. Legacy approvals without archived
+bundles cannot retroactively acquire missing signatures or be claimed verified.
+
+Every resume reconciles all retained local audit records idempotently against
+the collector, regardless of previous delivery markers. This repairs a fresh
+collector's missing approval history before execution; a conflicting receipt
+pauses the operation. Scanning all retained history is intentional for this
+bounded sandbox and is not a production-scale recovery protocol. Denied attempts
+include a server-generated correlation ID, timestamp, failure stage, request
+digest when validated and truthful actor-verification state, without signatures
+or raw arguments. The injected trusted clock supplies timestamps; invalid clock
+values are recorded as null rather than inventing a valid time.
 
 ## Verification and limits
 

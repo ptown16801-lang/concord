@@ -22,6 +22,7 @@ export class LocalAuditCollector {
     this.db = open(path);
     this.available = true;
     this.db.exec(`CREATE TABLE IF NOT EXISTS receipts (id TEXT PRIMARY KEY, payload TEXT NOT NULL);
+      CREATE TRIGGER IF NOT EXISTS receipts_no_replace BEFORE INSERT ON receipts WHEN EXISTS (SELECT 1 FROM receipts WHERE id=NEW.id) BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;
       CREATE TRIGGER IF NOT EXISTS receipts_no_update BEFORE UPDATE ON receipts BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;
       CREATE TRIGGER IF NOT EXISTS receipts_no_delete BEFORE DELETE ON receipts BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;`);
   }
@@ -63,6 +64,14 @@ export class GovernanceSandbox {
       CREATE TABLE IF NOT EXISTS reservations (resource TEXT PRIMARY KEY, operation TEXT NOT NULL UNIQUE REFERENCES operations(id));
       CREATE TABLE IF NOT EXISTS audit (sequence INTEGER PRIMARY KEY, id TEXT NOT NULL UNIQUE, payload TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS delivered (id TEXT PRIMARY KEY REFERENCES audit(id));
+      CREATE TABLE IF NOT EXISTS policy_archive (digest TEXT PRIMARY KEY, bundle TEXT NOT NULL);
+      CREATE TRIGGER IF NOT EXISTS approval_no_replace BEFORE INSERT ON operations WHEN EXISTS (SELECT 1 FROM operations WHERE id=NEW.id) BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
+      CREATE TRIGGER IF NOT EXISTS approval_id_immutable BEFORE UPDATE OF id ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
+      CREATE TRIGGER IF NOT EXISTS audit_no_replace BEFORE INSERT ON audit WHEN EXISTS (SELECT 1 FROM audit WHERE id=NEW.id OR sequence=NEW.sequence) BEGIN SELECT RAISE(ABORT,'immutable audit'); END;
+      CREATE TRIGGER IF NOT EXISTS reservation_no_replace BEFORE INSERT ON reservations WHEN EXISTS (SELECT 1 FROM reservations WHERE resource=NEW.resource OR operation=NEW.operation) BEGIN SELECT RAISE(ABORT,'immutable reservation'); END;
+      CREATE TRIGGER IF NOT EXISTS policy_archive_no_update BEFORE UPDATE ON policy_archive BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
+      CREATE TRIGGER IF NOT EXISTS policy_archive_no_delete BEFORE DELETE ON policy_archive BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
+      CREATE TRIGGER IF NOT EXISTS policy_archive_no_replace BEFORE INSERT ON policy_archive WHEN EXISTS (SELECT 1 FROM policy_archive WHERE digest=NEW.digest) BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
       CREATE TRIGGER IF NOT EXISTS approval_immutable BEFORE UPDATE OF request,digest,actor,evidence ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS approval_no_delete BEFORE DELETE ON operations BEGIN SELECT RAISE(ABORT,'approved actions cannot be canceled'); END;
       CREATE TRIGGER IF NOT EXISTS operation_transition BEFORE UPDATE OF status ON operations WHEN OLD.status != 'pending' OR NEW.status != 'committed' BEGIN SELECT RAISE(ABORT,'invalid operation transition'); END;
@@ -112,6 +121,7 @@ export class GovernanceSandbox {
     if (epoch !== this.policyEpoch) return { decision: 'deny', code: 'POLICY_CHANGED' };
     if (installed.decision === 'installed') {
       transaction(this.db, () => {
+        this.archivePolicy(candidate);
         this.db.prepare("INSERT INTO meta VALUES ('generation',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").run(String(candidate.manifest.generation));
         this.db.prepare("INSERT INTO meta VALUES ('policy',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").run(canonical(candidate));
         this.db.prepare("UPDATE meta SET value='0' WHERE key='policySealed'").run();
@@ -131,8 +141,19 @@ export class GovernanceSandbox {
     const kernel = this.makeKernel(bundle);
     const result = await kernel.installPolicy(bundle);
     if (epoch !== this.policyEpoch) return { decision: 'deny', code: 'POLICY_CHANGED' };
-    if (result.decision === 'installed') { this.kernel = kernel; this.bundle = bundle; }
+    if (result.decision === 'installed') { this.archivePolicy(bundle); this.kernel = kernel; this.bundle = bundle; }
     return result;
+  }
+  archivePolicy(bundle) {
+    const id = digest(bundle), bytes = canonical(bundle);
+    const existing = this.db.prepare('SELECT bundle FROM policy_archive WHERE digest=?').get(id);
+    if (existing) demand(existing.bundle === bytes, 'POLICY_ARCHIVE_CONFLICT');
+    else this.db.prepare('INSERT INTO policy_archive VALUES (?,?)').run(id, bytes);
+    return id;
+  }
+  archivedPolicy(id) {
+    const row = this.db.prepare('SELECT bundle FROM policy_archive WHERE digest=?').get(id);
+    return row ? JSON.parse(row.bundle) : null;
   }
   makeKernel(bundle) {
     return createAdmissionKernel({ domain: this.domain, audience: this.audience,
@@ -140,16 +161,21 @@ export class GovernanceSandbox {
       // Individual admission calls create their own authenticated-context kernel below.
       resolveContext: () => { throw new Error('CONTEXT_REQUIRED'); }, timeoutMs: 3000 });
   }
-  authenticate(envelope) {
+  authenticate(envelope, attempt = {}) {
+    attempt.stage = 'request';
     shape(envelope, 'actorId nonce request signature'); names(envelope.actorId); names(envelope.nonce);
     requestSchema(envelope.request);
+    attempt.requestDigest = digest(envelope.request);
     demand(envelope.request.domain === this.domain && envelope.request.audience === this.audience, 'WRONG_DOMAIN');
     const actor = this.db.prepare('SELECT * FROM actors WHERE id=?').get(envelope.actorId);
+    attempt.stage = 'identity';
     demand(actor?.active && this.now() < actor.expires, 'IDENTITY_DENIED');
     const challenge = this.db.prepare('SELECT * FROM challenges WHERE id=?').get(envelope.nonce);
     demand(challenge?.actor === actor.id && !challenge.used, 'REPLAY');
     demand(typeof envelope.signature === 'string' && /^[A-Za-z0-9+/]{86}==$/.test(envelope.signature), 'INVALID_SIGNATURE');
     demand(verify(null, Buffer.from(canonical({ actorId: actor.id, nonce: envelope.nonce, request: envelope.request })), actor.public_key, Buffer.from(envelope.signature, 'base64')), 'INVALID_SIGNATURE');
+    attempt.actorVerified = true; attempt.actorId = actor.id;
+    attempt.stage = 'capability';
     const r = envelope.request;
     demand(JSON.parse(actor.grants).some(g => g.action === r.action && g.resource === r.resource && g.purpose === r.purpose), 'CAPABILITY_DENIED');
     demand(Object.keys(r.expectedVersions).length === 1 && Object.hasOwn(r.expectedVersions, r.resource), 'INVALID_VERSION_SCOPE');
@@ -167,15 +193,18 @@ export class GovernanceSandbox {
         expectedVersions: request.expectedVersions, notBefore: time, expiresAt: actor.expires, permitted: true } };
   }
   async admit(input) {
-    try { return await this.admitVerified(input); }
+    const attempt = { correlationId: randomUUID(), timestamp: this.clock(), stage: 'request', actorVerified: false };
+    if (!Number.isSafeInteger(attempt.timestamp)) attempt.timestamp = null;
+    try { return await this.admitVerified(input, attempt); }
     catch (error) {
       // Record a sanitized failure, never raw caller payloads or credential details.
-      this.log(`denied-${randomUUID()}`, { type: 'denied', code: typeof error.code === 'string' ? error.code : 'ADMISSION_DENIED' });
+      this.log(`denied-${attempt.correlationId}`, { type: 'denied', code: typeof error.code === 'string' && /^[A-Z_]{1,64}$/.test(error.code) ? error.code : 'ADMISSION_DENIED', ...attempt });
       throw error;
     }
   }
-  async admitVerified(input) {
-    const envelope = copy(input), actor = this.authenticate(envelope), request = envelope.request;
+  async admitVerified(input, attempt = {}) {
+    const envelope = copy(input), actor = this.authenticate(envelope, attempt), request = envelope.request;
+    attempt.stage = 'policy';
     const epoch = this.policyEpoch, bundle = this.bundle;
     demand(this.kernel && bundle, 'POLICY_UNAVAILABLE');
     const kernel = createAdmissionKernel({ domain: this.domain, audience: this.audience,
@@ -184,6 +213,7 @@ export class GovernanceSandbox {
     demand((await kernel.installPolicy(bundle)).decision === 'installed', 'POLICY_UNAVAILABLE');
     const decision = await kernel.evaluate(request); demand(decision.decision === 'allow', decision.code);
     for (const evaluator of this.evaluators) {
+      attempt.stage = 'external-policy';
       let timer;
       const controller = new AbortController();
       try {
@@ -193,6 +223,7 @@ export class GovernanceSandbox {
       } finally { clearTimeout(timer); controller.abort(); }
     }
     return transaction(this.db, () => {
+      attempt.stage = 'approval';
       demand(epoch === this.policyEpoch && bundle === this.bundle, 'POLICY_CHANGED');
       const current = this.authenticate(envelope);
       demand(current.revision === actor.revision, 'AUTHORITY_CHANGED');
@@ -206,7 +237,7 @@ export class GovernanceSandbox {
         authority: { actorId: actor.id, revision: actor.revision, permissionExpiresAt: actor.expires,
           publicKey: actor.public_key, action: request.action, resource: request.resource, purpose: request.purpose,
           argumentDigest: request.argumentDigest, expectedVersions: request.expectedVersions },
-        policyManifest: bundle.manifest };
+        policyManifest: bundle.manifest, policyArchiveDigest: this.archivePolicy(bundle) };
       this.db.prepare('INSERT INTO operations VALUES (?,?,?,?,?,?,NULL)').run(request.operationId, canonical(request), digest(request), actor.id, 'pending', canonical(evidence));
       this.db.prepare('INSERT INTO reservations VALUES (?,?)').run(request.resource, request.operationId);
       this.log(`${request.operationId}:approved`, { type: 'approved', requestDigest: digest(request), evidence });
@@ -215,7 +246,10 @@ export class GovernanceSandbox {
   }
   log(id, payload) { this.db.prepare('INSERT INTO audit(id,payload) VALUES (?,?)').run(id, canonical(payload)); }
   flushAudit() {
-    for (const row of this.db.prepare('SELECT id,payload FROM audit WHERE id NOT IN (SELECT id FROM delivered) ORDER BY sequence').all()) {
+    // A domain delivery marker cannot prove a restored collector still has a
+    // receipt. Reconcile all retained evidence idempotently before every resume.
+    // Deliberately linear in history for this bounded local sandbox.
+    for (const row of this.db.prepare('SELECT id,payload FROM audit ORDER BY sequence').all()) {
       this.collector.record(`${this.domain}:${row.id}`, JSON.parse(row.payload));
       this.db.prepare('INSERT OR IGNORE INTO delivered VALUES (?)').run(row.id);
     }

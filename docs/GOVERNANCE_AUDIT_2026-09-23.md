@@ -1,14 +1,20 @@
 # Governance sandbox audit — September 23, 2026
 
-Status: four locally reproduced findings remain unresolved. This is the
+Status: fixes and focused regression coverage have been implemented for all four
+findings; independent acceptance remains pending under JON-135. This is the
 implementer's audit of Concord's synthetic integration, not independent
 acceptance or an audit of Microsoft's SDK internals. The preceding baseline
 suite passed 59 tests; those tests did not cover the cases below.
 
 Findings and reproduction steps were sent to @linear for advisory review on
 [JON-138](https://linear.app/jons-garage/issue/JON-138#comment-921c8ce9-b6a5-48b4-8cee-7c547e9e858b).
-Independent acceptance remains separate under JON-135. No fixes are included
-in this audit record.
+The findings below preserve the original observations. Remediation adds explicit
+replacement guards, idempotent reconciliation of retained collector history,
+immutable complete policy bundles with an offline provenance verifier, and
+sanitized denial evidence. `test/agt-audit-regressions.test.js` covers these
+cases. The implementation-stage full suite passes 65 tests; independent review
+must use a fixed candidate and report its own evidence. Local-only durability
+and trusted-database-access qualifications still apply.
 
 ## 1. Replacement bypasses database immutability guards
 
