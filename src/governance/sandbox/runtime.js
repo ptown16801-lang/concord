@@ -23,6 +23,7 @@ export class LocalAuditCollector {
     this.available = true;
     this.db.exec(`CREATE TABLE IF NOT EXISTS receipts (id TEXT PRIMARY KEY, payload TEXT NOT NULL);
       CREATE TRIGGER IF NOT EXISTS receipts_no_replace BEFORE INSERT ON receipts WHEN EXISTS (SELECT 1 FROM receipts WHERE id=NEW.id) BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;
+      CREATE TRIGGER IF NOT EXISTS receipts_no_rowid_replace BEFORE INSERT ON receipts WHEN EXISTS (SELECT 1 FROM receipts WHERE rowid=NEW.rowid) BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;
       CREATE TRIGGER IF NOT EXISTS receipts_no_update BEFORE UPDATE ON receipts BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;
       CREATE TRIGGER IF NOT EXISTS receipts_no_delete BEFORE DELETE ON receipts BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;`);
   }
@@ -66,12 +67,15 @@ export class GovernanceSandbox {
       CREATE TABLE IF NOT EXISTS delivered (id TEXT PRIMARY KEY REFERENCES audit(id));
       CREATE TABLE IF NOT EXISTS policy_archive (digest TEXT PRIMARY KEY, bundle TEXT NOT NULL);
       CREATE TRIGGER IF NOT EXISTS approval_no_replace BEFORE INSERT ON operations WHEN EXISTS (SELECT 1 FROM operations WHERE id=NEW.id) BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
+      CREATE TRIGGER IF NOT EXISTS approval_no_rowid_replace BEFORE INSERT ON operations WHEN EXISTS (SELECT 1 FROM operations WHERE rowid=NEW.rowid) BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS approval_id_immutable BEFORE UPDATE OF id ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS audit_no_replace BEFORE INSERT ON audit WHEN EXISTS (SELECT 1 FROM audit WHERE id=NEW.id OR sequence=NEW.sequence) BEGIN SELECT RAISE(ABORT,'immutable audit'); END;
       CREATE TRIGGER IF NOT EXISTS reservation_no_replace BEFORE INSERT ON reservations WHEN EXISTS (SELECT 1 FROM reservations WHERE resource=NEW.resource OR operation=NEW.operation) BEGIN SELECT RAISE(ABORT,'immutable reservation'); END;
+      CREATE TRIGGER IF NOT EXISTS reservation_no_rowid_replace BEFORE INSERT ON reservations WHEN EXISTS (SELECT 1 FROM reservations WHERE rowid=NEW.rowid) BEGIN SELECT RAISE(ABORT,'immutable reservation'); END;
       CREATE TRIGGER IF NOT EXISTS policy_archive_no_update BEFORE UPDATE ON policy_archive BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
       CREATE TRIGGER IF NOT EXISTS policy_archive_no_delete BEFORE DELETE ON policy_archive BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
       CREATE TRIGGER IF NOT EXISTS policy_archive_no_replace BEFORE INSERT ON policy_archive WHEN EXISTS (SELECT 1 FROM policy_archive WHERE digest=NEW.digest) BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
+      CREATE TRIGGER IF NOT EXISTS policy_archive_no_rowid_replace BEFORE INSERT ON policy_archive WHEN EXISTS (SELECT 1 FROM policy_archive WHERE rowid=NEW.rowid) BEGIN SELECT RAISE(ABORT,'immutable policy'); END;
       CREATE TRIGGER IF NOT EXISTS approval_immutable BEFORE UPDATE OF request,digest,actor,evidence ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS approval_no_delete BEFORE DELETE ON operations BEGIN SELECT RAISE(ABORT,'approved actions cannot be canceled'); END;
       CREATE TRIGGER IF NOT EXISTS operation_transition BEFORE UPDATE OF status ON operations WHEN OLD.status != 'pending' OR NEW.status != 'committed' BEGIN SELECT RAISE(ABORT,'invalid operation transition'); END;

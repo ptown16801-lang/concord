@@ -87,6 +87,16 @@ for (const pragma of [0, 1]) {
     assert.throws(() => f.runtime.db.prepare('INSERT OR REPLACE INTO audit(id,payload) VALUES (?,?)').run(audit.id, '{}'), /immutable audit/);
     assert.throws(() => f.runtime.db.prepare('INSERT OR REPLACE INTO reservations VALUES (?,?)').run(reservation.resource, reservation.operation), /immutable reservation/);
     assert.throws(() => f.collector.db.prepare('INSERT OR REPLACE INTO receipts VALUES (?,?)').run(receipt.id, '{}'), /immutable receipt/);
+    for (const alias of ['rowid', '_rowid_', 'oid']) {
+      const rowid = f.runtime.db.prepare('SELECT rowid FROM operations').get().rowid;
+      assert.throws(() => f.runtime.db.prepare(`INSERT OR REPLACE INTO operations(${alias},id,request,digest,actor,status,evidence,result) VALUES (?,?,?,?,?,?,?,?)`).run(rowid, 'replacement', raw.request, raw.digest, raw.actor, 'canceled', raw.evidence, null), /immutable approval/);
+      const policyRow = f.runtime.db.prepare('SELECT rowid FROM policy_archive LIMIT 1').get().rowid;
+      assert.throws(() => f.runtime.db.prepare(`INSERT OR REPLACE INTO policy_archive(${alias},digest,bundle) VALUES (?,?,?)`).run(policyRow, 'replacement', '{}'), /immutable policy/);
+      const receiptRow = f.collector.db.prepare('SELECT rowid FROM receipts LIMIT 1').get().rowid;
+      assert.throws(() => f.collector.db.prepare(`INSERT OR REPLACE INTO receipts(${alias},id,payload) VALUES (?,?,?)`).run(receiptRow, 'replacement', '{}'), /immutable receipt/);
+      const reservationRow = f.runtime.db.prepare('SELECT rowid FROM reservations LIMIT 1').get().rowid;
+      assert.throws(() => f.runtime.db.prepare(`INSERT OR REPLACE INTO reservations(${alias},resource,operation) VALUES (?,?,?)`).run(reservationRow, 'replacement', 'missing'), /immutable reservation/);
+    }
     assert.deepEqual(f.runtime.operation('operation-1'), op);
     assert.deepEqual(f.runtime.db.prepare('SELECT * FROM audit').get(), audit);
     assert.deepEqual(f.runtime.db.prepare('SELECT * FROM reservations').get(), reservation);
