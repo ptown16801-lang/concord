@@ -40,18 +40,21 @@ test("hashes bytes without changing source, manifest, or recorded delivery", asy
 
 test("reports mixed results independently, including recorded delivery with missing bytes", async (t) => {
   const options = await fixture(t);
+  await mkdir(path.join(options.rootDirectory, "folder"));
   const report = await verifyArtifactManifest(manifest(
     entry(),
     entry({ id: "wrong-hash", sha256: "0".repeat(64) }),
     entry({ id: "wrong-size", byteLength: 1 }),
     entry({ id: "missing", localPath: "missing.txt", delivery: { status: "delivered", evidence: "historical upload receipt" } }),
     entry({ id: "remote-only", localPath: undefined }),
+    entry({ id: "directory", localPath: "folder" }),
   ), options);
   assert.equal(report.ok, false);
-  assert.deepEqual(report.artifacts.map((row) => row.status), ["verified", "mismatch", "mismatch", "unavailable", "unavailable"]);
+  assert.deepEqual(report.artifacts.map((row) => row.status), ["verified", "mismatch", "mismatch", "unavailable", "unavailable", "error"]);
   assert.equal(report.artifacts[3].reason, "missing-file");
   assert.equal(report.artifacts[3].recordedDelivery.status, "delivered");
   assert.equal(report.artifacts[4].reason, "no-local-path");
+  assert.equal(report.artifacts[5].reason, "not-regular-file");
 });
 
 test("rejects malformed manifests, duplicate identities, and unsupported delivery claims", () => {

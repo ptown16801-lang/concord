@@ -57,3 +57,117 @@ the manifest or the truth of its provenance/delivery claims. No remote content i
 accessed, and an unavailable artifact does not prevent checking other entries.
 
 Focused verification: `node --test test/artifact-manifest.test.js`.
+
+## Reproducible synthetic review fixture
+
+The following example exercises all four outcomes. It contains synthetic bytes
+and placeholder canonical locations; no remote archive or delivery is involved.
+From the repository root, prepare a fresh temporary directory:
+
+```sh
+artifact_demo_dir="$(mktemp -d)"
+printf 'Concord reference artifact\n' > "$artifact_demo_dir/report.txt"
+mkdir "$artifact_demo_dir/folder"
+cat > "$artifact_demo_dir/manifest.json" <<'JSON'
+{
+  "schemaVersion": 1,
+  "artifacts": [
+    {
+      "filename": "report.txt",
+      "canonicalLocation": "https://example.invalid/archive/report",
+      "provenance": "Synthetic JON-28 review fixture; not an uploaded artifact",
+      "sha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "delivery": {
+        "status": "prepared"
+      },
+      "id": "verified",
+      "localPath": "report.txt"
+    },
+    {
+      "filename": "report.txt",
+      "canonicalLocation": "https://example.invalid/archive/report",
+      "provenance": "Synthetic JON-28 review fixture; not an uploaded artifact",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "delivery": {
+        "status": "prepared"
+      },
+      "id": "mismatch",
+      "localPath": "report.txt"
+    },
+    {
+      "filename": "report.txt",
+      "canonicalLocation": "https://example.invalid/archive/report",
+      "provenance": "Synthetic JON-28 review fixture; not an uploaded artifact",
+      "sha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "delivery": {
+        "status": "prepared"
+      },
+      "id": "unavailable",
+      "localPath": "missing.txt"
+    },
+    {
+      "filename": "report.txt",
+      "canonicalLocation": "https://example.invalid/archive/report",
+      "provenance": "Synthetic JON-28 review fixture; not an uploaded artifact",
+      "sha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "delivery": {
+        "status": "prepared"
+      },
+      "id": "error",
+      "localPath": "folder"
+    }
+  ]
+}
+JSON
+node scripts/verify-artifact-manifest.js "$artifact_demo_dir/manifest.json" "$artifact_demo_dir"
+```
+
+Expected exit code: **1**, because only one artifact verifies. Every entry retains
+`recordedDelivery.status: prepared`. The generated report is:
+
+```json
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "artifacts": [
+    {
+      "id": "verified",
+      "expectedSha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "recordedDelivery": {
+        "status": "prepared"
+      },
+      "status": "verified",
+      "actualSha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "byteLength": 27
+    },
+    {
+      "id": "mismatch",
+      "expectedSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "recordedDelivery": {
+        "status": "prepared"
+      },
+      "status": "mismatch",
+      "actualSha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "byteLength": 27
+    },
+    {
+      "id": "unavailable",
+      "expectedSha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "recordedDelivery": {
+        "status": "prepared"
+      },
+      "status": "unavailable",
+      "reason": "missing-file"
+    },
+    {
+      "id": "error",
+      "expectedSha256": "4f0a420cce08c4b92e69501aba4f9284e8133530b0d09bae29e57816e7bd1d93",
+      "recordedDelivery": {
+        "status": "prepared"
+      },
+      "status": "error",
+      "reason": "not-regular-file"
+    }
+  ]
+}
+```
