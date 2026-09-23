@@ -24,12 +24,25 @@ export function replayImpeachment(events) {
       case 'STAGE_PLANNED':
         state.lastAttempt = event;
         state.status = event.plan.status;
+        if (event.plan.status === `${event.stage}_INPUT_DISCREPANCY_REVIEW`) {
+          state.discrepancy = event.plan.reason;
+          state.inputDiscrepancy = { stage: event.stage, reason: event.plan.reason, version: event.version, actorId: event.actorId };
+        }
         if (event.plan.status === `${event.stage}_EMPANELED`) {
           state.panels[event.stage] = event.plan;
           if (event.stage === 'ACCUSATION') state.accusationParticipants = [...new Set([...state.accusationParticipants, ...event.plan.roster])];
         }
         break;
-      case 'INPUT_DISCREPANCY': state.status = `${event.stage}_INPUT_DISCREPANCY_REVIEW`; state.discrepancy = event.reason; break;
+      case 'INPUT_DISCREPANCY':
+        state.status = `${event.stage}_INPUT_DISCREPANCY_REVIEW`; state.discrepancy = event.reason;
+        state.inputDiscrepancy = { stage: event.stage, reason: event.reason, version: event.version, actorId: event.actorId };
+        break;
+      case 'INPUT_DISCREPANCY_RESOLVED':
+        state.status = event.stage === 'ACCUSATION' ? 'REPORTED' : 'CHARGED';
+        delete state.inputDiscrepancy; delete state.discrepancy;
+        delete state.commitments[event.stage];
+        if (state.lastAttempt?.stage === event.stage) delete state.lastAttempt;
+        break;
       case 'STAGE_DECIDED':
         state.decisions.push(event); state.status = event.outcome;
         if (event.outcome === 'CHARGED') state.stage = 'TRIAL';
@@ -68,6 +81,8 @@ export class BootstrapImpeachmentService {
       const state = replayImpeachment(events);
       if (['CHARGE_REJECTED', 'ACQUITTED', 'CONVICTED'].includes(state.status)) fail('CASE_TERMINAL');
       if (command.type === 'COMMIT_SEED' || command.type === 'ENTER_STAGE') {
+        // New source versions cannot authorize release of an independent-review hold.
+        if (state.inputDiscrepancy) fail('INDEPENDENT_REVIEW_REQUIRED');
         if (state.panels[state.stage]) fail('PANEL_FROZEN');
         try { return this.#enter(command, state, db, principal); }
         catch (error) {
@@ -105,10 +120,28 @@ export class BootstrapImpeachmentService {
           // Explicit handoff, not execution of removal, disqualification or appellate powers.
           consequence: outcome === 'CONVICTED' ? 'REMOVAL_REQUIRED_APPEAL_AVAILABLE' : null }];
       }
+      if (command.type === 'RESOLVE_REVIEW' && state.inputDiscrepancy) {
+        if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
+        const receipt = this.#review.assess(structuredClone(state), command.type, db);
+        const attributable = value => typeof value === 'string' && value.trim().length > 0 && value === value.trim();
+        if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
+          || receipt.discrepancyVersion !== state.inputDiscrepancy.version || receipt.reviewedStateVersion !== state.version
+          || receipt.resolution !== 'RESUME' || receipt.independentlyAuthorized !== true || receipt.competent !== true
+          || !attributable(receipt.reviewerId) || !attributable(receipt.authorityReference) || !attributable(receipt.sourceEventId)
+          || receipt.reviewerId === state.inputDiscrepancy.actorId || receipt.reviewerId === state.accusedId) fail('INDEPENDENT_REVIEW_REQUIRED');
+        // Only the trusted adapter supplies the receipt. Caller payload cannot attest
+        // independence or competence. Persist its attribution separately from actorId.
+        return [{ type: 'INPUT_DISCREPANCY_RESOLVED', stage: state.stage, receipt: {
+          caseId: receipt.caseId, stage: receipt.stage, discrepancyVersion: receipt.discrepancyVersion,
+          reviewedStateVersion: receipt.reviewedStateVersion, resolution: receipt.resolution,
+          reviewerId: receipt.reviewerId, authorityReference: receipt.authorityReference,
+          sourceEventId: receipt.sourceEventId, independentlyAuthorized: true, competent: true } }];
+      }
       if (command.type === 'POST_FREEZE_WAIT' || command.type === 'RESOLVE_REVIEW') {
         if (command.type === 'POST_FREEZE_WAIT' && state.status !== `${state.stage}_EMPANELED`) fail('WRONG_STAGE');
         if (command.type === 'RESOLVE_REVIEW' && state.status !== 'POST_FREEZE_REVIEW') fail('WRONG_STAGE');
-        const receipt = this.#review?.assess(structuredClone(state), command.type, db);
+        if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
+        const receipt = this.#review.assess(structuredClone(state), command.type, db);
         if (!receipt || receipt.then || receipt.caseId !== state.caseId || !receipt.sourceEventId || receipt.independentlyAuthorized !== true
           || receipt.conflictDiscoveryAlone !== false) fail('INDEPENDENT_REVIEW_REQUIRED');
         return [{ type: command.type === 'POST_FREEZE_WAIT' ? 'POST_FREEZE_WAIT' : 'REVIEW_RESOLVED', sourceEventId: receipt.sourceEventId }];

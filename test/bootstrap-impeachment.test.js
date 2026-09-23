@@ -170,20 +170,23 @@ test('waiting retries require changed source versions and a new pre-reveal commi
   Object.assign(f.s, next); const result = await f.empanel('next'); assert.equal(result.status, 'ACCUSATION_EMPANELED');
 });
 test('seed reveal is bound to a prior commitment and source snapshot; stale capture fails closed', async t => {
-  const f = fixture(t); await f.run('OPEN', { accusedId: 'accused' });
+  const f = fixture(t, snapshot(), { review: discrepancyReview }); await f.run('OPEN', { accusedId: 'accused' });
   await assert.rejects(f.run('ENTER_STAGE', { seed: 'seed' }), { code: 'SEED_NOT_COMMITTED' });
   await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
   await assert.rejects(f.run('ENTER_STAGE', { seed: 'other' }), { code: 'SEED_MISMATCH' });
   bump(f.s, 'office'); const result = await f.run('ENTER_STAGE', { seed: 'seed' });
   assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(result.discrepancy, 'STALE_COMMITTED_SNAPSHOT');
+  await assert.rejects(f.empanel('fresh'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+  await f.run('RESOLVE_REVIEW');
   assert.equal((await f.empanel('fresh')).status, 'ACCUSATION_EMPANELED');
 });
 test('non-idempotent sources and rollback versions produce attributable discrepancies', async t => {
-  const f = fixture(t); await f.run('OPEN', { accusedId: 'accused' });
+  const f = fixture(t, snapshot(), { review: discrepancyReview }); await f.run('OPEN', { accusedId: 'accused' });
   await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
   f.s.population.identities[1].alive = false;
   assert.equal((await f.run('ENTER_STAGE', { seed: 'seed' })).discrepancy, 'NON_IDEMPOTENT_SOURCE');
   f.s.population.identities[1].alive = true; bump(f.s, 'office');
+  await f.run('RESOLVE_REVIEW');
   await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('fresh') });
   f.s.office.version = 1; f.s.office.snapshotId = 'office:1';
   assert.equal((await f.run('ENTER_STAGE', { seed: 'fresh' })).discrepancy, 'STALE_SOURCE');
@@ -334,4 +337,97 @@ test('participation requires valid identity and source provenance while allowing
   }
   s.participation.events = [null];
   assert.equal(plan(s, 'TRIAL').reason, 'INVALID_PARTICIPATION');
+});
+
+
+function discrepancyReceipt(state) {
+  return { caseId: state.caseId, stage: state.stage, discrepancyVersion: state.inputDiscrepancy.version,
+    reviewedStateVersion: state.version, resolution: 'RESUME', reviewerId: 'independent-reviewer',
+    authorityReference: 'competent-authority:1', sourceEventId: `resolution:${state.version}`,
+    independentlyAuthorized: true, competent: true };
+}
+const discrepancyReview = { assess: discrepancyReceipt };
+
+for (const stage of ['ACCUSATION', 'TRIAL']) {
+  for (const origin of ['capture', 'plan']) {
+    test(`F1 ${stage} ${origin} discrepancy requires independent resolution across restart`, async t => {
+      const review = {};
+      const f = fixture(t, snapshot(17), { review });
+      await f.run('OPEN', { accusedId: 'accused' });
+      if (stage === 'TRIAL') { await f.empanel('accusation'); await f.run('CLOSE_STAGE'); }
+      if (origin === 'plan') { f.s.participation.events = [null]; bump(f.s, 'participation'); }
+      await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('initial') });
+      if (origin === 'capture') f.s.population.identities[1].willing = false;
+      const blocked = await f.run('ENTER_STAGE', { seed: 'initial' });
+      assert.equal(blocked.status, `${stage}_INPUT_DISCREPANCY_REVIEW`);
+      f.s.population.identities[1].willing = true;
+      bump(f.s, 'population'); bump(f.s, 'eligibility');
+      f.s.eligibility.populationVersion = f.s.population.version;
+      f.s.participation.events = []; bump(f.s, 'participation');
+      f.restart();
+      const history = f.store.load('case:case');
+      for (const [type, extra] of [['COMMIT_SEED', { seedCommitment: seedCommitment('fresh') }], ['ENTER_STAGE', { seed: 'initial' }], ['RESOLVE_REVIEW', { receipt: { independentlyAuthorized: true, competent: true } }]]) {
+        await assert.rejects(f.run(type, extra), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+        assert.deepEqual(f.store.load('case:case'), history);
+      }
+      review.assess = discrepancyReceipt;
+      const command = f.command('RESOLVE_REVIEW');
+      const resolved = await f.execute(command);
+      assert.equal(resolved.status, stage === 'ACCUSATION' ? 'REPORTED' : 'CHARGED');
+      assert.equal(resolved.panels[stage], undefined);
+      assert.equal(resolved.commitments[stage], undefined);
+      const receipt = f.store.load('case:case').at(-1);
+      assert.equal(receipt.type, 'INPUT_DISCREPANCY_RESOLVED');
+      assert.equal(receipt.receipt.reviewerId, 'independent-reviewer');
+      assert.equal(receipt.receipt.discrepancyVersion, blocked.version);
+      assert.equal(receipt.actorId, 'clerk');
+      f.restart(); assert.deepEqual(await f.execute(command), resolved);
+      assert.deepEqual(await f.run('READ'), resolved);
+      await assert.rejects(f.run('ENTER_STAGE', { seed: 'initial' }), { code: 'SEED_NOT_COMMITTED' });
+      assert.equal((await f.empanel('fresh')).status, `${stage}_EMPANELED`);
+    });
+  }
+}
+
+test('F1 resolution rejects unbound, incompetent, unattributable and unauthorized receipts', async t => {
+  let alter = r => r;
+  const review = { assess: state => alter(discrepancyReceipt(state)) };
+  const f = fixture(t, snapshot(), { review }); await f.run('OPEN', { accusedId: 'accused' });
+  await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  bump(f.s, 'office'); await f.run('ENTER_STAGE', { seed: 'seed' });
+  const before = f.store.load('case:case');
+  for (const change of [{ caseId: 'other' }, { stage: 'TRIAL' }, { discrepancyVersion: 0 },
+    { reviewedStateVersion: 0 }, { resolution: 'DENY' }, { reviewerId: '' }, { reviewerId: 'clerk' },
+    { reviewerId: 'accused' }, { authorityReference: ' ' }, { sourceEventId: 42 },
+    { independentlyAuthorized: false }, { competent: false }]) {
+    alter = r => ({ ...r, ...change });
+    await assert.rejects(f.run('RESOLVE_REVIEW'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+    assert.deepEqual(f.store.load('case:case'), before);
+  }
+  alter = r => Promise.resolve(r);
+  await assert.rejects(f.run('RESOLVE_REVIEW'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+  alter = r => r;
+  const keys = generateKeyPairSync('ed25519');
+  const auth = createCommandAuthenticator({ clerk: { publicKey: keys.publicKey, permissions: ['COMMIT_SEED', 'ENTER_STAGE'] } });
+  const service = new BootstrapImpeachmentService({ eventStore: f.store, authenticate: auth, sources: f.sources, review });
+  const cmd = f.command('RESOLVE_REVIEW');
+  await assert.rejects(service.execute(cmd, { principalId: 'clerk', signature: sign(null, Buffer.from(canonical(cmd)), keys.privateKey).toString('base64') }), { code: 'UNAUTHORIZED' });
+  assert.deepEqual(f.store.load('case:case'), before);
+  const oldReceipt = discrepancyReceipt(await f.run('READ'));
+  await f.run('RESOLVE_REVIEW');
+  // A further discrepancy needs its own bound decision; an old receipt cannot clear it.
+  await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('fresh') });
+  bump(f.s, 'office'); await f.run('ENTER_STAGE', { seed: 'fresh' });
+  review.assess = () => oldReceipt;
+  await assert.rejects(f.run('RESOLVE_REVIEW'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+});
+
+test('F1 genuine trial WAITING still retries changed sources without a reviewer', async t => {
+  const f = fixture(t, snapshot(8)); await f.run('OPEN', { accusedId: 'accused' });
+  const accusation = await f.empanel('accusation'); await f.run('CLOSE_STAGE');
+  const candidate = f.s.population.identities.find(p => p.identityId !== 'accused' && !accusation.panels.ACCUSATION.roster.includes(p.identityId));
+  candidate.willing = false; bump(f.s, 'population'); bump(f.s, 'eligibility'); f.s.eligibility.populationVersion = f.s.population.version;
+  assert.equal((await f.empanel('trial')).status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS');
+  candidate.willing = true; bump(f.s, 'population'); bump(f.s, 'eligibility'); f.s.eligibility.populationVersion = f.s.population.version;
+  assert.equal((await f.empanel('retry')).status, 'TRIAL_EMPANELED');
 });
