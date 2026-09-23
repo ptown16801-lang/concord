@@ -135,3 +135,12 @@ the only lifecycle transition in this scope; it permanently marks an identity
 non-living and releases one unit of capacity. Both successful transitions write
 append-only audit events in the same transaction. Validation, duplicate, cap,
 and audit-write failures roll back without leaving a partial identity or event.
+
+## Bootstrap impeachment domain
+
+The `./governance` export also supplies the frozen revision 1.0 stage planner,
+`BootstrapImpeachmentService`, `ImpeachmentStore`, and `DurableEligibility`.
+See [the implementation and adapter contract](docs/specs/bootstrap-impeachment.md)
+for commands, dependency provenance, authority boundaries, and the requirement-to-test map.
+The library requires trusted role/office/voting/evidence integrations; it is not
+exposed through the Finger HTTP server and does not execute office removal or appeals.

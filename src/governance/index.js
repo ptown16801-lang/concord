@@ -5,10 +5,17 @@ export {
 } from "./eligibility.js";
 export {
   BootstrapImpeachmentError,
-  BootstrapImpeachmentService,
   ImpeachmentStage,
   accusationThreshold,
   bootstrapPanelSizes,
-  selectBootstrapPanels,
+  planBootstrapStage,
+  seedCommitment,
+  ALGORITHM_VERSION,
+  canonical as canonicalCommand,
+  digest as compositionDigest,
   trialThreshold,
 } from "./bootstrap-impeachment.js";
+
+export { BootstrapImpeachmentService, createCommandAuthenticator, replayImpeachment } from "./impeachment-service.js";
+export { ImpeachmentStore } from "./impeachment-store.js";
+export { DurableEligibility, captureRegistryInputs } from "./impeachment-authorities.js";

@@ -1,204 +1,188 @@
-import { createHash } from "node:crypto";
+import { createHash } from 'node:crypto';
 
-const STAGES = Object.freeze({
-  WAITING: "WAITING_FOR_INDEPENDENT_PARTICIPANTS",
-  ACCUSATION: "ACCUSATION_VOTING",
-  TRIAL: "TRIAL_VOTING",
-  ACQUITTED: "ACQUITTED",
-  CONVICTED: "CONVICTED",
-});
-
-export const ImpeachmentStage = STAGES;
-
+export const ALGORITHM_VERSION = 'bootstrap-stratified-v1';
+export const ImpeachmentStage = Object.freeze({ WAITING: 'WAITING_FOR_INDEPENDENT_PARTICIPANTS', ACCUSATION: 'ACCUSATION_EMPANELED', TRIAL: 'TRIAL_EMPANELED', ACQUITTED: 'ACQUITTED', CONVICTED: 'CONVICTED' });
 export class BootstrapImpeachmentError extends Error {
-  constructor(code, message) {
-    super(message);
-    this.name = "BootstrapImpeachmentError";
-    this.code = code;
-  }
+  constructor(code, message = code) { super(message); this.name = 'BootstrapImpeachmentError'; this.code = code; }
 }
-
-/** Frozen revision 1.0 capped proportional sizing. */
-export function bootstrapPanelSizes(eligiblePopulation) {
-  integer(eligiblePopulation, "eligiblePopulation", 0);
-  return Object.freeze({
-    accusation: Math.min(12, Math.max(3, Math.ceil(eligiblePopulation / 10))),
-    trial: Math.min(24, Math.max(6, Math.ceil(eligiblePopulation / 5))),
-  });
+export function fail(code, message) { throw new BootstrapImpeachmentError(code, message); }
+export function requireId(value) {
+  if (typeof value !== 'string' || !value.trim() || value !== value.trim()) fail('INVALID_IDENTIFIER');
+  return value;
 }
-
+export function canonical(value) {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  if (value && typeof value === 'object') return `{${Object.keys(value).sort().map(k => `${JSON.stringify(k)}:${canonical(value[k])}`).join(',')}}`;
+  if (value === undefined || (typeof value === 'number' && !Number.isFinite(value))) fail('INVALID_JSON');
+  return JSON.stringify(value);
+}
+export function digest(value) { return createHash('sha256').update(canonical(value)).digest('hex'); }
+export function seedCommitment(seed) { requireId(seed); return digest([ALGORITHM_VERSION, seed]); }
+function integer(value, minimum = 0) { if (!Number.isSafeInteger(value) || value < minimum) fail('INVALID_NUMBER'); }
+export function bootstrapPanelSizes(capacity) {
+  integer(capacity);
+  const accusation = Math.min(5, Math.max(2, Math.floor(capacity / 3)));
+  return { accusation, trial: Math.min(12, Math.max(0, capacity - accusation)) };
+}
 export function accusationThreshold(size) {
-  integer(size, "size", 1);
-  if (size <= 3) return size;
-  if (size <= 5) return Math.ceil((2 * size) / 3);
-  return Math.floor(size / 2) + 1;
+  integer(size, 2); if (size > 5) fail('INVALID_BOOTSTRAP_SIZE');
+  return size === 2 ? 2 : size <= 4 ? Math.ceil(2 * size / 3) : 3;
 }
-
 export function trialThreshold(size) {
-  integer(size, "size", 1);
-  return size <= 8 ? Math.ceil((3 * size) / 4) : Math.ceil((2 * size) / 3);
+  integer(size, 6); if (size > 12) fail('INVALID_BOOTSTRAP_SIZE');
+  return size <= 8 ? Math.ceil(3 * size / 4) : Math.ceil(2 * size / 3);
+}
+export const SOURCE_NAMES = ['population', 'office', 'eligibility', 'conflicts', 'rules', 'participation'];
+const JUDICIARY = new Set(['DISTRICT', 'CIRCUIT', 'SUPREME_BOARD']);
+const INSTITUTIONS = new Set(['HOUSE', 'SENATE', ...JUDICIARY]);
+function check(condition, code) { if (!condition) fail('INPUT_DISCREPANCY', code); }
+const bool = value => typeof value === 'boolean';
+function unique(rows, key) {
+  check(Array.isArray(rows), 'MISSING_ROWS');
+  const map = new Map();
+  for (const row of rows) {
+    check(row && typeof row[key] === 'string' && row[key].length > 0, 'INVALID_IDENTITY_ROW');
+    if (map.has(row[key])) check(canonical(map.get(row[key])) === canonical(row), 'CONTRADICTORY_DUPLICATE');
+    map.set(row[key], row);
+  }
+  return map;
+}
+function validateSnapshot(snapshot, caseId, accusationParticipants) {
+  for (const source of SOURCE_NAMES) {
+    const s = snapshot?.[source];
+    check(s && typeof s.snapshotId === 'string' && s.snapshotId.length > 0, 'MISSING_SNAPSHOT');
+    check(Number.isSafeInteger(s.version) && s.version >= 0, 'INVALID_SOURCE_VERSION');
+  }
+  check(snapshot.eligibility.populationVersion === snapshot.population.version, 'POPULATION_ELIGIBILITY_VERSION_MISMATCH');
+  check(typeof snapshot.eligibility.rulesetVersion === 'string' && snapshot.eligibility.rulesetVersion.length > 0, 'MISSING_RULESET');
+  check(snapshot.conflicts.caseId === caseId && snapshot.participation.caseId === caseId, 'WRONG_CASE');
+  const people = unique(snapshot.population.identities, 'identityId');
+  const offices = unique(snapshot.office.offices, 'officeId');
+  const roles = unique(snapshot.eligibility.roleEligibility, 'identityId');
+  for (const p of [...people.values()].sort((a, b) => a.identityId < b.identityId ? -1 : a.identityId > b.identityId ? 1 : 0)) {
+    check([p.alive, p.citizen, p.willing, p.jailed, p.disenfranchised].every(bool), 'INCOMPLETE_POPULATION');
+    check(p.divisionId === null || typeof p.divisionId === 'string', 'INVALID_DIVISION');
+    const role = roles.get(p.identityId);
+    check(role && [role.accusation, role.trial].every(bool) && Array.isArray(role.reasonCodes), 'MISSING_ROLE_ELIGIBILITY');
+  }
+  for (const id of roles.keys()) check(people.has(id), 'UNKNOWN_ELIGIBILITY_IDENTITY');
+  for (const o of offices.values()) {
+    check(INSTITUTIONS.has(o.institution) && [o.serving, o.permanentSeat, o.recused].every(bool), 'INVALID_OFFICE');
+    check(people.has(o.holderIdentityId), 'UNKNOWN_OFFICE_HOLDER');
+  }
+  for (const key of ['knownInvestigators', 'independentlyDisqualified']) {
+    check(Array.isArray(snapshot.conflicts[key]) && snapshot.conflicts[key].every(x => typeof x === 'string' && people.has(x)), 'INVALID_CONFLICTS');
+  }
+  check(Array.isArray(snapshot.conflicts.sourceEventIds) && snapshot.conflicts.sourceEventIds.length > 0
+    && snapshot.conflicts.sourceEventIds.every(x => typeof x === 'string' && x.length > 0), 'MISSING_CONFLICT_PROVENANCE');
+  check(Array.isArray(snapshot.participation.events), 'MISSING_PARTICIPATION_LEDGER');
+  const historical = new Set(accusationParticipants);
+  for (const e of snapshot.participation.events) {
+    check(typeof e.identityId === 'string' && e.sourceEventId && ['ACCUSATION', 'TRIAL'].includes(e.stage)
+      && ['SERVED', 'DELIBERATED', 'BALLOT'].includes(e.eventType), 'INVALID_PARTICIPATION');
+    if (e.stage === 'ACCUSATION') historical.add(e.identityId);
+  }
+  for (const institution of ['HOUSE', 'SENATE']) {
+    const r = snapshot.rules[institution];
+    check(r && [r.quorum, r.threshold, r.denominator].every(x => Number.isSafeInteger(x) && x > 0)
+      && r.quorum <= r.denominator && r.threshold <= r.denominator, 'INVALID_ORDINARY_RULES');
+  }
+  return { people, offices, roles, historical };
 }
 
-/**
- * Deterministic, independently reproducible selection. Division is a balancing
- * factor, never a reserved-seat entitlement. Judges and known case conflicts
- * are excluded before ranking, and accusation/trial rosters are disjoint.
- */
-export function selectBootstrapPanels({ candidates, population, caseId, accusedId }) {
-  if (!Array.isArray(candidates)) fail("INVALID_CANDIDATES", "candidates must be an array");
-  id(caseId, "caseId");
-  id(accusedId, "accusedId");
-  const sizes = bootstrapPanelSizes(population);
-  const eligible = candidates.filter((candidate) => candidate
-    && typeof candidate.id === "string"
-    && candidate.id !== accusedId
-    && candidate.eligible === true
-    && candidate.servingJudge !== true
-    && candidate.caseConflict !== true);
-  const unique = new Map(eligible.map((candidate) => [candidate.id, Object.freeze({ ...candidate })]));
-  const ranked = balancedRank([...unique.values()], caseId);
-  if (ranked.length < sizes.accusation + sizes.trial) {
-    return Object.freeze({ stage: STAGES.WAITING, reason: "INSUFFICIENT_DISJOINT_POOL", sizes,
-      available: ranked.length, accusation: [], trial: [], alternates: [] });
-  }
-
-  const house = ranked.filter((person) => person.houseMember === true);
-  const accusationSource = house.length >= sizes.accusation ? "HOUSE" : "CIVILIAN_SORTITION";
-  const accusationPool = accusationSource === "HOUSE" ? house : ranked;
-  const accusation = accusationPool.slice(0, sizes.accusation);
-  const used = new Set(accusation.map(({ id: participantId }) => participantId));
-  const remaining = ranked.filter(({ id: participantId }) => !used.has(participantId));
-  const senate = remaining.filter((person) => person.senator === true);
-  const trialSource = senate.length >= sizes.trial ? "SENATE" : "CIVILIAN_SORTITION";
-  const trialPool = trialSource === "SENATE" ? senate : remaining;
-  const trial = trialPool.slice(0, sizes.trial);
-  const selected = new Set([...used, ...trial.map(({ id: participantId }) => participantId)]);
-  return Object.freeze({ stage: STAGES.ACCUSATION, sizes, accusationSource, trialSource,
-    accusation, trial, alternates: ranked.filter(({ id: participantId }) => !selected.has(participantId)) });
-}
-
-/**
- * Authenticated command façade over a caller-supplied durable event store.
- * The store must implement load(caseId) and append(caseId, expectedVersion,
- * events); this domain service intentionally supplies no in-memory production
- * authority.
- */
-export class BootstrapImpeachmentService {
-  #store;
-  #authorize;
-  #eligibility;
-  #population;
-
-  constructor({ eventStore, authorize, eligibilityRegistry, populationRegistry }) {
-    if (!eventStore?.load || !eventStore?.append) fail("DURABLE_STORE_REQUIRED", "A durable event store is required");
-    if (typeof authorize !== "function") fail("AUTHORIZER_REQUIRED", "An authorizer is required");
-    if (!eligibilityRegistry?.canCastNewBallot) fail("ELIGIBILITY_REQUIRED", "The eligibility authority is required");
-    if (!populationRegistry?.getPopulation) fail("POPULATION_REQUIRED", "The population authority is required");
-    this.#store = eventStore;
-    this.#authorize = authorize;
-    this.#eligibility = eligibilityRegistry;
-    this.#population = populationRegistry;
-  }
-
-  async openCase({ caseId, accusedId, candidates, actor }) {
-    await this.#allowed(actor, "IMPEACHMENT_OPEN");
-    const prior = await this.#store.load(caseId);
-    if (prior.length) fail("CASE_EXISTS", `${caseId} already exists`);
-    const population = (await this.#population.getPopulation()).living;
-    const assessed = candidates.map((candidate) => ({ ...candidate,
-      eligible: this.#eligibility.canCastNewBallot(candidate.id).eligible }));
-    const selection = selectBootstrapPanels({ candidates: assessed, population, caseId, accusedId });
-    const event = { type: "CASE_OPENED", caseId, accusedId, actorId: actor.id, selection };
-    await this.#store.append(caseId, 0, [event]);
-    return stateFrom([event]);
-  }
-
-  async replaceParticipant({ caseId, participantId, actor }) {
-    await this.#allowed(actor, "IMPEACHMENT_REPLACE");
-    const events = await this.#store.load(caseId);
-    const state = stateFrom(events);
-    if ([STAGES.ACQUITTED, STAGES.CONVICTED].includes(state.stage)) fail("CASE_TERMINAL", "The case is terminal");
-    const side = state.accusation.some((p) => p.id === participantId) ? "accusation"
-      : state.trial.some((p) => p.id === participantId) ? "trial" : null;
-    if (!side) fail("NOT_ASSIGNED", `${participantId} is not assigned`);
-    const occupied = new Set([...state.accusation, ...state.trial].map(({ id: personId }) => personId));
-    const replacement = state.alternates.find((person) => !occupied.has(person.id)
-      && this.#eligibility.canCastNewBallot(person.id).eligible);
-    const event = replacement
-      ? { type: "PARTICIPANT_REPLACED", participantId, replacement, side, actorId: actor.id }
-      : { type: "PARTICIPANT_REPLACEMENT_WAIT", participantId, side, actorId: actor.id };
-    await this.#store.append(caseId, events.length, [event]);
-    return stateFrom([...events, event]);
-  }
-
-  async recordVote({ caseId, side, participantId, vote, actor }) {
-    await this.#allowed(actor, "IMPEACHMENT_VOTE");
-    if (actor.id !== participantId) fail("ACTOR_MISMATCH", "A participant may record only their own vote");
-    if (!['YES', 'NO'].includes(vote)) fail("INVALID_VOTE", "vote must be YES or NO");
-    const events = await this.#store.load(caseId);
-    const state = stateFrom(events);
-    const roster = side === "accusation" ? state.accusation : side === "trial" ? state.trial : null;
-    if (!roster) fail("INVALID_SIDE", "side must be accusation or trial");
-    if ((side === "accusation" && state.stage !== STAGES.ACCUSATION)
-      || (side === "trial" && state.stage !== STAGES.TRIAL)) fail("WRONG_STAGE", "Voting is not open for that side");
-    if (!roster.some(({ id: personId }) => personId === participantId)) fail("NOT_ASSIGNED", "Voter is not assigned");
-    if (state.votes[side][participantId]) fail("DUPLICATE_VOTE", "A vote is already recorded");
-    const nextVotes = { ...state.votes[side], [participantId]: vote };
-    const emitted = [{ type: "VOTE_RECORDED", side, participantId, vote, actorId: actor.id }];
-    if (Object.keys(nextVotes).length === roster.length) {
-      const yes = Object.values(nextVotes).filter((value) => value === "YES").length;
-      const passed = yes >= (side === "accusation" ? accusationThreshold(roster.length) : trialThreshold(roster.length));
-      emitted.push({ type: "BALLOT_CLOSED", side, yes, passed });
+/** Plan one stage. The provisional trial capacity is never an assigned roster. */
+export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
+  accusationParticipants = [], validateAssignment }) {
+  requireId(caseId); requireId(accusedId); requireId(seed);
+  if (!['ACCUSATION', 'TRIAL'].includes(stage)) fail('INVALID_STAGE');
+  if (typeof validateAssignment !== 'function') fail('ASSIGNMENT_VALIDATOR_REQUIRED');
+  const exclusions = [], drawAudit = [];
+  try {
+    const { people, offices, roles, historical } = validateSnapshot(snapshot, caseId, accusationParticipants);
+    check(people.has(accusedId), 'UNKNOWN_ACCUSED');
+    const institution = stage === 'ACCUSATION' ? 'HOUSE' : 'SENATE';
+    const candidates = [], trialIds = new Set();
+    for (const p of [...people.values()].sort((a, b) => a.identityId < b.identityId ? -1 : a.identityId > b.identityId ? 1 : 0)) {
+      const held = [...offices.values()].filter(o => o.holderIdentityId === p.identityId && o.serving);
+      const judge = held.some(o => JUDICIARY.has(o.institution));
+      if ('servingJudge' in p) check(p.servingJudge === judge, 'JUDICIAL_SOURCE_CONFLICT');
+      const reasons = [];
+      if (p.identityId === accusedId) reasons.push('ACCUSED');
+      if (judge) reasons.push('SERVING_JUDICIARY');
+      if (!p.alive) reasons.push('NOT_LIVING');
+      if (!p.willing) reasons.push('UNWILLING');
+      if (p.jailed) reasons.push('JAILED');
+      if (p.disenfranchised) reasons.push('DISENFRANCHISED');
+      if (held.some(o => o.recused)) reasons.push('RECUSED');
+      const r = roles.get(p.identityId);
+      const accPermanent = held.some(o => o.institution === 'HOUSE' && o.permanentSeat && !o.recused);
+      const trialPermanent = held.some(o => o.institution === 'SENATE' && o.permanentSeat && !o.recused);
+      const trialConflict = historical.has(p.identityId) || snapshot.conflicts.knownInvestigators.includes(p.identityId)
+        || snapshot.conflicts.independentlyDisqualified.includes(p.identityId);
+      const accEligible = !reasons.length && r.accusation && (accPermanent || p.citizen);
+      const trialEligible = !reasons.length && r.trial && !trialConflict && (trialPermanent || p.citizen);
+      if (trialEligible) trialIds.add(p.identityId);
+      const eligible = stage === 'ACCUSATION' ? accEligible : trialEligible;
+      if (!eligible) {
+        if (!r[stage === 'ACCUSATION' ? 'accusation' : 'trial']) reasons.push('ROLE_INELIGIBLE', ...r.reasonCodes);
+        if (!p.citizen && !(stage === 'ACCUSATION' ? accPermanent : trialPermanent)) reasons.push('NOT_CIVILIAN_OR_MEMBER');
+        if (stage === 'TRIAL' && trialConflict) reasons.push(historical.has(p.identityId) ? 'ACCUSATION_PARTICIPANT' : 'KNOWN_TRIAL_CONFLICT');
+        exclusions.push({ identityId: p.identityId, reasonCodes: reasons, sourceIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId) });
+      }
+      if (eligible) candidates.push({ identityId: p.identityId, divisionId: p.divisionId,
+        permanent: stage === 'ACCUSATION' ? accPermanent : trialPermanent });
     }
-    await this.#store.append(caseId, events.length, emitted);
-    return stateFrom([...events, ...emitted]);
-  }
-
-  async getCase(caseId) { return stateFrom(await this.#store.load(caseId)); }
-
-  async #allowed(actor, permission) {
-    if (!actor?.id || !actor.authentication || !(await this.#authorize(actor, permission))) {
-      fail("UNAUTHORIZED", `Authenticated ${permission} authority is required`);
+    const permanent = candidates.filter(p => p.permanent);
+    const ordinary = snapshot.rules[institution];
+    check(permanent.length <= ordinary.denominator, 'OFFICE_SEAT_OVERFLOW');
+    const mature = permanent.length >= ordinary.quorum && permanent.length >= ordinary.threshold;
+    const mode = `${institution}_${mature ? 'MATURE' : 'BOOTSTRAP'}`;
+    const capacity = stage === 'ACCUSATION' ? new Set([...candidates.map(p => p.identityId), ...trialIds]).size
+      : historical.size + candidates.length;
+    const size = mature ? permanent.length : stage === 'ACCUSATION' ? bootstrapPanelSizes(capacity).accusation : Math.min(12, candidates.length);
+    const threshold = mature ? ordinary.threshold : stage === 'ACCUSATION' ? accusationThreshold(size) : size >= 6 ? trialThreshold(size) : null;
+    const common = { mode, targetSize: size, affirmativeThreshold: threshold, denominator: mature ? ordinary.denominator : size,
+      capacity, snapshotIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId), sourceVersions: Object.fromEntries(SOURCE_NAMES.map(k => [k, snapshot[k].version])),
+      rulesetVersion: snapshot.eligibility.rulesetVersion, revealedSeed: seed, seedCommitment: seedCommitment(seed),
+      algorithmVersion: ALGORITHM_VERSION, exclusions, drawAudit };
+    const waiting = reason => ({ ...common, status: ImpeachmentStage.WAITING, reason, roster: [], alternates: [] });
+    if (!mature && (stage === 'ACCUSATION' ? trialIds.size < 6 || capacity - size < 6 || candidates.length < size : size < 6)) return waiting('INSUFFICIENT_DISJOINT_POOL');
+    const selected = [], alternates = [];
+    const tiers = mature ? [permanent] : [permanent, candidates.filter(p => !p.permanent)];
+    let drawIndex = 0;
+    for (const tier of tiers) {
+      const remaining = [...tier], counts = new Map(), drawn = new Map();
+      for (const p of tier) counts.set(p.divisionId, (counts.get(p.divisionId) ?? 0) + 1);
+      let accepted = 0;
+      while (remaining.length) {
+        const ranked = remaining.map(p => ({ p,
+          deviation: [...counts].reduce((sum, [division, n]) => sum + Math.abs(
+            ((drawn.get(division) ?? 0) + (p.divisionId === division ? 1 : 0)) * tier.length - n * (accepted + 1)), 0),
+          hash: digest([seed, caseId, stage, p.identityId, drawIndex, ALGORITHM_VERSION]),
+        })).sort((a, b) => a.deviation - b.deviation || (a.hash < b.hash ? -1 : a.hash > b.hash ? 1 : a.p.identityId.localeCompare(b.p.identityId)));
+        const candidate = ranked[0];
+        remaining.splice(remaining.findIndex(p => p.identityId === candidate.p.identityId), 1);
+        const record = { identityId: candidate.p.identityId, tier: candidate.p.permanent ? 'PERMANENT' : 'CIVILIAN', drawIndex: drawIndex++, hash: candidate.hash, deviation: candidate.deviation };
+        if (selected.length === size) { alternates.push(candidate.p.identityId); continue; }
+        if (!mature && stage === 'ACCUSATION') {
+          const used = new Set([...selected, candidate.p.identityId]);
+          if ([...trialIds].filter(id => !used.has(id)).length < 6) { drawAudit.push({ ...record, result: 'RESERVED_TRIAL_CAPACITY' }); continue; }
+        }
+        const validation = validateAssignment(candidate.p.identityId, stage);
+        check(validation && !validation.then && bool(validation.valid) && typeof validation.sourceEventId === 'string' && validation.sourceEventId.length > 0, 'INVALID_ASSIGNMENT_VALIDATION');
+        if (!validation.valid) {
+          check(typeof validation.reasonCode === 'string' && validation.reasonCode.length > 0, 'MISSING_REPLACEMENT_REASON');
+          drawAudit.push({ ...record, result: 'REJECTED', reasonCode: validation.reasonCode, sourceEventId: validation.sourceEventId }); continue;
+        }
+        selected.push(candidate.p.identityId); accepted++;
+        drawn.set(candidate.p.divisionId, (drawn.get(candidate.p.divisionId) ?? 0) + 1);
+        drawAudit.push({ ...record, result: 'ASSIGNED', sourceEventId: validation.sourceEventId });
+      }
     }
+    if (selected.length !== size) return waiting('DRAW_EXHAUSTED');
+    return { ...common, status: `${stage}_EMPANELED`, roster: selected, alternates };
+  } catch (error) {
+    if (error.code !== 'INPUT_DISCREPANCY') throw error;
+    return { status: `${stage}_INPUT_DISCREPANCY_REVIEW`, reason: error.message, roster: [], exclusions, drawAudit };
   }
 }
-
-function stateFrom(events) {
-  if (!events.length) fail("CASE_NOT_FOUND", "Case does not exist");
-  const opened = events[0];
-  const state = { caseId: opened.caseId, accusedId: opened.accusedId, stage: opened.selection.stage,
-    accusation: [...opened.selection.accusation], trial: [...opened.selection.trial],
-    alternates: [...opened.selection.alternates], accusationSource: opened.selection.accusationSource,
-    trialSource: opened.selection.trialSource, votes: { accusation: {}, trial: {} }, version: events.length };
-  for (const event of events.slice(1)) {
-    if (event.type === "PARTICIPANT_REPLACED") {
-      state[event.side] = state[event.side].map((person) => person.id === event.participantId ? event.replacement : person);
-      state.alternates = state.alternates.filter((person) => person.id !== event.replacement.id);
-    } else if (event.type === "PARTICIPANT_REPLACEMENT_WAIT") state.stage = STAGES.WAITING;
-    else if (event.type === "VOTE_RECORDED") state.votes[event.side][event.participantId] = event.vote;
-    else if (event.type === "BALLOT_CLOSED" && event.side === "accusation") state.stage = event.passed ? STAGES.TRIAL : STAGES.ACQUITTED;
-    else if (event.type === "BALLOT_CLOSED" && event.side === "trial") state.stage = event.passed ? STAGES.CONVICTED : STAGES.ACQUITTED;
-  }
-  return Object.freeze(state);
-}
-
-function balancedRank(candidates, seed) {
-  const divisions = new Map();
-  for (const candidate of candidates) {
-    const division = candidate.divisionId || "__NONE__";
-    if (!divisions.has(division)) divisions.set(division, []);
-    divisions.get(division).push(candidate);
-  }
-  for (const group of divisions.values()) group.sort((a, b) => score(seed, a.id).localeCompare(score(seed, b.id)));
-  const divisionOrder = [...divisions.keys()].sort((a, b) => score(seed, a).localeCompare(score(seed, b)));
-  const result = [];
-  for (let index = 0; result.length < candidates.length; index += 1) {
-    for (const division of divisionOrder) if (divisions.get(division)[index]) result.push(divisions.get(division)[index]);
-  }
-  return result;
-}
-
-function score(seed, value) { return createHash("sha256").update(`${seed}\0${value}`).digest("hex"); }
-function id(value, field) { if (typeof value !== "string" || !value.trim()) fail("INVALID_IDENTIFIER", `${field} is required`); }
-function integer(value, field, minimum) { if (!Number.isSafeInteger(value) || value < minimum) fail("INVALID_NUMBER", `${field} must be an integer >= ${minimum}`); }
-function fail(code, message) { throw new BootstrapImpeachmentError(code, message); }

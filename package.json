@@ -15,6 +15,6 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check src/governance/eligibility.js && node --check src/governance/bootstrap-impeachment.js && node --check src/population/registry.js && node --check public/finger-collector.js"
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check src/governance/eligibility.js && node --check src/governance/bootstrap-impeachment.js && node --check src/population/registry.js && node --check public/finger-collector.js && node --check src/governance/impeachment-service.js && node --check src/governance/impeachment-store.js && node --check src/governance/impeachment-authorities.js"
   }
 }
