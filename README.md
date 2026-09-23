@@ -144,3 +144,19 @@ See [the implementation and adapter contract](docs/specs/bootstrap-impeachment.m
 for commands, dependency provenance, authority boundaries, and the requirement-to-test map.
 The library requires trusted role/office/voting/evidence integrations; it is not
 exposed through the Finger HTTP server and does not execute office removal or appeals.
+
+### Continue bootstrap work locally
+
+Use the existing `codex/jon-85-bootstrap-recovery` branch for PR #36, then run:
+
+```sh
+nvm use
+npm run check
+npm test
+node --test test/bootstrap-impeachment.test.js
+```
+
+These commands run in the local checkout; no cloud task is required. The frozen
+specification and adapter contract above are the implementation inputs. The newer
+eligibility-authority branch requires the separate JON-141 integration work; it is
+not a drop-in replacement for this branch's accepted reducer.

@@ -78,7 +78,9 @@ function validateSnapshot(snapshot, caseId, accusationParticipants) {
   check(Array.isArray(snapshot.participation.events), 'MISSING_PARTICIPATION_LEDGER');
   const historical = new Set(accusationParticipants);
   for (const e of snapshot.participation.events) {
-    check(typeof e.identityId === 'string' && e.sourceEventId && ['ACCUSATION', 'TRIAL'].includes(e.stage)
+    check(e && typeof e.identityId === 'string' && people.has(e.identityId)
+      && typeof e.sourceEventId === 'string' && e.sourceEventId.trim().length > 0
+      && e.sourceEventId === e.sourceEventId.trim() && ['ACCUSATION', 'TRIAL'].includes(e.stage)
       && ['SERVED', 'DELIBERATED', 'BALLOT'].includes(e.eventType), 'INVALID_PARTICIPATION');
     if (e.stage === 'ACCUSATION') historical.add(e.identityId);
   }

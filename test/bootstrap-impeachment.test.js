@@ -311,3 +311,27 @@ test('durable eligibility rejects missing proceeding IDs, retains verified attri
   assert.deepEqual(await durable.apply(c4, f.credential(c4)), saved);
   assert.equal(durable.projection().canCastNewBallot('p1').reason, 'C4_TEMPORARY_RESTRICTION');
 });
+
+
+test('participation requires valid identity and source provenance while allowing batch source events', () => {
+  const s = snapshot(8);
+  const event = { identityId: 'p1', stage: 'ACCUSATION', eventType: 'SERVED', sourceEventId: 'participation-event:1' };
+  s.participation.events = [event, { ...event }];
+  const duplicate = plan(s, 'TRIAL');
+  assert.equal(duplicate.status, 'TRIAL_EMPANELED');
+  assert.equal(duplicate.capacity, 8);
+  assert.equal(duplicate.roster.length, 7);
+  // One source event may legitimately assign several people. Do not invent a
+  // one-person-per-source-event restriction on the authoritative ledger.
+  s.participation.events[1].identityId = 'p2';
+  assert.equal(plan(s, 'TRIAL').roster.length, 6);
+  for (const change of [{ sourceEventId: 42 }, { sourceEventId: ' ' }, { identityId: '' }, { identityId: ' ' }, { identityId: 'unknown' }]) {
+    s.participation.events = [{ ...event, ...change }];
+    const invalid = plan(s, 'TRIAL');
+    assert.equal(invalid.status, 'TRIAL_INPUT_DISCREPANCY_REVIEW');
+    assert.equal(invalid.reason, 'INVALID_PARTICIPATION');
+    assert.deepEqual(invalid.roster, []);
+  }
+  s.participation.events = [null];
+  assert.equal(plan(s, 'TRIAL').reason, 'INVALID_PARTICIPATION');
+});

@@ -164,3 +164,17 @@ On Node v22.23.2 / Linux:
 
 The exact published implementation SHA and CI results are recorded in the PR and
 canonical Linear handoff rather than embedding a self-referential commit ID here.
+
+## Local continuation — participation provenance
+
+The persistent local checkout follows the same published recovery branch. Participation
+entries now require an identity present in the complete population snapshot and a
+nonblank string sourceEventId; malformed/null entries enter discrepancy review instead
+of producing a trial roster. Population authorities retain terminal identities, so
+historical participation remains attributable after death. One event may reference
+multiple participants; repeated identical entries still count each identity once.
+
+The regression first failed on the previous published head, then passed with this
+correction. The local full-suite result is 67 tests passed, including 29 impeachment
+checks. Cross-branch eligibility migration remains under JON-141; this continuation
+retains the approved JON-79 pin and does not claim independent JON-86 acceptance.
