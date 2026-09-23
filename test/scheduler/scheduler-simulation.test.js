@@ -62,17 +62,17 @@ test("checker failure records fallback proposal but freezes ordinary work", asyn
   const result = await run(fixture, options);
   assert.deepEqual(result, await run(fixture, options));
   assert.equal(result.rounds[0].records[0].appliedAgentId, null);
-  assert.equal(result.rounds[0].records[0].fallbackProposedAgentId, "a");
+  assert.equal(result.rounds[0].records[0].fallbackProposal.agentId, "a");
   assert.equal(result.rounds[0].records[0].source, "none");
   assert.equal(result.rounds[0].records[0].remaining, 1);
   assert.equal(result.rounds[0].records[0].gap, "checker-unavailable");
-  assert.deepEqual(result.rounds[0].records[0].checker, { outcome: "failed", reason: "checker-unavailable" });
+  assert.deepEqual(result.rounds[0].records[0].checker, { outcome: "failed", reason: "checker-error" });
 });
 
 test("policy switching records immutable provenance at the effective round", async () => {
   const fixture = scenario({ authoritativeChanges: [{ round: 1, type: "policy", policy: { id: "baseline", version: "2", provenance: "fixture:policy-2" }, provenance: "fixture:switch" }], tasks: [task("a"), task("b", { arrivalRound: 1 })] });
   const result = await run(fixture);
-  assert.deepEqual(result.rounds.map(r => r.policy.version), ["1", "2"]);
+  assert.deepEqual(result.rounds.map(r => r.requestedPolicy.version), ["1", "2"]);
   assert.equal(result.rounds[0].records[0].taskId, "a"); assert.equal(result.rounds[1].records[0].taskId, "b");
 });
 

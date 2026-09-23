@@ -1,7 +1,17 @@
 import { deepFreeze, validateScenario } from "./fixtures.js";
-import { deterministicBaseline, isEligible } from "./baseline.js";
+import { BASELINE_POLICY, deterministicBaseline, isEligible } from "./baseline.js";
+import { byId, compareIds } from "./order.js";
 
-const byId = values => [...values].sort((a, b) => a.id.localeCompare(b.id));
+function checkerEvidence(result) {
+  // Copy at the boundary. Never store checker-owned values in historical records.
+  const copy = structuredClone(result);
+  if (!copy || typeof copy !== "object" || Array.isArray(copy)
+      || !["approved", "rejected", "failed"].includes(copy.outcome)
+      || (copy.reason !== undefined && copy.reason !== null && typeof copy.reason !== "string")) {
+    return Object.freeze({ outcome: "failed", reason: "invalid-checker-response" });
+  }
+  return Object.freeze({ outcome: copy.outcome, reason: copy.reason ?? null });
+}
 
 function applyChange(state, change) {
   if (change.type === "policy") state.policy = structuredClone(change.policy);
@@ -19,18 +29,24 @@ export async function simulateScenario({ scenario, proposeAssignments, checkAssi
   const source = validateScenario(scenario);
   const state = {
     agents: structuredClone(source.agents),
-    tasks: source.tasks.map(t => ({ ...structuredClone(t), arrivalRound: t.arrivalRound ?? 0, remaining: t.durationRounds, incumbent: t.incumbent ?? null })),
+    tasks: source.tasks.map(t => ({ ...structuredClone(t), arrivalRound: t.arrivalRound ?? 0, remaining: t.durationRounds, incumbent: t.incumbent ?? null, waitRounds: 0, totalWaitRounds: 0 })),
     policy: structuredClone(source.policy), authorityVersion: 0,
   };
   const history = Object.fromEntries(state.agents.map(a => [a.id, 0]));
   const trace = [];
   for (let round = 0; round < source.roundCount; round++) {
-    for (const change of (source.authoritativeChanges ?? []).filter(c => c.round === round).sort((a,b) => a.provenance.localeCompare(b.provenance))) applyChange(state, change);
+    // Validation rejects same-field conflicts. This order only canonicalizes
+    // independent writes; provenance spelling never chooses authority precedence.
+    const changes = (source.authoritativeChanges ?? []).filter(c => c.round === round)
+      .sort((a, b) => compareIds(a.provenance, b.provenance));
+    for (const change of changes) applyChange(state, change);
     const active = byId(state.tasks.filter(t => !t.cancelled && t.arrivalRound <= round && t.remaining > 0));
-    const snapshot = deepFreeze(structuredClone({ round, agents: state.agents, tasks: active, policy: state.policy, authorityVersion: state.authorityVersion }));
+    const snapshot = deepFreeze(structuredClone({ round, agents: byId(state.agents), tasks: active, policy: state.policy, authorityVersion: state.authorityVersion }));
     const baseline = deterministicBaseline({ agents: state.agents, tasks: active, round, history });
     let proposals;
     let policyFailure = null;
+    const requestedPolicy = deepFreeze(structuredClone(state.policy));
+    let executedPolicy = proposeAssignments ? requestedPolicy : BASELINE_POLICY;
     try {
       proposals = proposeAssignments ? await proposeAssignments(snapshot) : baseline;
       if (!proposals || typeof proposals !== "object" || Array.isArray(proposals)) throw new TypeError("invalid policy proposal");
@@ -38,16 +54,17 @@ export async function simulateScenario({ scenario, proposeAssignments, checkAssi
     } catch {
       policyFailure = "policy-failed";
       proposals = baseline;
+      executedPolicy = BASELINE_POLICY;
     }
+    const checkerSnapshot = deepFreeze({ ...snapshot, policy: executedPolicy, requestedPolicy });
     const load = Object.fromEntries(state.agents.map(a => [a.id, 0]));
     const records = [];
     for (const task of active) {
-      const proposedAgentId = proposals[task.id] ?? null;
-      const proposal = deepFreeze({ id: `${round}:${task.id}`, round, taskId: task.id, agentId: proposedAgentId, policy: structuredClone(state.policy) });
+      const proposedAgentId = Object.hasOwn(proposals, task.id) ? proposals[task.id] ?? null : null;
+      const proposal = deepFreeze({ id: `${round}:${task.id}`, round, taskId: task.id, agentId: proposedAgentId, policy: executedPolicy, requestedPolicy });
       let checker;
-      try { checker = await checkAssignments(proposal, snapshot); }
-      catch (error) { checker = { outcome: "failed", reason: error?.code ?? "checker-error" }; }
-      if (!checker || !["approved", "rejected", "failed"].includes(checker.outcome)) checker = { outcome: "failed", reason: "invalid-checker-response" };
+      try { checker = checkerEvidence(await checkAssignments(proposal, checkerSnapshot)); }
+      catch { checker = Object.freeze({ outcome: "failed", reason: "checker-error" }); }
       // A deterministic proposer is never a substitute for checker authority.
       // This initial harness has no essential-continuity exemption or standby.
       let agentId = checker.outcome === "approved" ? proposedAgentId : null;
@@ -57,10 +74,29 @@ export async function simulateScenario({ scenario, proposeAssignments, checkAssi
       const previous = task.incumbent;
       const continuation = previous !== null && previous === agentId;
       const handoff = previous !== null && agentId !== null && previous !== agentId;
-      if (agentId !== null) { task.remaining--; task.incumbent = agentId; history[agentId]++; }
-      records.push({ taskId: task.id, proposedAgentId, checker: { outcome: checker.outcome, reason: checker.reason ?? null }, appliedAgentId: agentId, source: agentId === null ? "none" : policyFailure ? "deterministic-fallback" : "candidate", policyFailure, fallbackProposedAgentId: checker.outcome === "failed" ? baseline[task.id] : null, continuation, handoff, completed: task.remaining === 0, remaining: task.remaining, gap: agentId === null ? (checker.outcome === "failed" ? "checker-unavailable" : checker.outcome === "rejected" ? "checker-rejected" : "capacity-or-eligibility") : null, waitRounds: agentId === null ? round - task.arrivalRound + 1 : 0, deadlineRound: task.deadlineRound ?? null, urgency: task.urgency ?? null });
+      if (agentId !== null) {
+        task.remaining--; task.incumbent = agentId; history[agentId]++;
+        task.waitRounds = 0;
+      } else {
+        task.waitRounds++; task.totalWaitRounds++;
+      }
+      records.push(deepFreeze({
+        taskId: task.id, proposedAgentId, checker, appliedAgentId: agentId,
+        source: agentId === null ? "none" : policyFailure ? "deterministic-fallback" : proposeAssignments ? "candidate" : "baseline",
+        policyFailure,
+        fallbackProposal: checker.outcome === "failed" ? { agentId: baseline[task.id], policy: BASELINE_POLICY } : null,
+        continuation, handoff, completed: task.remaining === 0, remaining: task.remaining,
+        gap: agentId === null ? (checker.outcome === "failed" ? "checker-unavailable" : checker.outcome === "rejected" ? "checker-rejected" : "capacity-or-eligibility") : null,
+        waitRounds: task.waitRounds, totalWaitRounds: task.totalWaitRounds,
+        ageRounds: round - task.arrivalRound + 1,
+        deadlineRound: task.deadlineRound ?? null, urgency: task.urgency ?? null,
+      }));
     }
-    trace.push({ round, authorityVersion: state.authorityVersion, policy: structuredClone(state.policy), records });
+    trace.push(deepFreeze({
+      round, authorityVersion: state.authorityVersion,
+      requestedPolicy, executedPolicy,
+      authoritativeChanges: structuredClone(changes), records,
+    }));
   }
   return deepFreeze({ scenarioId: source.id, rounds: trace, history: Object.fromEntries(Object.entries(history).sort()) });
 }

@@ -1,3 +1,5 @@
+import { BASELINE_POLICY } from "./baseline.js";
+
 const OUT_OF_SCOPE = new Set([
   "assets", "money", "barter", "marketplace", "coins", "resources",
   "personalData", "productionData",
@@ -54,6 +56,7 @@ export function validateScenario(input) {
   requireId(input.id, "scenario id");
   if (!Number.isInteger(input.roundCount) || input.roundCount < 1) throw new TypeError("roundCount must be a positive integer");
   const policies = new Map();
+  policyRecord(BASELINE_POLICY, policies);
   policyRecord(input.policy, policies);
   if (!Array.isArray(input.agents) || !Array.isArray(input.tasks)) throw new TypeError("agents and tasks must be arrays");
   const agentIds = unique(input.agents, "agent");
@@ -79,6 +82,7 @@ export function validateScenario(input) {
   const changes = input.authoritativeChanges ?? [];
   if (!Array.isArray(changes)) throw new TypeError("authoritativeChanges must be an array");
   const changeIds = new Set();
+  const writes = new Set();
   for (const change of changes) {
     const extra = change.type === "policy" ? ["policy"] : change.type === "cancel-task" ? ["taskId"] : change.type === "task-domain" ? ["taskId", "value"] : ["agentId", "value"];
     fields(change, ["round", "type", "provenance", ...extra], "change");
@@ -86,6 +90,9 @@ export function validateScenario(input) {
     requireId(change.provenance, "authoritative change provenance");
     if (changeIds.has(change.provenance)) throw new TypeError("duplicate authoritative change provenance");
     changeIds.add(change.provenance);
+    const write = JSON.stringify([change.round, change.type, change.agentId ?? change.taskId ?? null]);
+    if (writes.has(write)) throw new TypeError("ambiguous same-round authority updates to the same field");
+    writes.add(write);
     if (change.type === "availability" && (!Array.isArray(change.value) || change.value.some(r => !Number.isInteger(r) || r < 0))) throw new TypeError("invalid availability change");
     if (["qualifications", "authorizations"].includes(change.type)) strings(change.value, change.type);
     if (change.type === "task-domain") requireId(change.value, "task domain change");
