@@ -2,6 +2,20 @@
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — governance integration sandbox, 2026-09-23
+
+- Extended the existing local admission kernel with a synthetic domain runtime, signed one-use requests, durable identity/permission checks, explicit external policy evaluation, approval reservations and transactional writes.
+- Added a separate durable local audit collector, outage pause/resume and idempotent outcome delivery. Approved actions have no cancellation path and survive later revocation/expiry.
+- Added repeatable demo, replay/concurrency/restart tests, actual process-crash recovery tests and a Linux bubblewrap confinement probe.
+- Added a runbook distinguishing the tested local subsystem from production domain services and independent acceptance. Existing admission files were preserved; Finger runtime behavior is unchanged.
+
+## Unreleased — AGT dependencies, 2026-09-23
+
+- Installed and pinned `@microsoft/agent-governance-sdk` 5.0.0 with its transitive dependencies and updated the npm lockfile.
+- Overrode the SDK's pinned `js-yaml` 5.2.1 dependency with 5.4.2 to address the reported YAML denial-of-service advisory (GHSA-pm4m-ph32-ghv5). npm reported zero vulnerabilities after installation.
+- Verified SDK import, YAML policy loading, allow/deny decisions, syntax checks, and all 23 existing tests. HTTP tests require localhost binding outside the restricted sandbox.
+- Dependency installation only; application governance enforcement is not yet wired into the server.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added

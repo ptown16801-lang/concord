@@ -94,3 +94,11 @@ Do not trust browser-supplied names, email addresses, user IDs, access tokens, o
 - `docs/AUDIT_2026-09-16.md` records the repository/document consistency audit, fixes made, and remaining verified gaps.
 
 Historical decision snapshots and prior Workbench artifacts are provenance. They should not be silently rewritten or deleted merely because a newer canonical record exists.
+
+## Governance integration sandbox
+
+A synthetic Microsoft Agent Governance Toolkit workflow is available with
+`npm run governance:demo`. It demonstrates durable approval, audit-outage
+pause/resume and replay-safe local writes without changing the Finger server.
+See [the sandbox runbook](docs/GOVERNANCE_SANDBOX.md) for tests, Linux isolation
+verification, owner rules and the limits of this local milestone.

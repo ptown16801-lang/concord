@@ -1,0 +1,59 @@
+# Governance sandbox audit — September 23, 2026
+
+Status: four locally reproduced findings remain unresolved. This is the
+implementer's audit of Concord's synthetic integration, not independent
+acceptance or an audit of Microsoft's SDK internals. The preceding baseline
+suite passed 59 tests; those tests did not cover the cases below.
+
+Findings and reproduction steps were sent to @linear for advisory review on
+[JON-138](https://linear.app/jons-garage/issue/JON-138#comment-921c8ce9-b6a5-48b4-8cee-7c547e9e858b).
+Independent acceptance remains separate under JON-135. No fixes are included
+in this audit record.
+
+## 1. Replacement bypasses database immutability guards
+
+In `src/governance/sandbox/runtime.js`, the database connection does not enable
+recursive triggers. After admitting an operation, INSERT OR REPLACE with the
+existing audit sequence/id replaces its payload. Replacement of the existing
+operation row can set its status to `canceled`. The implicit deletion does not
+invoke the DELETE guards in this configuration, and UPDATE guards do not apply.
+
+Observed: `recursive_triggers=0`, audit payload `{"type":"forged"}`, operation
+status `canceled`. This requires trusted-side SQL write access; no untrusted-agent
+route to that access was demonstrated. Database guard coverage must include
+replacement attempts, with unchanged approval, reservation and audit evidence.
+
+## 2. Collector recovery can omit approval evidence
+
+Admit an operation and flush its audit. Replace the collector with a fresh
+`LocalAuditCollector` database to simulate recovery after collector data loss,
+then resume the pending operation. Domain delivery markers prevent replay of
+the previously acknowledged approval record.
+
+Observed: operation committed at version 1; collector contained execution-intent
+and committed receipts but no approved receipt. This concerns collector history
+loss, not ordinary temporary unavailability. Recovery needs history reconciliation
+or an explicit pause until evidence is restored, preserving the approved action.
+
+## 3. Policy upgrades discard historical signed bundles
+
+Admit under policy generation 1, then install generation 2. Approval evidence
+retains generation 1's manifest but not the issuer signature or policy YAML.
+The single persisted current-policy entry now holds generation 2.
+
+Historical evidence therefore cannot independently verify the original policy
+signature or replay its rules. Preserve full signed bundles immutably by digest
+and test historical verification after upgrade and restart. Earlier references
+to a stored signed manifest meant a manifest from a verified bundle; the bundle's
+signature was not retained with that approval.
+
+## 4. Denied-attempt evidence lacks correlation and time
+
+Prepare two distinct signed requests, revoke their actor, then submit both.
+Each audit payload is only `{"code":"IDENTITY_DENIED","type":"denied"}`.
+Random row IDs distinguish entries but do not retain request correlation,
+timestamp, failure stage or actor verification state.
+
+Add sanitized attempt correlation and timestamps, while distinguishing asserted
+identity from cryptographically verified identity. Never retain credentials or
+label an unverified actor as authenticated.
