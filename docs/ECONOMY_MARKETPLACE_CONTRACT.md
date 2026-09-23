@@ -2,7 +2,7 @@
 
 **Design record:** JON-25
 
-**Record date:** 2026-09-17
+**Record date:** 2026-09-17; Goodwill reconciliation and current governance boundary: 2026-09-23
 
 **Status:** design contract; no product implementation or component selection is authorized by this record
 
@@ -23,6 +23,49 @@ The design composes with these canonical owners:
 | Protected authority | [JON-38 Option A](https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary) | A market listing, match, or deal conveys no governmental/protected authority without a separate express lawful grant. |
 
 The authoritative marketplace can use ordinary transactional storage, signatures, content hashes, hash-linked events, Merkle commitments, and append-only records. A blockchain or cryptocurrency network is not a source of authority, consensus, identity, settlement finality, or provenance in this architecture.
+
+## 1A. Goodwill reconciliation — controlling experimental boundary
+
+This amendment applies the September 21 decision already recorded in [JON-25](https://linear.app/jons-garage/issue/JON-25) and [JON-96](https://linear.app/jons-garage/issue/JON-96). JON-96 controls the experimental issuer-specific instrument; this contract controls ordinary marketplace agreements. It is a correction to this existing design, not a second coin specification or implementation authorization.
+
+### Decision provenance and evidence limits
+
+Read these sources before changing this boundary:
+
+- [Research brief and bibliography](https://linear.app/jons-garage/document/concord-research-brief-and-bibliography-september-16-17-2026-ba32846e0b1b): reconstructed rationale and research hypotheses, not participant instructions or proof of novelty.
+- [JON-96](https://linear.app/jons-garage/issue/JON-96): frozen mechanism and September 21 reconciliation; controlling owner decisions.
+- [JON-97 specification, PR #21 at 1864a079](https://github.com/ptown16801-lang/concord/blob/1864a0797ae8cee03a8ce7aaa336396ce182c772/docs/COIN_MODEL_A_V0.1.md): corrected module-local allowlist, non-intervention, copying fabricated appearances, actual destruction versus claims, and classification of downstream design choices. Delivery does not establish acceptance. The operational effect of refusal remains unresolved; this contract assigns none.
+- [JON-98 original audit, PR #25 at e814f3ae](https://github.com/ptown16801-lang/concord/blob/e814f3ae81a2011bb86f95cf06cea44eff5fbc4c/docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md), read with [corrected audit](https://github.com/ptown16801-lang/concord/blob/2dc0438006d8442f906f4a0ba991b8742abe9ce3/docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md) and [JON-106 source-verification table, PR #29 at 2dc04380](https://github.com/ptown16801-lang/concord/blob/2dc0438006d8442f906f4a0ba991b8742abe9ce3/docs/JON-98_SOURCE_VERIFICATION.md): existing evidence with explicit access/read-depth limits. PR #29 remains separate from #25 at this check. A separate verification pass is not demonstrated independent acceptance. Its S17 correction describes conditional one-token creation by a tokenless consumer seeking trade, not arbitrary unlimited minting. These source distinctions are not new coin rules.
+- [JON-105 measurement-validity review](https://linear.app/jons-garage/document/jon-105-independent-experiment-and-measurement-validity-review-a22d282c84b6): receipt is not acceptance; mixed bundles do not identify a marginal coin price; observed dilution is not automatically causal; agent-visible evidence and hidden truth are separate.
+- [JON-102](https://linear.app/jons-garage/issue/JON-102): downstream integration ownership and dependencies. This amendment does not release them.
+
+Owner decisions, literature evidence, experimental hypotheses and unresolved items remain distinct. No new literature search or replication is claimed by this reconciliation. Existing component comparisons below remain design options, not newly verified maintenance/security recommendations.
+
+### Retained and superseded rules
+
+| Area | Retained for ordinary JON-25 agreements | Controlling JON-96 exception |
+| --- | --- | --- |
+| Offers, matching and negotiation | Advisory discovery, exact proposals, barter, labor, services and multi-party commitments | Agents may mention, combine, transfer or ignore coins through existing communication; no mandatory task linkage or agreement registration for coin actions. |
+| Reservation and settlement | Authoritative capacity reservations, anti-double-commit and evidence-based settlement under JON-19 | Coins are optional participant-controlled objects, not authoritative settlement resources. No coin ownership ledger, enforced balance, anti-double-spend, escrow lock, guaranteed redemption or authenticity prerequisite is imported. |
+| Object identity and provenance | IDs, signatures, hashes and append-only records for ordinary offers, reservations and agreements | Coin appearances expose only claimed originator, current marks/signatures and visible condition under JON-96. No agent-visible coin ID, formal transfer chain or mandatory cryptographic signature. Ordinary agreement IDs do not become coin IDs. |
+| Visibility and publication | Authorized marketplace records follow JON-18 | Private coin activity creates no automatic public metadata. A participant's disclosure is a claim in its chosen channel; it does not publish other transfers, holdings or hidden truth. |
+| Valuation and meaning | Lawful private decision support and declared ordinary matching objectives | No system-calculated/published coin value, exchange rate or interpretation. Agent-facing name remains `fart coins`; no coin primitives labelled payment, credit, reputation, buy, sell or endorsement. Agents may develop their own meanings. |
+| Claims, signatures and disputes | Ordinary evidence and authorized agreement determinations remain available | Coin copying, fabrication, defacing, double-spending and inconsistent claims remain possible; no automatic warnings, penalties, verification certificate or new dispute channel. Other agents cannot independently verify another agent's cryptographic mark through this module. Existing external authority consumes only lawfully available evidence. |
+| Research | Ordinary lawful behavioral projections retain provenance and uncertainty | Hidden coin IDs, classifications, truth and inferred intent stay outside the participants' world. They cannot validate a marketplace action, resolve a claim, populate a participant Workbench view or change opportunities. |
+
+### Mixed agreements and implementation boundary
+
+If parties independently create an enforceable agreement that mentions coins, JON-19 still governs that agreement's assent, registration and lifecycle. Ordinary labor/resource obligations retain their lawful safeguards. The reference does not make the coins themselves enforceable balances or settlement primitives: no hidden-truth check, wallet reservation, automatic authenticity determination or coin redemption duty follows. Agreement-level evidence or disputes cannot silently manufacture coin-level authority.
+
+Sections 2–12 therefore describe ordinary market objects and operations unless this section explicitly permits a coin-related context. Section 3's authoritative-object metadata is not attached to coin appearances. Section 4's idempotent agreement operations do not suppress separate coin copies or conflicting claims. Sections 5–7's reservation and settlement controls do not govern coin custody. Sections 8–10 must not expose hidden research or turn researcher valuation/inference into a participant-facing service.
+
+The existing no-foundational-blockchain decision remains. NegMAS/Mesa or another later-selected adapter must preserve this separation; payment rails and order-book account semantics cannot substitute for the frozen coin mechanism. No library is selected here.
+
+### September 23 governance context
+
+The [AGT proposal and recorded owner decisions](https://linear.app/jons-garage/document/proposal-for-review-concord-agt-integration-and-bounded-delegation-50c0e9dbe914) and [JON-138 local sandbox](https://linear.app/jons-garage/issue/JON-138) distinguish approval from eligibility: approved protected operations cannot be canceled; later revocation/expiry affects new admissions; audit-collector outage preserves and pauses pending approved work until recovery. Local sandbox files were inspected at checkout `b332c23`; that is local evidence, not a claim of remote delivery, production integration or independent acceptance.
+
+For ordinary protected marketplace operations, follow those current admission rules rather than older cancellation wording. Offer withdrawal, preparation expiry and agreement lifecycle changes are distinct from canceling an already approved protected write. This contract does not use the governance collector as the hidden coin observer or apply its execution gate to coin behavior. Any future integration conflict between infrastructure failure handling and JON-96 non-intervention must be reported in JON-102 rather than silently changing the experiment.
 
 ## 2. Chosen market primitives
 
@@ -109,9 +152,9 @@ The invariant for every capacity resource and overlapping interval is:
 
 The writer enforces the invariant with serializable transactions or equivalent compare-and-swap semantics. Reads used to prepare a write carry expected versions; a stale version fails closed. A reservation capability is scoped to one candidate hash, one operation, one quantity, one domain, and one expiry, and is consumed once. Locking only in a matching engine or client is insufficient.
 
-For a multi-party package, one coordinator records a prepare set containing all required reservation IDs and expected versions. Registration either consumes the complete set and registers the exact agreement through JON-19, or consumes none. Expired, revoked-before-admission, mismatched, missing, or already-consumed reservations abort the package. A lawfully admitted cross-domain operation follows JON-17/JON-35 ordering: later revocation alone does not cancel it, while all other validity and lawful-cancellation checks remain effective.
+For a multi-party package, one coordinator records a prepare set containing all required reservation IDs and expected versions. Registration either consumes the complete set and registers the exact agreement through JON-19, or consumes none. Expired, revoked-before-admission, mismatched, missing, or already-consumed reservations abort the package. A lawfully approved cross-domain operation follows the current admission decisions in section 1A: later revocation or permission expiry does not cancel it, and no party may cancel an approved operation. Required scope and transactional invariants remain binding; unavailable infrastructure or audit collection preserves pending work for recovery, rather than authorizing cancellation. Preparation and reservation validity must be resolved before approval.
 
-Recovery freezes affected writes, preserves the intent/result evidence, and reconciles by operation ID before reopening. It must never guess that an uncertain registration failed and reallocate capacity. A recorded committed result wins over a retry; otherwise an authorized recovery decision records abort or completion with provenance.
+Recovery freezes affected writes, preserves the intent/result evidence, and reconciles by operation ID before reopening. It must never guess that an uncertain registration failed and reallocate capacity. A recorded committed result wins over a retry; otherwise recovery distinguishes pre-approval failure from approved pending work. Pre-approval failure may record abort; approved pending work is preserved for completion with provenance and cannot be canceled merely because its outcome is uncertain.
 
 ## 6. Multi-party deals
 
@@ -215,4 +258,12 @@ Before adoption, a separate implementation task must pin repository/release, ver
 13. **Policy mismatch:** A gateway uses an incompatible policy generation during prepare. The operation fails closed, no reservation is created, and the protected failure is routed under JON-18 rules.
 14. **Correction without erasure:** Acceptance evidence is later found incorrect. A signed correction/supersession event preserves the original, updates the lifecycle projection through authorized process, and produces an Archivist-linked correction when publishable.
 
-The design is accepted when each scenario can be represented without a second agreement registry, a client-side capacity lock, an opaque settlement state, a foundational blockchain, or a path that turns behavioral inference into formal political fact.
+15. **Coin outside an agreement:** A gives coins to B without a task, reservation, signature or registered agreement. Ordinary marketplace validation does not reject the coin action or register a deal automatically.
+16. **Mixed consideration:** An ordinary service agreement mentions coins. Its service capacity retains JON-19 safeguards, but no coin balance is locked, no redemption is guaranteed, and no hidden observer evidence authenticates settlement.
+17. **Conflicting coin claims:** B and C present copies or inconsistent ownership claims. Coin actions remain possible without automatic fraud alerts or resolution; ordinary scarce service capacity still cannot be double-committed.
+18. **Visibility and meaning:** A private coin transfer creates no public marketplace record. Coin inspection exposes no stable coin ID or transfer chain; a current mark is not relabelled as endorsement or a verification certificate. The ordinary agreement retains its own ID and authorized evidence.
+19. **Observer isolation:** Two situations with identical participant-visible inputs but different hidden coin classifications produce identical participant-facing market decisions and outputs. The Workbench, matcher and settlement writer cannot query the hidden observer. Implementation must also test timing/error/availability leakage; this design scenario alone proves no runtime noninterference.
+20. **Non-use and unresolved refusal:** Unsolicited receipt or silence is not coded as acceptance. Refusal does not acquire an automatic return/destruction transition from this marketplace contract; the unresolved JON-97 decision stays explicit. Mixed bundles do not become a system coin price, and non-use remains a valid research outcome.
+21. **Approved ordinary operation during outage:** After lawful approval, permission expiry, later revocation or collector outage cannot cancel the protected write. Outage leaves it durably pending for recovery without duplicate effects. This ordinary governance rule is not silently applied as coin-observer intervention.
+
+The design is accepted when each scenario can be represented without a second agreement registry, a client-side capacity lock, an opaque settlement state, a foundational blockchain, or a path that turns behavioral inference into formal political fact. Scenarios 15–20 additionally require no imported coin authority, participant-visible research truth or assigned coin purpose. Amendment delivery is not independent acceptance; downstream coin integration remains dependency-gated.
