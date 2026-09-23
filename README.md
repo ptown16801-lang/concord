@@ -26,6 +26,8 @@ FINGER_IDENTITY_SECRET='replace-with-a-random-secret' npm start
 
 The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks. The repository requires Node.js 22.5 or newer because its authoritative SQLite stores use the built-in `node:sqlite` module; Node.js 20 is not a supported test or runtime target. Running `nvm use` selects the repository's Node.js 22 baseline, while CI verifies both supported Node.js 22 and 24 release lines.
 
+For a read-only Node/SQLite and Git checkout report, run `node qa/workflow/runtime-preflight.mjs`. See the [coding-session runtime check](qa/workflow/README.md) for its JSON output and the retirement of saved-environment, native-delivery, and shared dispatch-policy gates.
+
 ### Environment
 
 | Variable | Default | Purpose |
