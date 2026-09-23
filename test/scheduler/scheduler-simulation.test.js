@@ -56,13 +56,16 @@ test("checker rejection is not applied", async () => {
   assert.equal(result.rounds[0].records[0].gap, "checker-rejected");
 });
 
-test("checker failure invokes deterministic fallback and remains distinct", async () => {
+test("checker failure records fallback proposal but freezes ordinary work", async () => {
   const fixture = scenario({ roundCount: 1 });
   const options = { proposeAssignments: () => ({ t: "missing" }), checkAssignments: () => { throw Object.assign(new Error("offline"), { code: "checker-unavailable" }); } };
   const result = await run(fixture, options);
   assert.deepEqual(result, await run(fixture, options));
-  assert.equal(result.rounds[0].records[0].appliedAgentId, "a");
-  assert.equal(result.rounds[0].records[0].source, "deterministic-fallback");
+  assert.equal(result.rounds[0].records[0].appliedAgentId, null);
+  assert.equal(result.rounds[0].records[0].fallbackProposedAgentId, "a");
+  assert.equal(result.rounds[0].records[0].source, "none");
+  assert.equal(result.rounds[0].records[0].remaining, 1);
+  assert.equal(result.rounds[0].records[0].gap, "checker-unavailable");
   assert.deepEqual(result.rounds[0].records[0].checker, { outcome: "failed", reason: "checker-unavailable" });
 });
 
@@ -111,6 +114,55 @@ test("malformed and out-of-scope fixtures fail closed", () => {
 
 test("adapters cannot mutate frozen simulation snapshots or source fixtures", async () => {
   const fixture = scenario({ roundCount: 1 }); const before = structuredClone(fixture);
-  await assert.rejects(run(fixture, { proposeAssignments: snapshot => { snapshot.agents[0].capacity = 99; return {}; } }), TypeError);
+  const result = await run(fixture, { proposeAssignments: snapshot => { snapshot.agents[0].capacity = 99; return {}; } });
+  assert.equal(result.rounds[0].records[0].source, "deterministic-fallback");
   assert.deepEqual(fixture, before);
+});
+
+test("new work cannot consume an eligible incumbent's capacity", async () => {
+  const result = await run(scenario({ roundCount: 1, agents: [agent("a"), agent("b")], tasks: [task("a-new"), task("z-existing", { durationRounds: 2, incumbent: "a" })] }));
+  const existing = result.rounds[0].records.find(r => r.taskId === "z-existing");
+  assert.equal(existing.appliedAgentId, "a");
+  assert.equal(existing.handoff, false);
+});
+
+test("outage preserves incumbent history and recovery requires approval", async () => {
+  const fixture = scenario({ roundCount: 3, agents: [agent("a"), agent("b")], tasks: [task("t", { durationRounds: 3, incumbent: "b" })] });
+  const result = await run(fixture, { checkAssignments: proposal => proposal.round === 1 ? { outcome: "failed" } : approvingChecker(proposal) });
+  const records = result.rounds.flatMap(r => r.records);
+  assert.deepEqual(records.map(r => r.appliedAgentId), ["b", null, "b"]);
+  assert.deepEqual(records.map(r => r.remaining), [2, 2, 1]);
+  assert.equal(records[2].continuation, true);
+});
+
+test("failed policy falls back only through an independent checker", async () => {
+  for (const outcome of ["approved", "rejected", "failed"]) {
+    let checked;
+    const result = await run(scenario({ roundCount: 1 }), { proposeAssignments: () => { throw new Error("policy offline"); }, checkAssignments: proposal => { checked = proposal; return { outcome }; } });
+    assert.equal(checked.agentId, "a");
+    assert.equal(result.rounds[0].records[0].appliedAgentId, outcome === "approved" ? "a" : null);
+  }
+});
+
+test("missing and malformed checkers never apply assignments", async () => {
+  for (const checker of [undefined, () => null, () => ({ outcome: "unknown" })]) {
+    const result = await run(scenario({ roundCount: 1 }), { checkAssignments: checker });
+    assert.equal(result.rounds[0].records[0].appliedAgentId, null);
+    assert.equal(result.rounds[0].records[0].remaining, 1);
+  }
+});
+
+test("nested out-of-scope payloads and malformed changes are rejected", () => {
+  const fixtures = [
+    scenario({ tasks: [task("t", { money: 1 })] }),
+    scenario({ agents: [agent("a", { personalData: { name: "synthetic" } })] }),
+    scenario({ tasks: [task("t", { urgency: { secret: "synthetic" } })] }),
+    scenario({ authoritativeChanges: [{ round: 0, type: "availability", agentId: "a", value: ["bad"], provenance: "event" }] }),
+    scenario({ authoritativeChanges: [{ round: 0, type: "qualifications", agentId: "a", value: [{}], provenance: "event" }] }),
+  ];
+  for (const fixture of fixtures) assert.throws(() => validateScenario(fixture), TypeError);
+});
+
+test("policy provenance changes require a new identity or version", () => {
+  assert.throws(() => validateScenario(scenario({ authoritativeChanges: [{ round: 0, type: "policy", policy: { ...policy, provenance: "changed" }, provenance: "switch" }] })), /cannot change provenance/);
 });
