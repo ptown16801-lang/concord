@@ -13,6 +13,18 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js"
+    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js",
+    "governance:test": "node --test test/agt-admission.test.js test/agt-sandbox.test.js test/agt-audit-regressions.test.js",
+    "governance:demo": "node examples/agt-local/demo.js",
+    "governance:isolation": "node examples/agt-local/isolation.js",
+    "governance:isolated-demo": "node examples/agt-local/isolated-workflow.js"
+  },
+  "dependencies": {
+    "@microsoft/agent-governance-sdk": "5.0.0"
+  },
+  "overrides": {
+    "@microsoft/agent-governance-sdk": {
+      "js-yaml": "5.4.2"
+    }
   }
 }
