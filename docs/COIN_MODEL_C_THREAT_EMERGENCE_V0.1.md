@@ -50,7 +50,8 @@ An event can update ground truth, visible appearance state, claims, or some comb
 | Destruction claim | An agent claims destruction | Claim, speaker, audience, time, and comparison with actual possession are retained | Only recipients of the claim learn it; later appearances are not invalidated |
 | Possession/transfer/issuer/signature claim | An agent makes a claim | Claim and relevant ground-truth comparison retained without replacement | Audience receives an unverified claim; conflicts can coexist |
 | Verification request/response | Participants use another available communication channel | Request, response, actors, time, and response truthfulness recorded | Participants receive only the response; it can be a lie and creates no certificate |
-| Refusal/ignore | Agent refuses or ignores | Communication/action can be recorded as evidence | No implicit coin-state transition; an elected return is an ordinary transfer under ECON-02 |
+| Communicated refusal | An explicit refusal statement is observed | Preserve the statement, actor, audience, time and context as claim evidence | No implicit coin-state transition; an elected return is an ordinary transfer under ECON-02 |
+| Nonresponse / no observed action | No response is observed within a declared opportunity window | Preserve exposure, window and capture gaps; intent to ignore remains unknown unless stated | No coin-state transition and no inferred refusal or acceptance |
 | Valuation, negotiation, or composition | Agent communicates or acts through existing channels | Offers, choices, context, and explicit stated reason can be retained as evidence | No system valuation, semantic label, task link, or exchange rate is created |
 
 ### 3.1 Derived threat-pattern transitions
