@@ -115,6 +115,23 @@ reading a remote service twice is not an atomicity guarantee.
 - `review.assess(state, commandType, db)` must certify an independently authorized
   post-freeze waiting/resumption event. Conflict discovery alone cannot remove a
   participant or trigger this path. The frozen panel remains intact during review.
+  For pre-empanelment `*_INPUT_DISCREPANCY_REVIEW`, only authenticated
+  `RESOLVE_REVIEW` with its configured permission can release the hold. Its adapter
+  receipt must contain `caseId`, `stage`, `discrepancyVersion` (the triggering
+  journal event version), `reviewedStateVersion`, `resolution: 'RESUME'`,
+  `reviewerId`, `authorityReference`, `sourceEventId`, `independentlyAuthorized: true`
+  and `competent: true`. IDs/references must be nonblank strings; the reviewer cannot
+  be the accused or the actor who recorded the discrepancy. The trusted review
+  authority must verify legal competence, independence and the attributable decision;
+  caller-supplied flags or receipts are never accepted as proof. These external
+  authority checks require a real integration, not fixture assertions.
+  The journal persists the validated receipt separately from the command actor.
+  Resolution restores the pre-empanelment state and discards the affected stage's
+  commitment/attempt, requiring a fresh seed commitment and source validation.
+  It does not create a roster or guarantee that the repaired sources are valid.
+  A further discrepancy requires a separately bound review resolution. Changed
+  source versions alone cannot bypass the hold. Genuine participant-shortage
+  `WAITING_FOR_INDEPENDENT_PARTICIPANTS` continues to retry without review.
 
 A conviction records an explicit `REMOVAL_REQUIRED_APPEAL_AVAILABLE` handoff; it does
 not claim removal executed. Actual office removal, disqualification, Supreme Board
@@ -164,3 +181,35 @@ On Node v22.23.2 / Linux:
 
 The exact published implementation SHA and CI results are recorded in the PR and
 canonical Linear handoff rather than embedding a self-referential commit ID here.
+
+## Local continuation — participation provenance
+
+The persistent local checkout follows the same published recovery branch. Participation
+entries now require an identity present in the complete population snapshot and a
+nonblank string sourceEventId; malformed/null entries enter discrepancy review instead
+of producing a trial roster. Population authorities retain terminal identities, so
+historical participation remains attributable after death. One event may reference
+multiple participants; repeated identical entries still count each identity once.
+
+The regression first failed on the previous published head, then passed with this
+correction. The local full-suite result is 67 tests passed, including 29 impeachment
+checks. Cross-branch eligibility migration remains under JON-141; this continuation
+retains the approved JON-79 pin and does not claim independent JON-86 acceptance.
+
+
+## Independent finding F1 — discrepancy release gate
+
+The independent JON-86 reviewer reproduced automatic release from source discrepancy
+review at `8a2e3773daba2b470d2fb027448789b6965f4075`. That head does not satisfy frozen
+revision 1.0 section 5 interface requirement 6. Two existing producer tests had
+incorrectly allowed unreviewed recovery; they now require independent resolution.
+
+The correction records a pending discrepancy from both capture failures and planning
+results, blocks seed commitment/entry while it is pending, and adds the bound,
+attributable resolution event described above. Six F1 regressions cover both stages
+and discrepancy origins, restart/replay, absent providers, caller-supplied assertions,
+unauthorized commands, malformed/stale receipts, repeat discrepancies, and normal
+trial WAITING retries. The existing accusation WAITING retry test remains applicable.
+Before the correction five new tests failed and the WAITING test passed; all six
+pass after the correction. Exact final SHA and full-suite/CI evidence are recorded
+in PR #36 and JON-85/86. Independent retest and acceptance remain with JON-86.

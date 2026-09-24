@@ -43,3 +43,13 @@ Run `npm ci --ignore-scripts`, `npm run check`, and `npm test`. Node 22.5+ is
 required; CI covers Node 22 and 24. The optional runtime compatibility report is
 `node qa/workflow/runtime-preflight.mjs`. Retired native-delivery and dispatch
 policy gates are not part of this candidate.
+
+### Continue bootstrap work locally
+
+The producer branch for PR #36 is `codex/jon-85-bootstrap-recovery`. In that
+checkout, run `nvm use`, `npm run check`, `npm test`, and
+`node --test test/bootstrap-impeachment.test.js`; no cloud task is required.
+The frozen specification and adapter contract are the implementation inputs.
+The newer eligibility-authority branch is not a drop-in replacement for the
+accepted reducer. See JON-141's [integration boundaries](docs/INTEGRATION_RECONCILIATION.md)
+before changing the authority or its pins.
