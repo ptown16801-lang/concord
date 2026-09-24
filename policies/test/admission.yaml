@@ -1,0 +1,16 @@
+apiVersion: governance.toolkit/v1
+name: synthetic-admission
+default_action: deny
+rules:
+  - name: permit-sample-read
+    condition:
+      action: sample.read
+      resource: sample/one
+      purpose: test
+    effect: allow
+  - name: deny-sample-write
+    condition:
+      action: sample.write
+      resource: sample/one
+      purpose: test
+    effect: deny

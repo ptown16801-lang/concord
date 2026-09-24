@@ -1,5 +1,38 @@
 # Changelog
 
+## Unreleased — cross-work reconciliation, 2026-09-23
+
+- Composed population, pinned eligibility, bootstrap impeachment, immutable ballot
+  intake and electorate library exports without dropping producer syntax checks.
+- Retained the JON-85 cloud recovery and revision 1.0 corrections, signed commands,
+  durable replay, fresh stage snapshots and documented trusted-adapter boundaries.
+- Included the verified bootstrap source-discrepancy resumption gate and final
+  population-membership/source validation.
+- Included canonical JON-129 positive-integer heat-map grid validation and tests.
+- Retained ballot audit replacement/update/delete guards and competing-writer tests.
+- Included the local AGT admission/writer/collector sandbox, signed policy archive,
+  nonce and reservation handling, outage pause/resume and Linux confinement probes.
+- Fixed null/hostile evaluator rejection evidence, immutable committed results and
+  CI dependency installation. Preserved SDK 5.0.0 and scoped js-yaml 5.4.2 override.
+- Retained AGT assertions for zero reservations after denial and rejection of
+  completion without a result; both CI matrix jobs finish independently.
+- Rechecked identity and policy expiry at the persisted final approval timestamp;
+  admission at or after expiry leaves no consumed nonce, approval or reservation.
+  Already-approved work still continues after later expiry or revocation.
+- Included the synthetic scheduler harness and six audit corrections, with
+  deterministic assignment, provenance, event/checker evidence and wait metrics.
+- Included the read-only archive manifest verifier and synthetic four-outcome demo;
+  verification does not certify provenance or remote delivery.
+- Retained the published governance recovery research and its publication-time
+  provenance correction. Remote collector protocols remain research proposals.
+- Included general Node/SQLite runtime preflight and retirement of proposed
+  native-delivery/dispatch gates; historical PRs #11/#16 are not active policy.
+- Preserved reference/history documentation and later-owner source precedence.
+
+Exact producer commits and excluded alternatives are recorded in
+[INTEGRATION_RECONCILIATION.md](docs/INTEGRATION_RECONCILIATION.md). This is a
+review candidate, not acceptance or rollout of the combined subsystems.
+
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
 ## Unreleased — reconciliation audit, 2026-09-16
