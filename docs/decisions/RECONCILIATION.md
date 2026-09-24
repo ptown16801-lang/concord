@@ -74,7 +74,10 @@ replaced decision IDs. Multiple sources repeating the same acceptance are one ev
 3. **Local coin integration plan:** `/tmp/concord-coin-decisions-20260924`, branch
    `docs/jon-102-coin-integration`, commit `e24ce9f` (full SHA in local-state.json),
    contains COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md. It is indexed/snapshotted as a local
-   draft, not merged, pushed, accepted or used to authorize runtime work here.
+   draft at initial recovery. The subsequent existing workstream published PR40 and
+   obtained explicit exact-revision design acceptance at 21:33 UTC; CON-052 and the
+   additive LIN-JON-102-ACCEPTANCE / LIN-REGISTER-R4 sources now record that transition.
+   No runtime authorization follows, and the earlier snapshot bytes remain unchanged.
 4. **Untracked governance research brief:** exact local file/digest preserved in
    LOCAL-RESEARCH. The remote a5a6cda version adds a publication-time correction absent from this
    older local copy; local presence is not automatically greater freshness. The exact
@@ -116,7 +119,23 @@ This distinction avoids turning an unpublished test or draft into an accepted de
   exhaustively recovered. Historical tests/host repairs are attributed to their
   original revisions; no unrelated product verification was rerun.
 
-## Validation boundary
+## Cross-thread follow-up — September 24, 2026
+
+The initial candidate c53302e was pushed and opened as PR41; its Node 22/24 GitHub
+checks passed. CON-052 now consumes JON-102's existing exact-revision acceptance
+rather than repeating the design, publication or review. The three additive source
+snapshots preserve earlier evidence and make the changed status traceable.
+
+JON-163 v1-draft.2 and its existing review/owner dispositions remain with JON-163.
+JON-141's runtime aggregate remains PR37 at 6cf4eab; its implementation, host repair
+and verification are not repeated here. The original checkout and other workstreams
+are untouched. Missing originals and CON-007/CON-082 remain bounded evidence gaps,
+not authorization to restart interviews or a comprehensive source crawl.
+
+The remaining review is for PR41's consolidation itself. Its author cannot provide
+qualifying independent acceptance. See the prepared [review packet](REVIEW.md).
+
+## Validation boundary (current)
 
 The source-backed master and maintenance tooling have an author review and focused
 local tests. The role framework forbids calling that independent acceptance. Review

@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This branch remains a candidate until integrated. Read entry scope, acceptance and implementation limits.
 
-Master SHA-256 (exact UTF-8 bytes): `7e9e74433dc777ec214296f35b2d50aa91bb19f8642b2dffed0ac084db9d7511`
+Master SHA-256 (exact UTF-8 bytes): `911221cd15315c107503194064f61f1f41537565846df4e1554d204f727bc328`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -55,7 +55,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [ECON-03](DECISIONS.md#ECON-03) | Accepted | Research evidence and acceptance limits |
 | [CON-050](DECISIONS.md#CON-050) | Accepted | Coin mechanics and visible information |
 | [CON-051](DECISIONS.md#CON-051) | Accepted | Hidden observation and neutral interface |
-| [CON-052](DECISIONS.md#CON-052) | Proposed | Coin integration-plan status |
+| [CON-052](DECISIONS.md#CON-052) | Accepted | Coin integration-plan status |
 | [CON-060](DECISIONS.md#CON-060) | Accepted | Workbench, search and guides |
 | [CON-061](DECISIONS.md#CON-061) | Accepted | Relational observatory |
 | [CON-062](DECISIONS.md#CON-062) | Accepted | Visualization, checkpoints and propagation |

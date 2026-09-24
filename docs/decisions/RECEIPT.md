@@ -1,53 +1,48 @@
-# Local consolidation receipt — 2026-09-24
+# Consolidation and publication receipt — 2026-09-24
 
-Decision impact: Updated CON-001, CON-002, CON-003, CON-004, CON-005, CON-006, CON-007, CON-008, CON-009, CON-010, CON-011, CON-012, CON-013, CON-014, CON-015, CON-016, CON-017, CON-018, CON-019, CON-020, CON-021, CON-022, CON-023, CON-024, CON-025, CON-031, CON-032, CON-033, CON-034, CON-035, CON-036, CON-037, CON-038, CON-040, CON-041, CON-042, CON-043, CON-045, CON-046, CON-047, ECON-01, ECON-02, ECON-03, CON-050, CON-051, CON-052, CON-060, CON-061, CON-062, CON-063, CON-064, CON-065, CON-066, CON-070, CON-071, CON-072, CON-073, CON-074, CON-080, CON-081, CON-082, CON-090, CON-091, CON-092
+Decision impact: Updated CON-052
 
-“Updated” means recovered/consolidated existing policy and recorded existing proposal/
-supersession/evidence state. Only the requested maintenance workflow is newly installed;
-no substantive policy was adopted on the owner’s behalf.
+This follow-up records acceptance already completed in JON-102's existing workstream.
+It introduces no coin mechanics, runtime authorization or new owner policy. The full
+initial consolidation disposition is preserved in the [original local receipt](history/RECEIPT_at_c53302e.md).
 
-- Worktree: `/tmp/concord-decisions-20260924` on verified Ubuntu host `Cornhole`.
+## Verified publication checkpoint
+
+- Actual host: Cornhole; worktree `/tmp/concord-decisions-20260924`.
 - Branch: `docs/decisions-consolidation-20260924`.
-- Base / expected canonical revision: `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
-- Canonical integration target: `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`.
-- Result revision: resolve `git rev-parse docs/decisions-consolidation-20260924` in the
-  primary repository after the scoped commit. The final user receipt gives the exact
-  result SHA; this file does not embed its own future containing-commit hash.
-- Commit state: scoped local commit on the named branch; verify the exact revision with the command above and the final user receipt.
-- Push: pending; no publication performed.
-- Review: author checks only; qualifying independent review not performed by this author.
-- Integration: pending; candidate does not claim to be on Develo.
-- Enforcement: local checks exercised; remote CI/branch protection and ongoing usage
-  not verified. No hook, scheduled automation, coordination service or settings change.
+- Initial consolidation committed and pushed: `c53302e1ddc8ebd5869f49571172cd7615b9e11d`.
+- Existing PR: [41](https://github.com/ptown16801-lang/concord/pull/41), targeting `Develo`.
+- Expected canonical base: `29ca0b44cf8d911df6978e84c7a91e7777afd304`; refreshed before this follow-up.
+- Original PR CI: Node 22/24 passed in [run 36063765977](https://github.com/ptown16801-lang/concord/actions/runs/36063765977).
+- Original push CI: Node 22/24 passed in [run 36063740198](https://github.com/ptown16801-lang/concord/actions/runs/36063740198).
+- Review: author validation only. PR41 had no submitted reviews or assigned reviewers at this checkpoint.
+- Integration: pending; the master remains a candidate until integrated into Develo.
+- Enforcement: local and GitHub CI checks exercised. Canonical integration, branch protection and sustained future adherence are separate and not established by these runs.
 
-## Exact remaining publication/integration steps
+The owner authorized push/PR publication after the original local-only task, then
+authorized this thread's remaining corrections. The original receipt's pending-push
+statement is historical. Current follow-up commit, push and CI results are recorded
+in PR41's publication receipt and the completion message, after those actions finish.
+Resolve the actual candidate with `git rev-parse docs/decisions-consolidation-20260924`;
+this file does not embed its own future containing-commit hash or claim future CI passes.
 
-These are instructions for a later authorized publication, not actions executed here.
+## Follow-up and semantic reconciliation
 
-1. In the candidate worktree, fetch `origin` read-only, compare current Develo with
-   the recorded base, inspect overlapping decisions/package/CI changes and pending
-   owner corrections. Reconcile against any newly integrated JON-141 or coin work;
-   do not merge unrelated branches just to acquire documentation.
-2. Run `npm run decisions:generate`, `npm run decisions:check`,
-   `npm run decisions:test`, the expected-revision preflight and `git diff --check`.
-   Any substantive resolution of CON-007/CON-082 or OD-1–4 requires its actual source
-   or attributable owner choice. The candidate can be reviewed with these gaps visible.
-3. Once publication is authorized, push the exact reviewed documentation branch:
+- CON-052 now records JON-102's explicit acceptance of e24ce9f, PR40 and register revision 4.
+- Three additive source snapshots preserve the exact acceptance, owner-account disposition and later register checkpoint. Earlier source bytes remain unchanged.
+- CURRENT_DECISIONS.md is regenerated from the master; its digest is content identity.
+- No producer plan, runtime implementation, independent coin review or Linear update is repeated.
+- JON-163's draft review/adoption and JON-141's runtime integration remain separate existing workstreams.
+- CON-007, CON-082 and inaccessible historical originals remain explicit gaps; no new answer is invented.
+- No other local writer or branch changed the candidate or canonical base during the checked interval. The follow-up changes documentation and evidence only.
 
-   ```sh
-   git push -u origin docs/decisions-consolidation-20260924
-   ```
+## Remaining integration work
 
-4. Open a PR targeting **Develo**, using the prepared local
-   [PR description](PR_DESCRIPTION.md), exact source/decision disposition and sync
-   receipt. Obtain the required independent/reviewer and human integration disposition;
-   verify CI on the resulting exact revision. Do not count author tests as independent
-   review or a PR merge as adoption of unresolved proposals.
-5. Only with merge authorization, integrate the reviewed documentation change into
-   Develo. Verify `DECISIONS.md` and generated digest there. Then future tasks use that
-   canonical revision. Any Linear pointer/update or old-summary annotation is a
-   separate later-authorized publication action, retaining historical text and links.
+1. Obtain an attributable review of the exact updated PR41 revision using [REVIEW.md](REVIEW.md). Existing coin-plan acceptance does not certify this consolidation; author checks do not supply independence.
+2. Before integration, recheck live Develo and overlapping master/package/CI edits, resolve actual conflicts, and verify CI for the revision to be integrated. Reuse unchanged evidence; no broad restart is required.
+3. Record the applicable human merge authorization and qualifying review disposition before merging. Then verify the canonical DECISIONS.md and generated digest on Develo.
 
-Recovery completed for inspected accessible sources, with explicit inaccessible gaps.
-Consolidation prepared; maintenance controls installed and tested locally. Remote
-publication pending; ongoing enforcement not yet verified.
+Recovery is complete only for the inspected accessible sources. Consolidation and
+maintenance controls are prepared and published for review. Integration and ongoing
+adherence remain unverified. No deployment, recurring automation, Linear mutation or
+unrelated workstream action is part of this follow-up.

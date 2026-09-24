@@ -804,17 +804,19 @@ Instructions expose mechanics only: create/give, transfer, inspect, sign, alter/
 <a id="CON-052"></a>
 ### CON-052 — Coin integration-plan status
 
-- Status: Proposed
+- Status: Accepted
 - Scope: JON-102 design work
-- Acceptance: Revision 3 records existing authorization and accepted prerequisites; plan itself unaccepted.
+- Acceptance: Explicit read-only ACCEPT by Linear in comment 1f00d96d-5205-4916-bd0a-f991c43952a5 binds PR40 to e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06; owner-account comment 229b31b5-22b4-41ae-a675-a9e969adb19e records the bounded design-only Done disposition. Preserved register revision 4 confirms this acceptance.
 - Acceptance date: 2026-09-24
-- Sources: [LIN-REGISTER](docs/decisions/evidence/LIN-REGISTER.md), [LIN-JON-102](docs/decisions/evidence/LIN-JON-102.md), [LOCAL-COIN-PLAN](docs/decisions/evidence/LOCAL-COIN-PLAN.md)
+- Sources: [LIN-REGISTER-R4](docs/decisions/evidence/LIN-REGISTER-R4.md), [LIN-JON-102-ACCEPTANCE](docs/decisions/evidence/LIN-JON-102-ACCEPTANCE.md), [LIN-JON-102-ACCEPTED](docs/decisions/evidence/LIN-JON-102-ACCEPTED.md), [LOCAL-COIN-PLAN](docs/decisions/evidence/LOCAL-COIN-PLAN.md), [LIN-REGISTER](docs/decisions/evidence/LIN-REGISTER.md), [LIN-JON-102](docs/decisions/evidence/LIN-JON-102.md)
 - Supersedes: None
-- Implementation: Unpushed local commit e24ce9f in a separate clone; no product files imported.
-- Verification: Source reconciliation only; no product-runtime verification performed.
-- Rationale: Preserve the recorded boundary without adding policy.
+- Implementation: Accepted design published in PR40 at e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06; unmerged. No coin runtime implementation or experiment follows from design acceptance.
+- Verification: Existing review explicitly attests separate read-only acceptance of that exact head; subsequent comment adc20e24-b313-4512-8f5a-9a0d55f347ed confirms the design-only transition. This author reconciled that evidence, without repeating or independently certifying the review.
+- Rationale: Reuse the completed design/acceptance chain and preserve its runtime evidence gates.
 
-The September 24 corrected acceptance audit verifies JON-97–101 prerequisites; do not invent an extra owner-release gate for the already-authorized design/integration-plan task. This does not authorize coin implementation, experiment, merge or production rollout. The locally recovered e24ce9f integration plan remains a delivered local draft pending its own review/publication; its engineering choices are not newly accepted by this master.
+Use the accepted [JON-102 integration plan at e24ce9f](https://github.com/ptown16801-lang/concord/blob/e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06/docs/COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md), delivered in [PR40](https://github.com/ptown16801-lang/concord/pull/40). It maps the accepted JON-97–101/106 contracts to existing Concord ownership and interfaces, staged future implementation slices, controlled experimental conditions and explicit negative/runtime evidence gates. Preserve marketplace/observer separation and the existing coin mechanics. No new owner-level model choice was identified by the recorded design review. Future implementation and experiments require their own explicit scope and applicable gates; no merge, experiment or rollout is authorized by this consolidation.
+
+The initial recovery captured this same plan as an unpublished, unaccepted local draft. September 24 comments at 21:33–21:34 UTC and register revision 4 supersede that status observation. Earlier snapshots remain historical evidence; the plan is not to be drafted, published or sent through its completed design acceptance again solely because the earlier snapshot was stale.
 
 ## Interface, archives and research
 

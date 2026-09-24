@@ -3,7 +3,26 @@
 These are author checks of the decision consolidation/tooling, not qualifying
 independent acceptance or product-runtime verification. The candidate base is
 `29ca0b44cf8d911df6978e84c7a91e7777afd304`; the resulting commit is given in the final
-receipt and resolvable from the dedicated branch. No remote CI was run by this task.
+receipt and resolvable from the dedicated branch. The initial checks below describe
+the local preparation stage; subsequent authorized publication ran GitHub CI.
+
+## Published candidate and follow-up
+
+Initial head c53302e1ddc8ebd5869f49571172cd7615b9e11d was pushed in PR41. Node 22/24
+passed in [PR run 36063765977](https://github.com/ptown16801-lang/concord/actions/runs/36063765977)
+and [push run 36063740198](https://github.com/ptown16801-lang/concord/actions/runs/36063740198).
+Those runs verify that exact revision, not an untested later edit or semantic acceptance.
+The follow-up adds acceptance evidence and corrects CON-052 and synchronization records;
+tooling behavior is unchanged. Follow-up checks passed: deterministic regeneration,
+64 decisions / 257 source records / matching summary, the focused test-file runner,
+and all nine cases run directly with zero failures or skips. Whitespace validation
+passed. The three new source snapshots are additive; all 254 earlier source snapshots
+remain byte-identical, and the original local receipt is preserved byte-for-byte.
+The final live revision/staged checks precede the scoped follow-up commit; its remote
+CI result belongs to the exact resulting SHA in the PR publication receipt.
+The follow-up PR disposition passed using a PR-event JSON fixture. An initial
+invocation incorrectly supplied Markdown to the event-JSON CLI and failed parsing;
+the corrected fixture passed without changing the validator.
 
 ## Executed focused checks
 

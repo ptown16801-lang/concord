@@ -35,7 +35,9 @@ Human review must assess acceptance, completeness and semantic contradictions.
 Keep current holds: quizzes deferred; held Research Library work not reopened; Finger
 beta complete with residual scope separate. Do not enable Linear Coding Sessions or
 Loops, revive choreography, launch agents, merge/deploy or publish without applicable
-authorization. The consolidation task authorizes a local scoped commit only.
+authorization. The owner subsequently authorized publication through PR41 and its
+thread-specific corrections. Keep merge authority and review disposition explicit;
+the original local-only instruction is a historical stage, not a renewed push gate.
 
 On this Ubuntu host, keep terminal commands/results visible with
 `python3 /home/cornholio/.local/share/codex-visible-terminal/watch_all.py --open` and

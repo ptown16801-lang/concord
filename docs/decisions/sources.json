@@ -3300,5 +3300,44 @@
     "sha256": "893021429b41077968ef4d636f377de00900e964074cac56e57675913b6b2940",
     "retrieved": "2026-09-24T21:25:20.531999+00:00",
     "inspection": "Retrieved; decision-bearing portions reconciled where cited in DECISIONS.md; other portions reference-only."
+  },
+  "LIN-REGISTER-R4": {
+    "title": "Preserved register \u2014 ECON revision 4 accepted integration plan",
+    "location": "https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99",
+    "version": "2026-09-24T21:34:04.148Z",
+    "date": "2026-09-24T21:34:04.148Z",
+    "classification": "Recorded explicit design acceptance; runtime remains separate",
+    "scope": "CON-052 / JON-102 integration plan",
+    "relationship": "Later revision of LIN-REGISTER. Replaces its earlier JON-102 pending-plan checkpoint; older frozen snapshot remains preserved.",
+    "inspection": "Exact revision-4 section excerpt; older sections already preserved in LIN-REGISTER.",
+    "retrieved": "2026-09-24T22:11:12.376223+00:00",
+    "snapshot": "docs/decisions/evidence/LIN-REGISTER-R4.md",
+    "sha256": "96a4454be963ea4de28fd29812cda7471378c86b6a5e1d63d9cac41d44c02eff"
+  },
+  "LIN-JON-102-ACCEPTED": {
+    "title": "JON-102 accepted design delivery checkpoint",
+    "location": "https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan",
+    "version": "2026-09-24T21:33:57.635Z",
+    "date": "2026-09-24T21:33:57.635Z",
+    "classification": "Accepted design delivery checkpoint; not runtime approval",
+    "scope": "CON-052 / JON-102",
+    "relationship": "Later issue revision than LIN-JON-102; Done is supported by the separately retained explicit acceptance comment.",
+    "inspection": "Exact current acceptance/delivery sections; older instructions preserved in LIN-JON-102.",
+    "retrieved": "2026-09-24T22:11:12.376398+00:00",
+    "snapshot": "docs/decisions/evidence/LIN-JON-102-ACCEPTED.md",
+    "sha256": "801fe26f66772ec863cbafc0b356832560799d1ad492b351958301f0ea773f96"
+  },
+  "LIN-JON-102-ACCEPTANCE": {
+    "title": "JON-102 exact-revision acceptance and bounded transition",
+    "location": "https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan#comment-1f00d96d-5205-4916-bd0a-f991c43952a5",
+    "version": "Comments through 2026-09-24T21:34:15.959Z; exact accepted head e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06",
+    "date": "2026-09-24",
+    "classification": "Explicit reviewer ACCEPT and owner-account recorded design-only disposition",
+    "scope": "CON-052; published PR40 design only",
+    "relationship": "Later comments supplement LIN-JON-102-COMMENTS. Reviewer acceptance is attributed, not independently re-certified by this author.",
+    "inspection": "All returned September 24 acceptance/delivery comments; hasNextPage=false",
+    "retrieved": "2026-09-24T22:11:12.376514+00:00",
+    "snapshot": "docs/decisions/evidence/LIN-JON-102-ACCEPTANCE.md",
+    "sha256": "1391c00b760683da0d98018e802d9549874764f4865947dc3f2de41b750e368b"
   }
 }

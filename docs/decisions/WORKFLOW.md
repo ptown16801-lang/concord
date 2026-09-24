@@ -109,7 +109,8 @@ Report these separately:
 Saved is not committed; committed is not pushed; pushed is not reviewed; merged is
 not policy acceptance, runtime verification or deployment. A handoff request is not
 a received review. Do not say ongoing enforcement is active because instructions or
-CI edits were written. This candidate has only locally exercised controls.
+CI edits were written. This candidate's local checks and PR41 CI have been exercised;
+canonical-branch integration and ongoing adherence remain separate, unverified states.
 
 ## Automated checks and limits
 

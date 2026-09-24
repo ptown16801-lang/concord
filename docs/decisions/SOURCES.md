@@ -14,7 +14,7 @@ The machine was verified as Cornhole, with the expected checkout and origin. The
 - Exact filename searches covered relevant home Documents/Downloads/project folders, temporary clones and scoped session references. Two other DECISIONS.md copies belonged to Codex backup tooling, not Concord, and were excluded. No genuine maintained local Concord master was located.
 - No saved-file library read tool was available for the libfile identities in the attached directory. Original decision variants/ZIPs remain known but inaccessible. Their original hashes/content findings are attributed to AUDIT-REPORT, not independently reverified.
 - Drive research/artwork indexes and targeted DECISIONS/handoff searches were checked. The governance folder listing is bounded by the provider (at most 100 children); this was not a full Drive crawl. Research PDFs were not treated as owner approvals.
-- Git fetch succeeded. A sandboxed gh API request failed connectivity; the connected GitHub tool successfully retrieved all 39 discovered PR descriptions/ref metadata and returned discussion/review timelines. No write/push/merge request was sent.
+- Git fetch succeeded. A sandboxed gh API request failed connectivity; the connected GitHub tool successfully retrieved all 39 discovered PR descriptions/ref metadata and returned discussion/review timelines. No write/push/merge request was sent during initial recovery. Subsequent authorized publication is recorded in RECEIPT.md.
 - Linear: 39 directory-listed documents plus current project, updates, comments, selected substantive issues and approval histories. Retained comment collections report hasNextPage=false where checked. Not every workspace issue or intermediate document revision was reread; original audit coverage is reused only as dated discovery.
 
 ## Evidence classes and source precedence
@@ -281,3 +281,15 @@ Every catalog entry includes exact identity, version/date, classification, scope
 | GIT-MARKET | [docs/ECONOMY_MARKETPLACE_CONTRACT.md](evidence/GIT-MARKET.md) | 2026-09-23T08:41:47-04:00 / a42baeadc0e69b08571acc779e5b8268385be49e | Pinned design / implementation evidence; acceptance separately cited |
 | GIT-INTEGRATION | [docs/INTEGRATION_RECONCILIATION.md](evidence/GIT-INTEGRATION.md) | 2026-09-24T06:43:54-04:00 / 6cf4eab09836d42d4b83a7fc1862442fdc38c3ff | Pinned design / implementation evidence; acceptance separately cited |
 | OWNER-TASK | [Consolidation authorization](evidence/OWNER-TASK.md) | 2026-09-24 / 2026-09-24 request | Direct current owner instruction |
+
+## Follow-up: cross-thread acceptance reconciliation
+
+These additive snapshots preserve the earlier source bytes. JON-102 was published and
+accepted by its existing workstream after the initial recovery snapshot. The full
+plan already retained in LOCAL-COIN-PLAN is the same e24ce9f artifact; it was not redrafted.
+
+| Source ID | Snapshot | Date / version | Classification |
+| --- | --- | --- | --- |
+| LIN-REGISTER-R4 | [Preserved register — ECON revision 4 accepted integration plan](evidence/LIN-REGISTER-R4.md) | 2026-09-24T21:34:04.148Z / 2026-09-24T21:34:04.148Z | Recorded explicit design acceptance; runtime remains separate |
+| LIN-JON-102-ACCEPTED | [JON-102 accepted design delivery checkpoint](evidence/LIN-JON-102-ACCEPTED.md) | 2026-09-24T21:33:57.635Z / 2026-09-24T21:33:57.635Z | Accepted design delivery checkpoint; not runtime approval |
+| LIN-JON-102-ACCEPTANCE | [JON-102 exact-revision acceptance and bounded transition](evidence/LIN-JON-102-ACCEPTANCE.md) | 2026-09-24 / Comments through 2026-09-24T21:34:15.959Z; exact accepted head e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06 | Explicit reviewer ACCEPT and owner-account recorded design-only disposition |

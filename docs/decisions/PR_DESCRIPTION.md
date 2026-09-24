@@ -11,8 +11,17 @@ Acceptance evidence: per-entry sources in DECISIONS.md; maintenance authorizatio
 OWNER-TASK; unresolved original-source gaps and C3 proof-standard overlap remain explicit.
 No product policy is newly adopted by this consolidation.
 
-Validation: see docs/decisions/VALIDATION.md. Author checks are not independent acceptance.
+Validation: see docs/decisions/VALIDATION.md. Initial c53302e Node 22/24 GitHub CI passed.
+Updated-head CI is reported in the publication receipt below. Author checks are not independent acceptance.
 
 Base: 29ca0b44cf8d911df6978e84c7a91e7777afd304 (Develo). Candidate has not been integrated.
 Recheck current Develo and semantic/package/CI overlaps before review/merge.
 Publication receipt: docs/decisions/RECEIPT.md.
+
+Follow-up: CON-052 now records JON-102's existing explicit acceptance of e24ce9f
+(PR40), backed by three additive snapshots. Earlier source bytes are preserved.
+The coin plan, its review and other workstreams are not recreated.
+
+Review packet: docs/decisions/REVIEW.md. Qualifying review of this consolidation
+remains pending; no reviewer invocation or approval is claimed.
+JON-163's own draft adoption and JON-141 runtime integration remain separate tasks.
