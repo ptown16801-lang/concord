@@ -6,6 +6,9 @@
   intake and electorate library exports without dropping producer syntax checks.
 - Retained the JON-85 cloud recovery and revision 1.0 corrections, signed commands,
   durable replay, fresh stage snapshots and documented trusted-adapter boundaries.
+- Included the verified bootstrap source-discrepancy resumption gate and final
+  population-membership/source validation.
+- Included canonical JON-129 positive-integer heat-map grid validation and tests.
 - Retained ballot audit replacement/update/delete guards and competing-writer tests.
 - Included the local AGT admission/writer/collector sandbox, signed policy archive,
   nonce and reservation handling, outage pause/resume and Linux confinement probes.

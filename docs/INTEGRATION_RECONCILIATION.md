@@ -8,8 +8,9 @@ does not confer acceptance, merge authorization, or production readiness.
 
 | Component | Exact input | Resolution |
 | --- | --- | --- |
-| AGT PR #34 | 2d5c55d, based on b332c2309e123bd05099d4f9fcfd3bd202bdb0fa | Null/hostile rejection audit, immutable result and CI install corrected; SDK 5.0.0 / scoped js-yaml 5.4.2 retained |
-| Bootstrap PR #36 | e49177a07c78a5abed01a2677bc39e0fad9f498e | Source retained; shared governance exports combined |
+| AGT PR #34 | 7ba5bc5c5a975d72298540e9aa776504d5b4f263 | Null/hostile rejection audit, immutable result, zero-reservation/required-result assertions and independent CI matrix jobs retained; SDK 5.0.0 / scoped js-yaml 5.4.2 retained |
+| Bootstrap PR #36 | e2e23849a2e5e128f7f46f35712499f16fb98ef9 | Source-discrepancy resumption gate and final membership/source validation retained; shared governance exports combined |
+| Finger PR #38 | b81cca12f6d5cde714f30031a8a78dab95d97daf | Canonical recovered positive-integer grid validation and tests; exact two producer blobs retained, no older cloud attempts replayed |
 | Population PR #6 | 882dcffb31b520c6f9458984a35745c8b4bfa3b8 | Already included in #36; source pin retained |
 | Eligibility PR #7 | 51a102259785a5b53dc6ec4bc4bbca54c4a8fc37 | Already included in #36; reducer pin retained |
 | Ballots PR #8 / correction #12 | 5f5a28d46cfa62d1222e74563b1dc8e281b7c73f | Ballot exports added without replacing impeachment exports |
@@ -66,12 +67,19 @@ checker. Recovery research does not create a remote collector guarantee.
 
 ## Validation
 
-The combined candidate passed all 177 Node test-runner entries on Node 24.21.0,
-including 173 named tests and four scheduler support modules. Clean offline
-lockfile installation, combined syntax/API checks and whitespace checks passed.
-A temporary changed reducer byte was rejected by the compatibility check and
-restored; no incompatible replacement was accepted. Linux/Node 22 CI results
-must be recorded on the published candidate separately.
+The refreshed combined candidate passed all 186 Node test-runner entries on
+Node 22.23.2 and 24.21.0: 182 named tests and four scheduler support modules,
+with no failures or skips. Clean lockfile installation reported zero
+vulnerabilities; combined syntax/API, compatibility and whitespace checks passed.
+The refreshed bootstrap source/tests, AGT regression test/CI workflow and both
+Finger files match their exact producer blobs. Population and eligibility pins
+remain unchanged. Remote CI outcomes are recorded against the published head
+on PR #37 and JON-141 separately.
+
+Historical candidate `93eb77bdb1c2e25f1a20be20299b1a95d332f9e8` passed 177 runner
+entries and a negative compatibility probe: a changed reducer byte was rejected
+and restored. That evidence does not replace verification of the refreshed tree
+or independent acceptance of the combined candidate.
 
 Run `npm ci --ignore-scripts`, `npm run check`, `npm run integration:check`, and
 `npm test`. Full tests include actual local HTTP, competing writers and process
