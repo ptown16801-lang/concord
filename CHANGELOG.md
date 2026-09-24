@@ -2,16 +2,37 @@
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — bootstrap impeachment recovery, 2026-09-23
+
+- Recovered the existing JON-85 cloud diff and preserved it in Git history.
+- Corrected panel arithmetic and thresholds against frozen revision 1.0; select
+  each stage independently with fresh trial inputs and frozen stage records.
+- Added proportion-based stratified draws, permanent-member priority, trial-capacity
+  reservation, source discrepancies, and audited pre-freeze replacement.
+- Added Ed25519 command authentication, SQLite event/command replay and competing-writer
+  protection, and a durable wrapper around the unchanged eligibility reducer.
+- Added frozen-source export, production adapter boundaries and acceptance-test mapping.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added
 
+- Added an append-only, versioned eligibility authority with optimistic concurrency,
+  atomic transition batches, historical reconstruction, and explicit election-close
+  semantics for allegations, proceedings, C4 restrictions, terminal states, felony
+  bars, restoration, and already-accepted ballots.
+- Added an authoritative SQLite population registry with atomic global
+  300-living-identity enforcement, lawful attributed creation routes, permanent
+  terminal transitions, append-only audit history, and a capacity interface for
+  future dual-census integration.
 - Reconciled the deployable Finger browser collector with the canonical single-request ingestion API.
 - Added a standalone Finger demo page and static-file serving.
 - Added deterministic replay and touch/mouse/stylus/combined heat-map processing utilities from the replay-processing branch.
 - Added processing exports from the package/module boundary.
 - Added a dependency-free `package-lock.json` matching the canonical package metadata.
 - Added a branch-safe GitHub Actions test workflow for Node.js 22 and 24.
+- Added an `.nvmrc` selecting the supported Node.js 22 baseline and documented
+  that Node.js 20 cannot run the built-in SQLite-backed stores.
 - Added regression coverage for filesystem traversal and collector-relative durable event timing.
 - Added `PROJECT_RECORD.md` and `docs/AUDIT_2026-09-16.md` as canonical reconciliation/audit records.
 
@@ -39,6 +60,8 @@ This file consolidates the implementation history that was previously split acro
 - Avoided importing the divergent branch's default trust of client-controlled Concord identity headers/body fields.
 - Avoided importing the divergent branch's artifact path construction that included a caller-controlled session ID.
 - Corrected the CI trigger model so checks run on the actual repository branches rather than depending on a nonexistent `main` branch.
+- Moved the population concurrency worker outside Node's test-discovery tree so
+  it runs only as a worker fixture rather than as a standalone test file.
 
 ### Verification
 

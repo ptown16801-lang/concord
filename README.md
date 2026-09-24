@@ -22,7 +22,7 @@ Finger requires Node.js 22.5 or newer and an identity-signing secret.
 FINGER_IDENTITY_SECRET='replace-with-a-random-secret' npm start
 ```
 
-The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks.
+The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks. The repository requires Node.js 22.5 or newer because its authoritative SQLite stores use the built-in `node:sqlite` module; Node.js 20 is not a supported test or runtime target. Running `nvm use` selects the repository's Node.js 22 baseline, while CI verifies both supported Node.js 22 and 24 release lines.
 
 ### Environment
 
@@ -81,6 +81,28 @@ A simpler `FileFingerStore` remains available for development/testing. Its on-di
 
 The processing library is exported from `./finger/processing`. Raw capture persistence remains authoritative; derived analysis must not overwrite raw history.
 
+## Governance eligibility authority
+
+The `./governance` export provides `EligibilityRegistry`, an append-only franchise
+state authority. Callers register ordinary identities and submit explicit,
+effective-dated transitions. Each committed event receives a monotonically
+increasing version; `stateAt` reconstructs an identity at a historical version or
+time, and `auditLog` exposes immutable copies of the source events.
+
+Transitions deliberately remain distinct: allegations are audited without
+disqualifying anyone, formal proceedings and authenticated C4 creation events
+apply temporary restrictions, death and capital termination are terminal, and a
+felony conviction creates a permanent franchise bar. C4 opening requires both
+authentication evidence and an explicit affected-identity list. Optimistic
+`expectedVersion` checks prevent stale writers, while `applyBatch` validates on a
+cloned state and commits all transitions or none.
+
+`electionStatus` only evaluates whether a particular identity may cast a new
+ballot. It freezes eligibility at election close and reports a previously accepted
+ballot as retained after a later restriction. It intentionally does not store,
+count, replace, or reconcile ballots; those responsibilities belong to the ballot
+and electorate components.
+
 ## Privacy and security boundary
 
 Finger captures high-resolution behavioral data and can capture rendered or user-entered DOM content. Treat the data as sensitive operational data: restrict collection to the disclosed capture window, use transport encryption, authorize access server-side, exclude or redact secrets and sensitive fields where possible, and define retention/export/deletion behavior for the environment in which Concord is deployed.
@@ -95,3 +117,47 @@ Do not trust browser-supplied names, email addresses, user IDs, access tokens, o
 - `docs/ECONOMY_MARKETPLACE_CONTRACT.md` defines the design-only Concord marketplace, labor/barter commitment, matching, settlement, and anti-double-commit contract.
 
 Historical decision snapshots and prior Workbench artifacts are provenance. They should not be silently rewritten or deleted merely because a newer canonical record exists.
+
+## Authoritative population interface
+
+`concord/population` exports `PopulationRegistry`, `POPULATION_CEILING`, and
+`CREATION_ROUTES`. The registry is the sole population-count authority: its
+`getPopulation()` result reports living, ceiling, and available capacity, while
+`hasCapacity(amount)` is the integration boundary for proposed COAIA/CRA census
+work. Capacity checks are advisory; all identity creators must call
+`createIdentity()` so its immediate SQLite transaction and database trigger can
+enforce the global ceiling atomically.
+
+Every creation requires a division, identity class, lawful creation route
+(`founding`, `executive_authorization`, or `agent_petition`), actor, authority
+reference, and timestamp. Identity class never changes capacity treatment, so
+hidden or special investigators cannot bypass the ceiling. `markTerminal()` is
+the only lifecycle transition in this scope; it permanently marks an identity
+non-living and releases one unit of capacity. Both successful transitions write
+append-only audit events in the same transaction. Validation, duplicate, cap,
+and audit-write failures roll back without leaving a partial identity or event.
+
+## Bootstrap impeachment domain
+
+The `./governance` export also supplies the frozen revision 1.0 stage planner,
+`BootstrapImpeachmentService`, `ImpeachmentStore`, and `DurableEligibility`.
+See [the implementation and adapter contract](docs/specs/bootstrap-impeachment.md)
+for commands, dependency provenance, authority boundaries, and the requirement-to-test map.
+The library requires trusted role/office/voting/evidence integrations; it is not
+exposed through the Finger HTTP server and does not execute office removal or appeals.
+
+### Continue bootstrap work locally
+
+Use the existing `codex/jon-85-bootstrap-recovery` branch for PR #36, then run:
+
+```sh
+nvm use
+npm run check
+npm test
+node --test test/bootstrap-impeachment.test.js
+```
+
+These commands run in the local checkout; no cloud task is required. The frozen
+specification and adapter contract above are the implementation inputs. The newer
+eligibility-authority branch requires the separate JON-141 integration work; it is
+not a drop-in replacement for this branch's accepted reducer.
