@@ -14,6 +14,47 @@ async function fixture(t, options) {
   return f;
 }
 
+for (const boundary of ['identity', 'policy']) {
+  for (const offset of [-1, 0, 1]) {
+    test(`approval timestamp respects ${boundary} expiry with offset ${offset}`, async t => {
+      let tick;
+      const f = await fixture(t, { evaluators: [() => {
+        // Advance time across the final synchronous approval checks.
+        f.runtime.clock = () => tick++;
+        return 'allow';
+      }] });
+      const deadline = boundary === 'identity'
+        ? f.options.clock() + 10_000 : f.runtime.bundle.manifest.expiresAt;
+      if (boundary === 'policy') {
+        f.runtime.db.prepare('UPDATE actors SET expires=?').run(deadline + 10_000);
+      }
+      const envelope = f.signed(f.request());
+      tick = deadline + offset - 2;
+      if (offset < 0) {
+        await f.runtime.admit(envelope);
+        assert.ok(f.runtime.operation('operation-1').evidence.approvedAt < deadline);
+        f.advance(deadline - f.options.clock() + 1);
+        f.runtime.clock = f.options.clock;
+        f.runtime.revoke('agent-1');
+        assert.equal(f.runtime.resume('operation-1').status, 'committed');
+        assert.equal(f.runtime.record('sample/one').version, 1);
+      } else {
+        await assert.rejects(f.runtime.admit(envelope), {
+          code: boundary === 'identity' ? 'IDENTITY_DENIED' : 'POLICY_EXPIRED',
+        });
+        assert.equal(f.runtime.operation('operation-1'), null);
+        assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 0);
+        assert.equal(f.runtime.db.prepare('SELECT used FROM challenges WHERE id=?').get(envelope.nonce).used, 0);
+        assert.equal(f.runtime.record('sample/one').version, 0);
+        const audit = f.runtime.auditEntries();
+        assert.equal(audit.length, 1);
+        assert.equal(audit[0].type, 'denied');
+        assert.equal(audit[0].stage, 'approval');
+      }
+    });
+  }
+}
+
 test('primitive and hostile evaluator rejections retain a sanitized denial and no approval', async t => {
   for (const reason of [null, undefined, 'private evaluator error', { get code() { throw new Error('private getter'); } }]) {
     const f = await fixture(t, { evaluators: [() => Promise.reject(reason)] });

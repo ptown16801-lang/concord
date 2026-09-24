@@ -4,6 +4,9 @@ This file consolidates the implementation history that was previously split acro
 
 ## Unreleased — governance integration sandbox, 2026-09-23
 
+- Rechecked identity and policy expiry at the persisted final approval timestamp;
+  admission at or after expiry leaves no consumed nonce, approval or reservation.
+  Already-approved work still continues after later expiry or revocation.
 - Fixed denial evidence for arbitrary evaluator rejection values and protected committed results against trusted-SQL rewrites. Added regression coverage for absent reservations on denial and rejection of completion without a result.
 - CI installs locked dependencies before testing and lets both Node matrix jobs finish independently. Independent governance acceptance remains separate.
 - Addressed four sandbox audit findings: explicit SQLite replacement guards, collector-history reconciliation, retained signed-policy bundles with offline provenance verification, and sanitized denial correlation. Added six focused regression cases; independent acceptance remains separate.
