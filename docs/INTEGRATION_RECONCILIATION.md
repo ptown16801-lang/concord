@@ -80,8 +80,11 @@ The September 24 refresh consumes only the AGT delta from `7ba5bc5` to
 `1731602`; its changelog entry is consolidated above the preserved history.
 Independent JON-135 acceptance is still outstanding. Its recorded reviewer and
 parent are archived, so reviewer availability requires an owner decision.
-These combined checks do not recertify Linux confinement on this host, where
-AppArmor blocks the bubblewrap namespace setup, or confer JON-140 acceptance.
+Linux confinement was recertified on this exact head after installing the
+purpose-built Bubblewrap AppArmor profile: `npm run governance:isolation` and
+`npm run governance:isolated-demo` passed as the ordinary user with their own
+Bubblewrap boundary active. This verifies the documented synthetic local scope,
+not production IPC or transport, and does not confer JON-140 acceptance.
 
 Historical candidate `93eb77bdb1c2e25f1a20be20299b1a95d332f9e8` passed 177 runner
 entries and a negative compatibility probe: a changed reducer byte was rejected
