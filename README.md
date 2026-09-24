@@ -1,3 +1,5 @@
+> Decision authority: [DECISIONS.md](DECISIONS.md), designated for `Develo`; this documentation branch is a candidate until integrated. See [contribution instructions](CONTRIBUTING.md). Historical product descriptions below do not override later owner decisions or holds.
+
 # Concord
 
 Concord is the workbench and research environment for the Multi-Agent Governance Model. **Concord and The Form are separate peer projects; Vote is their folder name, not a parent project or an authority.** This repository does not by itself represent every project artifact.
@@ -16,7 +18,7 @@ Current task scope, authorization, holds and acceptance come from the current pr
 
 Operational instructions belong in the current task and current workflow source, once. Historical audits, deferred task trees and reference snapshots are loaded only when a specific artifact or decision is needed; they are not mandatory context for every agent cycle. Quiz work is not an operational deliverable.
 
-`CHANGELOG.md` retains implementation history. [PROJECT_RECORD.md](PROJECT_RECORD.md) defines source precedence and points to preserved historical records. Runtime source, tests, package configuration and CI are unchanged by this documentation partition.
+`CHANGELOG.md` retains implementation history. [PROJECT_RECORD.md](PROJECT_RECORD.md) defines source precedence and points to preserved historical records. That historical documentation partition did not change runtime source, tests, package configuration or CI. This combined candidate also includes the separately recorded integration and decision-maintenance changes below.
 
 ## Current review candidate libraries
 
@@ -53,3 +55,9 @@ The frozen specification and adapter contract are the implementation inputs.
 The newer eligibility-authority branch is not a drop-in replacement for the
 accepted reducer. See JON-141's [integration boundaries](docs/INTEGRATION_RECONCILIATION.md)
 before changing the authority or its pins.
+
+## Decision and marketplace references
+
+Use [DECISIONS.md](DECISIONS.md) and [decision maintenance](docs/decisions/WORKFLOW.md) for the consolidated candidate and its limits. The [marketplace contract](docs/ECONOMY_MARKETPLACE_CONTRACT.md) records the accepted design; experimental coin acceptance remains separate from runtime implementation.
+
+Decision maintenance checks: `npm run decisions:check` and `npm run decisions:test`. See [reconciliation evidence](docs/decisions/PR37_PR41_RECONCILIATION.md) for this combined review candidate.
