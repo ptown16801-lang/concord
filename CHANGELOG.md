@@ -16,6 +16,9 @@
   CI dependency installation. Preserved SDK 5.0.0 and scoped js-yaml 5.4.2 override.
 - Retained AGT assertions for zero reservations after denial and rejection of
   completion without a result; both CI matrix jobs finish independently.
+- Rechecked identity and policy expiry at the persisted final approval timestamp;
+  admission at or after expiry leaves no consumed nonce, approval or reservation.
+  Already-approved work still continues after later expiry or revocation.
 - Included the synthetic scheduler harness and six audit corrections, with
   deterministic assignment, provenance, event/checker evidence and wait metrics.
 - Included the read-only archive manifest verifier and synthetic four-outcome demo;

@@ -85,3 +85,19 @@ Both CI matrix jobs now run to completion independently. A fresh
 tests passed on Node 22.23.2 and Node 24.21.0. Actual Linux isolation and the
 confined-agent workflow also passed. These are producer verification results;
 JON-135 must independently review the final published commit.
+
+## Approval-time expiry correction — September 24, 2026
+
+Linear identified a remaining timing defect at `7ba5bc5`: identity and policy
+checks could pass before expiry, while the subsequently recorded `approvedAt`
+timestamp reached or exceeded expiry. Six monotonic-clock boundary regressions
+cover each expiry immediately before, at, and after its limit. Three failed on
+the unchanged runtime (identity at/after, policy at); all six pass after correction.
+
+The final approval timestamp is now checked against both current identity and
+policy expiry before consuming the nonce, then persisted without resampling.
+Rejected admission leaves the nonce unused, no operation or reservation, no
+domain mutation, and a sanitized denial at the approval stage. The valid-before
+cases also prove already-approved work can finish after later expiry/revocation.
+This is producer verification, not independent JON-135 acceptance. Exact candidate
+and full-suite/CI outcomes are recorded in PR #34 and the existing Linear tasks.

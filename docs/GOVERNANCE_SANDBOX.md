@@ -87,6 +87,10 @@ an explicit allow from each required evaluator permits continuation. Those
 callbacks are trusted bounded integration functions, not untrusted plugins.
 After asynchronous evaluation, the transaction rechecks actor revision, current
 policy, expiry, nonce, operation uniqueness and record version/reservation.
+Before consuming the nonce, it samples the final `approvedAt` timestamp and
+requires that timestamp to precede both the current actor expiry and policy
+expiry. The same timestamp is retained in approval evidence; equality is expired.
+Failure rolls back the admission transaction and retains a sanitized denial.
 Policy generation high-water and failed-update seals persist across restart.
 One trusted authorization service owns policy changes for a domain; concurrent
 policy administrators across processes are not supported by this sandbox.

@@ -8,7 +8,7 @@ does not confer acceptance, merge authorization, or production readiness.
 
 | Component | Exact input | Resolution |
 | --- | --- | --- |
-| AGT PR #34 | 7ba5bc5c5a975d72298540e9aa776504d5b4f263 | Null/hostile rejection audit, immutable result, zero-reservation/required-result assertions and independent CI matrix jobs retained; SDK 5.0.0 / scoped js-yaml 5.4.2 retained |
+| AGT PR #34 | 1731602de02cef6fb0228f155202beeed844c295 | Final approval-time identity/policy expiry correction and six boundary regressions added once over 7ba5bc5; prior audit/result assertions, independent CI jobs and SDK 5.0.0 / scoped js-yaml 5.4.2 retained |
 | Bootstrap PR #36 | e2e23849a2e5e128f7f46f35712499f16fb98ef9 | Source-discrepancy resumption gate and final membership/source validation retained; shared governance exports combined |
 | Finger PR #38 | b81cca12f6d5cde714f30031a8a78dab95d97daf | Canonical recovered positive-integer grid validation and tests; exact two producer blobs retained, no older cloud attempts replayed |
 | Population PR #6 | 882dcffb31b520c6f9458984a35745c8b4bfa3b8 | Already included in #36; source pin retained |
@@ -67,14 +67,21 @@ checker. Recovery research does not create a remote collector guarantee.
 
 ## Validation
 
-The refreshed combined candidate passed all 186 Node test-runner entries on
-Node 22.23.2 and 24.21.0: 182 named tests and four scheduler support modules,
+The refreshed combined candidate passed all 192 Node test-runner entries on
+Node 22.23.2 and 24.21.0: 188 named tests and four scheduler support modules,
 with no failures or skips. Clean lockfile installation reported zero
 vulnerabilities; combined syntax/API, compatibility and whitespace checks passed.
-The refreshed bootstrap source/tests, AGT regression test/CI workflow and both
-Finger files match their exact producer blobs. Population and eligibility pins
+The refreshed bootstrap source/tests, AGT runtime/regression test/governance docs,
+AGT CI workflow and both Finger files match their exact producer blobs. Population and eligibility pins
 remain unchanged. Remote CI outcomes are recorded against the published head
 on PR #37 and JON-141 separately.
+
+The September 24 refresh consumes only the AGT delta from `7ba5bc5` to
+`1731602`; its changelog entry is consolidated above the preserved history.
+Independent JON-135 acceptance is still outstanding. Its recorded reviewer and
+parent are archived, so reviewer availability requires an owner decision.
+These combined checks do not recertify Linux confinement on this host, where
+AppArmor blocks the bubblewrap namespace setup, or confer JON-140 acceptance.
 
 Historical candidate `93eb77bdb1c2e25f1a20be20299b1a95d332f9e8` passed 177 runner
 entries and a negative compatibility probe: a changed reducer byte was rejected

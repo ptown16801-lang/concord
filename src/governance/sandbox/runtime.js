@@ -243,9 +243,14 @@ export class GovernanceSandbox {
       demand(!this.db.prepare('SELECT 1 FROM reservations WHERE resource=?').get(request.resource), 'RESOURCE_RESERVED');
       const record = this.db.prepare('SELECT * FROM records WHERE id=?').get(request.resource);
       demand(record && record.version === request.expectedVersions[request.resource], 'STALE_VERSION');
+      // Earlier checks can age while validating. Bind both expiry decisions to
+      // the same final timestamp persisted with this transactional approval.
+      const approvedAt = this.now();
+      demand(approvedAt < current.expires, 'IDENTITY_DENIED');
+      demand(approvedAt < bundle.manifest.expiresAt, 'POLICY_EXPIRED');
       this.db.prepare('UPDATE challenges SET used=1 WHERE id=?').run(envelope.nonce);
-      const evidence = { actorId: actor.id, nonce: envelope.nonce, signature: envelope.signature, decision, approvedAt: this.now(),
-        authority: { actorId: actor.id, revision: actor.revision, permissionExpiresAt: actor.expires,
+      const evidence = { actorId: actor.id, nonce: envelope.nonce, signature: envelope.signature, decision, approvedAt,
+        authority: { actorId: actor.id, revision: actor.revision, permissionExpiresAt: current.expires,
           publicKey: actor.public_key, action: request.action, resource: request.resource, purpose: request.purpose,
           argumentDigest: request.argumentDigest, expectedVersions: request.expectedVersions },
         policyManifest: bundle.manifest, policyArchiveDigest: this.archivePolicy(bundle) };
