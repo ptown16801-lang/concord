@@ -12,7 +12,23 @@
 
 The literature establishes many JON-96 ingredients separately. Personal-IOU experiments and the Grassroots Currencies proposal establish narrower person-specific exchange mechanisms. Strategic-market-game experiments establish participant-issued IOUs. Token experiments establish intrinsically worthless, non-redeemable objects whose use as money can emerge under neutral instructions. Bigoni, Camera, and Casari test a rule allowing a tokenless consumer to create one token when seeking to trade within administered experimental state. Reciprocity, credit-network, P2P-payment, scrip, MARL, and LLM-agent work establish other adjacent pieces.
 
-No reviewed source verifies the full JON-96 interaction: freely and indefinitely created, issuer-labelled, non-obligatory bearer-like objects; private and potentially inconsistent possession; optional, persistent, semantically open marks on individual objects; unprevented copying, forgery, defacing, and double-spending; no agent-visible accounting authority; purpose-neutral agent instructions; and a perfectly observing but absolutely hidden, non-intervening research record. This is an **unverified combination**, not evidence of novelty.
+No reviewed source verifies the full JON-96 interaction: freely and indefinitely created, issuer-labelled, non-obligatory bearer-like objects; private and potentially inconsistent possession; optional, alterable, semantically open marks on individual objects; unprevented copying, forgery, defacing, and double-spending; no agent-visible accounting authority; purpose-neutral agent instructions; and a perfectly observing but absolutely hidden, non-intervening research record. This is an **unverified combination**, not evidence of novelty.
+
+## September 24 decision impact check — ECON-02
+
+The owner chose free choice after considering compulsory next-use. Source: [project-wide ECON-2026-09-24 revision 1](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99); formal incorporation: [PR #21](https://github.com/ptown16801-lang/concord/pull/21), revision `7073e9a`.
+
+This is a bounded producer impact check of the existing audit and source-verification table, not a new search, source replication or final research acceptance.
+
+| Affected comparison | Disposition |
+| --- | --- |
+| T: refusal, transfer, retention and destruction | Refusal has no automatic state effect. A signed voluntary return composes existing sign and transfer capabilities; the receiver retains free choice. T wording is clarified. Existing P/C/NR source-family grades are unchanged: none establishes the full clarified group, and partial overlap is not promoted to exact support. |
+| M: optional marks | Replace ambiguous “persistent” wording with conditional persistence/alterability. No permanent stigma or authenticated refusal meaning is inferred. Existing M grades and authenticity/removal limits remain. |
+| P/A/N/H: privacy, freedom and observation | No automatic public disclosure, forced selection, mandatory reason field, authoritative ledger or observer intervention is introduced. Existing comparisons remain bounded to their cited evidence. |
+| Hypotheses 2–4: marks, refusal and copies | These remain untested hypotheses. Signed return is an optional sequence worth observing, not a predicted motive or experimental result. Nonresponse is not refusal; receipt is not acceptance; mark circulation does not establish endorsement. |
+| I and other issuance comparisons, including S17 | Unlimited create-and-give remains unchanged. The existing conditional one-token S17 correction and no-novelty conclusion remain intact. |
+
+No new source claim or changed source grade is justified by this clarification. The existing source ledger, citation chains, unavailable-text limits and unresolved Horibe/COOPER identities are preserved. No targeted search gap was identified for this wording update; testing predictions about signed returns would require a separately specified study, not an assertion of support from adjacent literature. Final research-package acceptance remains with the existing JON-98/JON-106 review path.
 
 ## Method and evidence grades
 
@@ -32,10 +48,10 @@ The matrix groups the frozen specification without weakening it:
 | Code | Exact JON-96 property group |
 | --- | --- |
 | **I** | Issuer-specific whole objects, created only when given; zero initial stock; free and unlimited creation; no redemption duty, expiry, revocation, or replenishment consequence |
-| **T** | Third-party transfer; refusal, retention, destruction, negotiation, multi-issuer bundles, and mixing with other consideration are possible |
+| **T** | Third-party transfer including voluntary return; refusal alone causes no automatic return/destruction; retention, destruction, alteration, other-coin selection, create-and-give, negotiation, multi-issuer bundles, and mixing with other consideration remain possible; no forced reuse |
 | **V** | No system valuation; agents may value individual same-issuer objects differently, including after issuer death/replacement |
 | **P** | Private balances and transactions; no automatic publication, public metadata, or mandatory task link/note |
-| **M** | Object shows claimed originator plus optional persistent marks; no visible ID or formal transfer chain; unsigned transfers; marks have no built-in semantics |
+| **M** | Object shows claimed originator plus optional marks that persist only while unaltered; no visible ID or formal transfer chain; unsigned transfers; marks have no built-in semantics |
 | **A** | No agent-facing accounting authority or enforced possession; conflicting claims, copying, double-spending, fabrication, forgery, and defacing remain possible and unflagged |
 | **N** | Neutral capabilities and instructions; no assigned economic or social purpose; emergent use or non-use is valid data |
 | **H** | Agent-invisible ground truth records actual events, appearances, claims, verification truth, and stated versus inferred intent without intervening |
@@ -126,7 +142,7 @@ No inspected passage establishes the following combinations. This is a bounded e
 These hypotheses concern the frozen mechanism; they are not design recommendations.
 
 1. **Issuer differentiation hypothesis.** Under free creation, issuer-specific labels may preserve local scarcity/information and support circulation where homogeneous freely created tokens fail ([S17], [S18]).
-2. **Artifact-history hypothesis.** Optional, persistent, semantically undefined marks may create within-issuer price dispersion or distinct roles (authenticity signal, endorsement, stigma, decoration) without a formal provenance chain.
+2. **Artifact-history hypothesis.** Optional, alterable, semantically undefined marks may create within-issuer price dispersion or distinct roles (authenticity signal, endorsement, stigma, decoration) without a formal provenance chain.
 3. **Epistemic-friction hypothesis.** When possession and authenticity are only claims, agents may substitute private verification, relational trust, discounting, refusal, or institutional appeals for ledger certainty; the mix is not predicted by anti-fraud protocols.
 4. **Copy tolerance hypothesis.** Copying and double-spending may destroy use, or may instead produce differentiated “original,” “credible copy,” and “worthless copy” conventions when every visible fact is contestable.
 5. **Purpose-emergence hypothesis.** In an open-ended LLM-agent setting, a neutral issuer-specific object may become money, reputation, gift, status, bargaining chip, scam object, or nothing; the inspected LLM-market designs do not estimate this distribution; unavailable sources cannot be ruled out.
