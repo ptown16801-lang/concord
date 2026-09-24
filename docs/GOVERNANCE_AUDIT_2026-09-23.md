@@ -77,3 +77,11 @@ pass after correction on Node 24.21.0. CI now installs the pinned dependencies
 with `npm ci --ignore-scripts` before checks and tests. This correction is delivered
 for independent review; local SQL invariants do not claim protection against an
 administrator replacing databases or removing their schema.
+
+Follow-up integration retained that runtime correction and added explicit checks
+for no reservation after denial and rejection of completion without a result.
+Both CI matrix jobs now run to completion independently. A fresh
+`npm ci --ignore-scripts` reported zero vulnerabilities; syntax checks and all 67
+tests passed on Node 22.23.2 and Node 24.21.0. Actual Linux isolation and the
+confined-agent workflow also passed. These are producer verification results;
+JON-135 must independently review the final published commit.

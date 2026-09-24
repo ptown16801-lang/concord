@@ -20,6 +20,7 @@ test('primitive and hostile evaluator rejections retain a sanitized denial and n
     const envelope = f.signed(f.request());
     await assert.rejects(f.runtime.admit(envelope), error => error === reason);
     assert.equal(f.runtime.operation('operation-1'), null);
+    assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 0);
     assert.equal(f.runtime.record('sample/one').version, 0);
     const [entry] = f.runtime.auditEntries();
     assert.equal(f.runtime.auditEntries().length, 1);
@@ -35,6 +36,8 @@ test('committed result cannot diverge from the record or audit receipt, includin
   const f = await fixture(t);
   await f.runtime.admit(f.signed(f.request()));
   assert.throws(() => f.runtime.db.exec("UPDATE operations SET result='{}'"), /immutable result/);
+  assert.throws(() => f.runtime.db.exec("UPDATE operations SET status='committed'"), /committed result required/);
+  assert.equal(f.runtime.operation('operation-1').status, 'pending');
   const committed = f.runtime.resume('operation-1');
   const receipt = f.collector.entries().find(e => e.payload.type === 'committed');
   for (const pragma of [0, 1]) {
