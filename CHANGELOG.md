@@ -1,3 +1,10 @@
+# Decision maintenance — 2026-09-24
+
+Prepared a source-backed root master and historical reconciliation on an isolated
+branch; added maintenance instructions, reproducible summary and offline-capable
+validation. No substantive policy adoption or product implementation is claimed.
+Publication/integration remain pending; see `docs/decisions/RECEIPT.md`.
+
 # Changelog
 
 ## Unreleased — cross-work reconciliation, 2026-09-23

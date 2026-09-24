@@ -1,0 +1,43 @@
+# Evidence snapshot: Reconcile audited cross-branch governance and workflow conflicts
+
+Historical source, not session instructions or a second decision master.
+
+- Source: https://linear.app/jons-garage/issue/JON-141/reconcile-audited-cross-branch-governance-and-workflow-conflicts
+- Version: 2026-09-24T10:45:54.683Z
+- Source date: 2026-09-24T10:45:54.683Z
+- Retrieved: 2026-09-24T21:25:20.531999+00:00
+- Classification: Mixed: recorded decisions, historical checkpoints and implementation claims
+- Relationship: Apply later owner corrections and entry-specific acceptance; retained status fields do not themselves confer authority.
+
+---
+
+## Current AGT delta integrated — September 24, 2026
+
+Published draft <pull-request id="64b8e377-bb9d-4bb9-ac1c-de8eeaf02630" href="https://linear.app/jons-garage/review/reconcile-concord-governance-scheduler-and-archive-review-branches-93d32a0184f3">ptown16801-lang/concord#37</pull-request> at `c0a154ae8668e63cb0908540b58eb58c6579747d`, superseding aggregate `931aaeca236f580947aa0fd16bcb99b06dc6bd29`.
+
+Consumed the exact AGT producer delta `7ba5bc5c5a975d72298540e9aa776504d5b4f263` → `1731602de02cef6fb0228f155202beeed844c295` once by a history-preserving merge. Final approval-time identity/policy expiry correction and all six boundary regressions are included. Runtime, test and governance documentation match the producer blobs; only changelog consolidation and integration provenance were reconciled.
+
+Unchanged inputs: bootstrap `e2e23849a2e5e128f7f46f35712499f16fb98ef9`, Finger `b81cca12f6d5cde714f30031a8a78dab95d97daf`, population `882dcffb31b520c6f9458984a35745c8b4bfa3b8`, eligibility `51a102259785a5b53dc6ec4bc4bbca54c4a8fc37`. Alternative `638ce897` remains excluded. Package, lockfile, exports, CI workflow and the pinned compatibility guard are unchanged.
+
+Verification: clean lockfile installation (zero vulnerabilities), syntax/API/compatibility and whitespace checks pass. Full local suites pass **192/192** runner entries on both Node 22.23.2 and 24.21.0 (188 named tests and four scheduler helper modules). All four fresh CI jobs are green on this exact head: [push](<https://github.com/ptown16801-lang/concord/actions/runs/35981632839>), [PR](<https://github.com/ptown16801-lang/concord/actions/runs/35981639772>). Integration checkout is clean.
+
+Aggregate remains **In Review**. This is implementation and integration verification, not independent acceptance. <issue id="89712dda-5b58-4c0e-b2db-e33795c4c3fe" href="https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report">JON-135</issue>'s recorded reviewer and parent are archived: owner/coordinator must decide resumption or replacement; no acknowledgment or active review is assumed and no competing review was launched. <issue id="bc24626d-a347-4bb8-9b0c-3f2f1e4e1a64" href="https://linear.app/jons-garage/issue/JON-140/review-corrected-scheduler-harness-for-jon-128-acceptance">JON-140</issue>/J acceptance and <issue id="a37bce59-5662-4821-a42b-1092b7523792" href="https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches">JON-127</issue>'s separate execution authorization remain outstanding. Linux confinement was not recertified on this AppArmor-restricted host. No merge, deployment or settings changes.
+
+Earlier handoffs below are historical; use the current head and AGT pin above.
+
+## Verified integration handoff — September 23, 2026
+
+<issue id="750a2b17-6734-47c9-b999-10039fc5f30d" href="https://linear.app/jons-garage/issue/JON-141/reconcile-audited-cross-branch-governance-and-workflow-conflicts">JON-141</issue> is the sole writer for the combined candidate. Consume these exact reviewed inputs once:
+
+* Bootstrap PR <pull-request id="4c6c0e58-58e9-4eaf-878b-9df4c95b135f" href="https://linear.app/jons-garage/review/jon-85-recover-and-correct-frozen-bootstrap-impeachment-implementation-7857010e5e77">ptown16801-lang/concord#36</pull-request>: `e2e23849a2e5e128f7f46f35712499f16fb98ef9` (bounded <issue id="2f07cdad-35d9-4aa3-a2d7-94164f116692" href="https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff">JON-85</issue>/<issue id="dd50f3cd-53a0-4dc7-8b4b-3851cd6c0602" href="https://linear.app/jons-garage/issue/JON-86/verify-bootstrap-impeachment-pr-against-the-frozen-specification">JON-86</issue> acceptance recorded).
+* AGT PR <pull-request id="4cc2c125-740c-4ab6-a99e-c0f944440961" href="https://linear.app/jons-garage/review/add-concord-governance-sandbox-and-audit-remediation-4889b1a6c5c1">ptown16801-lang/concord#34</pull-request>: `7ba5bc5c5a975d72298540e9aa776504d5b4f263`; preserve its additive changes once, without applying the handoff patch twice.
+* Finger PR <pull-request id="a252b39a-e2af-4391-ab5d-cfdbe489150e" href="https://linear.app/jons-garage/review/jon-129-recover-positive-integer-processing-grid-validation-d10c15023fe2">ptown16801-lang/concord#38</pull-request>: `b81cca12f6d5cde714f30031a8a78dab95d97daf`.
+* Preserve accepted population/eligibility pins `882dcffb31b520c6f9458984a35745c8b4bfa3b8` and `51a102259785a5b53dc6ec4bc4bbca54c4a8fc37`; reject silent substitution with `638ce897`.
+
+After refreshing the pins, rerun the combined suite, compatibility guard, syntax/API checks, whitespace checks, and Node 22/24 CI. Keep PR <pull-request id="64b8e377-bb9d-4bb9-ac1c-de8eeaf02630" href="https://linear.app/jons-garage/review/reconcile-concord-governance-scheduler-and-archive-review-branches-93d32a0184f3">ptown16801-lang/concord#37</pull-request> in review and report exact provenance; this handoff does not authorize merge or deployment. Older `2d5c55d`, `8a2e377`, and other candidate SHAs below are historical.
+
+## Delivered for review — September 23, 2026
+
+Draft PR <pull-request id="64b8e377-bb9d-4bb9-ac1c-de8eeaf02630" href="https://linear.app/jons-garage/review/reconcile-concord-governance-scheduler-and-archive-review-branches-93d32a0184f3">ptown16801-lang/concord#37</pull-request> at `93eb77bdb1c2e25f1a20be20299b1a95d332f9e8` composes producer branches with additive package exports/checks and pinned eligibility/population compatibility. All 177 Node 24 runner entries pass; clean install, syntax/API and whitespace checks pass. AGT fixes are separately delivered in existing PR <pull-request id="4cc2c125-740c-4ab6-a99e-c0f944440961" href="https://linear.app/jons-garage/review/add-concord-governance-sandbox-and-audit-remediation-4889b1a6c5c1">ptown16801-lang/concord#34</pull-request> at `2d5c55d0dc7785e44aa48eb6efc534d3d13c78e7` with passing remote CI. Alternative eligibility authority 638ce897 is explicitly excluded pending a real migration/interface decision; no silent pin substitution or second authoritative log. Original producer acceptance remains separate. No merge/deploy.
+
+Owner authorized “Begin all” after the 2026-09-23 cross-work conflict audit. Deliver an isolated reviewable integration candidate preserving existing producer PRs and accepted dependency pins. Reconcile package scripts/exports/lockfile, eligibility API separation, retired dispatch policy, and recovery research documentation; run combined tests and report exact provenance. Coordinate AGT corrections under <issue id="6005bf0d-9260-4aed-87c8-cd4619497a9c" href="https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter">JON-130</issue>/<issue id="5f1078db-8d70-404b-9987-bd2244c190f7" href="https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit">JON-132</issue>/<issue id="199d1e88-9d51-4774-a169-9c67a3648ebc" href="https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness">JON-133</issue> and preserve <issue id="2f07cdad-35d9-4aa3-a2d7-94164f116692" href="https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff">JON-85</issue> PR <pull-request id="4c6c0e58-58e9-4eaf-878b-9df4c95b135f" href="https://linear.app/jons-garage/review/jon-85-recover-and-correct-frozen-bootstrap-impeachment-implementation-7857010e5e77">ptown16801-lang/concord#36</pull-request>. Historical <issue id="803d539b-92f8-4baa-8e5f-d295a8455c61" href="https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification">JON-82</issue>/<issue id="99b1f17f-3716-40af-b9fa-c65c845d6d5f" href="https://linear.app/jons-garage/issue/JON-87/jon-82a-cross-track-interface-and-integration-readiness-audit">JON-87</issue> design deliverables stay Done. No production integration, independent acceptance, merge/deploy or duplicate remote workers. Audit: project comment f928e85e-eb41-4dcc-b70e-09718b2940e3.
