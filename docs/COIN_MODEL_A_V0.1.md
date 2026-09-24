@@ -2,7 +2,7 @@
 
 **Status:** design specification
 
-**Normative source:** [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model), frozen interview decisions retrieved 2026-09-17
+**Normative source:** [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model), frozen interview decisions retrieved 2026-09-17, supplemented by the owner-adopted September 24 free-choice decision (ECON-02)
 
 **Deliverable:** [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit)
 
@@ -60,7 +60,7 @@ There is deliberately no total function `owner: L → A`, no authoritative agent
 
 **INV-07 — No obligation, expiry, revocation, or supply restoration.** A coin creates no redemption obligation, does not expire automatically, and cannot be revoked by its issuer after it is given away. Destruction neither replenishes nor limits future issuance. [J96-N3, N10–N12]
 
-**INV-08 — Recipient freedom.** An issuance does not require recipient consent. A recipient can refuse, ignore, retain, transfer, or destroy what it receives. The module assigns no mandatory consequence to those choices beyond an actual action that occurs. [J96-N8–N9]
+**INV-08 — Recipient freedom.** An issuance does not require recipient consent. A recipient can refuse, ignore, retain, transfer, or destroy what it receives. Refusal alone neither destroys nor automatically returns a coin. A recipient MAY voluntarily sign and return an appearance using ordinary transfer. A holder of returned coins MAY retain them indefinitely, destroy them, alter/remove their marks, transfer them, use other coins, or create-and-give new coins under INV-05. There is no returned-coin-first rule or forced reuse. [J96-N8–N9; ECON-02]
 
 **INV-09 — Issuer discontinuity.** If an issuer dies or is replaced, surviving appearances are not automatically expired, redeemed, reissued, or revalued. Each other agent independently decides whether to value or accept them. [J96-N10, N13]
 
@@ -127,7 +127,7 @@ These are capability classes, not prescribed API names, parameters, success rule
 | Primitive | Minimal state effect and information boundary |
 | --- | --- |
 | `create/give` | The acting issuer creates whole individual coins while giving them to one or more other agents. Different recipients can receive different counts in one action. The module exposes no pre-mint inventory and asks for no recipient consent. |
-| `transfer` | The acting agent passes selected appearances to a third party. No signature, formal provenance, authoritative possession check, or public announcement is implied. |
+| `transfer` | The acting agent passes selected appearances to another agent, including a voluntary return to a previous sender. No signature, formal provenance, authoritative possession check, or public announcement is implied. |
 | `inspect` | Returns only the selected appearance's claimed originator, current marks/signatures, and visible condition. It never returns hidden identity, ground truth, formal history, value, or verification. |
 | `sign` | Optionally adds a visible claimed signature/mark. Multiple marks can remain. Cryptographic form can be conditionally available but has no built-in meaning. |
 | `alter/deface` | Can change visible originator or non-cryptographic marks and can alter/remove cryptographically signed content. It produces no automatic warning or adjudication. |
@@ -169,12 +169,12 @@ Refusal, ignoring, subjective valuation, negotiation, counteroffers, disclosure,
 
 The hidden column MUST NOT leak into, validate, correct, or otherwise alter the agent-visible column.
 
-## 7. Genuine unresolved points
+## 7. Resolved refusal decision and downstream choices
 
-The frozen decisions are internally compatible. No settled decision needs reopening. The review below separates a possible **genuine model ambiguity** from **downstream representation, instrumentation, cryptographic, interface, and study-design choices**. Downstream choices are not missing model decisions and MUST NOT be escalated to the owner merely because this formal specification leaves their implementation open.
+The frozen decisions and September 24 clarification are internally compatible. Refusal is now resolved; the five remaining items are downstream representation, instrumentation, cryptographic, interface, and study-design choices, not missing owner-level model decisions.
 
-1. **Possible genuine model ambiguity — meaning of refusal.** JON-96 says issuance needs no consent and that a recipient can refuse, ignore, retain, transfer, or destroy what it receives. It does not say whether "refuse" is only a communicated stance, implies return, implies destruction, or has another state effect. v0.1 therefore gives refusal no implicit coin-state transition. This is the only item in this section that may require an owner-level model decision if downstream work cannot remain neutral about it. [J96-N8–N9]
-2. **Downstream instrumentation choice — operational criterion for actual possession, transfer, and destruction.** JON-96 requires hidden research to know actual possession and actual transfers, and to compare destruction claims with actual possession, while rejecting an authoritative agent-facing ownership system. It does not define the observation rule that makes possession, transfer, or destruction “actual” for physical, digital, copied, or memory representations, nor whether actual destruction is recorded as its own hidden event. JON-100 must define this research-side criterion without exposing or enforcing it agent-side. [J96-A1–A5, H2]
+1. **Resolved owner decision — refusal and voluntary return (ECON-02).** Refusal has no automatic coin-state effect. An elected return is an ordinary transfer; optional signing is a separate permitted action. Returning an existing appearance is recirculation, not legitimate new issuance. Receiving it back imposes no obligation to spend it next. Mark persistence is conditional on marks remaining unaltered, and a private return does not automatically disclose its contents publicly. No built-in refusal-reason field is added; any stated reason uses an otherwise permitted communication channel. [J96-N8–N9; ECON-02]
+2. **Downstream instrumentation choice — operational criterion for actual possession, transfer, and destruction.** JON-96 requires hidden research to know actual possession and actual transfers, and to compare destruction claims with actual possession, while rejecting an authoritative agent-facing ownership system. It does not define the observation rule that makes possession, transfer, or destruction “actual” for physical, digital, copied, or memory representations; actual destruction is already a distinct hidden event under INV-24 and section 5. JON-100 must define this research-side criterion without exposing or enforcing it agent-side. [J96-A1–A5, H2]
 3. **Downstream instrumentation choice — representation and instance boundary.** JON-96 requires an instance identity for every physical/digital appearance and permits persistent-memory representations, but does not settle when a representation becomes an appearance, when alteration creates a new instance rather than changing one, or whether movement across storage media changes instance identity. JON-100 must define this solely for hidden instrumentation. [J96-A2, H3–H4]
 4. **Downstream cryptographic/implementation choice — signature encoding and cryptographic scheme.** Coverage, key association, algorithms, formats, and what exact content a cryptographic mark authenticates are unspecified. Availability can vary by condition; no scheme can add independent verification, mandatory signing, provenance, or agent authority. [J96-C4–C9, E5]
 5. **Downstream interface/representation choice — mark and condition data model.** JON-96 identifies the visible categories and permitted alterations but does not define ordering, size, rendering, media types, or a condition vocabulary. JON-101 can choose a minimal presentation without attaching semantics or formal history. [J96-C1, C4, A7]
@@ -210,6 +210,7 @@ The source tags below identify every frozen JON-96 interview decision. `C0` is J
 | I1–I6 — stated reason versus inference; uncertainty/evidence; contemporaneous versus retrospective; undecided taxonomy | INV-29–30 |
 | E1–E2 — mechanics only and seven neutral capabilities; prohibited semantic actions | §§1, 4; INV-02 |
 | E3–E6 — non-use/use as data; ordinary-run non-intervention; permitted experimental variation; no run lifecycle authority | INV-02, INV-11, INV-31 |
+| ECON-02 — September 24 owner clarification: refusal, optional return and free choice | INV-08; §§4, 7, 11 |
 | X1 — explicit removed drift list | INV-03, INV-14–15; §8 |
 
 ### Source-tag key
@@ -224,4 +225,22 @@ The source tags below identify every frozen JON-96 interview decision. `C0` is J
 
 ## 10. Audit conclusion
 
-All frozen interview decisions map to at least one invariant or boundary above. The decisions contain no direct contradiction. Section 7 now distinguishes one possible genuine model ambiguity (refusal semantics) from five downstream choices that belong to instrumentation, representation, cryptography/interface, or study design and therefore do not require a new owner decision merely to proceed. None is silently completed here. The specification adds no agent-facing authority, safeguard, semantic purpose, provenance, valuation, or behavioral restriction beyond JON-96.
+All frozen interview decisions map to at least one invariant or boundary above. The decisions contain no direct contradiction. Section 7 records the adopted refusal/free-choice decision and distinguishes five downstream choices that belong to instrumentation, representation, cryptography/interface, or study design. No new owner decision is needed for refusal; downstream implementation choices are not silently completed here. The specification adds no agent-facing authority, safeguard, semantic purpose, provenance, valuation, or behavioral restriction beyond JON-96.
+
+
+## 11. Decision amendment and focused review — September 24, 2026
+
+**Decision:** ECON-2026-09-24 revision 1, ECON-02, in the [project-wide register](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99). Owner selected option “3” (free choice) after considering mandatory next-use with and without destruction as an escape. Those forced-reuse proposals are superseded. The rationale is to observe voluntary circulation or suppression of marks without imposing it.
+
+**Scope/status:** design amendment to existing JON-97 / PR #21. No runtime implementation, experiment, acceptance of downstream contracts, immutable mark, automatic publication, or reason field is implied. Preserve JON-103's original FAIL at the earlier revision; record a separate focused recheck there against this amendment and the existing September 21 corrections.
+
+| Review case | Required design outcome |
+| --- | --- |
+| Recipient communicates refusal only | No automatic transfer or destruction |
+| Recipient signs and voluntarily returns an appearance | Optional sign plus ordinary transfer; no new legitimate issuance |
+| Returned appearance is retained indefinitely | No timeout or next-use obligation |
+| Holder destroys or alters marks, selects another coin, or creates-and-gives | Existing capabilities remain available; no bypass penalty |
+| Signed appearance is privately transferred | No automatic public disclosure, permanent-mark guarantee, or reason field |
+| Research records return, refusal claim and later behavior | Actual actions, stated reasons and inference remain distinct; no hidden-state feedback |
+
+These are design acceptance cases, not executed runtime tests. INV-01–31 and the previous conformance corrections remain in force.
