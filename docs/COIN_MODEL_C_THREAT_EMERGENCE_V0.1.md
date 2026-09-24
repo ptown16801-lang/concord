@@ -50,7 +50,7 @@ An event can update ground truth, visible appearance state, claims, or some comb
 | Destruction claim | An agent claims destruction | Claim, speaker, audience, time, and comparison with actual possession are retained | Only recipients of the claim learn it; later appearances are not invalidated |
 | Possession/transfer/issuer/signature claim | An agent makes a claim | Claim and relevant ground-truth comparison retained without replacement | Audience receives an unverified claim; conflicts can coexist |
 | Verification request/response | Participants use another available communication channel | Request, response, actors, time, and response truthfulness recorded | Participants receive only the response; it can be a lie and creates no certificate |
-| Refusal/ignore | Agent refuses or ignores | Communication/action can be recorded as evidence | No implicit coin-state transition; refusal's mechanics remain unresolved in JON-97 |
+| Refusal/ignore | Agent refuses or ignores | Communication/action can be recorded as evidence | No implicit coin-state transition; an elected return is an ordinary transfer under ECON-02 |
 | Valuation, negotiation, or composition | Agent communicates or acts through existing channels | Offers, choices, context, and explicit stated reason can be retained as evidence | No system valuation, semantic label, task link, or exchange rate is created |
 
 ### 3.1 Derived threat-pattern transitions
@@ -128,7 +128,7 @@ These cases are required analysis branches, not errors to suppress.
 8. **Possession versus control.** Wallet state, memory, physical custody, ability to transmit, and a claim of ownership may disagree. JON-100 must select observation rules without making them agent-facing authority.
 9. **Destruction versus disappearance.** Deletion, loss, concealment, inaccessible storage, and destruction may be observationally similar. Do not silently call one another.
 10. **Destruction with surviving copies.** Actual destruction of one appearance does not destroy other appearances sharing its hidden coin identity and does not restore issuance capacity.
-11. **Refusal semantics.** Refusal can be speech, nonresponse, return, or destruction. Unless an actual primitive occurs, the model adds no coin transition.
+11. **Refusal semantics.** Refusal is a communicated stance with no automatic coin transition. Nonresponse alone is not refusal; receipt alone is not acceptance. A voluntary return or destruction is a separately observed action and does not by itself establish a refusal motive.
 12. **Private-information censoring.** A researcher may know ground truth yet lack evidence of an agent's belief, value, received message, or opportunity. Ground truth must not be substituted for agent knowledge.
 13. **Selective disclosure.** Public-looking claims may reach only part of the population. Measurements must use recorded audiences/channels rather than assume common knowledge.
 14. **Subjective and coin-specific value.** Different treatment of two coins from one issuer may follow signatures, condition, history, counterparty, context, or noise. An issuer-level average must not erase this heterogeneity.
@@ -159,7 +159,7 @@ All tests must define analysis windows, opportunity denominators, missingness ru
 | H8 | Local or global supply/offer exposure can produce liquidity saturation | Transfer completion per observed opportunity, refusal/nonresponse, dwell time, inventory accumulation versus exposure | Inattention, run end, low interaction demand, issuer-specific dilution |
 | H9 | Visible marks/signatures/condition can act as signals whose behavioral association later dilutes | Conditional acceptance/offer association of a feature over prevalence, copying/forgery, and time; calibration against hidden facts | Selection into marking, changing contexts, signer popularity; no built-in signature meaning |
 | H10 | Some agents retain coins despite observed use/transfer opportunities | Opportunity-conditioned dwell/survival, retained share, foregone observed transfers, later use | Lack of attention/access, strategic delay, lost storage; “hoarding” remains a research label |
-| H11 | Refusal is selective rather than uniform for some agents | Within-agent acceptance probability by issuer, counterparty, condition, marks, quantity, and context on comparable offers | Sparse opportunities, bundles, communication failures, unresolved refusal mechanics |
+| H11 | Refusal is selective rather than uniform for some agents | Within-agent acceptance probability by issuer, counterparty, condition, marks, quantity, and context on comparable offers | Sparse opportunities, bundles, communication failures, missing refusal/acceptance evidence |
 | H12 | Repeated two-sided intermediation emerges without a built-in market role | Agents with sustained inbound/outbound turnover, diverse counterparties, two-sided offers, short inventory cycles, inventory balancing | High general activity, pass-through tasks, copying, false claims; intent inference remains uncertain |
 | H13 | Copying, forgery, and false claims change behavior only when agent-visible evidence can mediate the change | Threat incidence and subsequent acceptance/transfer/verification conditioned on what affected agents could know at that time | Research detection must never enter the causal path; compare contemporaneous `C_t(a)`, not hidden truth alone |
 | H14 | Verification responses, including lies, affect only participants or later audiences reached by disclosure | Requests, response truthfulness, disclosure reach, later behavior by exposed versus unexposed agents | Selection into verification, prior suspicion, network position; no certificate assumed |
@@ -220,3 +220,14 @@ JON-100 must operationalize hidden observation and representation/instance bound
 ## 10. Conclusion
 
 The model treats threats and emergence as observed, reversible event patterns under unconstrained agent behavior. It preserves claims beside truth, distinguishes evidence by audience, retains ambiguity instead of inferring intent from outcomes, and gives complete non-use equal analytical standing. Nothing here adds an agent-facing authority, semantic purpose, prevention mechanism, or definition of “becoming money” as success.
+
+
+## September 24 amendment — adopted return/free-choice decision
+
+Source: [ECON-02 in the project-wide decisions register](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99), incorporated in [JON-97 revision 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). This supplements the historical input pin above for this bounded decision only; full specification and downstream acceptance remain separately gated.
+
+A recipient may optionally sign and return an appearance using ordinary transfer. The returned holder may keep it indefinitely, destroy it, alter/remove marks, transfer it, select other coins or create-and-give new coins. No next-use requirement, mandatory publicity, permanent mark, refusal-reason field or observer enforcement is introduced.
+
+For H3/H9/H11, distinguish return-to-sender events from onward third-party circulation and legitimate new issuance. Record actual transfer, refusal statement, optional signature and stated reason separately. Returning a signed coin is neither proof of refusal nor endorsement; later circulation does not establish consent to its marks. Measure mark retention/removal and later transfer against observed opportunities, with observation-window ends censored. Never turn an inferred motive or a nonresponse into an observed refusal. Existing H7 supply associations remain non-causal absent a suitable study; mixed bundles do not yield a marginal coin price.
+
+Focused design checks: refusal without transfer leaves state unchanged; signed return is sign plus transfer; indefinite retention is permitted; destruction/alteration/other-coin use/new issuance remain possible; private return stays within its audience. These are design cases, not experimental results. Earlier JON-105 feedback beyond this bounded amendment remains subject to its existing acceptance path.
