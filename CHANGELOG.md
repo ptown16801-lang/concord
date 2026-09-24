@@ -3,7 +3,12 @@
 Prepared a source-backed root master and historical reconciliation on an isolated
 branch; added maintenance instructions, reproducible summary and offline-capable
 validation. No substantive policy adoption or product implementation is claimed.
-Publication/integration remain pending; see `docs/decisions/RECEIPT.md`.
+Published for review as PR41; integration remains pending. See `docs/decisions/RECEIPT.md`.
+
+The reconciliation-difference audit records JON-163 draft.3 and its actual advisory
+response, preserves the existing CONCORD-WF-002 consultation instruction and ID,
+corrects stale publication/project-identity wording, and indexes newer local work
+without repeating or merging it. See `docs/decisions/RECONCILIATION_AUDIT_2026-09-24.md`.
 
 # Changelog
 

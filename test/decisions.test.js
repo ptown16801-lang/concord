@@ -44,6 +44,16 @@ test('PR disposition requires exactly one explicit choice and valid IDs',()=>{
  assert.deepEqual(validateDisposition('Decision impact: Updated CON-001',ids),[]);
  for(const body of ['', 'Decision impact: Updated CON-999','Decision impact: Updated CON-001, CON-001','Decision impact: <choose>', 'Decision impact: No decision change\nDecision impact: Updated CON-001']) assert.ok(validateDisposition(body,ids).length);
 });
+test('preserves recovered workflow IDs across master, summary and PR disposition',()=>{
+ const id='CONCORD-WF-002';
+ assert.deepEqual(validate(entry(id),source),[]);
+ assert.ok(generateSummary(entry(id)).includes(`DECISIONS.md#${id}`));
+ assert.deepEqual(validateDisposition(`Decision impact: Updated CON-001, ${id}`,new Set(['CON-001',id])),[]);
+ for(const bad of ['CONCORD-WF-2','OTHER-WF-002',`${id},CON-001`,`${id}, ${id}`]) {
+  assert.ok(validateDisposition(`Decision impact: Updated ${bad}`,new Set([id,'CON-001',bad])).length);
+ }
+ assert.match(validate(entry('CONCORD-WF-2'),source).join(),/Malformed ID/);
+});
 test('preflight rejects moved HEAD and moved canonical reference; offline is explicit',()=>{
  const root=mkdtempSync(join(tmpdir(),'decisions-git-'));
  const git=(...a)=>execFileSync('git',a,{cwd:root,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();

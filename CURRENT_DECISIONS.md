@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This branch remains a candidate until integrated. Read entry scope, acceptance and implementation limits.
 
-Master SHA-256 (exact UTF-8 bytes): `911221cd15315c107503194064f61f1f41537565846df4e1554d204f727bc328`
+Master SHA-256 (exact UTF-8 bytes): `e71f1a349c92ffd0fb33b34a472445690457fe8cbce206f382f63ea59749be68`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -68,6 +68,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-072](DECISIONS.md#CON-072) | Accepted | Execution holds and existing writers |
 | [CON-073](DECISIONS.md#CON-073) | Accepted | Held library and deferred quizzes |
 | [CON-074](DECISIONS.md#CON-074) | Accepted | One master and controlled updates |
+| [CONCORD-WF-002](DECISIONS.md#CONCORD-WF-002) | Accepted | Consult Linear before large decisions |
 | [CON-080](DECISIONS.md#CON-080) | Unresolved | Unavailable original decision families |
 | [CON-081](DECISIONS.md#CON-081) | Unresolved | Unranked scheduler goals and downstream engineering |
 | [CON-082](DECISIONS.md#CON-082) | Unresolved | C3-specific proof versus later ordinary impeachment standard |

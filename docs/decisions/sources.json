@@ -3339,5 +3339,70 @@
     "retrieved": "2026-09-24T22:11:12.376514+00:00",
     "snapshot": "docs/decisions/evidence/LIN-JON-102-ACCEPTANCE.md",
     "sha256": "1391c00b760683da0d98018e802d9549874764f4865947dc3f2de41b750e368b"
+  },
+  "LIN-ROLES-DRAFT3": {
+    "title": "JON-163 role and independence specification v1-draft.3",
+    "location": "https://linear.app/jons-garage/document/concord-ai-role-and-independence-specification-v1-draft-for-review-59d78e8cb098",
+    "version": "2026-09-24T23:04:38.648Z",
+    "date": "2026-09-24T23:04:38.648Z",
+    "classification": "Proposed detailed specification; not adopted",
+    "scope": "CON-071; role/workflow proposal only",
+    "relationship": "Later draft than LIN-ROLES-DRAFT2. Eight-role framework remains accepted separately under CON-070; OD-1\u20134 remain proposed.",
+    "inspection": "Full current connector-returned content; no implementation or policy adoption inferred.",
+    "retrieved": "2026-09-24T23:12:42.756568+00:00",
+    "snapshot": "docs/decisions/evidence/LIN-ROLES-DRAFT3.md",
+    "sha256": "27911b63be6b42c2cc7dcb15c3eefcb766d1c94627205edccf5704b7617e4342"
+  },
+  "LIN-ROLES-DRAFT3-REVIEW": {
+    "title": "JON-163 v1-draft.3 advisory request and actual response",
+    "location": "https://linear.app/jons-garage/issue/JON-163#comment-9780c244-50ca-4925-9cb7-e54f183ae8e8",
+    "version": "v1-draft.3 review; response 9780c244-50ca-4925-9cb7-e54f183ae8e8",
+    "date": "2026-09-24T23:06:24.063Z",
+    "classification": "Advisory continuity review; explicitly not qualifying independent validation",
+    "scope": "CON-071; draft.3 review status",
+    "relationship": "Later actual response supersedes the earlier request-only observation in the local work-start checkpoint. Does not accept the draft.",
+    "inspection": "All returned draft.3 request/response comments in this interval; hasNextPage=false",
+    "retrieved": "2026-09-24T23:12:42.756568+00:00",
+    "snapshot": "docs/decisions/evidence/LIN-ROLES-DRAFT3-REVIEW.md",
+    "sha256": "4403b6ca3b64b012cbef7eb23cdc22989477561273c302aadf56a693491a48d5"
+  },
+  "LOCAL-WORKFLOW-CONTINUATION": {
+    "title": "Local role-workflow continuation and consultation record",
+    "location": "/home/cornholio/projects/concord/PROJECT_RECORD.md",
+    "version": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+    "date": "2026-09-24",
+    "classification": "Mixed: local proposal checkpoint and recorded owner consultation instruction",
+    "scope": "CON-071; CONCORD-WF-001 and CONCORD-WF-002",
+    "relationship": "New local commits after b332c23; no remote containing ref found at audit. Later advisory response separately retained. Earlier project-identity text is not adopted.",
+    "inspection": "Exact sections 9\u201310 and work-start record from pinned commit; all changed paths/blob IDs/digests indexed without merging producer work.",
+    "retrieved": "2026-09-24T23:12:42.756568+00:00",
+    "snapshot": "docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md",
+    "sha256": "73928191f278c337daccb76a65d24cda017f89f97b0040da12a105158900f3f9"
+  },
+  "OWNER-LINEAR-CONSULT": {
+    "title": "Owner instruction: consult Linear before large decisions",
+    "location": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T18-57-47-01a0d5a3-a74c-72c3-9928-603f4ae64bcc.jsonl:237",
+    "version": "Session 01a0d5a3-a74c-72c3-9928-603f4ae64bcc, user message line 237",
+    "date": "2026-09-24T23:06:28.813Z",
+    "classification": "Direct owner instruction",
+    "scope": "CONCORD-WF-002; material decisions on Concord work",
+    "relationship": "Later instruction preserved as CONCORD-WF-002 in local commit 4a44f4f; does not adopt the draft or authorize previously prohibited execution.",
+    "inspection": "Scoped user message only; no unrelated session content or private reasoning.",
+    "retrieved": "2026-09-24T23:12:42.756568+00:00",
+    "snapshot": "docs/decisions/evidence/OWNER-LINEAR-CONSULT.md",
+    "sha256": "373082efc2b8f118243b8c6a1705c0416f16cb4678d42ea38d54c5012b0b76f6"
+  },
+  "GH-PR41-3D8D8A0": {
+    "title": "Published PR41 and exact-head CI checkpoint",
+    "location": "https://github.com/ptown16801-lang/concord/pull/41",
+    "version": "3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77",
+    "date": "2026-09-24T23:12:42.756568+00:00",
+    "classification": "Publication and automated verification evidence; not acceptance",
+    "scope": "CON-074 implementation/verification status",
+    "relationship": "Supersedes local-only/pending-CI observations for this revision only; not evidence of merge, independent review or future CI.",
+    "inspection": "Read-only GitHub metadata and check readback.",
+    "retrieved": "2026-09-24T23:12:42.756568+00:00",
+    "snapshot": "docs/decisions/evidence/GH-PR41-3D8D8A0.md",
+    "sha256": "4bee4890da291c87a4407f192871febbf55654e7700ad8254cbdd8dd967c86da"
   }
 }

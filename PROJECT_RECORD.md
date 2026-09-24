@@ -21,3 +21,10 @@ Use [maintenance instructions](docs/decisions/WORKFLOW.md),
 [reconciliation](docs/decisions/RECONCILIATION.md) and
 [synchronization receipt](docs/decisions/RECEIPT.md).
 `CHANGELOG.md` remains the implementation change log.
+
+Later local PROJECT_RECORD sections 9–10 at `4a44f4f` contain the CONCORD-WF-001
+role-workflow proposal and accepted CONCORD-WF-002 consultation instruction. They
+are preserved in [the continuation source](docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md)
+and reconciled in the master under CON-071 and the original CONCORD-WF-002 ID.
+The other thread's `docs/ai-workflow/` package remains at its original local commits;
+this routing file does not discard or claim integration of that package.

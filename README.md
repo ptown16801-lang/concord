@@ -2,7 +2,7 @@
 
 # Concord
 
-Concord is an implementation and UI surface inside the wider Vote project. This repository currently contains the deployable **Finger** beta: a browser interaction collector, a non-blocking ingestion service, dedicated historical persistence, and replay/heat-map processing utilities.
+Concord and The Form are separate peer projects; Vote is their folder name only. This repository concerns Concord and currently contains the deployable **Finger** beta: a browser interaction collector, a non-blocking ingestion service, dedicated historical persistence, and replay/heat-map processing utilities.
 
 Finger is deliberately separated from Concord's main application data. The browser collector records only while its overlay is active. The server assigns the authoritative capture identity, stores the raw capture and queryable event history, and returns a reference without making login, admission, or navigation depend on backend success.
 

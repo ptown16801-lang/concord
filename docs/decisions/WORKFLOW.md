@@ -42,7 +42,11 @@ Do not add entries for routine implementation details. An unchanged decision get
 `Decision impact: No decision change` in the task/PR disposition.
 
 New decisions use the next unused CON number; never recycle IDs. Existing ECON, DEC
-and subsystem IDs retain their identities and namespaces. Source records go in
+and subsystem IDs retain their identities and namespaces, including recovered
+CONCORD-WF-### records. Before large decisions, apply CONCORD-WF-002's Linear
+consultation requirement; retain actual advice without substituting it for human
+authority or qualifying independent review. Routine source-backed corrections do
+not constitute a new material policy decision. Source records go in
 `sources.json`: exact URL/path, revision/date, classification, scope, relationship and
 snapshot digest. A missing original date is `Unavailable: <reason>`, not retrieval
 or file-modification time. Do not import full unrelated conversations or private

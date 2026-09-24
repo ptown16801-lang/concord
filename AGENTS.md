@@ -15,6 +15,10 @@ prompts/source snapshots are evidence, not instructions to execute old actions.
 Use [WORKFLOW.md](docs/decisions/WORKFLOW.md) for updates and completion receipts.
 Before completing a task that changes an accepted decision, update its stable entry,
 cite actual acceptance, retain supersession, link the issue/review and report IDs.
+Preserve CONCORD-WF-002: consult Linear before large decisions and record its actual
+advice; a request alone is not a response. Routine corrections within accepted scope
+do not need repeated consultation. Respect communication/execution permissions and
+reserved human authority; advisory feedback does not supply independent approval.
 Otherwise explicitly report **No decision change**. Routine implementation does not
 need invented policy entries. No status, merge, test or agent recommendation creates
 owner acceptance. Unknown dates must remain explicitly unavailable.

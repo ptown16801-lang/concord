@@ -17,7 +17,8 @@ No decision is adopted merely because it was merged, tested, filed or marked Don
 
 Read [source register](docs/decisions/SOURCES.md), [reconciliation](docs/decisions/RECONCILIATION.md),
 [maintenance workflow](docs/decisions/WORKFLOW.md), [validation](docs/decisions/VALIDATION.md)
-and [publication receipt](docs/decisions/RECEIPT.md). Exact supporting text is retained
+and [publication receipt](docs/decisions/RECEIPT.md). The [difference audit](docs/decisions/RECONCILIATION_AUDIT_2026-09-24.md)
+records later cross-thread changes and their disposition. Exact supporting text is retained
 as dated evidence, including failed/rejected drafts. Generated [current summary](CURRENT_DECISIONS.md)
 is navigation only. Missing originals and narrow ambiguity are explicit entries below.
 
@@ -41,6 +42,10 @@ in RECONCILIATION.md. Historical mapping records `DEC-004` = player-state owners
 datastores. An earlier persistence proposal reused DEC-004; do not use that collision
 as a second definition. Full original DEC wording/scope is not independently recovered,
 so no unknown DEC identifier is reallocated or silently promoted here.
+
+Existing CONCORD-WF-001 identifies the local role-workflow proposal covered by
+CON-071; CONCORD-WF-002 retains its original ID as the accepted consultation
+instruction below. These are distinct source decisions, not renumbered CON entries.
 
 
 ## Identity and constitutional foundation
@@ -950,16 +955,20 @@ Integrator admission cannot waive missing evidence. Named-human exceptions need 
 ### CON-071 — Detailed role specification remains proposed
 
 - Status: Proposed
-- Scope: JON-163 v1-draft.2
+- Scope: JON-163 v1-draft.3 and existing CONCORD-WF-001 proposal
 - Acceptance: Unavailable: named-human adoption of exact draft pending.
 - Acceptance date: 2026-09-24 (draft delivery)
-- Sources: [LIN-JON-163](docs/decisions/evidence/LIN-JON-163.md), [LIN-ROLES-DRAFT2](docs/decisions/evidence/LIN-ROLES-DRAFT2.md), [LIN-ROLES-DRAFT1](docs/decisions/evidence/LIN-ROLES-DRAFT1.md)
+- Sources: [LIN-ROLES-DRAFT3](docs/decisions/evidence/LIN-ROLES-DRAFT3.md), [LIN-ROLES-DRAFT3-REVIEW](docs/decisions/evidence/LIN-ROLES-DRAFT3-REVIEW.md), [LOCAL-WORKFLOW-CONTINUATION](docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md), [LIN-JON-163](docs/decisions/evidence/LIN-JON-163.md), [LIN-ROLES-DRAFT2](docs/decisions/evidence/LIN-ROLES-DRAFT2.md), [LIN-ROLES-DRAFT1](docs/decisions/evidence/LIN-ROLES-DRAFT1.md)
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
-- Verification: Draft versions and actual advisory discussion retrieved; no independent reviewer invoked.
+- Verification: Draft.3 and actual advisory response 9780c244-50ca-4925-9cb7-e54f183ae8e8 retrieved. One blocking provenance finding and five nonblocking improvements remain in that workstream; this is continuity feedback, not qualifying independent validation.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-v1-draft.2 is the current review draft; v1-draft.1 is an exact preserved historical snapshot. OD-1 consequence definitions/floors (including L1 proportionality), OD-2 family/provider separation thresholds, OD-3 non-waivable gates/exceptions and OD-4 retention system/readiness remain owner decisions. The six draft clarifications and eight detailed role cards are not automatically adopted by the framework agreement. Revised-text review, qualifying independent evidence, classification confirmation, retention readiness and named-human adoption of the exact revision remain pending. Authors and materially contributing advisory reviewers cannot count their own checks as qualifying independent validation.
+v1-draft.3 is the review draft observed at 2026-09-24T23:04:38.648Z; drafts .1 and .2 remain preserved history. The existing CONCORD-WF-001 proposal informed new proposed shared-allowance, bounded-repair, evidence-state, enforcement-scope, management and freshness/retention duties. Dispatcher, locking and recovery mechanics remain deferred to a future execution contract. No numerical Concord allowance, executor activation or Clippy policy adoption follows from these proposals.
+
+The actual draft.3 advisory response at 23:06:24 UTC supersedes the earlier request-only checkpoint. It identifies a blocking revision-provenance gap (work label, accountable owner, precise snapshot/digest and timestamp), plus clarifications to the review exception, correction cardinality, advisory authority, evidence-reuse ordering and added-case provenance. Resolution belongs to the existing JON-163 workstream; do not repeat drafting or mistake this response for independent approval.
+
+OD-1 consequence definitions/floors (including L1 proportionality), OD-2 family/provider separation thresholds, OD-3 non-waivable gates/exceptions and OD-4 retention system/readiness remain owner decisions. Draft clarifications and detailed role cards are not automatically adopted by framework agreement. Qualifying independent evidence, classification confirmation, retention readiness and named-human adoption of the exact revision remain pending. Authors and materially contributing advisory reviewers cannot count their own checks as qualifying independent validation.
 
 <a id="CON-072"></a>
 ### CON-072 — Execution holds and existing writers
@@ -998,13 +1007,28 @@ Research Library’s twelve unfinished held items remain Do Not Execute; complet
 - Scope: Decision maintenance
 - Acceptance: Explicit maintenance requirements in current owner request.
 - Acceptance date: 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md)
+- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md)
 - Supersedes: None
-- Implementation: Instructions, generator, validator, focused tests and CI edits installed only in this local candidate.
-- Verification: See VALIDATION.md; remote CI/enforcement and integration are pending.
+- Implementation: Instructions, generator, validator, focused tests and CI edits are published in PR41. Integration into designated canonical branch Develo remains pending.
+- Verification: Node 22/24 GitHub CI passed at 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77; later revisions require their own results. Independent review, canonical integration and sustained adherence remain separate and unverified. See VALIDATION.md and the PR publication receipt.
 - Rationale: Make updates traceable without creating a coordination service or claiming divergence impossible.
 
 Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. This branch is a candidate until integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.
+
+<a id="CONCORD-WF-002"></a>
+### CONCORD-WF-002 — Consult Linear before large decisions
+
+- Status: Accepted
+- Scope: Material Concord decisions; advisory consultation, not authority transfer
+- Acceptance: Exact owner instruction recovered from user message line 237 in session 01a0d5a3-a74c-72c3-9928-603f4ae64bcc; retained under the existing ID in local commit 4a44f4f.
+- Acceptance date: 2026-09-24
+- Sources: [OWNER-LINEAR-CONSULT](docs/decisions/evidence/OWNER-LINEAR-CONSULT.md), [LOCAL-WORKFLOW-CONTINUATION](docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md)
+- Supersedes: None
+- Implementation: Recorded operating instruction; no consultation service or enforcement software installed.
+- Verification: Primary user message and pinned local record inspected. This entry is not an actual consultation response.
+- Rationale: Preserve the owner's consultation boundary without transferring reserved human authority or recreating choreography.
+
+The owner instructed: “Don't make any large decisions without consulting @linear”. Consult Linear before making such decisions and retain the actual advice and disposition. A posted request or silence does not establish completed consultation. Human authority, qualifying independence and existing access/spending/execution restrictions continue to apply. The recorded operating interpretation excludes routine implementation and corrections within an accepted contract from repeated consultation; independent authorized work may continue while a material decision awaits advice. This instruction does not adopt the pending role specification or authorize prohibited agents, Linear execution features or cross-project choreography.
 
 ## Unresolved evidence and preserved history
 
