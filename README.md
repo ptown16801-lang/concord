@@ -1,3 +1,5 @@
+> Decision authority: [DECISIONS.md](DECISIONS.md), designated for `Develo`; this documentation branch is a candidate until integrated. See [contribution instructions](CONTRIBUTING.md). Historical product descriptions below do not override later owner decisions or holds.
+
 # Concord
 
 Concord is an implementation and UI surface inside the wider Vote project. This repository currently contains the deployable **Finger** beta: a browser interaction collector, a non-blocking ingestion service, dedicated historical persistence, and replay/heat-map processing utilities.
