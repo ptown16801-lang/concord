@@ -274,9 +274,9 @@ For all P, R1, R2:
   run_agent(P, R1).Obs_agent ≡ run_agent(P, R2).Obs_agent
 ```
 
-Here `≡` means identical values and no statistically distinguishable timing or failure behavior attributable to `R`. The construction above establishes the property: agent code has no read edge from `R`; hidden IDs never enter agent objects; the write-only collector has no return edge; and research success, failure, or content cannot participate in an agent-visible branch. Thus changing only hidden state cannot change an agent observation.
+Here `≡` means identical values and no statistically distinguishable timing or failure behavior attributable to `R`. Under the required isolation assumptions, the design argument for this property is: agent code has no read edge from `R`; hidden IDs never enter agent objects; the write-only collector has no return edge; and research success, failure, or content cannot participate in an agent-visible branch. Thus changing only hidden state cannot change an agent observation.
 
-This is a design proof, not permission to assume an implementation is safe. A future implementation MUST produce machine-checkable evidence before use:
+This is a conditional design argument, not measured noninterference or permission to assume an implementation is safe. The isolation assumptions and evidence obligations below must be discharged on the actual implementation. A future implementation MUST produce machine-checkable evidence before use:
 
 1. an endpoint/tool inventory showing zero agent-reachable research read or discovery surface;
 2. schema tests rejecting every hidden field and any hidden-ID-derived handle from agent responses, prompts, logs, and serialized coin state;
@@ -290,7 +290,7 @@ Failure of any proof item blocks the instrumentation implementation, not the age
 
 ## 8. Acceptance and hand-off constraints
 
-This contract satisfies JON-100 when a later implementation can represent every schema and transition above, reconstruct histories under section 6, and pass the noninterference proof in section 7.
+Design acceptance requires complete schemas, reconstruction rules and explicit noninterference obligations. Runtime acceptance is a separate future gate: an implementation must represent these schemas/transitions, reconstruct histories under section 6, and pass section 7 and section 9 verification on the real deployment. Document acceptance alone cannot satisfy that runtime gate.
 
 JON-101 MAY define only the minimal agent-facing interface. It MUST NOT reuse hidden identifiers or expose research truth. JON-102 MAY plan integration and protected researcher access, retention configuration, and verification of the one-way boundary, but MUST NOT turn this store into public governance, wallet authority, settlement, fraud prevention, or an agent-facing authoritative ledger.
 
@@ -308,3 +308,46 @@ A refusal statement and any voluntarily stated reason remain `claim_made`/reason
 Research may reconstruct later retention, destruction, alteration/removal of marks, transfer, other-coin selection or fresh issuance, with observation gaps and opportunity evidence retained. It must not reserve returned appearances, enforce next-use, block alternatives, preserve marks agent-side, publish private contents, or notify participants of inferred refusal. Marks persist only while unaltered. Hidden archival evidence of former marks is not information carried on the current agent-facing appearance.
 
 Focused design checks: a refusal statement produces no synthetic transfer/destruction; signed return records mark and transfer independently; later destruction or alteration remains a distinct action; other-coin transfer and fresh issuance remain available; private return preserves audience; observational failure cannot affect participant choice. These checks specify required behavior, not executed tests or noninterference proof. Existing event identifiers and source records remain unchanged.
+
+
+## 9. Existing JON-104/JON-105 review disposition — September 24
+
+Controlling specification: [JON-97 at 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). Sources: [JON-104 leakage handoff](https://linear.app/jons-garage/issue/JON-100#comment-f03b20a6-95d2-40d4-b868-3273d4adf93e) and [JON-105 measurement handoff](https://linear.app/jons-garage/issue/JON-100#comment-1a3a780f-9652-4b4d-90d4-7f214a87f067). These requirements extend the existing schema and proof obligations; they create no competing observer or agent capability.
+
+### 9.1 Measurement reconstruction fields (JON-105 requirements 1–5)
+
+All records below are research-only, schema-versioned, evidence-linked and nullable/unknown when not observed. Collection is restricted to lawfully available evidence under the approved study protocol.
+
+| Record extension | Required content and limitation |
+| --- | --- |
+| Audience evidence | Communication event reference; intended and actually delivered audience separately; channel/visibility; delivery/access time and uncertainty; event-time evidence of what each actor could observe. Delivery is not comprehension, public channel is not common knowledge, and absent telemetry is unknown. |
+| Proposal/opportunity evidence | Proposer, intended recipient, evidenced exposure, selected appearance or issuer claim and quantity; full mixed bundle/requested action; source evidence and explicit linkage; proposal revision/counteroffer parent; completion, abandonment, explicit acceptance/refusal, behavioral uptake, return/destruction and no-observed-response observations with times. Adjacency alone is not linkage. Inferred linkage/response stays in an analysis record. Receipt/retention/silence never supplies acceptance. |
+| Exposure/assignment evidence | Protocol/condition version, assignment unit and allocation, presentation/visibility/optional-cryptography levels, exposure time/fidelity, audience overlap and contamination where observable. No levels or intervention are chosen by this contract, and research never delivers a condition through a hidden return path. |
+| Completeness/deduplication | Source action identity, recipient allocation index, child issuance/coin/instance links, transport retry identity, event clock uncertainty and capture gaps. One action and its retries are not extra actions/coins. Distinct actual attempts remain distinct; ambiguous duplicates remain unresolved rather than merged silently. Completeness is reported at action, allocation, coin and instance levels. |
+| Event-time visible-state query | Actor, observation cutoff, lawfully captured visible revision/audience evidence and capture quality. Query returns reconstructed observable evidence, not presumed knowledge; no later hidden truth may be backfilled. Provisional classifications, unresolved identities and missing intervals remain queryable, with revisions/corrections retained. |
+
+These extensions are projections/links over the existing events and evidence, not a new required agent communication, receipt, mandatory response or transaction-note field. Research query results never return to agents.
+
+### 9.2 Complete-trace noninterference (JON-104 requirements 1–7)
+
+For section 7, `Obs_agent` includes payloads and schema/status/error shape; timing/order; availability and resource access; wallet behavior and restore; logs/diagnostics/exports/support bundles; discovery/configuration; and communication metadata. Hidden inputs include identity/classification, collection health and analyst activity. Equivalent public inputs must produce equivalent full visible traces across hidden inputs.
+
+Capture and analysis are one-way, non-gating and never awaited by the action path. Failure produces only a hidden capture-gap record: no visible failure, retry, rollback, replay, warning or correction. Research queues/storage/compute/quotas/caches/observability/credentials/operators/failure domains must be isolated so load, backpressure or outages cannot become a timing/availability oracle. A write-only API alone does not prove this resource isolation.
+
+Research IDs and correlations stay hidden; agent-visible handles and ordinary communication identifiers are generated independently and are non-derivable/non-joinable to research IDs by agents. Research diagnostics and lifecycle remain partitioned: no enrichment of agent logs, errors or exports, and no research replay/restore may rehydrate or reconcile visible wallets/history. Research retains its own linkage internally without exposing that linkage.
+
+Verification capture is passive. It cannot answer, route, certify, annotate or create a verification message, read receipt, notification or warning. Consoles, analysts, vendors and operators have no research-derived write or communication path into ordinary-run agent state. Any legitimate external authority remains outside this subsystem; observer privileges do not grant it.
+
+### 9.3 Required evidence matrix (JON-104 requirement 8)
+
+| Evidence before runtime acceptance | Responsible downstream contract |
+| --- | --- |
+| Field-level source/sink/access map, credentials and discovery inventory | JON-100 schema boundary; JON-101 interface; JON-102 deployment |
+| Differential complete visible traces for original/copy/fabrication/defacing/conflicting claims with identical visible inputs | JON-101 response/schema/wallet parity; JON-102 executed harness |
+| Sink fault injection: absent/slow/corrupt/full sink, backpressure, replay and analysis outages | JON-102 failure-domain isolation; no action failure/retry/rollback |
+| Statistical timing/load equivalence with prespecified equivalence margins, sample sizes, power, workload and uncertainty | JON-102 resource isolation; absence of significance alone is not equivalence |
+| Schema/log/error/export/support-bundle/configuration inspection and canary leakage tests | JON-101 visible surface; JON-102 observability/operator surfaces |
+| Wallet restore parity with research absent or divergent | JON-101 storage semantics; JON-102 restore/replay isolation |
+| No-observer-communication checks including verification metadata/receipts and analyst/vendor controls | JON-102 deployment; JON-101 neutral communication interface |
+
+The design states the required property and its conditional argument; no executed proof is claimed. Failure blocks runtime acceptance of instrumentation, never a participant action. JON-104/105 reports remain the independent source evidence; this section records producer disposition of every handed-off requirement.
