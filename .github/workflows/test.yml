@@ -3,6 +3,7 @@ name: test
 on:
   push:
   pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
 
 permissions:
   contents: read
@@ -19,5 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: node --version
+      - run: npm run decisions:check
+      - name: Require decision-impact disposition
+        if: github.event_name == 'pull_request'
+        run: node scripts/decisions.mjs disposition
       - run: npm run check
       - run: npm test
