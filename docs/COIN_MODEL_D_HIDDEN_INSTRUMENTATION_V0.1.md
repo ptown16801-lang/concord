@@ -295,3 +295,16 @@ This contract satisfies JON-100 when a later implementation can represent every 
 JON-101 MAY define only the minimal agent-facing interface. It MUST NOT reuse hidden identifiers or expose research truth. JON-102 MAY plan integration and protected researcher access, retention configuration, and verification of the one-way boundary, but MUST NOT turn this store into public governance, wallet authority, settlement, fraud prevention, or an agent-facing authoritative ledger.
 
 Still deliberately undecided and outside this deliverable are the cryptographic signature scheme, visible mark/condition encoding, experimental condition levels, final intent taxonomy, deployment technology, universal retention duration, and research governance details supplied by an approved study protocol. None may be guessed in a way that changes agent-visible mechanics or weakens absolute invisibility.
+
+
+## September 24 amendment — return observations under ECON-02
+
+Source: [project-wide ECON-02 decision](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99) and [JON-97 revision 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). This supplements the historical specification pin for the owner-adopted return/free-choice terms. It does not claim full specification acceptance or resolve the other JON-104/JON-105 review obligations.
+
+Refusal alone never synthesizes a transfer or destruction event. An elected return uses `instance_transferred`; an optional preceding signature uses `mark_added`. Do not create a new legitimate `coin_issued` event merely because an appearance returns to its issuer. Existing copy/instance rules still apply when a sender retains a usable representation. A subsequent genuine create-and-give is a separate issuance event.
+
+A refusal statement and any voluntarily stated reason remain `claim_made`/reason records with their original audience, evidence and time. A transfer back to a sender may be observed even without an explicit refusal; inferred refusal motive belongs in analysis with uncertainty. Silence is not refusal and delivery is not acceptance. No new agent-facing reason field or compulsory response is created.
+
+Research may reconstruct later retention, destruction, alteration/removal of marks, transfer, other-coin selection or fresh issuance, with observation gaps and opportunity evidence retained. It must not reserve returned appearances, enforce next-use, block alternatives, preserve marks agent-side, publish private contents, or notify participants of inferred refusal. Marks persist only while unaltered. Hidden archival evidence of former marks is not information carried on the current agent-facing appearance.
+
+Focused design checks: a refusal statement produces no synthetic transfer/destruction; signed return records mark and transfer independently; later destruction or alteration remains a distinct action; other-coin transfer and fresh issuance remain available; private return preserves audience; observational failure cannot affect participant choice. These checks specify required behavior, not executed tests or noninterference proof. Existing event identifiers and source records remain unchanged.
