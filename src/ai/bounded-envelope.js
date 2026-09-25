@@ -214,15 +214,28 @@ export function validateMissingContextRequest(request) {
 export function sealEnvelope(input) {
   const payload = clone(input);
   const errors = validatePayload(payload);
+  if (errors.length > 0) {
+    const error = new Error(`bounded envelope construction failed: ${errors.join('; ')}`);
+    error.code = 'BOUND_ENVELOPE_INVALID';
+    error.validation = deepFreeze({
+      valid: false,
+      derived_context_complete: false,
+      errors: [...errors],
+      policy_version: payload?.validator?.policy_version ?? null,
+      schema_version: payload?.schema_version ?? null,
+      canonicalization_version: payload?.canonicalization_version ?? null,
+    });
+    throw error;
+  }
   const canonical = canonicalSerialize(payload);
   const envelopeHash = sha256(canonical);
   const validation = deepFreeze({
-    valid: errors.length === 0,
-    derived_context_complete: errors.length === 0,
-    errors: [...errors],
-    policy_version: payload?.validator?.policy_version ?? null,
-    schema_version: payload?.schema_version ?? null,
-    canonicalization_version: payload?.canonicalization_version ?? null,
+    valid: true,
+    derived_context_complete: true,
+    errors: [],
+    policy_version: payload.validator.policy_version,
+    schema_version: payload.schema_version,
+    canonicalization_version: payload.canonicalization_version,
     envelope_hash: envelopeHash,
   });
   return deepFreeze({ payload: deepFreeze(payload), canonical, envelope_hash: envelopeHash, validation });
