@@ -166,11 +166,14 @@ function assertSession(session) {
 
 function normalizeOptions(options) {
   const result = { ...DEFAULT_PROCESSING_OPTIONS, ...options };
-  for (const key of ["columns", "rows", "maxDwellMs"]) {
-    if (!Number.isFinite(result[key]) || result[key] <= 0) throw new RangeError(`${key} must be positive`);
+  for (const key of ["columns", "rows"]) {
+    if (!Number.isInteger(result[key]) || result[key] <= 0) {
+      throw new RangeError(`${key} must be a positive integer`);
+    }
   }
-  result.columns = Math.floor(result.columns);
-  result.rows = Math.floor(result.rows);
+  if (!Number.isFinite(result.maxDwellMs) || result.maxDwellMs <= 0) {
+    throw new RangeError("maxDwellMs must be positive");
+  }
   return result;
 }
 
