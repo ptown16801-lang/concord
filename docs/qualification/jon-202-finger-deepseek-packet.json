@@ -1,0 +1,177 @@
+{
+  "envelope_id": "JON-202-FINGER-DEEPSEEK-QUAL-001",
+  "schema_version": "1.0.0",
+  "canonicalization_version": "concord-json-c14n-v1",
+  "task_boundary": {
+    "deliverable": "Identify one reproducible missing edge case, counterexample, debugging hypothesis, or deterministic test candidate in the supplied Finger persistent-event normalization behavior. Return only a proposal; do not modify code.",
+    "source_revision": "4b6e41fd8d211746a81e870955e34475e66d02a3",
+    "target_functions": [
+      "normalizeEvent",
+      "occurredAtMs",
+      "pointerKind"
+    ]
+  },
+  "included_context": [
+    {
+      "artifact_id": "finger-persistent-store-source",
+      "path": "src/finger/persistent-store.js",
+      "content_hash": "git-blob:0eb99aa511f36199c71b8c401112eb3bfd420c4e",
+      "kind": "source"
+    },
+    {
+      "artifact_id": "finger-normalization-test",
+      "path": "test/persistent-store-normalization.test.js",
+      "content_hash": "git-blob:07c502394d082f53fcd42769260dfb558b2110b2",
+      "kind": "test"
+    },
+    {
+      "artifact_id": "finger-ingestion-contract",
+      "path": "src/finger/ingestion.js",
+      "content_hash": "git-blob:6757b6aaeceb98fc49dfcfd16759a7a7e5d3c956",
+      "kind": "interface-contract"
+    },
+    {
+      "artifact_id": "finger-public-exports",
+      "path": "src/finger/index.js",
+      "content_hash": "git-blob:a5622919837a0678d48a53ec67fea0d8e0fabe68",
+      "kind": "interface-contract"
+    }
+  ],
+  "material_dependencies": [
+    {
+      "identifier": "normalization-implementation",
+      "status": "satisfied",
+      "why_material": "Defines the exact timestamp and pointer-kind precedence under review.",
+      "evidence_artifact_ids": [
+        "finger-persistent-store-source"
+      ]
+    },
+    {
+      "identifier": "existing-regression-contract",
+      "status": "satisfied",
+      "why_material": "Shows currently asserted behavior: elapsedMs wins over eventTimestamp and touchmove infers touch.",
+      "evidence_artifact_ids": [
+        "finger-normalization-test"
+      ]
+    },
+    {
+      "identifier": "ingestion-input-contract",
+      "status": "satisfied",
+      "why_material": "Shows how raw event payloads reach PersistentFingerStore without transformation that would invalidate the bounded reasoning task.",
+      "evidence_artifact_ids": [
+        "finger-ingestion-contract",
+        "finger-public-exports"
+      ]
+    }
+  ],
+  "considered_material_omissions": [
+    {
+      "identifier": "sqlite-repository-internals",
+      "rationale": "Persistence query/storage internals are not material to identifying a normalization edge case because the bounded task concerns values produced before repository insertion."
+    },
+    {
+      "identifier": "browser-collector-implementation",
+      "rationale": "Collector implementation is omitted because the supplied regression contract already establishes the event fields relevant to this task; request a bounded collector slice only if a specific field-origin dependency is identified."
+    },
+    {
+      "identifier": "full-concord-repository",
+      "rationale": "Unrelated Concord subsystems are not material to the exact normalization task and must not be exposed."
+    }
+  ],
+  "constraints": {
+    "prohibited_actions": [
+      "repository_write",
+      "full_repository_access",
+      "credential_access",
+      "authoritative_state_access",
+      "merge",
+      "deploy",
+      "architecture_redesign",
+      "scope_expansion"
+    ],
+    "required_actions": [
+      "proposal_only",
+      "state_assumptions",
+      "mark_unverified_claims",
+      "use_structured_missing_context_request_if_needed"
+    ]
+  },
+  "requested_output": {
+    "kind": "candidate_analysis",
+    "required_fields": [
+      "candidate_id",
+      "summary",
+      "reproduction_or_counterexample",
+      "why_current_test_misses_it",
+      "deterministic_test_candidate",
+      "assumptions",
+      "unverified_claims",
+      "missing_context_request"
+    ],
+    "missing_context_protocol": {
+      "fields": [
+        "kind",
+        "identifier",
+        "why_material",
+        "needed_for",
+        "minimum_scope",
+        "expected_form"
+      ],
+      "unrestricted_repository_expansion_forbidden": true
+    }
+  },
+  "lineage": {
+    "triggering_issue": "JON-202",
+    "task_id": "finger-persistent-event-normalization-qualification",
+    "parent_issues": [
+      "JON-176",
+      "JON-200"
+    ],
+    "source_repo": "ptown16801-lang/concord",
+    "source_branch": "Develo",
+    "source_commit": "4b6e41fd8d211746a81e870955e34475e66d02a3",
+    "contributions": [
+      {
+        "provider": "openai",
+        "model": "gpt-5.6-sol",
+        "session_or_agent_id": "chatgpt-builder-session",
+        "role": "Builder",
+        "permissions_tools": [
+          "github:write",
+          "linear:write"
+        ]
+      }
+    ]
+  },
+  "provider": {
+    "name": "deepseek",
+    "model": "qualification-placeholder",
+    "version": "bind-at-invocation"
+  },
+  "initiator": {
+    "identity": "chatgpt-orchestrator",
+    "role": "Orchestrator"
+  },
+  "validator": {
+    "policy_version": "JON-200/2026-09-25"
+  },
+  "created_at": "2026-09-25T21:15:00.000Z",
+  "data_handling": {
+    "classification": "public-repository-bounded-pilot",
+    "sanitization_decision": "Only four bounded public repository artifacts are included; no secrets, credentials, private records, or authoritative runtime state.",
+    "credential_exclusion": true,
+    "authoritative_state_exclusion": true,
+    "retention": {
+      "disposition": "retain with JON-202/JON-204 qualification evidence"
+    }
+  },
+  "deterministic_verification": {
+    "command": "node --test test/persistent-store-normalization.test.js test/jon-202-packet.test.js",
+    "expected_observable_behavior": [
+      "Existing regression preserves occurredAtMs=75 when elapsedMs=75 and eventTimestamp=50075.",
+      "Existing regression infers pointerKind=touch from touchmove when pointerType is absent.",
+      "Frozen packet validates under the JON-200 bounded-envelope contract with no unresolved material dependency."
+    ]
+  },
+  "stop_condition": "Do not invoke DeepSeek in JON-202. Stop when this packet is hashable, validator-clean, reproducible against the exact source revision, and ready for independent JON-204 audit."
+}
