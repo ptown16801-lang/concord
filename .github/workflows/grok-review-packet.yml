@@ -1,4 +1,5 @@
 name: GROK review packet
+# The packet is intentionally assembled without checking out pull-request code.
 
 on:
   pull_request:
