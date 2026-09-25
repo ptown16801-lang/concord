@@ -63,7 +63,7 @@ test('valid complete bounded envelope passes with derived completeness', () => {
   assert.equal(assertInvocationReady(sealed).envelope_hash, sealed.envelope_hash);
 });
 
-test('required task, evidence, lineage, policy and security declarations fail closed', () => {
+test('required task, evidence, lineage, policy and security declarations fail closed at construction', () => {
   for (const invalid of [
     base({ task_boundary: {} }),
     base({ included_context: [] }),
@@ -71,21 +71,18 @@ test('required task, evidence, lineage, policy and security declarations fail cl
     base({ validator: {} }),
     base({ data_handling: { classification: 'public', sanitization_decision: 'none' } }),
   ]) {
-    assert.equal(sealEnvelope(invalid).validation.valid, false);
+    assert.throws(() => sealEnvelope(invalid), /bounded envelope construction failed/);
   }
 });
 
-test('unresolved dependency fails and bare completeness assertion is rejected', () => {
+test('unresolved dependency fails and bare completeness assertion is rejected at construction', () => {
   const unresolved = base({ material_dependencies: [{ identifier: 'x', status: 'unresolved' }] });
-  assert.equal(sealEnvelope(unresolved).validation.valid, false);
-  assert.match(sealEnvelope(unresolved).validation.errors.join('\n'), /unresolved/);
-  assert.match(sealEnvelope(base({ context_complete: true })).validation.errors.join('\n'), /derived/);
+  assert.throws(() => sealEnvelope(unresolved), /unresolved/);
+  assert.throws(() => sealEnvelope(base({ context_complete: true })), /derived/);
 });
 
-test('secret-bearing fields are rejected', () => {
-  const sealed = sealEnvelope(base({ api_key: 'must-never-be-here' }));
-  assert.equal(sealed.validation.valid, false);
-  assert.match(sealed.validation.errors.join('\n'), /secret-bearing/);
+test('secret-bearing fields are rejected at construction', () => {
+  assert.throws(() => sealEnvelope(base({ api_key: 'must-never-be-here' })), /secret-bearing/);
 });
 
 test('canonicalization and hash are stable across set-like ordering, semantic changes alter hash', () => {
@@ -154,11 +151,14 @@ test('retry revalidates same sealed envelope and no fallback/raw overload exists
   assert.deepEqual(Object.keys(adapter), ['invoke']);
 });
 
-test('invalid envelope cannot invoke provider and optional unavailable provider is non-blocking', async () => {
+test('invalid envelope cannot be constructed or reach provider; optional unavailable provider is non-blocking', async () => {
   let calls = 0;
   const client = async () => { calls += 1; return {}; };
   const adapter = createDeepSeekAdapter({ client });
-  await assert.rejects(() => adapter.invoke(sealEnvelope(base({ material_dependencies: [{ identifier: 'missing', status: 'unresolved' }] }))), /validation failed/);
+  assert.throws(
+    () => sealEnvelope(base({ material_dependencies: [{ identifier: 'missing', status: 'unresolved' }] })),
+    /unresolved/,
+  );
   assert.equal(calls, 0);
   const unavailable = createDeepSeekAdapter({ client, availability: DEEPSEEK_PROVIDER_STATES.UNAVAILABLE });
   const state = await unavailable.invoke(sealEnvelope(base()));
