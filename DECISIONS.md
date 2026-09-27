@@ -934,14 +934,38 @@ Research claims, author recommendations, reproduced experiments, Concord-specifi
 
 ## Roles, holds and maintenance
 
+<a id="CON-093"></a>
+### CON-093 — Bounded subscription usage and human exceptions
+
+- Status: Accepted
+- Scope: All Concord agents and roles, including parent/child agents, research, reviews and retries; not account-wide enforcement
+- Acceptance: Owner delegated reasonable parameter selection, specified a 2x expected-use maximum, base subscriptions only, and retained explicit case-by-case override authority.
+- Acceptance date: 2026-09-25
+- Sources: [OWNER-SUBSCRIPTION-LIMITS-20260925](docs/decisions/evidence/OWNER-SUBSCRIPTION-LIMITS-20260925.md), [OWNER-ALL-AGENT-LIMITS-20260925](docs/decisions/evidence/OWNER-ALL-AGENT-LIMITS-20260925.md), [OWNER-CLAUDE-EFFICIENCY-20260925](docs/decisions/evidence/OWNER-CLAUDE-EFFICIENCY-20260925.md)
+- Later acceptance source: [OWNER-SIMPLE-SPENDING-20260925](docs/decisions/evidence/OWNER-SIMPLE-SPENDING-20260925.md)
+- Supersedes: None
+- Implementation: Simple subscription-only instructions and provider controls are the operating approach; custom allowance/launcher retained as deferred prototypes, not ordinary-work prerequisites.
+- Verification: Local deterministic tests only; no paid execution, provider billing verification or account-wide enforcement claimed.
+- Rationale: Bound retries and repair consumption without agent-authorized charges; keep owner authority explicit.
+
+Later owner acceptance: [OWNER-SIMPLE-SPENDING-20260925](docs/decisions/evidence/OWNER-SIMPLE-SPENDING-20260925.md). Use included subscription authentication and existing provider billing controls. No agent may purchase/refill credits, enable auto-top-up, upgrade, change billing settings or use paid API fallback without a specific human exception. Stop the affected provider when included access is unavailable or billing mode is unclear. Twice expected effort is a planning/checkpoint rule with cumulative retries, not an exact subscription meter. Keep records and unknowns, but do not block ordinary authorized work on complete historical telemetry or installation of a custom launcher. No role, isolated-worktree, tool-permission or independent-review requirement is waived.
+
+Superseded implementation requirement (retained history): the candidate configured $3 expected/$6 maximum API-list-price-equivalent workload, per-run reserves, fresh provider readings and protected admission. These defaults and the 65% cutoff are now deferred prototype parameters, not current operating limits. Do not initialize/reset its ledger, delete reservations, or activate its launcher to implement this simplification. The owner selected rules plus provider controls instead of a custom financial/security platform; narrower provider-specific containment requirements remain separate.
+
+Default additional monetary spending is zero: base subscriptions only; no agent-authorized credit purchase/refill, auto-top-up, paid overage, subscription upgrade or API/PAYG fallback. Bounded repair work uses already-included access with retained history and reassessment, never new money. Grok findings are not spending authority. The owner may explicitly override a specific case after being asked; record task, amount, action, expiry and actual human approval. This does not enable recurring refills or give agents blanket exception authority.
+
+The deferred managed prototype retains its fail-closed checks; this is not a bypass or activation. No progress or changed scope/security/authority requires reassessment. A local estimate cannot establish protection of personal usage elsewhere. Prior unknown consumption remains unknown. This simplification does not adopt JON-163 draft OD-1–OD-4, waive independent review, or authorize merge/deployment.
+
+Owner-adopted Claude efficiency supplement (2026-09-25): perform mechanical preflight locally, supply focused task context and tools, choose the model explicitly subject to role requirements, and retain observed per-attempt token categories across retries. See docs/CLAUDE_EFFICIENCY.md. The metadata collector is tested locally; instructions are not protected launch enforcement or a new budget. Task-appropriate specialist selection and reuse of completed setup evidence remain current. Historical priority to integrate Claude into the managed launcher and require complete telemetry/protected records is superseded by OWNER-SIMPLE-SPENDING-20260925. Native authentication, role/permission, task-specific safety and independent-review requirements remain; no prototype activation or usage reset is authorized.
+
 <a id="CON-070"></a>
 ### CON-070 — Roles and qualifying independence
 
 - Status: Accepted
-- Scope: Agreed JON-163 framework only
+- Scope: Agreed JON-163 framework and later owner four-role operating instruction
 - Acceptance: JON-163 final agreed framework and normative clarifications are explicitly frozen; detailed draft remains separate.
 - Acceptance date: 2026-09-24
-- Sources: [LIN-JON-163](docs/decisions/evidence/LIN-JON-163.md), [LIN-JON-163-COMMENTS](docs/decisions/evidence/LIN-JON-163-COMMENTS.md)
+- Sources: [OWNER-FOUR-ROLES-20260926](docs/decisions/evidence/OWNER-FOUR-ROLES-20260926.md), [LIN-JON-163](docs/decisions/evidence/LIN-JON-163.md), [LIN-JON-163-COMMENTS](docs/decisions/evidence/LIN-JON-163-COMMENTS.md)
 - Supersedes: None
 - Implementation: Framework agreement only; no provider qualification, agent implementation or operational automation installed.
 - Verification: Source reconciliation only; no product-runtime verification performed.
@@ -950,6 +974,16 @@ Research claims, author recommendations, reproduced experiments, Concord-specifi
 Eight capability roles: Planner, Builder, Reviewer, Verifier, Security/Governance Reviewer, Researcher, Integrator and Release Steward. They confer no Concord governmental authority. Human retains scope changes, final acceptance, merge/deployment authorization and governing-decision changes. Planner architecture needs qualifying independent review before it becomes an implementation contract. Independence follows contribution lineage, not role labels: record provider/model family, agent/session, contribution/role, artifact range and permissions. Material prior contribution disqualifies independent validation; unknown/unverifiable required lineage fails. Establish consequence class before applying independence thresholds. Shared infrastructure needs correlation assessment, not automatic rejection. Same-provider/different-session is conditionally eligible, never automatically independent.
 
 Integrator admission cannot waive missing evidence. Named-human exceptions need valid authority, waivability, scope, validity and artifact/version match plus all non-waivable gates; exception-authorized never means fully validated. Re-evaluate evidence after material artifact, assumption, security, tool/configuration, classification or dependency changes.
+
+Later owner operating instruction (2026-09-26): ChatGPT is the advisory scope
+planner; local Codex is the only code author; a separate qualifying local Codex
+session verifies without authoring; Grok/xAI is an advisory evidence-only external
+reviewer. These assignments supersede earlier Claude-builder/Grok-primary-reviewer
+wording for this workflow, without changing the eight capability roles or the
+independence thresholds above. Optional provider lanes require a separate bounded
+owner instruction compatible with these restrictions; no automatic substitution.
+No role can approve its own work. Task authority, protected data, spending and
+merge/deploy boundaries remain unchanged. CON-071 remains proposed.
 
 <a id="CON-071"></a>
 ### CON-071 — Detailed role specification remains proposed
@@ -1007,13 +1041,13 @@ Research Library’s twelve unfinished held items remain Do Not Execute; complet
 - Scope: Decision maintenance
 - Acceptance: Explicit maintenance requirements in current owner request.
 - Acceptance date: 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md)
+- Sources: [GH-WORKFLOW-REPAIR-20260927](docs/decisions/evidence/GH-WORKFLOW-REPAIR-20260927.md), [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md)
 - Supersedes: None
-- Implementation: Instructions, generator, validator, focused tests and CI edits are published in PR41. Integration into designated canonical branch Develo remains pending.
+- Implementation: PR41 decision tooling and PR43 packet workflow are integrated in Develo at 4b6e41f. Native PR/Node CI/conversation gates are configured; the September 27 workflow repair remains a review candidate until merged.
 - Verification: Node 22/24 GitHub CI passed at 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77; later revisions require their own results. Independent review, canonical integration and sustained adherence remain separate and unverified. See VALIDATION.md and the PR publication receipt.
 - Rationale: Make updates traceable without creating a coordination service or claiming divergence impossible.
 
-Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. This branch is a candidate until integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.
+Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. Later repair branches remain candidates until individually integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.
 
 <a id="CONCORD-WF-002"></a>
 ### CONCORD-WF-002 — Consult Linear before large decisions

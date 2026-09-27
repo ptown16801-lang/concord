@@ -3,14 +3,16 @@
 ## Authority and integration identity
 
 The designated master is `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`.
-The current documentation branch is a candidate until reviewed and integrated.
+PR41 and PR43 are integrated into Develo at `4b6e41fd8d211746a81e870955e34475e66d02a3`.
+Later repair branches remain candidates until their own review and integration.
 Linear preserves actual owner decisions, discussions, dependencies and work status;
 the master consolidates their operative effect. Historical interviews, specs, source
 snapshots and handoffs are evidence. CURRENT_DECISIONS.md is generated navigation.
 An unincorporated later explicit owner correction still controls: identify it, record
 it and reconcile it before dependent work; a stale master cannot cancel owner intent.
 
-This task’s integration base is Develo `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
+Historical September 24 integration base: Develo `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
+This paragraph records that attempt, not the expected base of future work.
 This avoids importing unaccepted runtime branches. JON-141 has a separate existing
 runtime integrator. Do not rewrite that branch or assume its candidate is integrated.
 The documentation candidate can be reviewed independently; if the runtime aggregate
@@ -114,7 +116,8 @@ Saved is not committed; committed is not pushed; pushed is not reviewed; merged 
 not policy acceptance, runtime verification or deployment. A handoff request is not
 a received review. Do not say ongoing enforcement is active because instructions or
 CI edits were written. This candidate's local checks and PR41 CI have been exercised;
-canonical-branch integration and ongoing adherence remain separate, unverified states.
+that historical publication checkpoint is superseded by the PR41/PR43 merge record
+above. Later revisions, independent acceptance and ongoing adherence require their own evidence.
 
 ## Automated checks and limits
 
@@ -132,3 +135,25 @@ are recorded but not network-validated in ordinary checks. Historical source lin
 remain as issued even when a snapshot references an unavailable file. Humans must
 review these limits. Required owner decisions cannot be satisfied with fabricated
 URLs/dates, a passing check or a placeholder “approval.”
+
+
+## Native GitHub merge controls and review packets
+
+Use GitHub pull requests and native rulesets, required `test (22.x)` / `test (24.x)`
+checks from GitHub Actions, an up-to-date base and resolved review conversations.
+The repository currently has one human collaborator. A second GitHub approval must
+not be required until an eligible second collaborator exists; no author can count
+as their own independent reviewer. The owner retains final acceptance/merge control.
+Record the eligible non-authoring verifier's exact-revision evidence in the PR.
+Do not create a custom approval bot or mistake a required check for human acceptance.
+The repair receipt distinguishes proposed settings from verified installed settings.
+
+The existing packet workflow is advisory evidence assembly. It uses revision-pinned
+comparisons, labels CI snapshots, refreshes on test-workflow completion and PR text
+changes, and only updates its own bot-authored comment. The publication lock is
+repository-wide; GitHub can coalesce pending runs. Use the workflow's manual PR-number
+refresh if a packet is missing. No provider is invoked and no PR code is checked out.
+CI completion refresh and manual dispatch become available only when the repaired
+workflow is on the default branch. Reviewers must still check live revisions/results;
+a revision can change immediately after any API check. Diff excerpts and missing
+context must not be treated as complete evidence.

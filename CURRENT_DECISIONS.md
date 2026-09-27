@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This branch remains a candidate until integrated. Read entry scope, acceptance and implementation limits.
 
-Master SHA-256 (exact UTF-8 bytes): `e71f1a349c92ffd0fb33b34a472445690457fe8cbce206f382f63ea59749be68`
+Master SHA-256 (exact UTF-8 bytes): `08eff59b963bfc16dad087e50ff559c5f84fc95471254d7d15bc1b7e18079d4b`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -63,6 +63,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-064](DECISIONS.md#CON-064) | Accepted | Finger completed beta and residual work |
 | [CON-065](DECISIONS.md#CON-065) | Accepted | Archives and research-library storage |
 | [CON-066](DECISIONS.md#CON-066) | Accepted | Research and reusable evidence |
+| [CON-093](DECISIONS.md#CON-093) | Accepted | Bounded subscription usage and human exceptions |
 | [CON-070](DECISIONS.md#CON-070) | Accepted | Roles and qualifying independence |
 | [CON-071](DECISIONS.md#CON-071) | Proposed | Detailed role specification remains proposed |
 | [CON-072](DECISIONS.md#CON-072) | Accepted | Execution holds and existing writers |

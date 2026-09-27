@@ -25,6 +25,9 @@ FINGER_IDENTITY_SECRET='replace-with-a-random-secret' npm start
 ```
 
 The demo is served at `http://localhost:3000/` by default. Use `npm test` for the test suite and `npm run check` for syntax checks.
+If Node/npm are not on PATH, use `bash scripts/with-node.sh npm test` or
+`bash scripts/with-node.sh npm run check`. The launcher only selects an existing
+supported runtime; it does not install software. See [local setup](docs/LOCAL_SETUP.md).
 
 ### Environment
 
