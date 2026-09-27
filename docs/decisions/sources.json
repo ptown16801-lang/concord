@@ -3404,5 +3404,77 @@
     "retrieved": "2026-09-24T23:12:42.756568+00:00",
     "snapshot": "docs/decisions/evidence/GH-PR41-3D8D8A0.md",
     "sha256": "4bee4890da291c87a4407f192871febbf55654e7700ad8254cbdd8dd967c86da"
+  },
+  "OWNER-SUBSCRIPTION-LIMITS-20260925": {
+    "title": "Owner delegated 2x usage policy and subscription-only boundary",
+    "location": "Local Concord Claude setup conversation, 2026-09-25",
+    "version": "2026-09-25 case-specific override clarification",
+    "date": "2026-09-25; exact message timestamps unavailable",
+    "classification": "Owner instruction and explicitly delegated implementation defaults",
+    "scope": "Concord managed local Claude/Grok allowance",
+    "relationship": "Extends local setup authority; does not adopt pending role draft or merge authority",
+    "snapshot": "docs/decisions/evidence/OWNER-SUBSCRIPTION-LIMITS-20260925.md",
+    "sha256": "7ebb64f7e3e971be75a7969e586a80883d7a3dade8df063be472322ab33f5867",
+    "retrieved": "2026-09-25",
+    "inspection": "Direct user messages retained with implementation disposition and limitations"
+  },
+  "OWNER-ALL-AGENT-LIMITS-20260925": {
+    "title": "Owner extends subscription limits to all agents",
+    "location": "Current local Concord setup conversation, 2026-09-25",
+    "version": "All-agent scope correction",
+    "date": "2026-09-25; exact message timestamp unavailable",
+    "classification": "Direct owner instruction",
+    "scope": "CON-093; every Concord agent and role",
+    "relationship": "Supersedes narrow Claude/Grok partitions without resetting objective history or authorizing paid use",
+    "snapshot": "docs/decisions/evidence/OWNER-ALL-AGENT-LIMITS-20260925.md",
+    "sha256": "079b264707319e9b65cada3b1608deb97ad9fd486bc5366de04ca86947316458",
+    "retrieved": "2026-09-25",
+    "inspection": "Latest direct owner correction only; prior evidence retained unchanged"
+  },
+  "OWNER-SIMPLE-SPENDING-20260925": {
+    "title": "Owner adopts rules plus provider billing controls; defers custom enforcement",
+    "location": "Current Concord setup conversation",
+    "version": "Owner acceptance following official-documentation comparison",
+    "date": "2026-09-25; exact message timestamp unavailable",
+    "classification": "Direct owner acceptance",
+    "scope": "CON-093; all Concord agents",
+    "relationship": "Supersedes custom launch/telemetry gates as ordinary-work prerequisites; retains no-extra-spend, history, roles and review",
+    "snapshot": "docs/decisions/evidence/OWNER-SIMPLE-SPENDING-20260925.md",
+    "sha256": "36a41106fbf6b85648ad7cef406be953d27c5c67c44884f9ec32ec5280934ca6",
+    "retrieved": "2026-09-25",
+    "inspection": "User-visible proposal and exact subsequent acceptance; no credentials or private reasoning"
+  },
+  "OWNER-CLAUDE-EFFICIENCY-20260925": {
+    "title": "Owner adopts Claude efficiency practices",
+    "location": "Current local usage-audit conversation",
+    "version": "v2; current-implementation clarification",
+    "date": "2026-09-25; exact timestamp unavailable",
+    "classification": "Direct owner instruction interpreted in context",
+    "scope": "CON-093; Concord Claude operating practice",
+    "relationship": "Supplement; preserves shared allowance and existing roles",
+    "snapshot": "docs/decisions/evidence/OWNER-CLAUDE-EFFICIENCY-20260925.md",
+    "sha256": "2c7aa14ca36116d8f83e0313df1d98336c23572076f646d5e9901b24d9c2da08",
+    "retrieved": "2026-09-25",
+    "inspection": "Initial acceptance and later explicit documentation-update instruction, with supersession retained"
+  },
+  "OWNER-FOUR-ROLES-20260926": {
+    "location": "https://linear.app/jons-garage/issue/JON-163#comment-bbfbad00-3b13-40a8-afe9-aa8ebdfce7e7",
+    "version": "2026-09-26T09:58:50.423Z",
+    "date": "2026-09-26",
+    "classification": "Owner operating instruction; scoped summary",
+    "scope": "CON-070 operational roles; not adoption of CON-071",
+    "relationship": "Later four-role instruction narrows provider assignments while preserving capability-role independence",
+    "snapshot": "docs/decisions/evidence/OWNER-FOUR-ROLES-20260926.md",
+    "sha256": "f9d866150f5d6108b5a0108f8689924eba86a68554b15ea6e61510630eabb91d"
+  },
+  "GH-WORKFLOW-REPAIR-20260927": {
+    "location": "https://github.com/ptown16801-lang/concord/rules/23790153",
+    "version": "2026-09-27 repair; canonical 4b6e41fd8d211746a81e870955e34475e66d02a3",
+    "date": "2026-09-27",
+    "classification": "Observed GitHub configuration and owner repair scope; not policy acceptance",
+    "scope": "CON-074 integration and validation controls",
+    "relationship": "Supersedes old pending-PR41 integration observation; preserves independent/human acceptance",
+    "snapshot": "docs/decisions/evidence/GH-WORKFLOW-REPAIR-20260927.md",
+    "sha256": "9c15ee501b857dd842ed2def40c9e34056117bf981d6e0363e9cadbf968158e1"
   }
 }
