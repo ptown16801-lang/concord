@@ -1,5 +1,31 @@
 # Concord project instructions
 
+## Required Linear delivery — owner correction 2026-09-30
+
+Owner instruction in chat `01a0f23a-061a-7c82-bcd4-c8bb3a3cf597`:
+“send the unsent, You need to add to agents or decisions that you must do this”.
+
+For authorized Concord work, deliver completed research, design drafts, review
+findings and implementation evidence to the relevant existing Linear issue before
+reporting delivery complete. This is standing authorization for those bounded
+delivery documents/comments; do not ask again merely to send the work. Respect
+later explicit local-only instructions and protected-data/disclosure boundaries.
+
+Check existing Linear records first to avoid duplicates. Send the actual reviewable
+content or an accessible exact-version artifact, not just a local filesystem path.
+Include source revision or digest, findings, actual checks, unresolved limits and
+review/acceptance state. Preserve original reports and clearly identify subsequent
+corrections; do not present superseded failures or test counts as current results.
+Read back every saved document/comment, verify its issue association and content,
+and give the owner its Linear link. If access or safe disclosure is blocked, retain
+the local artifact and explicitly report **Linear delivery pending**, the reason
+and exact next action. A local save or attempted tool call is not delivery.
+
+This reporting authorization does not authorize issue creation, status/assignment
+changes, agent dispatch, policy adoption, commits, pushes, merges or deployment.
+Record those states separately using the [completion receipt](docs/decisions/WORKFLOW.md#completion--synchronization-receipt).
+This is a working instruction, not a claim that a background synchronization service exists.
+
 Concord and The Form are peers; Vote is a folder only. Deployment is Linux-only.
 Read the relevant accepted entries in [DECISIONS.md](DECISIONS.md) before material work.
 The designated canonical identity is `ptown16801-lang/concord:Develo:/DECISIONS.md`.
