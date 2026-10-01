@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""Local trusted-code dispatcher. Network isolation, not filesystem isolation."""
+import fcntl, hashlib, json, os, pathlib, signal, stat, subprocess, sys, tempfile, time
+TOOLS = {
+ 'WolframLanguageEvaluator': ({'code'}, {'timeConstraint'}),
+ 'SymbolDefinition': ({'symbols'}, {'includeContextDetails','maxLength'}),
+ 'CodeInspector': (set(), {'code','file','tagExclusions','severityExclusions','confidenceLevel','limit'}),
+ 'TestReport': ({'paths'}, {'timeConstraint','memoryConstraint','newKernel'}),
+ 'ReadNotebook': ({'notebook'}, set()),
+ 'WriteNotebook': ({'file','markdown'}, {'overwrite'}),
+}
+def pairs(items):
+ d={}
+ for k,v in items:
+  if k in d: raise ValueError('Duplicate JSON key')
+  d[k]=v
+ return d
+
+def require(condition,message):
+ if not condition: raise ValueError(message)
+
+def read_request(path):
+ with os.fdopen(os.open(path,os.O_RDONLY|os.O_NONBLOCK),'rb') as stream:
+  require(stat.S_ISREG(os.fstat(stream.fileno()).st_mode), 'Expected regular request file')
+  data=stream.read(1048577)
+ require(len(data)<=1048576, 'Request too large')
+ return data
+
+def sandbox_command(payload, mounts=()):
+ return ['bwrap','--unshare-net','--unshare-pid','--die-with-parent','--dev-bind','/','/',*mounts,*payload]
+
+def group_exists(pgid):
+ try:os.killpg(pgid,0);return True
+ except ProcessLookupError:return False
+
+def signal_group(pgid,sig):
+ try:os.killpg(pgid,sig)
+ except ProcessLookupError:pass
+
+def run_job(command,env,pass_fds=(),timeout=120,grace=3):
+ p=subprocess.Popen(command,env=env,start_new_session=True,pass_fds=pass_fds)
+ try:return p.wait(timeout=timeout)
+ except subprocess.TimeoutExpired:
+  signal_group(p.pid,signal.SIGTERM)
+  # Do not mistake the leader exiting for all descendants terminating.
+  try:p.wait(timeout=grace)
+  except subprocess.TimeoutExpired:pass
+  signal_group(p.pid,signal.SIGKILL)
+  try:p.wait(timeout=grace)
+  except subprocess.TimeoutExpired:
+   print('Timed out; job termination could not be verified',file=sys.stderr);return 125
+  deadline=time.monotonic()+grace
+  while group_exists(p.pid) and time.monotonic()<deadline:time.sleep(0.02)
+  if group_exists(p.pid):
+   print('Timed out; process group remains, termination unverified',file=sys.stderr);return 125
+  print('Timed out; owned process group ended and PID namespace torn down',file=sys.stderr)
+  return 124
+
+def main():
+ if len(sys.argv)!=2 or sys.argv[1] in ('--help','help'):
+  print('Usage: wolfram-direct /absolute/request.json\nJSON: {"tool": NAME, "arguments": {...}}\nTools: '+', '.join(TOOLS)+'\nNo MCP, network, automatic installations or shared sessions. Trusted local code only.')
+  return 0 if len(sys.argv)==2 else 2
+ path=pathlib.Path(sys.argv[1]); require(path.is_absolute(), 'Use an absolute request path')
+ data=read_request(path)
+ r=json.loads(data.decode('utf-8'),object_pairs_hook=pairs,parse_constant=lambda value: (_ for _ in ()).throw(ValueError('Non-finite JSON number')))
+ require(isinstance(r,dict) and set(r)=={'tool','arguments'} and r['tool'] in TOOLS, 'Unsupported request/tool')
+ a=r['arguments']; required,optional=TOOLS[r['tool']]
+ require(isinstance(a,dict) and required<=set(a)<=required|optional, 'Invalid arguments')
+ require(all(isinstance(v,(str,bool,int,float,list)) for v in a.values()), 'Invalid value type')
+ if r['tool']=='CodeInspector': require(('code' in a)^('file' in a), 'Supply code or file')
+ for k in ('file','notebook'):
+  if k in a: require(isinstance(a[k],str) and pathlib.Path(a[k]).is_absolute(), 'Use absolute local file paths')
+ if r['tool']=='WriteNotebook':
+  require(a['file'].endswith('.nb'), 'Expected .nb output')
+  require(type(a.get('overwrite',False)) is bool, 'overwrite must be Boolean')
+  require(a.get('overwrite',False) or not pathlib.Path(a['file']).exists(), 'Output exists; overwrite is false')
+ if r['tool']=='ReadNotebook':
+  notebook=pathlib.Path(a['notebook'])
+  require(notebook.suffix.lower()=='.nb', 'Expected .nb source')
+  with os.fdopen(os.open(notebook,os.O_RDONLY|os.O_NONBLOCK),'rb') as stream:
+   require(stat.S_ISREG(os.fstat(stream.fileno()).st_mode), 'Expected regular notebook file')
+   data=stream.read(8*1048576+1)
+  require(len(data)<=8*1048576, 'Notebook source exceeds 8 MiB')
+  source=data.decode('utf-8')
+  print(json.dumps({'mode':'static-source', 'evaluated':False, 'structureValidated':False, 'sha256':hashlib.sha256(data).hexdigest(), 'source':source},ensure_ascii=True))
+  return 0
+ root=pathlib.Path(os.environ.get('WOLFRAM_DIRECT_ROOT',str(pathlib.Path.home()/'.local/share/wolfram-agenttools-direct')))
+ state=pathlib.Path(os.environ.get('WOLFRAM_DIRECT_STATE_ROOT',str(pathlib.Path.home()/'.local/state/wolfram-agenttools-direct/runs')))
+ require(state.is_absolute(), 'State root must be absolute')
+ state.mkdir(parents=True,exist_ok=True,mode=0o700)
+ invocation=pathlib.Path(tempfile.mkdtemp(prefix='run-',dir=state))
+ env=os.environ.copy();env['LLMKIT_ENABLED']='false'
+ env['WOLFRAM_DIRECT_INVOCATION_ROOT']=str(invocation)
+ print('Retained invocation state: '+str(invocation),file=sys.stderr)
+ snapshot=invocation/'request.json'
+ snapshot.write_bytes(data);snapshot.chmod(0o400)
+ request_digest=hashlib.sha256(data).hexdigest()
+ env['WOLFRAM_DIRECT_REQUEST_SHA256']=request_digest
+ (invocation/'request-receipt.json').write_text(json.dumps({'sha256':request_digest,'bytes':len(data),'transport':'sealed-memfd-readonly-bind'})+'\n')
+ fd=os.memfd_create('wolfram-validated-request',os.MFD_ALLOW_SEALING)
+ try:
+  with os.fdopen(os.dup(fd),'wb') as stream:stream.write(data)
+  os.lseek(fd,0,os.SEEK_SET)
+  fcntl.fcntl(fd,fcntl.F_ADD_SEALS,fcntl.F_SEAL_WRITE|fcntl.F_SEAL_GROW|fcntl.F_SEAL_SHRINK|fcntl.F_SEAL_SEAL)
+  cmd=sandbox_command(['/usr/bin/wolframscript','-file',str(root/'run.wls'),str(snapshot)],['--ro-bind-data',str(fd),str(snapshot)])
+  return run_job(cmd,env,pass_fds=(fd,))
+ finally:os.close(fd)
+if __name__=='__main__':
+ try:sys.exit(main())
+ except (AssertionError,ValueError,OSError,TypeError) as e:print(str(e),file=sys.stderr);sys.exit(2)
