@@ -37,8 +37,26 @@ Fixtures use fresh owned temporary directories and are retained as evidence.
 Live checks preserve Bubblewrap network isolation and require normal host
 permission to create namespaces. Do not retry without isolation.
 
-JON-240 (timeout cleanup), JON-241 (request consistency), and JON-242 (older test
-entry points) remain pending in this first batch. Broader-use clearance is not
-claimed. No merge or deployment is requested.
+## Remaining remediation batch: JON-240–242
+
+Timeout cleanup uses an owned process group and PID namespace, including detached
+children that ignore TERM. Request execution uses the exact validated byte buffer,
+a sealed memory-backed mount and a driver digest/argument check.
+
+`test-safety.py` is the canonical regression entry point for all five repairs.
+It creates its own notebook, request, test and retained-session fixtures. Historical
+`test-local.py` and `test-boundaries.py` in the original integration evidence are
+superseded audit evidence, not current regression entry points. No existing sample
+notebook or fixed temporary directory is required. Explicit checks also run under
+Python optimization. Live checks include inspection, symbol definitions, test
+reports, notebook write/static readback, overwrite refusal, timeout descendants,
+request replacement and session retention.
+
+Final producer suite: 41/41 passed twice from outside the checkout, including
+`PYTHONOPTIMIZE=1`. Fresh non-authoring review: technical PASS with 22 focused
+checks and no blocking findings. Exact source hashes, checks and review limits
+are retained in [the verification receipt](verification-20261001.json).
+
+Broader-use clearance is not claimed. No merge or deployment is requested.
 
 Decision impact: No decision change

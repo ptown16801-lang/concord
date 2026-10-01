@@ -5,7 +5,34 @@ PacletInstall[name_String, ___] := Module[{p = PacletFind[name]},
 Protect[PacletInstall];
 If[!MemberQ[(#["Version"] & /@ PacletFind["Wolfram/AgentTools"]), "2.2.0"], Exit[3]];
 Get["/home/cornholio/.Wolfram/Paclets/Repository/Wolfram__AgentTools-2.2.0/Kernel/AgentToolsLoader.wl"];
-request = Import[Last[$ScriptCommandLine], "RawJSON"];
+requestPath = Last[$ScriptCommandLine];
+expectedDigest = Environment["WOLFRAM_DIRECT_REQUEST_SHA256"];
+If[!StringQ[expectedDigest] || !StringMatchQ[expectedDigest, Repeated[HexadecimalCharacter, {64}]] || !FileExistsQ[requestPath],
+ WriteString["stderr", "Missing snapshot/digest\n"]; Exit[2]];
+requestBytes = Quiet[Check[BinaryReadList[requestPath, "Byte", 1048577], $Failed]];
+If[!ListQ[requestBytes] || Length[requestBytes] > 1048576 ||
+ Hash[ByteArray[requestBytes], "SHA256", "HexString"] =!= expectedDigest,
+ WriteString["stderr", "Request digest mismatch or too large\n"]; Exit[2]];
+request = Quiet[Check[ImportString[FromCharacterCode[requestBytes, "UTF8"], "RawJSON"], $Failed]];
+allowed = <|
+ "WolframLanguageEvaluator" -> {{"code"}, {"timeConstraint"}},
+ "SymbolDefinition" -> {{"symbols"}, {"includeContextDetails", "maxLength"}},
+ "CodeInspector" -> {{}, {"code", "file", "tagExclusions", "severityExclusions", "confidenceLevel", "limit"}},
+ "TestReport" -> {{"paths"}, {"timeConstraint", "memoryConstraint", "newKernel"}},
+ "WriteNotebook" -> {{"file", "markdown"}, {"overwrite"}}
+|>;
+If[!AssociationQ[request] || Sort[Keys[request]] =!= {"arguments", "tool"} ||
+ !StringQ[request["tool"]] || !KeyExistsQ[allowed, request["tool"]] || !AssociationQ[request["arguments"]],
+ WriteString["stderr", "Unsupported request/tool\n"]; Exit[2]];
+arguments = request["arguments"]; rules = allowed[request["tool"]];
+If[Complement[rules[[1]], Keys[arguments]] =!= {} || Complement[Keys[arguments], Join @@ rules] =!= {} ||
+ !AllTrue[Values[arguments], (StringQ[#] || NumberQ[#] || ListQ[#] || MemberQ[{True, False}, #]) &],
+ WriteString["stderr", "Invalid arguments\n"]; Exit[2]];
+If[request["tool"] === "CodeInspector" && !Xor[KeyExistsQ[arguments,"code"],KeyExistsQ[arguments,"file"]], Exit[2]];
+If[!AllTrue[Select[{"file","notebook"},KeyExistsQ[arguments,#]&], (StringQ[arguments[#]] && StringStartsQ[arguments[#],"/"])&], Exit[2]];
+If[request["tool"] === "WriteNotebook" &&
+ (!StringEndsQ[arguments["file"],".nb"] || !MemberQ[{True,False},Lookup[arguments,"overwrite",False]] ||
+ (Lookup[arguments,"overwrite",False] =!= True && FileExistsQ[arguments["file"]])), Exit[2]];
 If[request["tool"] === "ReadNotebook", WriteString["stderr", "Use the dispatcher static-source reader; notebook import is disabled\n"]; Exit[2]];
 stateRoot = Environment["WOLFRAM_DIRECT_INVOCATION_ROOT"];
 If[!StringQ[stateRoot] || !StringStartsQ[stateRoot, "/"] || !DirectoryQ[stateRoot] || !StringStartsQ[FileNameTake[stateRoot], "run-"],
