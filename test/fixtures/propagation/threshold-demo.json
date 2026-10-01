@@ -1,0 +1,1 @@
+{"label":"synthetic arithmetic demonstration","cases":[{"D":"0","affirmative":"0","threshold":"0","outcome":"not-satisfied"},{"D":"7","affirmative":"4","threshold":"5","outcome":"not-satisfied"},{"D":"7","affirmative":"5","threshold":"5","outcome":"satisfied"},{"D":"9007199254740993","affirmative":"5404319552844596","threshold":"5404319552844596","outcome":"satisfied"}]}
