@@ -227,3 +227,94 @@ test('conflicting collector history pauses approved work without effects', async
   assert.equal(f.runtime.record('sample/one').version, 0);
   assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 1);
 });
+
+for (const action of ['sample.write', 'sample.read']) {
+  test(`conflicting outcome receipt pauses ${action} before commit, including after restart`, async t => {
+    const f = await fixture(t);
+    await f.runtime.admit(f.signed(f.request('operation-1', action)));
+    f.collector.record('synthetic:operation-1:committed', { type: 'conflicting' });
+    const approval = f.runtime.operation('operation-1');
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const outcome = f.runtime.resume('operation-1');
+      assert.equal(outcome.waitingReason, 'AUDIT_CONFLICT');
+      assert.equal(outcome.status, 'pending');
+      assert.equal(outcome.result, null);
+      assert.deepEqual(f.runtime.operation('operation-1'), approval);
+      assert.deepEqual(f.runtime.record('sample/one'), { value: 'before', version: 0 });
+      assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 1);
+      assert.deepEqual(f.runtime.auditEntries().map(e => e.type), ['approved']);
+      await f.restart();
+    }
+    // Replacing the damaged collector is a trusted recovery action. Approval
+    // survives expiry/revocation and must complete exactly once after recovery.
+    const replacement = new LocalAuditCollector(f.options.database + '.recovered');
+    t.after(() => replacement.close());
+    f.runtime.collector = replacement;
+    f.advance(120_000);
+    f.runtime.revoke('agent-1');
+    const committed = f.runtime.resume('operation-1');
+    assert.equal(committed.status, 'committed');
+    assert.deepEqual(f.runtime.resume('operation-1'), committed);
+    assert.equal(f.runtime.record('sample/one').version, action === 'sample.write' ? 1 : 0);
+    assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 0);
+    assert.deepEqual(replacement.entries().map(e => e.payload.type).sort(), ['approved', 'committed', 'execution-intent']);
+  });
+}
+
+test('outcome conflict introduced after execution intent still prevents the effect', async t => {
+  const f = await fixture(t);
+  await f.runtime.admit(f.signed(f.request()));
+  const record = f.collector.record.bind(f.collector);
+  f.collector.record = (id, payload) => {
+    record(id, payload);
+    if (payload.type === 'execution-intent') record('synthetic:operation-1:committed', { type: 'conflicting' });
+  };
+  const outcome = f.runtime.resume('operation-1');
+  assert.equal(outcome.waitingReason, 'AUDIT_CONFLICT');
+  assert.equal(outcome.status, 'pending');
+  assert.equal(f.runtime.record('sample/one').version, 0);
+  assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 1);
+});
+
+test('matching preexisting outcome receipt is reconciled without duplicate effects', async t => {
+  const f = await fixture(t);
+  await f.runtime.admit(f.signed(f.request()));
+  const op = f.runtime.operation('operation-1');
+  f.collector.record('synthetic:operation-1:committed', {
+    type: 'committed', operationId: op.id, requestDigest: op.digest,
+    result: { value: 'after', version: 1 },
+  });
+  assert.equal(f.runtime.resume(op.id).status, 'committed');
+  await f.restart();
+  assert.equal(f.runtime.resume(op.id).status, 'committed');
+  assert.equal(f.runtime.record('sample/one').version, 1);
+  assert.equal(f.collector.entries().filter(e => e.payload.type === 'committed').length, 1);
+});
+
+test('outcome compatibility check holds the collector write lock and does not publish early success', async t => {
+  const f = await fixture(t);
+  await f.runtime.admit(f.signed(f.request()));
+  const concurrent = new LocalAuditCollector(f.options.database.replace('-domain.sqlite', '-collector.sqlite'));
+  concurrent.db.exec('PRAGMA busy_timeout=0');
+  t.after(() => concurrent.close());
+  const check = f.collector.assertCompatible.bind(f.collector);
+  let checked = false;
+  f.collector.assertCompatible = (id, payload) => {
+    assert.throws(() => concurrent.record(id, { type: 'conflicting' }), /locked/);
+    assert.equal(f.runtime.record('sample/one').version, 0);
+    assert.equal(f.collector.entries().some(e => e.payload.type === 'committed'), false);
+    check(id, payload);
+    checked = true;
+  };
+  // A local database failure after the compatibility check must not leave a
+  // success receipt claiming a commit that was rolled back.
+  f.runtime.db.exec("CREATE TRIGGER fail_effect BEFORE UPDATE ON records BEGIN SELECT RAISE(ABORT,'test effect failure'); END");
+  assert.equal(f.runtime.resume('operation-1').status, 'pending');
+  assert.equal(checked, true);
+  assert.equal(f.runtime.record('sample/one').version, 0);
+  assert.equal(f.collector.entries().some(e => e.payload.type === 'committed'), false);
+  assert.deepEqual(f.runtime.auditEntries().map(e => e.type), ['approved']);
+  assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 1);
+  f.runtime.db.exec('DROP TRIGGER fail_effect');
+  assert.equal(f.runtime.resume('operation-1').status, 'committed');
+});

@@ -1,0 +1,412 @@
+[
+  {
+    "path": "/home/cornholio/.codex/worktrees/6016a075-1198-4e08-ac32-f4eb1429c7c9/concord/.git'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord-jon85",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord-jon85','/tmp/concord-conflict-fixes','/tmp/concord-coin-decisions-20260924','/tmp/concord-agt-expiry','/tmp/concord-jon135-review'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord-jon85\\n##",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord/.git/worktrees/concord-jon141-repair-audit/index.lock'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord/AGENTS.md",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord/docs",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord/docs/GOVERNANCE_SANDBOX.md:26:The",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord\\n??",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord\\nCornhole\\n##",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord\\nHEAD",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord\\npackage-lock.json\\nREADME.md\\npackage.json\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord\\npackage.json\\nREADME.md\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/concord\\npackage.json\\nREADME.md\\ntest/agt-audit-regressions.test.js\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/home/cornholio/projects/health\\n/home/cornholio/projects/concord\\n/home/cornholio/projects/health\\n/tmp/concord-conflict-fixes\\n/tmp/health-python-tests.log\\n/tmp/health-review-build.log\\n/tmp/health-review-final-build.log\\n/tmp/health-review-tests.log\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord*",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-agt-expiry",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-agt-expiry/docs",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-agt-expiry/docs/GOVERNANCE_SANDBOX.md:26:The",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-agt-expiry\\n/tmp/concord-conflict-fixes\\nv24.21.0\\n11.19.0\\n/usr/bin/bwrap\\n/home/cornholio/.nvm/versions/node/v22.23.2/bin/node\\n/home/cornholio/.nvm/versions/node/v24.21.0/bin/node\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-conflict-fixes",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-conflict-fixes/docs",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-conflict-fixes/docs/GOVERNANCE_SANDBOX.md:26:The",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-conflict-fixes/docs/INTEGRATION_RECONCILIATION.md:84:AppArmor",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-fixed-node22.log",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-fixed-node24.log",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-governance-demo-A9M7uW\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-governance-demo-q3UKs5\\n\\n[node1-isolation",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-governance-demo-t0nUEN\\n\\n[node1-isolation",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-governance-fixes-20260923",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review'...\\ndone.\\nSwitched",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/[eval1",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/docs/JON-135_ACCEPTANCE.md",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/docs/JON-135_ACCEPTANCE.md\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/docs/JON-135_ACCEPTANCE.md\\n+#",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/docs/JON-135_ACCEPTANCE.md\\n@@\\n-approval-preservation",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/docs/evidence/jon-135/after-repair/summary.json",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/examples/agt-local/fixture.js:24:49",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/examples/agt-local/fixture.js:24\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/examples/agt-local/isolated-workflow.js:30:10",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/examples/agt-local/isolation.js:33:9\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/scripts/probe-agt-rowid.mjs",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/scripts/probe-agt-rowid.mjs\\n+//",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/scripts/probe-agt-rowid.mjs\\n@@\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/scripts/verify-agt-candidate.mjs",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/scripts/verify-agt-candidate.mjs\\n+import",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/scripts/verify-agt-candidate.mjs\\n@@\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/test/agt-adversarial/acceptance.test.js",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/test/agt-adversarial/acceptance.test.js:102:10",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/test/agt-adversarial/acceptance.test.js:215:38",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/test/agt-adversarial/acceptance.test.js\\n+import",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon135-review/test/agt-adversarial/acceptance.test.js\\n@@\\n-function",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-additive-7ba5bc5.patch",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-repair-audit",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-repair-audit'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-repair-audit/docs/INTEGRATION_RECONCILIATION.md\\n@@\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-repair-audit/examples/agt-local/isolated-workflow.js:29:15\\nEmitted",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-repair-audit\\nuid=1000(cornholio",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon141-superseded-unpushed-2b61bd3.patch",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon86-independent-probes.log",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/concord-jon86-independent-probes.mjs",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-20260924",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-20260924'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-20260924/summary.json",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-20260924/summary.json'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-20260924/summary.json\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-after-repair",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-after-repair'",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-evidence-after-repair/summary.json\\n",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-review-new-run",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-rowid-node22.log",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-rowid-node22.log\\nexit",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-rowid-node24.log",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon135-rowid-node24.log\\nexit",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon141-independent-node22.log",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon141-independent-node22.log\\nexit",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon141-independent-node24.log",
+    "exists": true,
+    "classification": "Referenced evidence; presence is not acceptance"
+  },
+  {
+    "path": "/tmp/jon141-independent-node24.log\\nexit",
+    "exists": false,
+    "classification": "Referenced evidence; presence is not acceptance"
+  }
+]

@@ -1,0 +1,1826 @@
+[
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "CHANGELOG.md",
+    "blob": "c6a061a03e2318d095d2df85be0b47e503f29f28"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "README.md",
+    "blob": "c71621924985c0d2bfe8b2e54fbc1ef5d30fb8c5"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "contracts/ADMISSION_KERNEL.md",
+    "blob": "45ef09d963799b9712c2b2be095ffe98570b19d4"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "docs/GOVERNANCE_AUDIT_2026-09-23.md",
+    "blob": "8eee30e9e5ab842317ebdd69ee01b65d4918e56e"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "docs/GOVERNANCE_SANDBOX.md",
+    "blob": "8fa3fd10de159f569803a5e04ece59549850353c"
+  },
+  {
+    "ref": "refs/heads/Develo",
+    "commit": "b332c2309e123bd05099d4f9fcfd3bd202bdb0fa",
+    "path": "policies/test/admission.yaml",
+    "blob": "a22485391208ed9cd91ddf47e2b6cae066edb512"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": ".github/workflows/test.yml",
+    "blob": "5218fd1b0b14a74dfb9771daa9fb50b3ecb11cfe"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "CHANGELOG.md",
+    "blob": "4cd999a8c60bc469b68f73cf821ffa462905a35c"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "CHANGE_REPORT.md",
+    "blob": "f81eb997df0a07ab2f53b9ef015e581948f414b8"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "PROJECT_RECORD.md",
+    "blob": "16b94c604fa8d9d66637eac3ebbd9fd384f14536"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "README.md",
+    "blob": "021c7b7bd8af2b51e252ee90ea80135576f18f40"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "changes/JON-81.md",
+    "blob": "76e8813a4a7206b2aedbbd89efb785e08f11df11"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "contracts/ADMISSION_KERNEL.md",
+    "blob": "45ef09d963799b9712c2b2be095ffe98570b19d4"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/ARTIFACT_MANIFEST.md",
+    "blob": "3b8bb5d9c2f829c769e4a837bbf462101e64aea5"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/GOVERNANCE_AUDIT_2026-09-23.md",
+    "blob": "ff24a3250367ca7095ab95a2936b1c5cea13fa3b"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/GOVERNANCE_RECOVERY_RESEARCH_2026-09-23.md",
+    "blob": "05465b6cf3e63fbf9ba7434d80febac492dba3cf"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/GOVERNANCE_SANDBOX.md",
+    "blob": "ea8638b99ffb06764e34d2342ddafd6a59747ef4"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/INTEGRATION_RECONCILIATION.md",
+    "blob": "cf07dcd8f08d098a4dcaad780f75358de0c98bb2"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/ballot-audit-integrity.md",
+    "blob": "03b79a60ade13e30998b7a4094123485adf8d472"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/electorate-accounting.md",
+    "blob": "bed4928d819ae186178a69adb3663ca24ce6d6a9"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/history/PROJECT_RECORD_2026-09-16.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/reference/FINGER_BETA_2026-09-16.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/specs/bootstrap-impeachment-approved-v1.md",
+    "blob": "69ec83ca8a8cdfdba41eeee42b5ab26302261cc2"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/specs/bootstrap-impeachment.md",
+    "blob": "d2d826b54552326e08aa7a62f692c4949fa4dbfc"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "policies/test/admission.yaml",
+    "blob": "a22485391208ed9cd91ddf47e2b6cae066edb512"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "qa/dispatch/README.md",
+    "blob": "36e722e62319b65f6780bbfa7244a6f8e84430ed"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "qa/workflow/README.md",
+    "blob": "6fb555dbb2349d808b2f62c8f82974271978a6ab"
+  },
+  {
+    "ref": "refs/heads/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "test/scheduler/README.md",
+    "blob": "66b482af95d5acc95af23068c9cd60ae21d0b061"
+  },
+  {
+    "ref": "refs/heads/docs/decisions-consolidation-20260924",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/heads/docs/decisions-consolidation-20260924",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/heads/docs/decisions-consolidation-20260924",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/heads/docs/decisions-consolidation-20260924",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "README.md",
+    "blob": "635aee192dc232e93ed8af495a35ab90ec9b0732"
+  },
+  {
+    "ref": "refs/heads/docs/decisions-consolidation-20260924",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/heads/docs/decisions-consolidation-20260924",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "docs/ECONOMY_MARKETPLACE_CONTRACT.md",
+    "blob": "ab31c07c9c85cc48c4b7aaa39c9cf9e0112d2f4c"
+  },
+  {
+    "ref": "refs/remotes/origin/Develo",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/Develo",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/Develo",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/Develo",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "README.md",
+    "blob": "635aee192dc232e93ed8af495a35ab90ec9b0732"
+  },
+  {
+    "ref": "refs/remotes/origin/Develo",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/Develo",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "docs/ECONOMY_MARKETPLACE_CONTRACT.md",
+    "blob": "ab31c07c9c85cc48c4b7aaa39c9cf9e0112d2f4c"
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "README.md",
+    "blob": "635aee192dc232e93ed8af495a35ab90ec9b0732"
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "commit": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+    "path": "docs/ECONOMY_MARKETPLACE_CONTRACT.md",
+    "blob": "ab31c07c9c85cc48c4b7aaa39c9cf9e0112d2f4c"
+  },
+  {
+    "ref": "refs/remotes/origin/audit/concord-reconciliation-20260916",
+    "commit": "2aa91aac38f89ed0521ef1a31f02bc98532f3a24",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/audit/concord-reconciliation-20260916",
+    "commit": "2aa91aac38f89ed0521ef1a31f02bc98532f3a24",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/audit/concord-reconciliation-20260916",
+    "commit": "2aa91aac38f89ed0521ef1a31f02bc98532f3a24",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/audit/concord-reconciliation-20260916",
+    "commit": "2aa91aac38f89ed0521ef1a31f02bc98532f3a24",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/audit/concord-reconciliation-20260916",
+    "commit": "2aa91aac38f89ed0521ef1a31f02bc98532f3a24",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "2b227a3b8563c364947446d1dbdcbf52dec8af08"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/eligibility-durable-authority-20260921",
+    "commit": "638ce897d36226cac79f5d2543ecb11f56bf975b",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/eligibility-durable-authority-20260921",
+    "commit": "638ce897d36226cac79f5d2543ecb11f56bf975b",
+    "path": "CHANGELOG.md",
+    "blob": "7b39e37bee6501b04610e36d1ecf9512acae7b14"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/eligibility-durable-authority-20260921",
+    "commit": "638ce897d36226cac79f5d2543ecb11f56bf975b",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/eligibility-durable-authority-20260921",
+    "commit": "638ce897d36226cac79f5d2543ecb11f56bf975b",
+    "path": "README.md",
+    "blob": "726c2c12069a61c2f84a20b17ce3e01feabdd05b"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/eligibility-durable-authority-20260921",
+    "commit": "638ce897d36226cac79f5d2543ecb11f56bf975b",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/eligibility-durable-authority-20260921",
+    "commit": "638ce897d36226cac79f5d2543ecb11f56bf975b",
+    "path": "docs/ELIGIBILITY_AUTHORITY.md",
+    "blob": "c1990c8a5cfae38560c3f216951386cfbe6d1515"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-128-recovered-harness",
+    "commit": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-128-recovered-harness",
+    "commit": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-128-recovered-harness",
+    "commit": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-128-recovered-harness",
+    "commit": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-128-recovered-harness",
+    "commit": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-128-recovered-harness",
+    "commit": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+    "path": "test/scheduler/README.md",
+    "blob": "66b482af95d5acc95af23068c9cd60ae21d0b061"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-129-grid-recovery",
+    "commit": "b81cca12f6d5cde714f30031a8a78dab95d97daf",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-129-grid-recovery",
+    "commit": "b81cca12f6d5cde714f30031a8a78dab95d97daf",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-129-grid-recovery",
+    "commit": "b81cca12f6d5cde714f30031a8a78dab95d97daf",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-129-grid-recovery",
+    "commit": "b81cca12f6d5cde714f30031a8a78dab95d97daf",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-129-grid-recovery",
+    "commit": "b81cca12f6d5cde714f30031a8a78dab95d97daf",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": ".github/workflows/test.yml",
+    "blob": "5218fd1b0b14a74dfb9771daa9fb50b3ecb11cfe"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "CHANGELOG.md",
+    "blob": "4cd999a8c60bc469b68f73cf821ffa462905a35c"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "CHANGE_REPORT.md",
+    "blob": "f81eb997df0a07ab2f53b9ef015e581948f414b8"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "PROJECT_RECORD.md",
+    "blob": "16b94c604fa8d9d66637eac3ebbd9fd384f14536"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "README.md",
+    "blob": "021c7b7bd8af2b51e252ee90ea80135576f18f40"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "changes/JON-81.md",
+    "blob": "76e8813a4a7206b2aedbbd89efb785e08f11df11"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "contracts/ADMISSION_KERNEL.md",
+    "blob": "45ef09d963799b9712c2b2be095ffe98570b19d4"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/ARTIFACT_MANIFEST.md",
+    "blob": "3b8bb5d9c2f829c769e4a837bbf462101e64aea5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/GOVERNANCE_AUDIT_2026-09-23.md",
+    "blob": "ff24a3250367ca7095ab95a2936b1c5cea13fa3b"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/GOVERNANCE_RECOVERY_RESEARCH_2026-09-23.md",
+    "blob": "05465b6cf3e63fbf9ba7434d80febac492dba3cf"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/GOVERNANCE_SANDBOX.md",
+    "blob": "ea8638b99ffb06764e34d2342ddafd6a59747ef4"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/INTEGRATION_RECONCILIATION.md",
+    "blob": "cf07dcd8f08d098a4dcaad780f75358de0c98bb2"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/ballot-audit-integrity.md",
+    "blob": "03b79a60ade13e30998b7a4094123485adf8d472"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/electorate-accounting.md",
+    "blob": "bed4928d819ae186178a69adb3663ca24ce6d6a9"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/history/PROJECT_RECORD_2026-09-16.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/reference/FINGER_BETA_2026-09-16.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/specs/bootstrap-impeachment-approved-v1.md",
+    "blob": "69ec83ca8a8cdfdba41eeee42b5ab26302261cc2"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "docs/specs/bootstrap-impeachment.md",
+    "blob": "d2d826b54552326e08aa7a62f692c4949fa4dbfc"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "policies/test/admission.yaml",
+    "blob": "a22485391208ed9cd91ddf47e2b6cae066edb512"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "qa/dispatch/README.md",
+    "blob": "36e722e62319b65f6780bbfa7244a6f8e84430ed"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "qa/workflow/README.md",
+    "blob": "6fb555dbb2349d808b2f62c8f82974271978a6ab"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-141-conflict-integration",
+    "commit": "6cf4eab09836d42d4b83a7fc1862442fdc38c3ff",
+    "path": "test/scheduler/README.md",
+    "blob": "66b482af95d5acc95af23068c9cd60ae21d0b061"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-28-artifact-manifest",
+    "commit": "e7462d860d5c4a17d7d1f6283bc25f23ebf3716a",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-28-artifact-manifest",
+    "commit": "e7462d860d5c4a17d7d1f6283bc25f23ebf3716a",
+    "path": "CHANGELOG.md",
+    "blob": "e243cb88495e4afa2e4d3fe5737dd0c7171e992f"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-28-artifact-manifest",
+    "commit": "e7462d860d5c4a17d7d1f6283bc25f23ebf3716a",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-28-artifact-manifest",
+    "commit": "e7462d860d5c4a17d7d1f6283bc25f23ebf3716a",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-28-artifact-manifest",
+    "commit": "e7462d860d5c4a17d7d1f6283bc25f23ebf3716a",
+    "path": "docs/ARTIFACT_MANIFEST.md",
+    "blob": "3b8bb5d9c2f829c769e4a837bbf462101e64aea5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-28-artifact-manifest",
+    "commit": "e7462d860d5c4a17d7d1f6283bc25f23ebf3716a",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": "CHANGELOG.md",
+    "blob": "3117fde30b7138a0276a5097eda3bc82bc4ef39f"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": "README.md",
+    "blob": "81c6bad105f2d78c566ffddd770615c9ef00a4dd"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": "docs/specs/bootstrap-impeachment-approved-v1.md",
+    "blob": "69ec83ca8a8cdfdba41eeee42b5ab26302261cc2"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-85-bootstrap-recovery",
+    "commit": "e2e23849a2e5e128f7f46f35712499f16fb98ef9",
+    "path": "docs/specs/bootstrap-impeachment.md",
+    "blob": "d2d826b54552326e08aa7a62f692c4949fa4dbfc"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-90-github-integration-validation",
+    "commit": "12eabf9b7a5e6e7adb8656435291269a44838ccc",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-90-github-integration-validation",
+    "commit": "12eabf9b7a5e6e7adb8656435291269a44838ccc",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-90-github-integration-validation",
+    "commit": "12eabf9b7a5e6e7adb8656435291269a44838ccc",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-90-github-integration-validation",
+    "commit": "12eabf9b7a5e6e7adb8656435291269a44838ccc",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-90-github-integration-validation",
+    "commit": "12eabf9b7a5e6e7adb8656435291269a44838ccc",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/codex/jon-90-github-integration-validation",
+    "commit": "12eabf9b7a5e6e7adb8656435291269a44838ccc",
+    "path": "docs/CODEX_GITHUB_INTEGRATION_VALIDATION.md",
+    "blob": "497d3405a13423fa503a154ccda62259b17a0137"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-78-recovery-20260916",
+    "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-78-recovery-20260916",
+    "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+    "path": "CHANGELOG.md",
+    "blob": "5cfd43610279a9d5faafac15cec61eef9f568ed2"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-78-recovery-20260916",
+    "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-78-recovery-20260916",
+    "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+    "path": "README.md",
+    "blob": "8fdb30179277b75ff997b27291c712208f7d3c12"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-78-recovery-20260916",
+    "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-79-recovery-20260916",
+    "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-79-recovery-20260916",
+    "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+    "path": "CHANGELOG.md",
+    "blob": "7b39e37bee6501b04610e36d1ecf9512acae7b14"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-79-recovery-20260916",
+    "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-79-recovery-20260916",
+    "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+    "path": "README.md",
+    "blob": "93b7a289538ca13eeb03e443627b800905176b2c"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-79-recovery-20260916",
+    "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-80-recovery-20260916",
+    "commit": "b9f2c7e3c4d6f341e704a7940f6ce2a68ca8ccaf",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-80-recovery-20260916",
+    "commit": "b9f2c7e3c4d6f341e704a7940f6ce2a68ca8ccaf",
+    "path": "CHANGELOG.md",
+    "blob": "f4cc49281938156bb504f5ff770e2eef24f36a50"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-80-recovery-20260916",
+    "commit": "b9f2c7e3c4d6f341e704a7940f6ce2a68ca8ccaf",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-80-recovery-20260916",
+    "commit": "b9f2c7e3c4d6f341e704a7940f6ce2a68ca8ccaf",
+    "path": "README.md",
+    "blob": "3fb592cdd2d602b20357731a42796ab5dfdc856d"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-80-recovery-20260916",
+    "commit": "b9f2c7e3c4d6f341e704a7940f6ce2a68ca8ccaf",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": "CHANGELOG.md",
+    "blob": "30473689d4c755b4eec62c7b25dcd397c70e914a"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": "changes/JON-81.md",
+    "blob": "76e8813a4a7206b2aedbbd89efb785e08f11df11"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-81-recovery-20260916",
+    "commit": "a090a67719681b04683f1f87c35d4080ea0854f5",
+    "path": "docs/electorate-accounting.md",
+    "blob": "bed4928d819ae186178a69adb3663ca24ce6d6a9"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-88-recovery-20260916",
+    "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-88-recovery-20260916",
+    "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-88-recovery-20260916",
+    "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-88-recovery-20260916",
+    "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-88-recovery-20260916",
+    "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/jon-88-recovery-20260916",
+    "commit": "c27389240d16d81e21f7b92fd25ea5fa5537205d",
+    "path": "qa/jon58/README.md",
+    "blob": "336aa7dbb3cc340669ec82686edc77fd1772f1d1"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/linear-openai-coordinator-20260916",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/linear-openai-coordinator-20260916",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/linear-openai-coordinator-20260916",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/linear-openai-coordinator-20260916",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/delivery/linear-openai-coordinator-20260916",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/concord-governance-recovery-research",
+    "commit": "a5a6cdaaaf11cf7d3ad6efb48cce6e0b46688838",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/concord-governance-recovery-research",
+    "commit": "a5a6cdaaaf11cf7d3ad6efb48cce6e0b46688838",
+    "path": "CHANGELOG.md",
+    "blob": "0de2aeebb1156f3f9a72b8b981dacd056deac0d6"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/concord-governance-recovery-research",
+    "commit": "a5a6cdaaaf11cf7d3ad6efb48cce6e0b46688838",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/concord-governance-recovery-research",
+    "commit": "a5a6cdaaaf11cf7d3ad6efb48cce6e0b46688838",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/concord-governance-recovery-research",
+    "commit": "a5a6cdaaaf11cf7d3ad6efb48cce6e0b46688838",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/concord-governance-recovery-research",
+    "commit": "a5a6cdaaaf11cf7d3ad6efb48cce6e0b46688838",
+    "path": "docs/GOVERNANCE_RECOVERY_RESEARCH_2026-09-23.md",
+    "blob": "05465b6cf3e63fbf9ba7434d80febac492dba3cf"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": "README.md",
+    "blob": "635aee192dc232e93ed8af495a35ab90ec9b0732"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": "docs/COIN_MODEL_E_INTERFACE_V0.1.md",
+    "blob": "8c79191f82588d40df833e6662bcd194c1ac306f"
+  },
+  {
+    "ref": "refs/remotes/origin/docs/jon-101-coin-interface",
+    "commit": "81943cdebfc76fd0830dd70329fa17c5356085aa",
+    "path": "docs/ECONOMY_MARKETPLACE_CONTRACT.md",
+    "blob": "ab31c07c9c85cc48c4b7aaa39c9cf9e0112d2f4c"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": "CHANGELOG.md",
+    "blob": "0e1dc14aff9cdf5b5544dec412dde1e4697492f1"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": "CHANGE_REPORT.md",
+    "blob": "f81eb997df0a07ab2f53b9ef015e581948f414b8"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": "README.md",
+    "blob": "3fb592cdd2d602b20357731a42796ab5dfdc856d"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/jon80-append-only-audit-20260916",
+    "commit": "5f5a28d46cfa62d1222e74563b1dc8e281b7c73f",
+    "path": "docs/ballot-audit-integrity.md",
+    "blob": "03b79a60ade13e30998b7a4094123485adf8d472"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": ".github/workflows/test.yml",
+    "blob": "fd49e1c548a433e669df28d5b4e7c3b06b136116"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": "CHANGELOG.md",
+    "blob": "68240483b6ad0605d75c6722262036718bca1bd2"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": "CHANGE_REPORT.md",
+    "blob": "7f84ecb71430622028465cb6627db8310da771dc"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/fix/linear-dispatch-gate-20260916",
+    "commit": "3465d56bb133959443cee18c4e8404dd163c074d",
+    "path": "qa/dispatch/README.md",
+    "blob": "709771aa2fe3bdaa2affc6a7a638cf6b71692258"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": ".github/workflows/test.yml",
+    "blob": "5218fd1b0b14a74dfb9771daa9fb50b3ecb11cfe"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "CHANGELOG.md",
+    "blob": "d97561139bb72494b6776253adcac2075bcb29dc"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "README.md",
+    "blob": "c71621924985c0d2bfe8b2e54fbc1ef5d30fb8c5"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "contracts/ADMISSION_KERNEL.md",
+    "blob": "45ef09d963799b9712c2b2be095ffe98570b19d4"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "docs/GOVERNANCE_AUDIT_2026-09-23.md",
+    "blob": "ff24a3250367ca7095ab95a2936b1c5cea13fa3b"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "docs/GOVERNANCE_SANDBOX.md",
+    "blob": "ea8638b99ffb06764e34d2342ddafd6a59747ef4"
+  },
+  {
+    "ref": "refs/remotes/origin/jon-138-governance-audit-remediation",
+    "commit": "1731602de02cef6fb0228f155202beeed844c295",
+    "path": "policies/test/admission.yaml",
+    "blob": "a22485391208ed9cd91ddf47e2b6cae066edb512"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": "PROJECT_RECORD.md",
+    "blob": "16b94c604fa8d9d66637eac3ebbd9fd384f14536"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": "README.md",
+    "blob": "a1d35727b07a047aec6c579fc1fbc259d203c285"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": "docs/history/PROJECT_RECORD_2026-09-16.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/maintenance/workflow-partition-20260918",
+    "commit": "881ce1ef6ca84aba94f293125f2bd8beb74ffb24",
+    "path": "docs/reference/FINGER_BETA_2026-09-16.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-100-coin-model-d-hidden-research-instrumentation-contract-54e6",
+    "commit": "f1254c6b89259daf443322e4896439b87f03c8a0",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-100-coin-model-d-hidden-research-instrumentation-contract-54e6",
+    "commit": "f1254c6b89259daf443322e4896439b87f03c8a0",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-100-coin-model-d-hidden-research-instrumentation-contract-54e6",
+    "commit": "f1254c6b89259daf443322e4896439b87f03c8a0",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-100-coin-model-d-hidden-research-instrumentation-contract-54e6",
+    "commit": "f1254c6b89259daf443322e4896439b87f03c8a0",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-100-coin-model-d-hidden-research-instrumentation-contract-54e6",
+    "commit": "f1254c6b89259daf443322e4896439b87f03c8a0",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-100-coin-model-d-hidden-research-instrumentation-contract-54e6",
+    "commit": "f1254c6b89259daf443322e4896439b87f03c8a0",
+    "path": "docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md",
+    "blob": "713d45684068522b6e4409e7f906e905b20fe59d"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-103-coin-model-g-independent-v01-conformance-review-acba",
+    "commit": "101080a685ab78bb955d650c64191118098f58f7",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-103-coin-model-g-independent-v01-conformance-review-acba",
+    "commit": "101080a685ab78bb955d650c64191118098f58f7",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-103-coin-model-g-independent-v01-conformance-review-acba",
+    "commit": "101080a685ab78bb955d650c64191118098f58f7",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-103-coin-model-g-independent-v01-conformance-review-acba",
+    "commit": "101080a685ab78bb955d650c64191118098f58f7",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-103-coin-model-g-independent-v01-conformance-review-acba",
+    "commit": "101080a685ab78bb955d650c64191118098f58f7",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-103-coin-model-g-independent-v01-conformance-review-acba",
+    "commit": "101080a685ab78bb955d650c64191118098f58f7",
+    "path": "docs/COIN_MODEL_G_V0.1_CONFORMANCE_REVIEW.md",
+    "blob": "ff40d88a428fbf1c1b8dff92db67813f9a34193d"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-116-analyze-generative-agents-for-concord-and-emergence-35db",
+    "commit": "27a50b02481199a2de6ccd74c06bdf35ec6ee8bc",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-116-analyze-generative-agents-for-concord-and-emergence-35db",
+    "commit": "27a50b02481199a2de6ccd74c06bdf35ec6ee8bc",
+    "path": "CHANGELOG.md",
+    "blob": "cb8908ef92c54efceddb64c69e7030678ad005d8"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-116-analyze-generative-agents-for-concord-and-emergence-35db",
+    "commit": "27a50b02481199a2de6ccd74c06bdf35ec6ee8bc",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-116-analyze-generative-agents-for-concord-and-emergence-35db",
+    "commit": "27a50b02481199a2de6ccd74c06bdf35ec6ee8bc",
+    "path": "README.md",
+    "blob": "a2e2d76dab57d72311ca739216690e4ee87545ac"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-116-analyze-generative-agents-for-concord-and-emergence-35db",
+    "commit": "27a50b02481199a2de6ccd74c06bdf35ec6ee8bc",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-116-analyze-generative-agents-for-concord-and-emergence-35db",
+    "commit": "27a50b02481199a2de6ccd74c06bdf35ec6ee8bc",
+    "path": "docs/GENERATIVE_AGENTS_ANALYSIS.md",
+    "blob": "ea826525f35f1323998443234315d12abf9ef9d4"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": "CHANGELOG.md",
+    "blob": "f54d8aa897c8ac8dc257559e64f52520b7326326"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": "README.md",
+    "blob": "9d9459a36a5f27cd2defaf852878bf8a44495524"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": "qa/dispatch/README.md",
+    "blob": "19c4a26bffcfe49232ec8775ab76805228f054a2"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-124-repair-retired-workflow-policy-gates-9413",
+    "commit": "cdaee6c142040ff267c4700cdbda706f2dfaad29",
+    "path": "qa/workflow/README.md",
+    "blob": "6fb555dbb2349d808b2f62c8f82974271978a6ab"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-15-persistent-identity-memory-and-succession-model-d6b3",
+    "commit": "1e86688cc2ed45b174d675d353c47b96c8d5bbec",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-15-persistent-identity-memory-and-succession-model-d6b3",
+    "commit": "1e86688cc2ed45b174d675d353c47b96c8d5bbec",
+    "path": "CHANGELOG.md",
+    "blob": "62f93f5b66368ee8fb6070dff7d7d3ec981b407f"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-15-persistent-identity-memory-and-succession-model-d6b3",
+    "commit": "1e86688cc2ed45b174d675d353c47b96c8d5bbec",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-15-persistent-identity-memory-and-succession-model-d6b3",
+    "commit": "1e86688cc2ed45b174d675d353c47b96c8d5bbec",
+    "path": "README.md",
+    "blob": "631fef7f3ac82d6db380e781063a643eff9f4e7c"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-15-persistent-identity-memory-and-succession-model-d6b3",
+    "commit": "1e86688cc2ed45b174d675d353c47b96c8d5bbec",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-15-persistent-identity-memory-and-succession-model-d6b3",
+    "commit": "1e86688cc2ed45b174d675d353c47b96c8d5bbec",
+    "path": "docs/IDENTITY_PERSISTENCE_CONTRACT.md",
+    "blob": "69deb426fd9018f163e6edd8311365d9cfbfa856"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-16-scheduler-legality-checker-and-continuity-control-f0f6",
+    "commit": "c86701512a64c58ade9707d8368a48bad1e8fc03",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-16-scheduler-legality-checker-and-continuity-control-f0f6",
+    "commit": "c86701512a64c58ade9707d8368a48bad1e8fc03",
+    "path": "CHANGELOG.md",
+    "blob": "7c8eccb4eee984880a5fc648c1a5c09e28bec883"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-16-scheduler-legality-checker-and-continuity-control-f0f6",
+    "commit": "c86701512a64c58ade9707d8368a48bad1e8fc03",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-16-scheduler-legality-checker-and-continuity-control-f0f6",
+    "commit": "c86701512a64c58ade9707d8368a48bad1e8fc03",
+    "path": "README.md",
+    "blob": "bbce3e03ec38c4b9e3505e3e5736c59675d0bfca"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-16-scheduler-legality-checker-and-continuity-control-f0f6",
+    "commit": "c86701512a64c58ade9707d8368a48bad1e8fc03",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-16-scheduler-legality-checker-and-continuity-control-f0f6",
+    "commit": "c86701512a64c58ade9707d8368a48bad1e8fc03",
+    "path": "docs/SCHEDULER_CHECKER_CONTINUITY_CONTRACT.md",
+    "blob": "6a5b1abfd98b7802796c70f612625f552db0b435"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-17-security-gateways-domain-authorization-and-0e48",
+    "commit": "49c19837191b83e93844653f7bf6259ee838d3ef",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-17-security-gateways-domain-authorization-and-0e48",
+    "commit": "49c19837191b83e93844653f7bf6259ee838d3ef",
+    "path": "CHANGELOG.md",
+    "blob": "b742befe414a295df49bc40b1faf0336b0771051"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-17-security-gateways-domain-authorization-and-0e48",
+    "commit": "49c19837191b83e93844653f7bf6259ee838d3ef",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-17-security-gateways-domain-authorization-and-0e48",
+    "commit": "49c19837191b83e93844653f7bf6259ee838d3ef",
+    "path": "README.md",
+    "blob": "6937a628b46abd084393ffe536dfaa990dcba554"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-17-security-gateways-domain-authorization-and-0e48",
+    "commit": "49c19837191b83e93844653f7bf6259ee838d3ef",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-17-security-gateways-domain-authorization-and-0e48",
+    "commit": "49c19837191b83e93844653f7bf6259ee838d3ef",
+    "path": "docs/SECURITY_DOMAIN_CONTRACT.md",
+    "blob": "c8813c1d488be88b4a235c7f8729399de1384f63"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-19-agreement-lifecycle-and-institutional-negotiation-6dfb",
+    "commit": "462d774a133dd52186b52d5743894d9eccbfb93a",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-19-agreement-lifecycle-and-institutional-negotiation-6dfb",
+    "commit": "462d774a133dd52186b52d5743894d9eccbfb93a",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-19-agreement-lifecycle-and-institutional-negotiation-6dfb",
+    "commit": "462d774a133dd52186b52d5743894d9eccbfb93a",
+    "path": "PROJECT_RECORD.md",
+    "blob": "d0e3202395a585d11d78c30c0dce074de0927667"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-19-agreement-lifecycle-and-institutional-negotiation-6dfb",
+    "commit": "462d774a133dd52186b52d5743894d9eccbfb93a",
+    "path": "README.md",
+    "blob": "d7a36b649fb16b0cee8ed46df9d17878b6dc8222"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-19-agreement-lifecycle-and-institutional-negotiation-6dfb",
+    "commit": "462d774a133dd52186b52d5743894d9eccbfb93a",
+    "path": "docs/AGREEMENT_LIFECYCLE.md",
+    "blob": "310a5999b7b08416d0b09410b9e4714c9559c524"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-19-agreement-lifecycle-and-institutional-negotiation-6dfb",
+    "commit": "462d774a133dd52186b52d5743894d9eccbfb93a",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-25-agent-economy-barter-and-deal-making-architecture-c524",
+    "commit": "a42baeadc0e69b08571acc779e5b8268385be49e",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-25-agent-economy-barter-and-deal-making-architecture-c524",
+    "commit": "a42baeadc0e69b08571acc779e5b8268385be49e",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-25-agent-economy-barter-and-deal-making-architecture-c524",
+    "commit": "a42baeadc0e69b08571acc779e5b8268385be49e",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-25-agent-economy-barter-and-deal-making-architecture-c524",
+    "commit": "a42baeadc0e69b08571acc779e5b8268385be49e",
+    "path": "README.md",
+    "blob": "635aee192dc232e93ed8af495a35ab90ec9b0732"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-25-agent-economy-barter-and-deal-making-architecture-c524",
+    "commit": "a42baeadc0e69b08571acc779e5b8268385be49e",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-25-agent-economy-barter-and-deal-making-architecture-c524",
+    "commit": "a42baeadc0e69b08571acc779e5b8268385be49e",
+    "path": "docs/ECONOMY_MARKETPLACE_CONTRACT.md",
+    "blob": "ab31c07c9c85cc48c4b7aaa39c9cf9e0112d2f4c"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-69-finger-queued-implementation-workload-a17d",
+    "commit": "3d8675ba7feb5bc57fffb240de21867e95c5100c",
+    "path": ".github/workflows/test.yml",
+    "blob": "974854edba4ad500e143e72ebcbfb18ff988fb40"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-69-finger-queued-implementation-workload-a17d",
+    "commit": "3d8675ba7feb5bc57fffb240de21867e95c5100c",
+    "path": "README.md",
+    "blob": "8c7a09a537e4e0a7362daeb04956448be0c70d73"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-69-finger-queued-implementation-workload-a17d",
+    "commit": "3d8675ba7feb5bc57fffb240de21867e95c5100c",
+    "path": "src/finger/README.md",
+    "blob": "d178cd5e740ce254eaa09c581d2d650026156365"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-73-finger-replay-and-heat-map-processing-4879",
+    "commit": "b04bbe4af6e20374d4392924d29a2adb2efd72c7",
+    "path": "README.md",
+    "blob": "0b7f3ebb236619d80eda8975812cc0f03f37a5a6"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-81-jon-58d-exact-electorate-and-d-b-u-accounting-dcc1",
+    "commit": "84ec55f0b55aedb0ce00aebfc1ab0dfd3ac776c2",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-81-jon-58d-exact-electorate-and-d-b-u-accounting-dcc1",
+    "commit": "84ec55f0b55aedb0ce00aebfc1ab0dfd3ac776c2",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-81-jon-58d-exact-electorate-and-d-b-u-accounting-dcc1",
+    "commit": "84ec55f0b55aedb0ce00aebfc1ab0dfd3ac776c2",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-81-jon-58d-exact-electorate-and-d-b-u-accounting-dcc1",
+    "commit": "84ec55f0b55aedb0ce00aebfc1ab0dfd3ac776c2",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-81-jon-58d-exact-electorate-and-d-b-u-accounting-dcc1",
+    "commit": "84ec55f0b55aedb0ce00aebfc1ab0dfd3ac776c2",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-81-jon-58d-exact-electorate-and-d-b-u-accounting-dcc1",
+    "commit": "84ec55f0b55aedb0ce00aebfc1ab0dfd3ac776c2",
+    "path": "docs/JON-81-acceptance-resolution.md",
+    "blob": "e6d722dfbfed342d7118806110d9dfc3eb3ce87a"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-90-enable-concord-linear-coding-sessions-environment-8402",
+    "commit": "87c484861cbbf4bd7b994e40db3071e0e9823c19",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-90-enable-concord-linear-coding-sessions-environment-8402",
+    "commit": "87c484861cbbf4bd7b994e40db3071e0e9823c19",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-90-enable-concord-linear-coding-sessions-environment-8402",
+    "commit": "87c484861cbbf4bd7b994e40db3071e0e9823c19",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-90-enable-concord-linear-coding-sessions-environment-8402",
+    "commit": "87c484861cbbf4bd7b994e40db3071e0e9823c19",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-90-enable-concord-linear-coding-sessions-environment-8402",
+    "commit": "87c484861cbbf4bd7b994e40db3071e0e9823c19",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-90-enable-concord-linear-coding-sessions-environment-8402",
+    "commit": "87c484861cbbf4bd7b994e40db3071e0e9823c19",
+    "path": "qa/workflow/README.md",
+    "blob": "24a216ea7a437660192c0cf437555be2d753f030"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-92-deploy-and-authorize-linear-openai-project-coordinator-d92b",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-92-deploy-and-authorize-linear-openai-project-coordinator-d92b",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-92-deploy-and-authorize-linear-openai-project-coordinator-d92b",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-92-deploy-and-authorize-linear-openai-project-coordinator-d92b",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-92-deploy-and-authorize-linear-openai-project-coordinator-d92b",
+    "commit": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": ".github/workflows/test.yml",
+    "blob": "fd49e1c548a433e669df28d5b4e7c3b06b136116"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": "CHANGELOG.md",
+    "blob": "0027ec9924a200a4ecb6bfa235a73cf541ec7ffd"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": "CHANGE_REPORT.md",
+    "blob": "7f84ecb71430622028465cb6627db8310da771dc"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-95-concord-dispatcher-dependency-aware-continuous-work-031d",
+    "commit": "3a4dd7dfa9234b5b0132d5f0bc17046b7ba74ca3",
+    "path": "qa/dispatch/README.md",
+    "blob": "6d783ab6d9a5f99826025772f0761c46c4fef7a7"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-97-coin-model-a-formal-specification-and-interview-audit-7a40",
+    "commit": "7073e9a683ae27a6e45f2fa5d86658fd260dd2e0",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-97-coin-model-a-formal-specification-and-interview-audit-7a40",
+    "commit": "7073e9a683ae27a6e45f2fa5d86658fd260dd2e0",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-97-coin-model-a-formal-specification-and-interview-audit-7a40",
+    "commit": "7073e9a683ae27a6e45f2fa5d86658fd260dd2e0",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-97-coin-model-a-formal-specification-and-interview-audit-7a40",
+    "commit": "7073e9a683ae27a6e45f2fa5d86658fd260dd2e0",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-97-coin-model-a-formal-specification-and-interview-audit-7a40",
+    "commit": "7073e9a683ae27a6e45f2fa5d86658fd260dd2e0",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-97-coin-model-a-formal-specification-and-interview-audit-7a40",
+    "commit": "7073e9a683ae27a6e45f2fa5d86658fd260dd2e0",
+    "path": "docs/COIN_MODEL_A_V0.1.md",
+    "blob": "0d66548dc857be86cad3e75271a4f8d298c5245d"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": "README.md",
+    "blob": "cd7b875da10ac999acacc61e7acdb2ab2a3960f6"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": "docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md",
+    "blob": "da4d428e07da38059a7a8b383e2c78048a8d7c95"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-26bb",
+    "commit": "fb74e6d1fb038cbe3e447110889c106df73e5ba8",
+    "path": "docs/JON-98_SOURCE_VERIFICATION.md",
+    "blob": "9f4fb76c2844e06c3035357f704b94bb1ea27da8"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": "README.md",
+    "blob": "cd7b875da10ac999acacc61e7acdb2ab2a3960f6"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": "docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md",
+    "blob": "5a7ee224561918c5f074ce27bb17a6bd9b9bdab1"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-98-coin-model-b-exact-model-prior-art-audit-9540",
+    "commit": "2dc0438006d8442f906f4a0ba991b8742abe9ce3",
+    "path": "docs/JON-98_SOURCE_VERIFICATION.md",
+    "blob": "9f4fb76c2844e06c3035357f704b94bb1ea27da8"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-99-coin-model-c-threat-and-emergence-model-4274",
+    "commit": "2847844886bdc7232bf838cc889fa2ff2d97a26a",
+    "path": ".github/workflows/test.yml",
+    "blob": "3a742f4b85c8cbd69cbf2d0a1737fc5ffc13cdea"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-99-coin-model-c-threat-and-emergence-model-4274",
+    "commit": "2847844886bdc7232bf838cc889fa2ff2d97a26a",
+    "path": "CHANGELOG.md",
+    "blob": "8246a0255e29d93da06b6c87a5eb9b7cf9f0d4e9"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-99-coin-model-c-threat-and-emergence-model-4274",
+    "commit": "2847844886bdc7232bf838cc889fa2ff2d97a26a",
+    "path": "PROJECT_RECORD.md",
+    "blob": "6ce2d1e9124ce595aaf84509b658e30ce328a759"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-99-coin-model-c-threat-and-emergence-model-4274",
+    "commit": "2847844886bdc7232bf838cc889fa2ff2d97a26a",
+    "path": "README.md",
+    "blob": "18440f9cf30be4978f338fcad05c63617d8f1215"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-99-coin-model-c-threat-and-emergence-model-4274",
+    "commit": "2847844886bdc7232bf838cc889fa2ff2d97a26a",
+    "path": "docs/AUDIT_2026-09-16.md",
+    "blob": "50b4cd960c3c9cf7350d9563411555f15d726cc5"
+  },
+  {
+    "ref": "refs/remotes/origin/ptown16801/jon-99-coin-model-c-threat-and-emergence-model-4274",
+    "commit": "2847844886bdc7232bf838cc889fa2ff2d97a26a",
+    "path": "docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md",
+    "blob": "9602891d3a96298870580ca3d1d87e1eb8ca7bc3"
+  }
+]

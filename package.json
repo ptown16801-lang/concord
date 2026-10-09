@@ -21,7 +21,11 @@
     "governance:demo": "node examples/agt-local/demo.js",
     "governance:isolation": "node examples/agt-local/isolation.js",
     "governance:isolated-demo": "node examples/agt-local/isolated-workflow.js",
-    "integration:check": "node scripts/check-integration.mjs"
+    "integration:check": "node scripts/check-integration.mjs",
+    "decisions:check": "node scripts/decisions.mjs check",
+    "decisions:generate": "node scripts/decisions.mjs generate",
+    "decisions:test": "node --test test/decisions.test.js",
+    "decisions:preflight": "node scripts/decisions.mjs preflight"
   },
   "dependencies": {
     "@microsoft/agent-governance-sdk": "5.0.0"

@@ -28,6 +28,11 @@ export class LocalAuditCollector {
       CREATE TRIGGER IF NOT EXISTS receipts_no_delete BEFORE DELETE ON receipts BEGIN SELECT RAISE(ABORT,'immutable receipt'); END;`);
   }
   setAvailable(value) { this.available = Boolean(value); }
+  assertCompatible(id, payload) {
+    demand(this.available, 'COLLECTOR_UNAVAILABLE');
+    const existing = this.db.prepare('SELECT payload FROM receipts WHERE id=?').get(id);
+    demand(!existing || existing.payload === canonical(payload), 'AUDIT_CONFLICT');
+  }
   record(id, payload) {
     demand(this.available, 'COLLECTOR_UNAVAILABLE');
     const text = canonical(payload);
@@ -286,9 +291,13 @@ export class GovernanceSandbox {
         const record = this.db.prepare('SELECT * FROM records WHERE id=?').get(request.resource);
         demand(record?.version === request.expectedVersions[request.resource], 'RECORD_CORRUPTED');
         const result = request.action === 'sample.write' ? { value: request.arguments.value, version: record.version + 1 } : { value: JSON.parse(record.value), version: record.version };
+        const outcome = { type: 'committed', operationId, requestDigest: op.digest, result };
+        // Check the exact future receipt while the collector write lock is held.
+        // Do not publish success before the domain transaction actually commits.
+        this.collector.assertCompatible(`${this.domain}:${operationId}:committed`, outcome);
         if (request.action === 'sample.write') this.db.prepare('UPDATE records SET value=?,version=? WHERE id=?').run(canonical(result.value), result.version, request.resource);
         this.db.prepare("UPDATE operations SET status='committed',result=? WHERE id=?").run(canonical(result), operationId);
-        this.log(`${operationId}:committed`, { type: 'committed', operationId, requestDigest: op.digest, result });
+        this.log(`${operationId}:committed`, outcome);
         this.db.prepare('DELETE FROM reservations WHERE resource=?').run(request.resource);
       }));
       this.flushAudit();
