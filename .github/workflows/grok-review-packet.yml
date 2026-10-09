@@ -45,13 +45,28 @@ jobs:
             const maxDiffChars = 24000;
             const maxPacketChars = 40000;
 
-            const diffResponse = await github.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
-              owner, repo, pull_number,
-              headers: { accept: 'application/vnd.github.v3.diff' }
-            });
-            const rawDiff = String(diffResponse.data || '');
-            const diffWasOmitted = rawDiff.length > maxDiffChars;
-            const diff = rawDiff.slice(0, maxDiffChars);
+            // The whole-PR diff endpoint rejects PRs with more than 300 files.
+            // Read bounded file patches instead; stop fetching once the packet is full.
+            let diff = '';
+            let diffWasOmitted = false;
+            let filesSeen = 0;
+            filePages: for await (const page of github.paginate.iterator(github.rest.pulls.listFiles, {
+              owner, repo, pull_number, per_page: 100
+            })) {
+              for (const file of page.data) {
+                filesSeen++;
+                const patch = typeof file.patch === 'string' ? file.patch : '[GitHub did not provide this file patch.]';
+                if (typeof file.patch !== 'string') diffWasOmitted = true;
+                const section = `\nFile: ${file.filename} (${file.status})\n${patch}\n`;
+                const remaining = maxDiffChars - diff.length;
+                diff += section.slice(0, remaining);
+                if (section.length > remaining) {
+                  diffWasOmitted = true;
+                  break filePages;
+                }
+              }
+            }
+            if (filesSeen < pr.changed_files) diffWasOmitted = true;
 
             const checksResponse = await github.rest.checks.listForRef({
               owner, repo, ref: headSha, per_page: 100
@@ -91,8 +106,8 @@ jobs:
               '',
               '## Diff',
               diffWasOmitted
-                ? `[Diff capped at ${maxDiffChars} characters; remaining content omitted.]`
-                : '[Complete diff included within the packet cap.]',
+                ? `[Partial diff excerpt: size cap (${maxDiffChars} characters), unavailable patches, or API file limit. Inspect the PR for remaining changes.]`
+                : '[All API-provided file patches included within the packet cap; individual patches may be abbreviated by GitHub.]',
               untrusted('PULL REQUEST DIFF', diff, maxDiffChars),
               '',
               '## Fixed review checklist',
@@ -127,7 +142,7 @@ jobs:
               '# GROK REVIEW PACKET',
               '',
               `Posted or updated one marked packet comment for PR #${pull_number}.`,
-              diffWasOmitted ? `Diff content omitted after ${maxDiffChars} characters.` : 'No diff truncation was needed.',
+              diffWasOmitted ? 'Diff excerpt is incomplete; see its omission notice.' : 'All API-provided patches included; GitHub may abbreviate individual patches.',
               packetWasCapped ? `Packet content omitted after ${maxPacketChars} characters.` : 'No packet truncation was needed.',
               'No PR code was run and no PR-provided dependencies were installed.',
               ''

@@ -74,3 +74,29 @@ acceptance remain unestablished by this review.
 
 Source: reviewer returned report in chat 01a11eca-aa3c-7ac0-85c6-586c4a496559.
 Exact runtime model identifier and total token/cache usage unavailable.
+
+## Follow-up review: packet pagination
+
+PASS — no actionable findings in the workflow-only delta against committed base
+3977de6e42a74dcd07202a7b0822ac6c4cfa71c7. Same non-authoring reviewer and acceptance
+limits as above. The prior CI-workflow-equals-Develo observation describes the
+initial repair; this follow-up deliberately changes only the packet workflow.
+
+The bounded paginated file-patch request replaces the failed whole-PR diff API.
+The 24,000-character budget, early pagination termination, explicit unavailable
+patch notices and API file-count comparison are correct. Filenames/status/patches
+remain untrusted review data. Fork blocking, existing-comment reuse and the
+no-checkout/no-PR-code/no-provider-execution boundary remain intact.
+
+Four producer tests cover 301-file pagination, early size cap and comment update,
+missing patches, and fork blocking. The reviewer did not repeat those tests or
+the runtime suite. An additional Node22.23.2 probe supplied an API iterator ending
+before the event's changed_files count; the packet retained the available patch,
+marked the excerpt incomplete and remained below the cap. Whitespace check passed.
+
+Reviewed SHA-256 identifiers:
+- Workflow: 0fb6ca4dbe6c9485dd50a26a5a2330b3c454b864aea41625623d6f6760977fbe
+- Tests: 7d9d67ea6a9946ce5b2d629bc4d4bf88ab465c31f8a39f67e39947353bce5c7d
+
+Previously reviewed runtime/test hashes are unchanged. Live GitHub success is not
+established by this local review; use the subsequent exact-head workflow result.
