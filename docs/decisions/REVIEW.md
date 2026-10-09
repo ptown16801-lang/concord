@@ -13,6 +13,10 @@ Review the consolidated master and maintenance controls, using the preserved sou
 and [reconciliation report](RECONCILIATION.md). The follow-up changes CON-052 from
 Proposed to Accepted on an existing explicit JON-102 review, while preserving prior
 snapshots. Inspect the incremental diff after c53302e as well as the original PR diff.
+The subsequent [difference audit](RECONCILIATION_AUDIT_2026-09-24.md) updates CON-071
+to proposed draft.3, records its actual advisory feedback, reconciles CON-074's
+publication state and preserves CONCORD-WF-002. Check that the new consultation
+entry matches the exact owner message and does not adopt the proposed workflow.
 
 Do not recreate the coin integration plan or repeat its completed acceptance review.
 Do not redo JON-141 product integration, JON-163 drafting, held quizzes or unrelated
@@ -46,6 +50,7 @@ artifact (for example PR40) is not approval of PR41. A request or silence is not
 - Root DECISIONS.md has one designated repository/path/integration branch. Generated summaries cannot independently set policy; the validator's semantic limitations are explicit.
 - Historical source bytes remain preserved; local-only discoveries are indexed; no unrelated product work or credentials are introduced.
 - Verify focused checks and PR decision-impact disposition, and assess semantic overlap before integration. Passing CI alone cannot certify acceptance, completeness or reviewer independence.
+- Check the preserved CONCORD-WF namespace, new local commit inventory, and README identity correction. Do not repeat another thread's draft.3 repairs or treat its advisory feedback as approval of this consolidation.
 
 ## Human integration disposition
 

@@ -1,12 +1,13 @@
 # Concord decisions
 
-**Integration-ready candidate · coverage 2026-09-24.** Canonical identity: repository
-`ptown16801-lang/concord`, path `/DECISIONS.md`, designated integration branch `Develo`.
-Candidate branch: `docs/decisions-consolidation-20260924`, based on
-`29ca0b44cf8d911df6978e84c7a91e7777afd304`. Until integration, this is a proposed
-consolidation of existing decisions, not an assertion that Develo already contains it.
-Other branch copies and source snapshots are not coequal masters. Integration into
-Develo is the documentation destination, not approval of unrelated product branches.
+**Original consolidation merged; bounded corrections in review · October 9, 2026.**
+Canonical identity: `ptown16801-lang/concord`, `/DECISIONS.md`, branch `Develo`.
+PR41's final consolidation `6676c9f` was merged September 24 at `441f135`;
+current Develo is `4b6e41fd`. See [merge evidence](docs/decisions/evidence/GH-PR41-MERGED-20261009.md).
+This branch reconciles the October 8 owner hierarchy and integration metadata;
+its runtime and later corrections remain candidates until separately reviewed/integrated.
+Other branch copies and frozen snapshots are not coequal masters. No unrelated
+product approval follows from the original documentation merge.
 
 Later explicit owner corrections control over conflicting summaries. Acceptance is
 separate from implementation, verification, publication and execution permission.
@@ -17,7 +18,8 @@ No decision is adopted merely because it was merged, tested, filed or marked Don
 
 Read [source register](docs/decisions/SOURCES.md), [reconciliation](docs/decisions/RECONCILIATION.md),
 [maintenance workflow](docs/decisions/WORKFLOW.md), [validation](docs/decisions/VALIDATION.md)
-and [publication receipt](docs/decisions/RECEIPT.md). Exact supporting text is retained
+and [publication receipt](docs/decisions/RECEIPT.md). The [difference audit](docs/decisions/RECONCILIATION_AUDIT_2026-09-24.md)
+records later cross-thread changes and their disposition. Exact supporting text is retained
 as dated evidence, including failed/rejected drafts. Generated [current summary](CURRENT_DECISIONS.md)
 is navigation only. Missing originals and narrow ambiguity are explicit entries below.
 
@@ -42,6 +44,10 @@ datastores. An earlier persistence proposal reused DEC-004; do not use that coll
 as a second definition. Full original DEC wording/scope is not independently recovered,
 so no unknown DEC identifier is reallocated or silently promoted here.
 
+Existing CONCORD-WF-001 identifies the local role-workflow proposal covered by
+CON-071; CONCORD-WF-002 retains its original ID as the accepted consultation
+instruction below. These are distinct source decisions, not renumbered CON entries.
+
 
 ## Identity and constitutional foundation
 
@@ -50,15 +56,15 @@ so no unknown DEC identifier is reallocated or silently promoted here.
 
 - Status: Accepted
 - Scope: All Concord work
-- Acceptance: Explicit owner correction, reaffirmed in this task.
-- Acceptance date: 2026-09-16; reaffirmed 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [LIN-IDENTITY](docs/decisions/evidence/LIN-IDENTITY.md)
+- Acceptance: Explicit owner hierarchy correction supplied in the October 8 routing instructions; prior source/data boundaries retained.
+- Acceptance date: 2026-10-08 routing instruction; exact earlier October 7 message time unavailable.
+- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [LIN-IDENTITY](docs/decisions/evidence/LIN-IDENTITY.md), [OWNER-HIERARCHY-20261008](docs/decisions/evidence/OWNER-HIERARCHY-20261008.md)
 - Supersedes: CON-090
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Concord and The Form are separate peer projects. Vote is their folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence, Visualization and Finger are bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
+Current organization is **Concord → The Form → Moltbook integration**. This supersedes the earlier “separate peer projects” organization preserved in OWNER-TASK and LIN-IDENTITY. Separate source and data ownership remains; no repository consolidation, production implementation or activation is authorized by this hierarchy. Vote is a folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence, Visualization and Finger remain bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
 
 <a id="CON-002"></a>
 ### CON-002 — Linux deployment
@@ -950,16 +956,20 @@ Integrator admission cannot waive missing evidence. Named-human exceptions need 
 ### CON-071 — Detailed role specification remains proposed
 
 - Status: Proposed
-- Scope: JON-163 v1-draft.2
+- Scope: JON-163 v1-draft.3 and existing CONCORD-WF-001 proposal
 - Acceptance: Unavailable: named-human adoption of exact draft pending.
 - Acceptance date: 2026-09-24 (draft delivery)
-- Sources: [LIN-JON-163](docs/decisions/evidence/LIN-JON-163.md), [LIN-ROLES-DRAFT2](docs/decisions/evidence/LIN-ROLES-DRAFT2.md), [LIN-ROLES-DRAFT1](docs/decisions/evidence/LIN-ROLES-DRAFT1.md)
+- Sources: [LIN-ROLES-DRAFT3](docs/decisions/evidence/LIN-ROLES-DRAFT3.md), [LIN-ROLES-DRAFT3-REVIEW](docs/decisions/evidence/LIN-ROLES-DRAFT3-REVIEW.md), [LOCAL-WORKFLOW-CONTINUATION](docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md), [LIN-JON-163](docs/decisions/evidence/LIN-JON-163.md), [LIN-ROLES-DRAFT2](docs/decisions/evidence/LIN-ROLES-DRAFT2.md), [LIN-ROLES-DRAFT1](docs/decisions/evidence/LIN-ROLES-DRAFT1.md)
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
-- Verification: Draft versions and actual advisory discussion retrieved; no independent reviewer invoked.
+- Verification: Draft.3 and actual advisory response 9780c244-50ca-4925-9cb7-e54f183ae8e8 retrieved. One blocking provenance finding and five nonblocking improvements remain in that workstream; this is continuity feedback, not qualifying independent validation.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-v1-draft.2 is the current review draft; v1-draft.1 is an exact preserved historical snapshot. OD-1 consequence definitions/floors (including L1 proportionality), OD-2 family/provider separation thresholds, OD-3 non-waivable gates/exceptions and OD-4 retention system/readiness remain owner decisions. The six draft clarifications and eight detailed role cards are not automatically adopted by the framework agreement. Revised-text review, qualifying independent evidence, classification confirmation, retention readiness and named-human adoption of the exact revision remain pending. Authors and materially contributing advisory reviewers cannot count their own checks as qualifying independent validation.
+v1-draft.3 is the review draft observed at 2026-09-24T23:04:38.648Z; drafts .1 and .2 remain preserved history. The existing CONCORD-WF-001 proposal informed new proposed shared-allowance, bounded-repair, evidence-state, enforcement-scope, management and freshness/retention duties. Dispatcher, locking and recovery mechanics remain deferred to a future execution contract. No numerical Concord allowance, executor activation or Clippy policy adoption follows from these proposals.
+
+The actual draft.3 advisory response at 23:06:24 UTC supersedes the earlier request-only checkpoint. It identifies a blocking revision-provenance gap (work label, accountable owner, precise snapshot/digest and timestamp), plus clarifications to the review exception, correction cardinality, advisory authority, evidence-reuse ordering and added-case provenance. Resolution belongs to the existing JON-163 workstream; do not repeat drafting or mistake this response for independent approval.
+
+OD-1 consequence definitions/floors (including L1 proportionality), OD-2 family/provider separation thresholds, OD-3 non-waivable gates/exceptions and OD-4 retention system/readiness remain owner decisions. Draft clarifications and detailed role cards are not automatically adopted by framework agreement. Qualifying independent evidence, classification confirmation, retention readiness and named-human adoption of the exact revision remain pending. Authors and materially contributing advisory reviewers cannot count their own checks as qualifying independent validation.
 
 <a id="CON-072"></a>
 ### CON-072 — Execution holds and existing writers
@@ -998,13 +1008,28 @@ Research Library’s twelve unfinished held items remain Do Not Execute; complet
 - Scope: Decision maintenance
 - Acceptance: Explicit maintenance requirements in current owner request.
 - Acceptance date: 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md)
+- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md), [GH-PR41-MERGED-20261009](docs/decisions/evidence/GH-PR41-MERGED-20261009.md)
 - Supersedes: None
-- Implementation: Instructions, generator, validator, focused tests and CI edits installed only in this local candidate.
-- Verification: See VALIDATION.md; remote CI/enforcement and integration are pending.
+- Implementation: PR41 instructions, generator, validator, focused tests and CI edits were merged into Develo at 441f135 on September 24. Later runtime, guidance and correction candidates remain separate.
+- Verification: Fresh GitHub metadata and local ancestry establish the original consolidation's merge. Historical Node 22/24 CI results remain tied to their exact revisions. Qualifying review and sustained adherence are not established by merge metadata. See VALIDATION.md and the dated publication receipt.
 - Rationale: Make updates traceable without creating a coordination service or claiming divergence impossible.
 
 Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. This branch is a candidate until integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.
+
+<a id="CONCORD-WF-002"></a>
+### CONCORD-WF-002 — Consult Linear before large decisions
+
+- Status: Accepted
+- Scope: Material Concord decisions; advisory consultation, not authority transfer
+- Acceptance: Exact owner instruction recovered from user message line 237 in session 01a0d5a3-a74c-72c3-9928-603f4ae64bcc; retained under the existing ID in local commit 4a44f4f.
+- Acceptance date: 2026-09-24
+- Sources: [OWNER-LINEAR-CONSULT](docs/decisions/evidence/OWNER-LINEAR-CONSULT.md), [LOCAL-WORKFLOW-CONTINUATION](docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md)
+- Supersedes: None
+- Implementation: Recorded operating instruction; no consultation service or enforcement software installed.
+- Verification: Primary user message and pinned local record inspected. This entry is not an actual consultation response.
+- Rationale: Preserve the owner's consultation boundary without transferring reserved human authority or recreating choreography.
+
+The owner instructed: “Don't make any large decisions without consulting @linear”. Consult Linear before making such decisions and retain the actual advice and disposition. A posted request or silence does not establish completed consultation. Human authority, qualifying independence and existing access/spending/execution restrictions continue to apply. The recorded operating interpretation excludes routine implementation and corrections within an accepted contract from repeated consultation; independent authorized work may continue while a material decision awaits advice. This instruction does not adopt the pending role specification or authorize prohibited agents, Linear execution features or cross-project choreography.
 
 ## Unresolved evidence and preserved history
 

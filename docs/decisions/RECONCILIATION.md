@@ -9,7 +9,7 @@ Candidate branch `docs/decisions-consolidation-20260924` starts at remote Develo
 `29ca0b44cf8d911df6978e84c7a91e7777afd304`, after the accepted marketplace design merge.
 This base is an integration destination, not a claim that Develo had all decisions.
 
-The primary Ubuntu checkout remains on local Develo at
+At initial recovery the primary Ubuntu checkout was on local Develo at
 `b332c2309e123bd05099d4f9fcfd3bd202bdb0fa`, with its original untracked research/review
 material preserved. Those three ahead-of-Develo commits are already on published
 governance branches. The separate JON-141 candidate at `6cf4eab` holds product
@@ -18,6 +18,11 @@ edited. Documentation branch `881ce1e` already corrected the project hierarchy b
 was not on Develo. Its correction is reused without adopting its older workflow
 status as current. This candidate will need a semantic/package/CI reconciliation if
 another branch reaches Develo first.
+
+The later [difference audit](RECONCILIATION_AUDIT_2026-09-24.md) records local Develo
+advancing to 4a44f4f through two documentation commits, while origin/Develo remains
+29ca0b4. Its proposal/consultation evidence is incorporated without merging or
+overwriting that work. Initial local-state.json remains a dated discovery snapshot.
 
 ## Known discrepancies
 
@@ -30,9 +35,9 @@ another branch reaches Develo first.
 | Scheduler requirements outside general register | LIN-SCHEDULER, updated September 22 | CON-024–025 preserve hybrid adaptation, explanations, deterministic fallback, unranked goals and shadow/canary path. No candidate selected. |
 | Coin refusal clarification newer than earlier audit/spec | Exact local question/owner choice; JON-96/97; current 7073e9a | ECON-02 controls; CON-092 preserves rejected forced reuse. Refusal does not destroy/return; optional signed return; free choice; no immutable marks/public disclosure invention. |
 | Coin work advanced after attachment discovery | LIN-REGISTER revision 3 and exact issue acceptance comments | Full JON-97 specification, bounded JON-98/106 research, JON-99 threat, JON-100 hidden-layer and JON-101 interface design acceptance recorded separately from runtime. Earlier mistaken acceptance-repudiation and invented JON-102 gate preserved as corrected history. |
-| JON-163 draft and framework conflated | JON-163 discussion plus both actual document versions | CON-070 = agreed framework; CON-071 = v1-draft.2 proposal. OD-1–4, qualifying independent review, retention readiness and exact-revision human adoption remain pending. |
+| JON-163 draft and framework conflated | JON-163 discussion, preserved drafts and later draft.3/advisory sources | CON-070 = agreed framework; CON-071 = v1-draft.3 proposal at the later audit. Actual advisory response is recorded, not mistaken for independent approval. OD-1–4, qualifying review, retention readiness and exact-revision human adoption remain pending. |
 | Feature-branch publication mistaken for default integration | Fresh PR metadata and Git refs | PR29 merged to PR25’s feature branch at 2f12adb, not Develo. PR17 merged to Develo at 29ca0b4. Design acceptance is separately cited; branch publication alone is insufficient. |
-| No verified master-maintenance process | Local instruction/CI/template inspection | CON-074 and WORKFLOW install local process, validator, generator and PR disposition check. Remote publication, branch protection and live adoption are not claimed. |
+| No verified master-maintenance process | Instruction/CI/template inspection plus GH-PR41-3D8D8A0 | CON-074 and WORKFLOW are published in PR41 with passing exact-revision CI. Canonical integration, branch protection and ongoing adherence remain separate/unverified. |
 | Older JON-35 cancellation exception survives later owner correction | Local September 23 owner questions/answers and LIN-AGT | CON-045 supersedes CON-035 within admitted-operation cancellation/expiry scope; CON-046 requires collector-available pause/resume. Other admission validity constraints remain. |
 | Old blanket holds/statuses beneath newer updates | Current issue-specific scope, project update and owner instructions | Preserve legitimate holds; do not resurrect blanket no-coding or old orchestration. Completed bootstrap approval and bounded library acceptance remain accepted. No work launched by this task. |
 | Producer CI might hide a newer local failing review | LOCAL-REVIEW / LOCAL-DELIVERY, 22edf73 | JON-135 local REVISE is indexed, including row-identifier replacement failure and collector reconstruction limitation. Product fixes/acceptance remain with existing workstream. |
@@ -55,6 +60,8 @@ replaced decision IDs. Multiple sources repeating the same acceptance are one ev
 | Capital C1–C5 | Offense-class identifiers, preserved within CON-020–021 and exact LIN-JON-62 source. They are not generic master decision IDs. |
 | Bootstrap revision 1.0 and source comment UUIDs | Preserve exact frozen document/approval at LIN-BOOTSTRAP and LIN-JON-83-COMMENTS; CON-017 supplies current navigation and operative sizes/thresholds. |
 | JON-163 OD-1–OD-4 | Preserve draft owner-question IDs; they are proposed dispositions, not adopted master policy. |
+| CONCORD-WF-001 | Preserve local proposal identity; current detailed-role status and source navigation are in CON-071. No proposal adoption inferred. |
+| CONCORD-WF-002 | Preserve original ID as an Accepted master entry; exact owner consultation instruction recovered locally. |
 | ZKDISCLOSURE / unavailable DEC variants | Reserve identities in attached directory; no guessed mapping/renumbering. |
 
 ## Local recovery not previously represented by the remote audit
@@ -89,10 +96,12 @@ replaced decision IDs. Multiple sources repeating the same acceptance are one ev
    mean the substantive work was lost, and the overlapping old patch must not be
    blindly reapplied. See scoped artifact index and JON-141 comments.
 
-No newly discovered, previously unuploaded **substantive owner policy** was established
-beyond the remotely summarized choices above. The genuine local-only discoveries are
-primary acceptance provenance, implementation/review evidence and a proposed plan.
-This distinction avoids turning an unpublished test or draft into an accepted decision.
+At initial recovery no newly discovered, previously unuploaded substantive owner
+policy was established beyond the remotely summarized choices above. The later
+difference audit additionally recovered the direct owner consultation instruction
+CONCORD-WF-002 and its local-only commit, plus the CONCORD-WF-001 proposal package.
+These are distinguished from primary acceptance provenance and implementation/review
+evidence; an unpublished test or draft does not itself become an accepted decision.
 
 ## Remaining evidence and owner questions
 
@@ -126,7 +135,7 @@ checks passed. CON-052 now consumes JON-102's existing exact-revision acceptance
 rather than repeating the design, publication or review. The three additive source
 snapshots preserve earlier evidence and make the changed status traceable.
 
-JON-163 v1-draft.2 and its existing review/owner dispositions remain with JON-163.
+JON-163 v1-draft.3 and its existing advisory findings/owner dispositions remain with JON-163.
 JON-141's runtime aggregate remains PR37 at 6cf4eab; its implementation, host repair
 and verification are not repeated here. The original checkout and other workstreams
 are untouched. Missing originals and CON-007/CON-082 remain bounded evidence gaps,

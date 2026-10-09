@@ -3,18 +3,19 @@
 ## Authority and integration identity
 
 The designated master is `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`.
-The current documentation branch is a candidate until reviewed and integrated.
+PR41's original documentation consolidation is merged; subsequent branch changes
+remain candidates until their own review and integration.
 Linear preserves actual owner decisions, discussions, dependencies and work status;
 the master consolidates their operative effect. Historical interviews, specs, source
 snapshots and handoffs are evidence. CURRENT_DECISIONS.md is generated navigation.
 An unincorporated later explicit owner correction still controls: identify it, record
 it and reconcile it before dependent work; a stale master cannot cancel owner intent.
 
-This task’s integration base is Develo `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
-This avoids importing unaccepted runtime branches. JON-141 has a separate existing
-runtime integrator. Do not rewrite that branch or assume its candidate is integrated.
-The documentation candidate can be reviewed independently; if the runtime aggregate
-lands first, reconcile documentation, package scripts and CI against the new Develo.
+The original documentation task used Develo `29ca0b44`; its final PR41 delta was
+merged at `441f135`. The October 9 repair reconciles PR42 `89375cc8` against Develo
+`4b6e41fd` in a separate review branch. This does not integrate the runtime into
+Develo. Name the actual current writer and verify branch ownership for each attempt;
+historical writer assignments are not proof of a currently active writer.
 
 ## Before consequential work
 
@@ -42,7 +43,11 @@ Do not add entries for routine implementation details. An unchanged decision get
 `Decision impact: No decision change` in the task/PR disposition.
 
 New decisions use the next unused CON number; never recycle IDs. Existing ECON, DEC
-and subsystem IDs retain their identities and namespaces. Source records go in
+and subsystem IDs retain their identities and namespaces, including recovered
+CONCORD-WF-### records. Before large decisions, apply CONCORD-WF-002's Linear
+consultation requirement; retain actual advice without substituting it for human
+authority or qualifying independent review. Routine source-backed corrections do
+not constitute a new material policy decision. Source records go in
 `sources.json`: exact URL/path, revision/date, classification, scope, relationship and
 snapshot digest. A missing original date is `Unavailable: <reason>`, not retrieval
 or file-modification time. Do not import full unrelated conversations or private
@@ -109,8 +114,9 @@ Report these separately:
 Saved is not committed; committed is not pushed; pushed is not reviewed; merged is
 not policy acceptance, runtime verification or deployment. A handoff request is not
 a received review. Do not say ongoing enforcement is active because instructions or
-CI edits were written. This candidate's local checks and PR41 CI have been exercised;
-canonical-branch integration and ongoing adherence remain separate, unverified states.
+CI edits were written. Original PR41 integration is verified separately from later
+candidate checks, qualifying review and ongoing adherence. Use the current repair
+receipt for new results and preserve historical receipts unchanged.
 
 ## Automated checks and limits
 

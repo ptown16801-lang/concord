@@ -5,7 +5,7 @@ Linear and stale handoffs. This change adds one root master designated for Devel
 source/reconciliation registers, preserved evidence and a generated navigation summary.
 It keeps accepted policy, proposals, implementation evidence and publication separate.
 
-Decision impact: Updated CON-001, CON-002, CON-003, CON-004, CON-005, CON-006, CON-007, CON-008, CON-009, CON-010, CON-011, CON-012, CON-013, CON-014, CON-015, CON-016, CON-017, CON-018, CON-019, CON-020, CON-021, CON-022, CON-023, CON-024, CON-025, CON-031, CON-032, CON-033, CON-034, CON-035, CON-036, CON-037, CON-038, CON-040, CON-041, CON-042, CON-043, CON-045, CON-046, CON-047, ECON-01, ECON-02, ECON-03, CON-050, CON-051, CON-052, CON-060, CON-061, CON-062, CON-063, CON-064, CON-065, CON-066, CON-070, CON-071, CON-072, CON-073, CON-074, CON-080, CON-081, CON-082, CON-090, CON-091, CON-092
+Decision impact: Updated CON-001, CON-002, CON-003, CON-004, CON-005, CON-006, CON-007, CON-008, CON-009, CON-010, CON-011, CON-012, CON-013, CON-014, CON-015, CON-016, CON-017, CON-018, CON-019, CON-020, CON-021, CON-022, CON-023, CON-024, CON-025, CON-031, CON-032, CON-033, CON-034, CON-035, CON-036, CON-037, CON-038, CON-040, CON-041, CON-042, CON-043, CON-045, CON-046, CON-047, ECON-01, ECON-02, ECON-03, CON-050, CON-051, CON-052, CON-060, CON-061, CON-062, CON-063, CON-064, CON-065, CON-066, CON-070, CON-071, CON-072, CON-073, CON-074, CON-080, CON-081, CON-082, CON-090, CON-091, CON-092, CONCORD-WF-002
 
 Acceptance evidence: per-entry sources in DECISIONS.md; maintenance authorization in
 OWNER-TASK; unresolved original-source gaps and C3 proof-standard overlap remain explicit.
@@ -25,3 +25,11 @@ The coin plan, its review and other workstreams are not recreated.
 Review packet: docs/decisions/REVIEW.md. Qualifying review of this consolidation
 remains pending; no reviewer invocation or approval is claimed.
 JON-163's own draft adoption and JON-141 runtime integration remain separate tasks.
+
+Reconciliation audit: docs/decisions/RECONCILIATION_AUDIT_2026-09-24.md records seven
+findings, their applied corrections and unchanged/gapped evidence. CON-071 tracks
+proposed draft.3 and its actual advisory response; CON-074 records published CI;
+CONCORD-WF-002 preserves the newly recovered owner consultation instruction. The
+README identity wording and stale discovery/publication prose are corrected. The
+validator retains the existing workflow ID namespace; other-thread artifacts stay
+at their original commits without a branch merge or repeated review.

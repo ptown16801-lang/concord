@@ -1,8 +1,8 @@
-> Decision authority: [DECISIONS.md](DECISIONS.md), designated for `Develo`; this documentation branch is a candidate until integrated. See [contribution instructions](CONTRIBUTING.md). Historical product descriptions below do not override later owner decisions or holds.
+> Decision authority: [DECISIONS.md](DECISIONS.md) on `Develo`. The original consolidation was merged through PR41 on September 24; this combined runtime and correction branch remains a review candidate. See [contribution instructions](CONTRIBUTING.md). Later owner decisions and holds control over historical descriptions.
 
 # Concord
 
-Concord is the workbench and research environment for the Multi-Agent Governance Model. **Concord and The Form are separate peer projects; Vote is their folder name, not a parent project or an authority.** This repository does not by itself represent every project artifact.
+Concord is the workbench and research environment for the Multi-Agent Governance Model. The owner's current organizational hierarchy is **Concord → The Form → Moltbook integration**. Separate source and data ownership remains; this hierarchy does not consolidate repositories or grant execution authority. Vote is a folder name only. This repository does not by itself represent every project artifact.
 
 The repository at this baseline contains the existing deployable **Finger beta**: browser capture, ingestion, historical persistence and replay/heat-map processing. That completed artifact is preserved, not a task to recreate. Separating its old planning records from the operational queue does not remove or change the running code.
 

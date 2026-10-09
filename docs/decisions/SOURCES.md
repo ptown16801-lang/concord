@@ -6,7 +6,7 @@ The machine was verified as Cornhole, with the expected checkout and origin. The
 
 ## Local discovery and limits
 
-- [Repository/branch/stash/dirty-file inventory](local-state.json): six pre-existing Concord clones, plus the isolated documentation worktree. Main Develo has three commits absent from origin/Develo but those commits are already reachable from published governance branches; they are not lost or globally unpushed.
+- [Initial repository/branch/stash/dirty-file inventory](local-state.json): six pre-existing Concord clones, plus the isolated documentation worktree. At discovery main Develo had three commits absent from origin/Develo but reachable from published governance branches. The later audit-state inventory below separately records two newer local-only documentation commits; absence from the remote is not loss.
 - [Git source index](git-source-index.json): 45 ref names at discovery, 89 distinct Markdown/text/YAML blobs across their heads. Shared blobs are deduplicated by Git object ID; originals were not deleted. A source located on a feature branch is not assumed integrated.
 - [Scoped session index](session-source-index.json): actual configured/default data location, session IDs, dates and original paths/digests. Session metadata and project-specific user-visible messages were searched; full logs/private reasoning are not included. Short primary acceptance excerpts are LOCAL-AGT and LOCAL-COIN.
 - [Referenced local artifacts](session-artifact-index.json): existence checked individually. Missing temporary paths do not prove loss; published source or preserved local copies are reused when available.
@@ -293,3 +293,15 @@ plan already retained in LOCAL-COIN-PLAN is the same e24ce9f artifact; it was no
 | LIN-REGISTER-R4 | [Preserved register — ECON revision 4 accepted integration plan](evidence/LIN-REGISTER-R4.md) | 2026-09-24T21:34:04.148Z / 2026-09-24T21:34:04.148Z | Recorded explicit design acceptance; runtime remains separate |
 | LIN-JON-102-ACCEPTED | [JON-102 accepted design delivery checkpoint](evidence/LIN-JON-102-ACCEPTED.md) | 2026-09-24T21:33:57.635Z / 2026-09-24T21:33:57.635Z | Accepted design delivery checkpoint; not runtime approval |
 | LIN-JON-102-ACCEPTANCE | [JON-102 exact-revision acceptance and bounded transition](evidence/LIN-JON-102-ACCEPTANCE.md) | 2026-09-24 / Comments through 2026-09-24T21:34:15.959Z; exact accepted head e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06 | Explicit reviewer ACCEPT and owner-account recorded design-only disposition |
+
+## Reconciliation-difference audit additions
+
+See [audit findings](RECONCILIATION_AUDIT_2026-09-24.md) and the pinned [state/file inventory](audit-state-2026-09-24.json). Earlier snapshots and discovery counts describe their original observation time.
+
+| Source ID | Snapshot | Date / version | Classification |
+| --- | --- | --- | --- |
+| LIN-ROLES-DRAFT3 | [JON-163 role and independence specification v1-draft.3](evidence/LIN-ROLES-DRAFT3.md) | 2026-09-24T23:04:38.648Z / 2026-09-24T23:04:38.648Z | Proposed detailed specification; not adopted |
+| LIN-ROLES-DRAFT3-REVIEW | [JON-163 v1-draft.3 advisory request and actual response](evidence/LIN-ROLES-DRAFT3-REVIEW.md) | 2026-09-24T23:06:24.063Z / v1-draft.3 review; response 9780c244-50ca-4925-9cb7-e54f183ae8e8 | Advisory continuity review; explicitly not qualifying independent validation |
+| LOCAL-WORKFLOW-CONTINUATION | [Local role-workflow continuation and consultation record](evidence/LOCAL-WORKFLOW-CONTINUATION.md) | 2026-09-24 / 4a44f4fb49867f6bf51560bd1ea55f32500574a3 | Mixed: local proposal checkpoint and recorded owner consultation instruction |
+| OWNER-LINEAR-CONSULT | [Owner instruction: consult Linear before large decisions](evidence/OWNER-LINEAR-CONSULT.md) | 2026-09-24T23:06:28.813Z / Session 01a0d5a3-a74c-72c3-9928-603f4ae64bcc, user message line 237 | Direct owner instruction |
+| GH-PR41-3D8D8A0 | [Published PR41 and exact-head CI checkpoint](evidence/GH-PR41-3D8D8A0.md) | 2026-09-24T23:12:42.756568+00:00 / 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77 | Publication and automated verification evidence; not acceptance |

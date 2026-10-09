@@ -1,9 +1,26 @@
+# Bounded audit recovery and integration repair — 2026-10-09
+
+Prevent approved local operations from committing when a preexisting collector
+outcome conflicts with the prospective result. Preserve reservations/approval on
+failure and avoid publishing success before the domain commit. Add restart,
+matching-receipt, after-intent conflict and lock/rollback regressions.
+
+Reconcile PR42 with the final merged PR41 delta, retain runtime dependency pins,
+and record the owner's current project hierarchy and actual consolidation status.
+See [the current receipt](docs/decisions/REPAIR_20261009.md); dated entries below
+retain their original historical observations.
+
 # Decision maintenance — 2026-09-24
 
 Prepared a source-backed root master and historical reconciliation on an isolated
 branch; added maintenance instructions, reproducible summary and offline-capable
 validation. No substantive policy adoption or product implementation is claimed.
-Publication/integration remain pending; see `docs/decisions/RECEIPT.md`.
+Published for review as PR41; integration remains pending. See `docs/decisions/RECEIPT.md`.
+
+The reconciliation-difference audit records JON-163 draft.3 and its actual advisory
+response, preserves the existing CONCORD-WF-002 consultation instruction and ID,
+corrects stale publication/project-identity wording, and indexes newer local work
+without repeating or merging it. See `docs/decisions/RECONCILIATION_AUDIT_2026-09-24.md`.
 
 # Changelog
 

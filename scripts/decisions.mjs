@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 
 export const digest = text => createHash('sha256').update(text).digest('hex');
-const idPattern = /^(?:CON-\d{3}|ECON-\d{2}|DEC-\d{3})$/;
+const idPattern = /^(?:CON-\d{3}|ECON-\d{2}|DEC-\d{3}|CONCORD-WF-\d{3})$/;
 const fields = ['Status', 'Scope', 'Acceptance', 'Acceptance date', 'Sources', 'Supersedes', 'Implementation', 'Verification', 'Rationale'];
 export function parseMaster(text) {
   const entries = [];
@@ -101,10 +101,10 @@ export function validateDisposition(body, knownIds) {
   const lines = (body || '').split('\n').filter(l => /^Decision impact:/.test(l));
   if (lines.length !== 1) return ['Exactly one Decision impact disposition is required'];
   if (lines[0] === 'Decision impact: No decision change') return [];
-  const m = lines[0].match(/^Decision impact: Updated ((?:CON-\d{3}|ECON-\d{2}|DEC-\d{3})(?:, (?:CON-\d{3}|ECON-\d{2}|DEC-\d{3}))*)$/);
+  const m = lines[0].match(/^Decision impact: Updated (.+)$/);
   if (!m) return ['Use Decision impact: No decision change or Decision impact: Updated ID, ID'];
   const ids = m[1].split(', ');
-  return ids.filter((id, i) => !knownIds.has(id) || ids.indexOf(id) !== i).map(id => `Invalid/duplicate disposition ID ${id}`);
+  return ids.filter((id, i) => !idPattern.test(id) || !knownIds.has(id) || ids.indexOf(id) !== i).map(id => `Invalid/duplicate disposition ID ${id}`);
 }
 export function preflight(root, expectedHead, expectedCanonical, offline = false) {
   if (!/^[a-f0-9]{40}$/.test(expectedHead || '') || !/^[a-f0-9]{40}$/.test(expectedCanonical || '')) throw new Error('Provide full --expected-head and --expected-canonical SHAs');

@@ -26,6 +26,30 @@ the corrected fixture passed without changing the validator.
 
 ## Executed focused checks
 
+### Reconciliation-difference audit follow-up
+
+At input revision 3d8d8a0, the audit found seven differences; see
+[the findings and dispositions](RECONCILIATION_AUDIT_2026-09-24.md). After correction:
+
+- PASS: `npm run decisions:generate` and `npm run decisions:check`; 65 entries,
+  262 source records, matching summary digest.
+- PASS: `npm run decisions:test` and direct `node test/decisions.test.js`;
+  10 cases, zero failures/skips. The added case preserves CONCORD-WF-002 through
+  master validation, generated navigation and PR disposition while rejecting
+  malformed IDs, unsupported namespaces, bad separators and duplicate IDs.
+- PASS: PR-event disposition fixture using the updated PR body; whitespace check.
+- PASS: all 257 pre-audit frozen sources remain byte-identical; the 11 newly
+  inventoried other-thread files and original untracked local evidence are unchanged.
+- Targeted credential-pattern scan found no matches in the changed files.
+- Live role-draft readback before committing still matched the audited
+  2026-09-24T23:04:38.648Z revision. This is a freshness observation, not a lock.
+
+No product suite was rerun locally. GitHub's existing workflow will perform its
+configured checks after publication; record that result against the exact commit
+in PR41, without treating it as independent or semantic acceptance.
+
+### Initial consolidation checks (historical)
+
 | Command / check | Observed result |
 | --- | --- |
 | `npm run decisions:generate` | PASS; deterministic CURRENT_DECISIONS.md generated from exact master bytes. |

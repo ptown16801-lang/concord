@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-09-24T23:12:42.756568+00:00",
+  "candidateBeforeAudit": "3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77",
+  "canonical": "29ca0b44cf8d911df6978e84c7a91e7777afd304",
+  "localDevelo": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+  "localOnlyNewCommits": [
+    "bdc59313a8bd23b890ad09a7ccf8473aa834e403",
+    "4a44f4fb49867f6bf51560bd1ea55f32500574a3"
+  ],
+  "newLocalFiles": [
+    {
+      "path": "CHANGELOG.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "a40fba6b63e18f4353a9ff2d2654f329571dc6a7",
+      "sha256": "ba5f1dd9277dd8bf06cbaa54f11c9595dd600528b8ff704f79ac478b6d476088"
+    },
+    {
+      "path": "PROJECT_RECORD.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "c5af140459db11648059f2b2eb4438564722b593",
+      "sha256": "069c47946083e1bcf008b202b50afa98c4b392dbeb85667bc5c795d83ad56f06"
+    },
+    {
+      "path": "README.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "ba0e8a64756bef4bcd9df14390981e237f0888f0",
+      "sha256": "33d78ebd13b275626df818e1a0f9109334799ec626c3543510fdc0f1f683b1cf"
+    },
+    {
+      "path": "docs/ai-workflow/CONCORD_CLIPPY_INTEGRATION_v0.1.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "64cd9eb25b5233cd563d02fb43af6c30b71cb998",
+      "sha256": "01dde70c0a812c7cb8e533603a08612cbabc9eaef9e1450c67919816bc0ac950"
+    },
+    {
+      "path": "docs/ai-workflow/ROLE_INDEPENDENCE_v1-draft.3.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "6be0029ed36a6e20bdc73eb67e427828a8ca36e9",
+      "sha256": "3567d1a247ee0509fedfb703b7a43c1e8f71af669605ad93d126767f3a745c0f"
+    },
+    {
+      "path": "docs/ai-workflow/WORK_START_2026-09-24.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "786d8bc79d461e99d7534fa942e8203f83f8cd0f",
+      "sha256": "c3c80d2c37d6613549d0b0f6398e21d3c5cd81960aeca242f39d8ef4ce245062"
+    },
+    {
+      "path": "docs/ai-workflow/evidence/linear-records-2026-09-24.json",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "4c5f80b360f7f35be7fdabc3bb513b46483970cc",
+      "sha256": "e9af7b9d912db08b8e4fcc709e9d93c9bad98757cef4a3fcd380bce6c9540a74"
+    },
+    {
+      "path": "docs/ai-workflow/evidence/manifest.json",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "d28e46d8a41a83781de57717870c8ec94a43056a",
+      "sha256": "a05241e5e96d79f6444054df644c196113ea9209860e2a3c63469c2557a37e28"
+    },
+    {
+      "path": "docs/ai-workflow/evidence/role-independence-v1-draft.2.snapshot.md",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "59c36fc7ed108e95fc89fa7d82b4b2781d273eaa",
+      "sha256": "4ac17e42a3b5ca20d0718444e3285da699f7998e265bb8849567226fc118c59e"
+    },
+    {
+      "path": "docs/ai-workflow/evidence/work-start-manifest.json",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "3095bafaea58e2f0793d97aa413849c801d3eae8",
+      "sha256": "4219ad3c05ac6ca322d97fdccfe7275500f7415fa94fd3ad35de2511826fc2c9"
+    },
+    {
+      "path": "docs/ai-workflow/evidence/work-start-receipt.json",
+      "commit": "4a44f4fb49867f6bf51560bd1ea55f32500574a3",
+      "blob": "7b5818ce1e9e8ed3d42ff482dbdcc49b4a6554b7",
+      "sha256": "a18ffd4473e84c5bf7072a3d5c7c79feb70e7f7123770610f270c51418a46b64"
+    }
+  ],
+  "otherWorktrees": "worktree /home/cornholio/projects/concord\nHEAD 4a44f4fb49867f6bf51560bd1ea55f32500574a3\nbranch refs/heads/Develo\n\nworktree /tmp/concord-decisions-20260924\nHEAD 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77\nbranch refs/heads/docs/decisions-consolidation-20260924\n\n",
+  "overlapWithLocalWork": [
+    "CHANGELOG.md",
+    "PROJECT_RECORD.md",
+    "README.md"
+  ],
+  "scope": "Pinned state observation; not an enduring lock on concurrent writers."
+}
