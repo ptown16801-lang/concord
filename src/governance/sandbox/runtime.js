@@ -74,6 +74,7 @@ export class GovernanceSandbox {
       CREATE TRIGGER IF NOT EXISTS approval_no_replace BEFORE INSERT ON operations WHEN EXISTS (SELECT 1 FROM operations WHERE id=NEW.id) BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS approval_no_rowid_replace BEFORE INSERT ON operations WHEN EXISTS (SELECT 1 FROM operations WHERE rowid=NEW.rowid) BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS approval_id_immutable BEFORE UPDATE OF id ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
+      CREATE TRIGGER IF NOT EXISTS approval_rowid_immutable BEFORE UPDATE OF rowid,_rowid_,oid ON operations BEGIN SELECT RAISE(ABORT,'immutable approval'); END;
       CREATE TRIGGER IF NOT EXISTS audit_no_replace BEFORE INSERT ON audit WHEN EXISTS (SELECT 1 FROM audit WHERE id=NEW.id OR sequence=NEW.sequence) BEGIN SELECT RAISE(ABORT,'immutable audit'); END;
       CREATE TRIGGER IF NOT EXISTS reservation_no_replace BEFORE INSERT ON reservations WHEN EXISTS (SELECT 1 FROM reservations WHERE resource=NEW.resource OR operation=NEW.operation) BEGIN SELECT RAISE(ABORT,'immutable reservation'); END;
       CREATE TRIGGER IF NOT EXISTS reservation_no_rowid_replace BEFORE INSERT ON reservations WHEN EXISTS (SELECT 1 FROM reservations WHERE rowid=NEW.rowid) BEGIN SELECT RAISE(ABORT,'immutable reservation'); END;
