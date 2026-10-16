@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "pins": {
+    "src/governance/eligibility.js": {
+      "commit": "51a102259785a5b53dc6ec4bc4bbca54c4a8fc37",
+      "sha256": "51dead3032c6ed09b57c08b8c205f1c739fc7d789813500753460543f3e9f066"
+    },
+    "src/population/registry.js": {
+      "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+      "sha256": "d170dc98b56ea0a59ca7f4456900a8dc527af3345df045ca80d96a4cc8ed3135"
+    },
+    "src/population/migrations/001_population.sql": {
+      "commit": "882dcffb31b520c6f9458984a35745c8b4bfa3b8",
+      "sha256": "0a490836eb936d581e0950d997abe8a4295004deed4a212c936d5ab9168ccf5c"
+    }
+  }
+}

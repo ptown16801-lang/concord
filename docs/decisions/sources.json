@@ -3404,5 +3404,31 @@
     "retrieved": "2026-09-24T23:12:42.756568+00:00",
     "snapshot": "docs/decisions/evidence/GH-PR41-3D8D8A0.md",
     "sha256": "4bee4890da291c87a4407f192871febbf55654e7700ad8254cbdd8dd967c86da"
+  },
+  "OWNER-HIERARCHY-20261008": {
+    "title": "Owner hierarchy correction",
+    "location": "https://linear.app/jons-garage/project/concord-91fa7cbb5a67",
+    "version": "2026-10-09 readback",
+    "date": "2026-10-08",
+    "classification": "Explicit owner instruction supplied in current chat",
+    "scope": "Concord organizational routing and consolidation status only",
+    "relationship": "Supersedes stale summary wording; retains historical sources and product execution limits.",
+    "snapshot": "docs/decisions/evidence/OWNER-HIERARCHY-20261008.md",
+    "sha256": "077765ca88c87a56b7ee25a2cdbf09f6341e949f760e9da207d97a4c181b3263",
+    "retrieved": "2026-10-09",
+    "inspection": "Inspected in the bounded repair; not runtime or independent acceptance."
+  },
+  "GH-PR41-MERGED-20261009": {
+    "title": "PR41 merged documentation consolidation",
+    "location": "https://github.com/ptown16801-lang/concord/pull/41",
+    "version": "2026-10-09 readback",
+    "date": "2026-09-24T23:57:04Z",
+    "classification": "Fresh GitHub metadata and local Git provenance",
+    "scope": "Concord organizational routing and consolidation status only",
+    "relationship": "Supersedes stale summary wording; retains historical sources and product execution limits.",
+    "snapshot": "docs/decisions/evidence/GH-PR41-MERGED-20261009.md",
+    "sha256": "d1e4f12bc3cc20a57e5a7745a50fa93f6a94a331d4214209f64c91d8fbaee735",
+    "retrieved": "2026-10-09",
+    "inspection": "Inspected in the bounded repair; not runtime or independent acceptance."
   }
 }

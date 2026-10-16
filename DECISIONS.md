@@ -1,12 +1,13 @@
 # Concord decisions
 
-**Integration-ready candidate · coverage 2026-09-24.** Canonical identity: repository
-`ptown16801-lang/concord`, path `/DECISIONS.md`, designated integration branch `Develo`.
-Candidate branch: `docs/decisions-consolidation-20260924`, based on
-`29ca0b44cf8d911df6978e84c7a91e7777afd304`. Until integration, this is a proposed
-consolidation of existing decisions, not an assertion that Develo already contains it.
-Other branch copies and source snapshots are not coequal masters. Integration into
-Develo is the documentation destination, not approval of unrelated product branches.
+**Original consolidation merged; bounded corrections in review · October 9, 2026.**
+Canonical identity: `ptown16801-lang/concord`, `/DECISIONS.md`, branch `Develo`.
+PR41's final consolidation `6676c9f` was merged September 24 at `441f135`;
+current Develo is `4b6e41fd`. See [merge evidence](docs/decisions/evidence/GH-PR41-MERGED-20261009.md).
+This branch reconciles the October 8 owner hierarchy and integration metadata;
+its runtime and later corrections remain candidates until separately reviewed/integrated.
+Other branch copies and frozen snapshots are not coequal masters. No unrelated
+product approval follows from the original documentation merge.
 
 Later explicit owner corrections control over conflicting summaries. Acceptance is
 separate from implementation, verification, publication and execution permission.
@@ -55,15 +56,15 @@ instruction below. These are distinct source decisions, not renumbered CON entri
 
 - Status: Accepted
 - Scope: All Concord work
-- Acceptance: Explicit owner correction, reaffirmed in this task.
-- Acceptance date: 2026-09-16; reaffirmed 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [LIN-IDENTITY](docs/decisions/evidence/LIN-IDENTITY.md)
+- Acceptance: Explicit owner hierarchy correction supplied in the October 8 routing instructions; prior source/data boundaries retained.
+- Acceptance date: 2026-10-08 routing instruction; exact earlier October 7 message time unavailable.
+- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [LIN-IDENTITY](docs/decisions/evidence/LIN-IDENTITY.md), [OWNER-HIERARCHY-20261008](docs/decisions/evidence/OWNER-HIERARCHY-20261008.md)
 - Supersedes: CON-090
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Concord and The Form are separate peer projects. Vote is their folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence, Visualization and Finger are bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
+Current organization is **Concord → The Form → Moltbook integration**. This supersedes the earlier “separate peer projects” organization preserved in OWNER-TASK and LIN-IDENTITY. Separate source and data ownership remains; no repository consolidation, production implementation or activation is authorized by this hierarchy. Vote is a folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence, Visualization and Finger remain bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
 
 <a id="CON-002"></a>
 ### CON-002 — Linux deployment
@@ -1007,10 +1008,10 @@ Research Library’s twelve unfinished held items remain Do Not Execute; complet
 - Scope: Decision maintenance
 - Acceptance: Explicit maintenance requirements in current owner request.
 - Acceptance date: 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md)
+- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md), [GH-PR41-MERGED-20261009](docs/decisions/evidence/GH-PR41-MERGED-20261009.md)
 - Supersedes: None
-- Implementation: Instructions, generator, validator, focused tests and CI edits are published in PR41. Integration into designated canonical branch Develo remains pending.
-- Verification: Node 22/24 GitHub CI passed at 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77; later revisions require their own results. Independent review, canonical integration and sustained adherence remain separate and unverified. See VALIDATION.md and the PR publication receipt.
+- Implementation: PR41 instructions, generator, validator, focused tests and CI edits were merged into Develo at 441f135 on September 24. Later runtime, guidance and correction candidates remain separate.
+- Verification: Fresh GitHub metadata and local ancestry establish the original consolidation's merge. Historical Node 22/24 CI results remain tied to their exact revisions. Qualifying review and sustained adherence are not established by merge metadata. See VALIDATION.md and the dated publication receipt.
 - Rationale: Make updates traceable without creating a coordination service or claiming divergence impossible.
 
 Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. This branch is a candidate until integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.

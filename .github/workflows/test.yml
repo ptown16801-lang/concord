@@ -12,6 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node-version: [22.x, 24.x]
     steps:
@@ -20,6 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: node --version
+      - run: npm ci --ignore-scripts
       - run: npm run decisions:check
       - name: Require decision-impact disposition
         if: github.event_name == 'pull_request'
