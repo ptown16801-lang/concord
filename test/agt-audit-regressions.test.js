@@ -14,6 +14,35 @@ async function fixture(t, options) {
   return f;
 }
 
+function durableOperationState(f) {
+  return {
+    operations: f.runtime.db.prepare('SELECT rowid,* FROM operations ORDER BY id').all(),
+    reservations: f.runtime.db.prepare('SELECT rowid,* FROM reservations ORDER BY resource').all(),
+    records: f.runtime.db.prepare('SELECT rowid,* FROM records ORDER BY id').all(),
+    audit: f.runtime.db.prepare('SELECT rowid,* FROM audit ORDER BY sequence').all(),
+    delivered: f.runtime.db.prepare('SELECT rowid,* FROM delivered ORDER BY id').all(),
+    collector: f.collector.entries(),
+  };
+}
+
+async function prepareCommittedAndPending(f) {
+  await f.runtime.admit(f.signed(f.request('first', 'sample.write', 'first-value', 0)));
+  const first = f.runtime.resume('first');
+  assert.equal(first.status, 'committed');
+  await f.runtime.admit(f.signed(f.request('second', 'sample.write', 'second-value', 1)));
+  f.runtime.flushAudit();
+  return first;
+}
+
+function assertExactlyTwoEffects(f) {
+  assert.deepEqual(f.runtime.record('sample/one'), { value: 'second-value', version: 2 });
+  assert.equal(f.runtime.db.prepare('SELECT count(*) AS n FROM reservations').get().n, 0);
+  const committed = f.collector.entries().filter(entry => entry.payload.type === 'committed');
+  assert.equal(committed.length, 2);
+  assert.equal(new Set(committed.map(entry => entry.id)).size, 2);
+  assert.equal(f.runtime.auditEntries().filter(entry => entry.type === 'committed').length, 2);
+}
+
 for (const boundary of ['identity', 'policy']) {
   for (const offset of [-1, 0, 1]) {
     test(`approval timestamp respects ${boundary} expiry with offset ${offset}`, async t => {
@@ -181,6 +210,65 @@ for (const pragma of [0, 1]) {
     assert.deepEqual(f.runtime.db.prepare('SELECT * FROM reservations').get(), reservation);
     assert.deepEqual(f.collector.entries()[0], receipt);
     assert.equal(f.runtime.resume('operation-1').status, 'committed');
+  });
+}
+
+for (const pragma of [0, 1]) {
+  for (const alias of ['rowid', '_rowid_', 'oid']) {
+    test(`physical-row-identifier ${alias} replacement preserves approvals with recursive_triggers=${pragma}`, async t => {
+      const f = await fixture(t);
+      const first = await prepareCommittedAndPending(f);
+      f.runtime.db.exec(`PRAGMA recursive_triggers=${pragma}`);
+      const committedRowid = f.runtime.db.prepare("SELECT rowid FROM operations WHERE id='first'").get().rowid;
+      const before = durableOperationState(f);
+
+      assert.throws(
+        () => f.runtime.db.prepare(`UPDATE OR REPLACE operations SET ${alias}=? WHERE id='second'`).run(committedRowid),
+        /immutable approval/,
+      );
+      assert.deepEqual(durableOperationState(f), before);
+
+      await f.restart();
+      f.runtime.db.exec(`PRAGMA recursive_triggers=${pragma}`);
+      assert.deepEqual(durableOperationState(f), before);
+      assert.deepEqual(f.runtime.resume('first'), first);
+      assert.deepEqual(durableOperationState(f), before);
+
+      const second = f.runtime.resume('second');
+      assert.equal(second.status, 'committed');
+      const completed = durableOperationState(f);
+      assert.deepEqual(f.runtime.resume('second'), second);
+      assert.deepEqual(durableOperationState(f), completed);
+      assertExactlyTwoEffects(f);
+    });
+  }
+
+  test(`normal admitted lifecycle and replay remain idempotent with recursive_triggers=${pragma}`, async t => {
+    const f = await fixture(t);
+    f.runtime.db.exec(`PRAGMA recursive_triggers=${pragma}`);
+    const first = await prepareCommittedAndPending(f);
+    const pending = durableOperationState(f);
+
+    await f.restart();
+    f.runtime.db.exec(`PRAGMA recursive_triggers=${pragma}`);
+    assert.deepEqual(durableOperationState(f), pending);
+    assert.deepEqual(f.runtime.resume('first'), first);
+    assert.deepEqual(durableOperationState(f), pending);
+
+    const second = f.runtime.resume('second');
+    assert.equal(second.status, 'committed');
+    const completed = durableOperationState(f);
+    assert.deepEqual(f.runtime.resume('second'), second);
+    assert.deepEqual(durableOperationState(f), completed);
+    assertExactlyTwoEffects(f);
+
+    await f.restart();
+    f.runtime.db.exec(`PRAGMA recursive_triggers=${pragma}`);
+    assert.deepEqual(durableOperationState(f), completed);
+    assert.deepEqual(f.runtime.resume('first'), first);
+    assert.deepEqual(f.runtime.resume('second'), second);
+    assert.deepEqual(durableOperationState(f), completed);
+    assertExactlyTwoEffects(f);
   });
 }
 
