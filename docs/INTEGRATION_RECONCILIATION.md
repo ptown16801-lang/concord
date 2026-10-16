@@ -1,5 +1,16 @@
 # Cross-work integration candidate (JON-141)
 
+## Current bounded repair — October 9, 2026
+
+PR42's earlier candidate `89375cc8` is reconciled with Develo `4b6e41fd`, including
+the final merged PR41 delta `6676c9f`. The existing runtime inputs and pins below
+remain preserved. The only runtime correction checks the exact prospective audit
+outcome under the collector lock before committing the domain action (JON-132);
+JON-133 regression evidence and all current checks are in the
+[repair receipt](decisions/REPAIR_20261009.md). Earlier revision/test/reviewer
+statements below are historical and do not supersede that receipt. Production
+acceptance, canonical runtime merge and deployment remain separate.
+
 This branch composes existing deliveries for review after the owner's September
 23 conflict audit and “Begin all” instruction. It preserves producer history and
 does not confer acceptance, merge authorization, or production readiness.

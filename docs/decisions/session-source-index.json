@@ -1,0 +1,362 @@
+[
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T16-09-56-01a0cfe3-a16c-7fb1-a85d-e27543a80d4b.jsonl",
+    "id": "01a0cfe3-a16c-7fb1-a85d-e27543a80d4b",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T20:09:56.847Z",
+    "delegated": true,
+    "selected_messages": 2,
+    "sha256": "ccdb2341c473a4080734d6608106d8b9dd0d8ea2ff8a0ae31df875818bc85822",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T08-31-22-01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4.jsonl",
+    "id": "01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T12:31:22.178Z",
+    "delegated": false,
+    "selected_messages": 34,
+    "sha256": "36bb7937afe92d554603829d71ae2ba88c8918ecb0ccefb8a2e7a3ffffa3cf55",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T07-31-00-01a0ce08-88b4-7870-a7bd-a8c666623f12.jsonl",
+    "id": "01a0ce08-88b4-7870-a7bd-a8c666623f12",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T11:31:00.919Z",
+    "delegated": false,
+    "selected_messages": 3,
+    "sha256": "0eaaab7d2626a9531bf1628d848b17e0e8a5a47392a581f35f7f475b2b7a1367",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T15-59-26-01a0cfda-029f-72c3-95d8-5fda168e3d76.jsonl",
+    "id": "01a0cfda-029f-72c3-95d8-5fda168e3d76",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T19:59:26.371Z",
+    "delegated": true,
+    "selected_messages": 3,
+    "sha256": "d86e6c6ad9f8a0129328e221a81bf870c0d9bc4c34a863a6a31bf90584166400",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T21-40-30-01a0d112-438e-7ee0-85eb-e0b0c8c4b525.jsonl",
+    "id": "01a0d112-438e-7ee0-85eb-e0b0c8c4b525",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-24T01:40:30.225Z",
+    "delegated": true,
+    "selected_messages": 9,
+    "sha256": "a80af00d65b7d2e43da556050669135e081e1897d4e4ad3f423865838e943fda",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T07-15-38-01a0cdfa-74f0-7271-8bca-5924b056b72a.jsonl",
+    "id": "01a0cdfa-74f0-7271-8bca-5924b056b72a",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T11:15:38.355Z",
+    "delegated": false,
+    "selected_messages": 2,
+    "sha256": "ff7b5ff6b1ec1dcaf862847c518db5947c82f78a875332e28d332b4f92b15920",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T15-59-07-01a0cfd9-b981-7503-af9b-d1d38fd0a33e.jsonl",
+    "id": "01a0cfd9-b981-7503-af9b-d1d38fd0a33e",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T19:59:07.653Z",
+    "delegated": false,
+    "selected_messages": 11,
+    "sha256": "45b4311d05e811092569f4e397087649b30a23818c4ae7aa869c1c94fcec5d26",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T04-08-32-01a0cd4f-284f-7822-91f5-38d1c6d9f840.jsonl",
+    "id": "01a0cd4f-284f-7822-91f5-38d1c6d9f840",
+    "cwd": "/home/cornholio/Documents/Codex/2026-09-23-new-realtime-voice-chat-6",
+    "timestamp": "2026-09-23T08:08:32.079Z",
+    "delegated": false,
+    "selected_messages": 3,
+    "sha256": "2ed9de9cf1af5885179c817f610dd2f8ea9a61bd6d97ee46e29dc0ee8012f2aa",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T07-55-53-01a0ce1f-4d47-7a91-b5a6-a28c8fc46d12.jsonl",
+    "id": "01a0ce1f-4d47-7a91-b5a6-a28c8fc46d12",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T11:55:53.034Z",
+    "delegated": false,
+    "selected_messages": 33,
+    "sha256": "36b39cb89625036d8b2c0b3c7e60554abd1bb26cac0d5c9dde87a435cf32fada",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T07-16-22-01a0cdfb-2281-7b43-bfbc-b5615ed516ea.jsonl",
+    "id": "01a0cdfb-2281-7b43-bfbc-b5615ed516ea",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T11:16:22.796Z",
+    "delegated": false,
+    "selected_messages": 2,
+    "sha256": "6fd25bf32383ccbde4bdc76b1706db45bdb53d98e425332f3821e68ebd409521",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T15-54-52-01a0cfd5-d513-7bd1-99ae-a50fd3c8c340.jsonl",
+    "id": "01a0cfd5-d513-7bd1-99ae-a50fd3c8c340",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T19:54:52.567Z",
+    "delegated": true,
+    "selected_messages": 3,
+    "sha256": "80596576261c0bd5d8a275a667704a508ed087fd1d9c7f5deb8da35a2c9ba6b9",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T13-23-52-01a0cf4b-9779-79c0-99a3-adbe7ce97e9e.jsonl",
+    "id": "01a0cf4b-9779-79c0-99a3-adbe7ce97e9e",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T17:23:52.829Z",
+    "delegated": true,
+    "selected_messages": 14,
+    "sha256": "3163ab721baf050a7f06122ea4f7107508f9fe38322ca31f0077b9e8d0bc4877",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T23-09-34-01a0d163-cdd3-78f2-baba-e5fa13bae992.jsonl",
+    "id": "01a0d163-cdd3-78f2-baba-e5fa13bae992",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-24T03:09:34.039Z",
+    "delegated": true,
+    "selected_messages": 73,
+    "sha256": "96633565d74893f619515794fe095dcadb263c99d5f0682e8cb342e77ad120ff",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/23/rollout-2026-09-23T07-47-59-01a0ce18-1331-7471-a596-9f509ff2741a.jsonl",
+    "id": "01a0ce18-1331-7471-a596-9f509ff2741a",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T11:47:59.412Z",
+    "delegated": false,
+    "selected_messages": 27,
+    "sha256": "222d1f91e887a3c748cf0ea336c9679cc1a5c3bc9001d5256111fd676600fb87",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T03-11-12-01a0d241-0892-7523-a7e6-685ddf4ee7fb.jsonl",
+    "id": "01a0d241-0892-7523-a7e6-685ddf4ee7fb",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-24T07:11:12.533Z",
+    "delegated": true,
+    "selected_messages": 4,
+    "sha256": "339f00be4d1e38deac2a0bb8c92c09fe4559207bfd5d695a7a4403170d8b5ce0",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T01-26-45-01a0d1e1-69c7-7b21-bf7c-55a7a58497be.jsonl",
+    "id": "01a0d1e1-69c7-7b21-bf7c-55a7a58497be",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-24T05:26:45.963Z",
+    "delegated": true,
+    "selected_messages": 12,
+    "sha256": "fc18e8a63ef9d741d6bdbdd0af02e5febb00a4e80233d539a5fa5e8971329b49",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-18-43-01a0d2ec-b69b-7433-bd51-4ce8556fe245.jsonl",
+    "id": "01a0d2ec-b69b-7433-bd51-4ce8556fe245",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:18:43.742Z",
+    "delegated": true,
+    "selected_messages": 2,
+    "sha256": "82e478123b4ed6c33bcbb380afd749a1f62e952ba9be7372197baca68ccdcbf3",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T17-20-24-01a0d54a-806a-72c3-a0cb-505efb1eb2e4.jsonl",
+    "id": "01a0d54a-806a-72c3-a0cb-505efb1eb2e4",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T21:20:24.685Z",
+    "delegated": true,
+    "selected_messages": 1,
+    "sha256": "b89ebe9a24ef4ee9d54f84807623ee1c9f3cb75ef987e307c39124e9f9841465",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-29-32-01a0d2f6-9dfa-7c42-8083-12a0502c9aa2.jsonl",
+    "id": "01a0d2f6-9dfa-7c42-8083-12a0502c9aa2",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:29:32.798Z",
+    "delegated": true,
+    "selected_messages": 26,
+    "sha256": "55802a54fba8116e6326e9aac8c6f4266e050b3f898a7bb774069ed3114e7fc2",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-40-08-01a0d300-52c9-7ea3-a54b-ac3566c50674.jsonl",
+    "id": "01a0d300-52c9-7ea3-a54b-ac3566c50674",
+    "cwd": "/home/cornholio/Documents/Codex/2026-09-24-start-a-new-project-unrelated-to",
+    "timestamp": "2026-09-24T10:40:08.905Z",
+    "delegated": true,
+    "selected_messages": 10,
+    "sha256": "d38b20772acb99099bfbf658a32afdd9b0b374ba2f1487add1a54fbc50a0036c",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T01-23-31-01a0d1de-7394-77a1-9514-cb0e5958af1f.jsonl",
+    "id": "01a0d1de-7394-77a1-9514-cb0e5958af1f",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-24T05:23:31.863Z",
+    "delegated": true,
+    "selected_messages": 2,
+    "sha256": "d47424ace96874a989ee1af63079d38689594db516b168ccca212aa17e67f91d",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-54-55-01a0d30d-dae0-7c82-b4fe-c25fcc7045c1.jsonl",
+    "id": "01a0d30d-dae0-7c82-b4fe-c25fcc7045c1",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:54:55.716Z",
+    "delegated": true,
+    "selected_messages": 1,
+    "sha256": "779763689e674d5b3313a2dcf954d44398d19bf55d149d294984343ef2500abb",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-38-56-01a0d2ff-3934-7712-83ad-825312982bb0.jsonl",
+    "id": "01a0d2ff-3934-7712-83ad-825312982bb0",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:38:56.824Z",
+    "delegated": true,
+    "selected_messages": 21,
+    "sha256": "69bbe6c87d179ca0f3d4a3450ecda5854e9fe80659c655a06efe45529acbacbd",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T03-09-07-01a0d23f-2022-72f0-97f5-bcea9cbc1443.jsonl",
+    "id": "01a0d23f-2022-72f0-97f5-bcea9cbc1443",
+    "cwd": "/home/cornholio/Documents/Codex/2026-09-24-you-need-to-make-a-choreographing",
+    "timestamp": "2026-09-24T07:09:07.490Z",
+    "delegated": true,
+    "selected_messages": 14,
+    "sha256": "7f481ef5dce6b477ece7dc2eeda18771669348ea56406258795640ea794ca805",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T04-26-53-01a0d286-50f6-7df2-9378-85e889c517c8.jsonl",
+    "id": "01a0d286-50f6-7df2-9378-85e889c517c8",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-24T08:26:53.049Z",
+    "delegated": true,
+    "selected_messages": 3,
+    "sha256": "d902e5de4629e2e8a4e03d4d3af0bf894d180087fce843404bfc76e51f1c84f8",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-19-58-01a0d2ed-d962-7510-93af-97b54da33945.jsonl",
+    "id": "01a0d2ed-d962-7510-93af-97b54da33945",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:19:58.181Z",
+    "delegated": true,
+    "selected_messages": 2,
+    "sha256": "6a9cd4ca6c70a84fe62d5a7dabaa153ea49812ee0bcbcbc322db151eb2b54061",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T06-37-34-01a0d2fd-f974-7fd0-9f78-f2b2334fe798.jsonl",
+    "id": "01a0d2fd-f974-7fd0-9f78-f2b2334fe798",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:37:34.968Z",
+    "delegated": true,
+    "selected_messages": 17,
+    "sha256": "ebff537ed44a5d609a5cedf54283d681b5cda1081cc9e2a317ac292d169eca79",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T10-27-11-01a0cea9-d3de-7fb3-b05c-99650b2ad1b6.jsonl",
+    "id": "01a0cea9-d3de-7fb3-b05c-99650b2ad1b6",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T14:27:11.457Z",
+    "delegated": false,
+    "selected_messages": 2,
+    "sha256": "d443964413c8952e1bc37b83762b3160e37e47527428229a7182714bf09a839e",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T04-09-28-01a0cd50-0395-7a40-a96a-3fdb4081cb01.jsonl",
+    "id": "01a0cd50-0395-7a40-a96a-3fdb4081cb01",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T08:09:28.222Z",
+    "delegated": false,
+    "selected_messages": 12,
+    "sha256": "17b47183c8698af59e8e4227395d39976073cc3d6605c37c55d79444898edaa3",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T08-44-31-01a0ce4b-d68c-73a0-a923-469a61fdfb65.jsonl",
+    "id": "01a0ce4b-d68c-73a0-a923-469a61fdfb65",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T12:44:31.759Z",
+    "delegated": false,
+    "selected_messages": 15,
+    "sha256": "73f4bc32886ce9432d82b7f10b36783ad502727b9f9266ccb4c24bb0f90ca9e6",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T09-03-48-01a0ce5d-7b2f-7cb0-bdef-75a0386a5909.jsonl",
+    "id": "01a0ce5d-7b2f-7cb0-bdef-75a0386a5909",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T13:03:48.018Z",
+    "delegated": false,
+    "selected_messages": 8,
+    "sha256": "8e2a445825b9c680919b64802f97622809d6ad2b9244755683550b96ca7bea44",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T05-54-16-01a0cdaf-f569-7a21-b836-b207b0b4e425.jsonl",
+    "id": "01a0cdaf-f569-7a21-b836-b207b0b4e425",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T09:54:16.044Z",
+    "delegated": false,
+    "selected_messages": 3,
+    "sha256": "e3f114e78114ce2e82005c2cfe4fd55f4b4341559a4028fa5cd54db769def5d7",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-24T06-28-15-01a0d2f5-7028-70f1-aa69-71d7bde502c2.jsonl",
+    "id": "01a0d2f5-7028-70f1-aa69-71d7bde502c2",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-24T10:28:15.532Z",
+    "delegated": false,
+    "selected_messages": 2,
+    "sha256": "752904f178d08199875abf9a932f41b79b135c5727ac741a03323c2c0983f300",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T07-44-10-01a0ce14-95df-7da0-bc6c-fd5a3de2917d.jsonl",
+    "id": "01a0ce14-95df-7da0-bc6c-fd5a3de2917d",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T11:44:10.722Z",
+    "delegated": false,
+    "selected_messages": 8,
+    "sha256": "6026f06db01241e8b19c8af39fa37011661db5aab0cf60c630e3a7cdf6e15131",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T09-25-29-01a0ce71-5711-7d91-88f2-cd9175165ccc.jsonl",
+    "id": "01a0ce71-5711-7d91-88f2-cd9175165ccc",
+    "cwd": "/home/cornholio/projects/health",
+    "timestamp": "2026-09-23T13:25:29.492Z",
+    "delegated": false,
+    "selected_messages": 7,
+    "sha256": "9b974f8b9a21e30bc243a9dc89dd1288f7cdb214736283d771396392e35505d2",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  },
+  {
+    "path": "/home/cornholio/.codex/archived_sessions/rollout-2026-09-23T05-25-47-01a0cd95-e26f-7aa1-ac98-2f37ead36175.jsonl",
+    "id": "01a0cd95-e26f-7aa1-ac98-2f37ead36175",
+    "cwd": "/home/cornholio/projects/concord",
+    "timestamp": "2026-09-23T09:25:47.251Z",
+    "delegated": false,
+    "selected_messages": 59,
+    "sha256": "b49af722c7ed8d0fffda106ae53ca6527964289b88cddd0fa0bffc2144234235",
+    "inspection": "Scoped user-visible messages and relevant final receipts; not private reasoning or full session dump"
+  }
+]

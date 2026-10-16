@@ -97,10 +97,13 @@ policy administrators across processes are not supported by this sandbox.
 
 On resume, the local outbox is delivered idempotently to the collector, followed
 by a durable execution-intent receipt. The runtime then acquires a real collector
-database write transaction and performs the domain's mutation, commit outcome,
+database write transaction, checks any existing outcome receipt against the exact
+prospective result before effects, and performs the domain's mutation, commit outcome,
 audit/outbox record and reservation release atomically in the domain database.
 It subsequently delivers the outcome receipt. Duplicate receipt IDs must have
-identical payloads. A crash after mutation but before delivery retries only the
+identical payloads. An incompatible preexisting outcome leaves the approval pending,
+the record unchanged and the reservation retained; no success receipt is created
+by the pre-effect check. A crash after mutation but before delivery retries only the
 receipt, never the mutation.
 
 There is **no global transaction** across collector and domain databases. An
