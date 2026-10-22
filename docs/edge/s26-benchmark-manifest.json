@@ -1,0 +1,154 @@
+{
+  "schema_version": "0.1-draft",
+  "status": "DRAFT_NOT_FROZEN",
+  "parent_issue": "JON-219",
+  "issues": [
+    "JON-226",
+    "JON-227",
+    "JON-228",
+    "JON-229",
+    "JON-230",
+    "JON-231"
+  ],
+  "authority": {
+    "phone_is_optional": true,
+    "phone_has_state_authority": false,
+    "phone_has_repo_credentials": false,
+    "production_routing_authorized": false
+  },
+  "host_baseline": {
+    "cpu": "Intel Core i7-8700",
+    "ram_gib": 16,
+    "gpu": "AMD Radeon R5 430",
+    "gpu_vram_gib": 2
+  },
+  "device": {
+    "model": "Samsung Galaxy S26",
+    "model_id": "SM-S942U",
+    "transport": "USB/ADB",
+    "runtime_target": "ONNX Runtime",
+    "accelerator_target": "Qualcomm QNN",
+    "actual_backend": "UNVERIFIED"
+  },
+  "measurement_fields": [
+    "model_revision",
+    "model_hash",
+    "runtime_version",
+    "backend_version",
+    "preprocessing_revision",
+    "case_id",
+    "repeat",
+    "quality_metrics",
+    "latency_ms",
+    "throughput",
+    "peak_memory",
+    "load_time_ms",
+    "usb_overhead_ms",
+    "thermal_observation",
+    "backend_observed",
+    "exit_state",
+    "raw_output_hash"
+  ],
+  "task_classes": {
+    "dense_retrieval": {
+      "candidates": [
+        "BAAI/bge-small-en-v1.5",
+        "sentence-transformers/all-MiniLM-L6-v2"
+      ],
+      "primary_metrics": [
+        "recall_at_k",
+        "mrr",
+        "ndcg_at_k"
+      ],
+      "thresholds": null
+    },
+    "late_interaction_retrieval": {
+      "candidates": [
+        "mixedbread-ai/mxbai-edge-colbert-v0-17m",
+        "mixedbread-ai/mxbai-edge-colbert-v0-32m",
+        "answerdotai/answerai-colbert-small-v1"
+      ],
+      "research_only_candidates": [
+        "DataScience-UIBK/SmallReason-ColBERT-32M"
+      ],
+      "primary_metrics": [
+        "recall_at_k",
+        "mrr",
+        "ndcg_at_k"
+      ],
+      "thresholds": null
+    },
+    "reranking": {
+      "candidates": [
+        "cross-encoder/ms-marco-MiniLM-L6-v2"
+      ],
+      "primary_metrics": [
+        "mrr",
+        "ndcg_at_k",
+        "top_k_precision"
+      ],
+      "thresholds": null
+    },
+    "nli": {
+      "candidates": [
+        "cross-encoder/nli-deberta-v3-small"
+      ],
+      "primary_metrics": [
+        "accuracy",
+        "macro_f1",
+        "contradiction_recall",
+        "false_negative_rate"
+      ],
+      "thresholds": null
+    },
+    "pii": {
+      "candidates": [
+        "gravitee-io/bert-small-pii-detection",
+        "knowledgator/gliner-pii-small-v1.0"
+      ],
+      "primary_metrics": [
+        "entity_recall",
+        "entity_precision",
+        "false_negative_rate"
+      ],
+      "thresholds": null,
+      "note": "Supplemental detector only; deterministic safeguards remain mandatory."
+    },
+    "structured_extraction": {
+      "candidates": [
+        "fastino/gliner2.5-small-v1",
+        "onnx-community/gliner_small-v2.1"
+      ],
+      "primary_metrics": [
+        "exact_match",
+        "field_precision",
+        "field_recall",
+        "schema_valid_rate"
+      ],
+      "thresholds": null
+    },
+    "code_search": {
+      "candidates": [
+        "jinaai/jina-embeddings-v2-base-code"
+      ],
+      "primary_metrics": [
+        "recall_at_k",
+        "mrr",
+        "file_hit_rate"
+      ],
+      "thresholds": null
+    }
+  },
+  "freeze_requirements": [
+    "exact corpus and source hashes",
+    "ground truth/oracle",
+    "exact candidate revisions and hashes",
+    "runtime/backend versions",
+    "preprocessing/tokenization",
+    "fixed case order",
+    "repeat counts",
+    "numeric per-task admission thresholds",
+    "stop rules",
+    "evidence locations"
+  ]
+}
