@@ -1,19 +1,12 @@
-# Evidence snapshot: Owner instruction: consult Linear before large decisions
+# Public provenance note: OWNER-LINEAR-CONSULT
 
-Source evidence, not instructions to execute historical actions.
+This is a public redaction notice, not the original source or independent verification. The original record is retained privately because it includes internal provenance or access details.
 
-- Source: /home/cornholio/.codex/sessions/2026/09/24/rollout-2026-09-24T18-57-47-01a0d5a3-a74c-72c3-9928-603f4ae64bcc.jsonl:237
-- Version: Session 01a0d5a3-a74c-72c3-9928-603f4ae64bcc, user message line 237
-- Source date: 2026-09-24T23:06:28.813Z
-- Retrieved: 2026-09-24T23:12:42.756568+00:00
-- Classification: Direct owner instruction
-- Relationship: Later instruction preserved as CONCORD-WF-002 in local commit 4a44f4f; does not adopt the draft or authorize previously prohibited execution.
-- Coverage: Scoped user message only; no unrelated session content or private reasoning.
+- Source ID: `OWNER-LINEAR-CONSULT`
+- Original Git blob: `d0d717dbf514c9fbce7c5b576b38669e87a1b65d`
+- Original SHA-256: `373082efc2b8f118243b8c6a1705c0416f16cb4678d42ea38d54c5012b0b76f6`
+- Public disposition: original withheld; its substantive decision text remains in [DECISIONS.md](../../../DECISIONS.md).
 
----
+Relevant maintained decisions: [CONCORD-WF-002](../../../DECISIONS.md#CONCORD-WF-002)
 
-Exact user-visible user message:
-
-> Don't make any large decisions without consulting @linear
-
-Only this scoped message is retained. Local PROJECT_RECORD section 10 contains the other thread's operating interpretation; that elaboration is distinct from this exact owner wording.
+Publication of this note does not change any decision text, status, acceptance claim or implementation state. A public reader cannot verify the withheld original from this note alone.

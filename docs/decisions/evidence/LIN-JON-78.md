@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-58A — Authoritative population registry and 300-cap enforcement
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `4254f7c9df167d5350432b399e412925c90eb321`; original SHA-256: `a6b9cfbdcb0159e21d987a254debe755d540fa2d002afe59a673fa3b15e62e9b`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement
+- Source: [private source reference withheld]
 - Version: 2026-09-23T20:06:43.997Z
 - Source date: 2026-09-23T20:06:43.997Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Routing clarification — September 23, 2026 consistency audit
 
-<issue id="19637321-042f-49cb-b95f-1372c253a2ce" href="https://linear.app/jons-garage/issue/JON-90/enable-concord-linear-coding-sessions-environment">JON-90</issue> is Canceled and confers no current workflow gate. Older references below to its being the sole native-workflow gate are historical. Current native status, issue-specific remaining scope, published artifacts, and latest explicit owner authorization govern. Preserve existing delivered work and accepted dependency pins; do not restart or create a replacement worker from the historical handoffs below.
+JON-90 (private source reference withheld) is Canceled and confers no current workflow gate. Older references below to its being the sole native-workflow gate are historical. Current native status, issue-specific remaining scope, published artifacts, and latest explicit owner authorization govern. Preserve existing delivered work and accepted dependency pins; do not restart or create a replacement worker from the historical handoffs below.
 
 ## Current workflow authority — 2026-09-19
 
@@ -23,13 +25,13 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** population/identity issuance and capacity-boundary contract. **Current disposition:** preserve In Review and existing recovery PR <pull-request id="3fe649c1-7d99-47b2-af3f-83cd196a1c73" href="https://linear.app/jons-garage/review/jon-78-recover-verified-population-registry-and-300-cap-implementation-108508d2acfd">ptown16801-lang/concord#6</pull-request>. **Design follow-up:** address <issue id="99b1f17f-3716-40af-b9fa-c65c845d6d5f" href="https://linear.app/jons-garage/issue/JON-87/jon-82a-cross-track-interface-and-integration-readiness-audit">JON-87</issue> IR-01/02/05/10/11/12 through an identity/class/division and ordered-lifecycle contract, including the <issue id="f2fca42c-1775-4671-9155-c41d34e2415d" href="https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement">JON-59</issue> reservation/secrecy consumer boundary. <issue id="79ac2c3d-cfbd-44b1-9c8f-18fd411bfb6c" href="https://linear.app/jons-garage/issue/JON-91/jon-85a-reconcile-recovered-jon-78jon-79-pins-and-unblock-bootstrap">JON-91</issue> reports conditional acceptance of the published pin for domain-interface use; it does not close these integration/security findings or authorize coding. <issue id="e82052ce-bfca-4428-b2f2-c90f9128de43" href="https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions">JON-79</issue> consumes population identity; no second issuance authority. Existing sessions/results remain evidence; clearing delegation does not claim a session was canceled.
+**Canonical owner:** population/identity issuance and capacity-boundary contract. **Current disposition:** preserve In Review and existing recovery PR ptown16801-lang/concord#6 (private source reference withheld). **Design follow-up:** address JON-87 (private source reference withheld) IR-01/02/05/10/11/12 through an identity/class/division and ordered-lifecycle contract, including the JON-59 (private source reference withheld) reservation/secrecy consumer boundary. JON-91 (private source reference withheld) reports conditional acceptance of the published pin for domain-interface use; it does not close these integration/security findings or authorize coding. JON-79 (private source reference withheld) consumes population identity; no second issuance authority. Existing sessions/results remain evidence; clearing delegation does not claim a session was canceled.
 
 ---
 
 ## Interface-readiness handoff — 2026-09-16 audit
 
-[Complete JON-87 continuation](<https://linear.app/jons-garage/document/jon-87-published-source-interfacereadiness-continuation-v10-06a4bd4f959b>) records exact inspected commits, current source contracts, proof limits and integration order.
+Complete JON-87 continuation (private source reference withheld) records exact inspected commits, current source contracts, proof limits and integration order.
 
 IR-01/02/05/10/11/12: identity/class authority, ordered eligibility handoff, P/K commitment capacity, sealed census interface and source-identified raw replacement risk. Raw replacement is a review finding, not a newly executed exploit.
 
@@ -39,7 +41,7 @@ These are review/coordination findings for the existing scope and owners. Public
 
 **Published and reviewable; not merged or accepted as integrated production code.**
 
-* Real draft PR: <pull-request id="3fe649c1-7d99-47b2-af3f-83cd196a1c73" href="https://linear.app/jons-garage/review/jon-78-recover-verified-population-registry-and-300-cap-implementation-108508d2acfd">ptown16801-lang/concord#6</pull-request>
+* Real draft PR: ptown16801-lang/concord#6 (private source reference withheld)
 * Fetchable branch: `delivery/jon-78-recovery-20260916`
 * Published SHA: `882dcffb31b520c6f9458984a35745c8b4bfa3b8`
 * Base: `40f647e5b8d23307f713fc3a3753a1d3a46611cb`
@@ -50,11 +52,11 @@ These are review/coordination findings for the existing scope and owners. Public
 
 The original implementation was not rewritten. Recovery used the corrected long-code-fence export after rejecting a Markdown-corrupted response. Old sandbox commits (`bb762c...` and `088cd...`) were unavailable in the resumed session; latest producer head was `e49fd6c6005e064041631b844c3a1e3c6780a3fd`. This is verified **content recovery**, not a claim those original commit identities were recovered. Record the new published SHA explicitly when prerequisites are reviewed; do not silently replace accepted dependency pins.
 
-In Review means artifact delivery and automated verification are complete enough for review; constitutional/security acceptance and cross-track integration remain separate. No merge, no implementation rerun, no duplicate session. <issue id="0691be94-2cff-4aef-9190-4da85b926ead" href="https://linear.app/jons-garage/issue/JON-84/temporary-fresh-codex-internet-verification">JON-84</issue> remained informational; <issue id="19637321-042f-49cb-b95f-1372c253a2ce" href="https://linear.app/jons-garage/issue/JON-90/enable-concord-linear-coding-sessions-environment">JON-90</issue> is the sole native-workflow validation gate.
+In Review means artifact delivery and automated verification are complete enough for review; constitutional/security acceptance and cross-track integration remain separate. No merge, no implementation rerun, no duplicate session. JON-84 (private source reference withheld) remained informational; JON-90 (private source reference withheld) is the sole native-workflow validation gate.
 
 ---
 
-Child of <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue>. Implement the authoritative population state and mechanically enforce the global living-agent population ceiling of 300.
+Child of JON-58 (private source reference withheld). Implement the authoritative population state and mechanically enforce the global living-agent population ceiling of 300.
 
 ## Scope
 
@@ -69,7 +71,7 @@ Do not implement ballot accounting or UI-derived counts.
 * Failed creation attempts must not partially mutate state.
 * Creation must be attributable and auditable.
 * Hidden/special investigator identities must not bypass the global ceiling.
-* Expose a clear interface for <issue id="f2fca42c-1775-4671-9155-c41d34e2415d" href="https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement">JON-59</issue>.
+* Expose a clear interface for JON-59 (private source reference withheld).
 
 ## Minimum tests
 
@@ -98,12 +100,12 @@ Work in `ptown16801-lang/concord`. Verify the actual checked-out repository, bra
 
 ### Objective
 
-Implement only the authoritative population registry and 300-cap enforcement scope defined above. Do not rebuild unrelated Concord subsystems and do not implement ballot accounting, UI-derived counts, or <issue id="f2fca42c-1775-4671-9155-c41d34e2415d" href="https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement">JON-59</issue> itself.
+Implement only the authoritative population registry and 300-cap enforcement scope defined above. Do not rebuild unrelated Concord subsystems and do not implement ballot accounting, UI-derived counts, or JON-59 (private source reference withheld) itself.
 
 ### Required safeguards
 
-* Preserve the accepted <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue> rules and the existing authoritative-store architecture.
-* Treat <issue id="f2fca42c-1775-4671-9155-c41d34e2415d" href="https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement">JON-59</issue> as an integration contract: do not create a second population authority or permit hidden investigator capacity to bypass the global ceiling.
+* Preserve the accepted JON-58 (private source reference withheld) rules and the existing authoritative-store architecture.
+* Treat JON-59 (private source reference withheld) as an integration contract: do not create a second population authority or permit hidden investigator capacity to bypass the global ceiling.
 * Use transactional/atomic enforcement near the 300 ceiling.
 * Record and preserve auditable creation/terminal transitions.
 * Do not silently reinterpret governance rules. If a genuine controlling-source conflict is discovered, report it as a blocker rather than choosing a new rule.

@@ -1,8 +1,10 @@
 # Evidence snapshot: Relational and temporal observatory
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `47cd11f93112c05f434d1e6eb593a8e36c7ae968`; original SHA-256: `a4438e6730b76f8956518dad7dd18ae04c0db405dfa55499f97409761efc34e8`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-21/relational-and-temporal-observatory
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:17:36.389Z
 - Source date: 2026-09-19T04:17:36.389Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Relational and temporal analytical contract. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own matched-event identity requirements, permitted observatory inputs, metric definitions, uncertainty/missingness and analytical acceptance criteria. <issue id="636fa9ac-6d77-497a-a0d6-3d2d4493a989" href="https://linear.app/jons-garage/issue/JON-20/forum-groups-and-non-binding-social-reactions">JON-20</issue> owns source discussion/reaction events; <issue id="21733ce2-5780-4f9e-8e55-d6a157c2bd50" href="https://linear.app/jons-garage/issue/JON-22/interactive-data-atlas-and-graph-standard">JON-22</issue> owns graph presentation; <issue id="4ff79420-33e1-4ae3-9dba-ab264dd6101c" href="https://linear.app/jons-garage/issue/JON-24/decision-propagation-catalog-and-replay-engine">JON-24</issue> owns decision-propagation semantics. Do not claim analytical conclusions, motives, guilt or affiliation from similarity. Use no quiz records or scores.
+**Exclusive ownership:** Own matched-event identity requirements, permitted observatory inputs, metric definitions, uncertainty/missingness and analytical acceptance criteria. JON-20 (private source reference withheld) owns source discussion/reaction events; JON-22 (private source reference withheld) owns graph presentation; JON-24 (private source reference withheld) owns decision-propagation semantics. Do not claim analytical conclusions, motives, guilt or affiliation from similarity. Use no quiz records or scores.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 

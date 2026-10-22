@@ -1,8 +1,10 @@
 # Evidence snapshot: Archivist, records, and publication model
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `5d191d4425c76d75c8a8ec1f4e8573ab3c18db09`; original SHA-256: `22f7ed3d9e6e1a659e88da23b65a40ffef98ddffbf97303bf2a0db06c5625e71`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model
+- Source: [private source reference withheld]
 - Version: 2026-09-23T11:31:38.552Z
 - Source date: 2026-09-23T11:31:38.552Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,15 +21,15 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Project ownership correction — 2026-09-16 Eastern
 
-**Concord → Archive & Records subsystem.** Vote is a folder only; Archive & Records is not a separate project. This original issue remains the sole owner of its records/publication deliverable. Its design-only boundary remains unchanged. Historical <issue id="ae3a7c27-f57a-48d5-af80-abc58b3514f7" href="https://linear.app/jons-garage/issue/JON-93/concord-supervisor-loop-project-health-and-safe-auto-repair">JON-93</issue>/<issue id="dc5db832-0a9c-4b4d-a8a2-b4e582a423fe" href="https://linear.app/jons-garage/issue/JON-95/concord-dispatcher-dependency-aware-continuous-work-dispatch">JON-95</issue> orchestration records do not control current execution. This issue is currently Backlog with no delegate; relocation itself did not authorize coding. Existing security, source ownership and Research Library separation remain intact. Older references to a separate Archive project are superseded organizational history.
+**Concord → Archive & Records subsystem.** Vote is a folder only; Archive & Records is not a separate project. This original issue remains the sole owner of its records/publication deliverable. Its design-only boundary remains unchanged. Historical JON-93 (private source reference withheld)/JON-95 (private source reference withheld) orchestration records do not control current execution. This issue is currently Backlog with no delegate; relocation itself did not authorize coding. Existing security, source ownership and Research Library separation remain intact. Older references to a separate Archive project are superseded organizational history.
 
 ---
 
 ## Current design contract — full design audit, 2026-09-16
 
-**Deliverable:** Archivist and institutional publication contract. Current tracking state is Backlog with no delegate. Native issue status and delegation fields are authoritative; historical <issue id="ae3a7c27-f57a-48d5-af80-abc58b3514f7" href="https://linear.app/jons-garage/issue/JON-93/concord-supervisor-loop-project-health-and-safe-auto-repair">JON-93</issue>/<issue id="dc5db832-0a9c-4b4d-a8a2-b4e582a423fe" href="https://linear.app/jons-garage/issue/JON-95/concord-dispatcher-dependency-aware-continuous-work-dispatch">JON-95</issue> records do not establish an active worker. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
+**Deliverable:** Archivist and institutional publication contract. Current tracking state is Backlog with no delegate. Native issue status and delegation fields are authoritative; historical JON-93 (private source reference withheld)/JON-95 (private source reference withheld) records do not establish an active worker. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own submission envelopes, publication classes, append-only correction/supersession, protected failure/disclosure ledger interfaces and Archivist read-only consumer rules. <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> owns security/domain authorization and authoritative-store controls; this issue references those controls. <issue id="c430260a-9423-4dd8-92de-091f3541137d" href="https://linear.app/jons-garage/issue/JON-28/concord-artifact-archive">JON-28</issue> owns artifact preservation; neither record system owns Research Library GOV/PDF state. No new repository or coding target is needed to finish the design.
+**Exclusive ownership:** Own submission envelopes, publication classes, append-only correction/supersession, protected failure/disclosure ledger interfaces and Archivist read-only consumer rules. JON-17 (private source reference withheld) owns security/domain authorization and authoritative-store controls; this issue references those controls. JON-28 (private source reference withheld) owns artifact preservation; neither record system owns Research Library GOV/PDF state. No new repository or coding target is needed to finish the design.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 
@@ -35,7 +37,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Historical audit checkpoint — 2026-09-16
 
-Before the later <issue id="ae3a7c27-f57a-48d5-af80-abc58b3514f7" href="https://linear.app/jons-garage/issue/JON-93/concord-supervisor-loop-project-health-and-safe-auto-repair">JON-93</issue>/<issue id="dc5db832-0a9c-4b4d-a8a2-b4e582a423fe" href="https://linear.app/jons-garage/issue/JON-95/concord-dispatcher-dependency-aware-continuous-work-dispatch">JON-95</issue> design dispatch, this issue was Backlog / queued in Concord's Archive & Records subsystem; the former standalone project record remains retired. The prior agent session has an explicit Stopped checkpoint (2026-09-16 09:33:30 UTC); prior handoff text is historical and does not establish an active worker. Before any future implementation assignment, verify this Concord subsystem's exact authorized repository/directory and accepted base from current records. Do not infer a target from the old `Test` repository handoff or automatically copy Concord's runtime/environment. Existing records work is preserved; no new execution is dispatched by this repair.
+Before the later JON-93 (private source reference withheld)/JON-95 (private source reference withheld) design dispatch, this issue was Backlog / queued in Concord's Archive & Records subsystem; the former standalone project record remains retired. The prior agent session has an explicit Stopped checkpoint (2026-09-16 09:33:30 UTC); prior handoff text is historical and does not establish an active worker. Before any future implementation assignment, verify this Concord subsystem's exact authorized repository/directory and accepted base from current records. Do not infer a target from the old `Test` repository handoff or automatically copy Concord's runtime/environment. Existing records work is preserved; no new execution is dispatched by this repair.
 
 # Archivist, records, and publication model
 

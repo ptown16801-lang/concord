@@ -1,8 +1,10 @@
 # Evidence snapshot: Implement Tombstone terminal-condemnation placeholder protocol
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `7473beb6168dc8e3c0aef28fdc8c4bae0a9b2e04`; original SHA-256: `865373523d34b13d8dc25f989bde4a56cfc95a836bd679266b766639b28d7027`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-60/implement-tombstone-terminal-condemnation-placeholder-protocol
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:15:43.170Z
 - Source date: 2026-09-19T04:15:43.170Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,7 +21,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** record-preserving terminal identity/authorization transition. **Deliverable:** irreversible/idempotent Tombstone transition and recovery-prohibition contract, with population, eligibility, office, credential and record effects mapped to their existing owners. <issue id="fe321d82-df40-4788-9cc9-7a7a68bafcec" href="https://linear.app/jons-garage/issue/JON-62/recover-and-implement-capital-offense-conviction-and-execution-rules">JON-62</issue> supplies lawful final terminal authority; <issue id="e9dc4117-dcc8-4b56-8ebb-29ed4f2cac00" href="https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement">JON-78</issue> population, <issue id="e82052ce-bfca-4428-b2f2-c90f9128de43" href="https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions">JON-79</issue> franchise, <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> authorization and <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue> archives apply their own domain effects. This issue creates no offense, sentence, successor identity or second lifecycle authority.
+**Canonical owner:** record-preserving terminal identity/authorization transition. **Deliverable:** irreversible/idempotent Tombstone transition and recovery-prohibition contract, with population, eligibility, office, credential and record effects mapped to their existing owners. JON-62 (private source reference withheld) supplies lawful final terminal authority; JON-78 (private source reference withheld) population, JON-79 (private source reference withheld) franchise, JON-17 (private source reference withheld) authorization and JON-18 (private source reference withheld) archives apply their own domain effects. This issue creates no offense, sentence, successor identity or second lifecycle authority.
 
 ---
 
@@ -48,7 +50,7 @@ The placeholder does **not** define new capital offenses, expand existing offens
 * Record terminal authority/order, effective time, provenance, and state-transition result in the proper authoritative record system.
 * Prevent checkpoint restore, stale credentials, copied workfiles, or successor state from recreating the tombstoned identity.
 * Keep archival/read access separate from execution/authorization rights.
-* Integrate population/voting state with <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue> and protected-domain/security state with <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue>.
+* Integrate population/voting state with JON-58 (private source reference withheld) and protected-domain/security state with JON-17 (private source reference withheld).
 
 ## Acceptance criteria
 

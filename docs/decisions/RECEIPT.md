@@ -1,5 +1,7 @@
 # Consolidation and publication receipt — 2026-09-24
 
+Public redacted derivative. Private operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `cdf3bd5e92039a5f9fb4256dc85a4dbfb5cbdcf7`; original SHA-256: `834c9edd53b3dfa730ca7d60adeb5f65036deeafd0a10204ee46f56b239c6f49`. Historical dates and outcomes are unchanged.
+
 Decision impact: Updated CON-071, CON-074, CONCORD-WF-002
 
 This audit follow-up reconciles newer role-draft/advisory evidence, the existing owner
@@ -9,7 +11,7 @@ initial consolidation disposition is preserved in the [original local receipt](h
 
 ## Verified publication checkpoint
 
-- Actual host: Cornhole; worktree `/tmp/concord-decisions-20260924`.
+- Actual host: the inspected workstation; worktree `/tmp/concord-decisions-20260924`.
 - Branch: `docs/decisions-consolidation-20260924`.
 - Initial consolidation committed and pushed: `c53302e1ddc8ebd5869f49571172cd7615b9e11d`.
 - Prior follow-up committed and pushed: `3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77`; exact-head Node 22/24 checks passed in [run 36066294458](https://github.com/ptown16801-lang/concord/actions/runs/36066294458).

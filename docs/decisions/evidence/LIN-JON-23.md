@@ -1,8 +1,10 @@
 # Evidence snapshot: Global search, autocomplete, and indexed library
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `e70ce6e565bab05e4d7f7972a73bbf8e403513e4`; original SHA-256: `70964eced1413297ad1731cf3e5a092a58e983df4d36eae47ab12366197f9616`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-23/global-search-autocomplete-and-indexed-library
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:35.648Z
 - Source date: 2026-09-19T04:16:35.648Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Global search, indexing and contextual-help contract. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own global index inputs, result/ranking/routing behavior and contextual-help query contract. <issue id="01ec4151-6043-4196-af21-78c6eaf3f8e1" href="https://linear.app/jons-garage/issue/JON-14/workbench-shell-and-navigation">JON-14</issue> owns shell placement/window hosting; <issue id="88373de2-d0e1-4cbf-8021-525be96c5a50" href="https://linear.app/jons-garage/issue/JON-29/institutional-learning-library-and-interactive-guides">JON-29</issue> owns guide text and stable topic/page IDs; <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue>/<issue id="c430260a-9423-4dd8-92de-091f3541137d" href="https://linear.app/jons-garage/issue/JON-28/concord-artifact-archive">JON-28</issue> retain record/artifact ownership. <issue id="3f634998-36ca-4a68-a9c9-e3a802d9e808" href="https://linear.app/jons-garage/issue/JON-26/research-library-google-drive-scientific-archive-and-context-graph">JON-26</issue>/<issue id="ceb61410-e21f-4a02-b629-7c62fc18943e" href="https://linear.app/jons-garage/issue/JON-52/research-library-deep-link-and-module-integration-contract">JON-52</issue> remain canonical owners for parked Research Library identities and deep links. Specify safe unavailable-module behavior so Library work does not block the rest. Exclude quiz text, answers, scores and quiz routes from current indexing/acceptance.
+**Exclusive ownership:** Own global index inputs, result/ranking/routing behavior and contextual-help query contract. JON-14 (private source reference withheld) owns shell placement/window hosting; JON-29 (private source reference withheld) owns guide text and stable topic/page IDs; JON-18 (private source reference withheld)/JON-28 (private source reference withheld) retain record/artifact ownership. JON-26 (private source reference withheld)/JON-52 (private source reference withheld) remain canonical owners for parked Research Library identities and deep links. Specify safe unavailable-module behavior so Library work does not block the rest. Exclude quiz text, answers, scores and quiz routes from current indexing/acceptance.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 
@@ -35,7 +37,7 @@ Before any later project-specific implementation, resolve the exact editable Wor
 
 ## Boundary with Research Library
 
-This issue owns **global search/indexing only**. It is not the Research Library entity. The canonical Research Library is <issue id="3f634998-36ca-4a68-a9c9-e3a802d9e808" href="https://linear.app/jons-garage/issue/JON-26/research-library-google-drive-scientific-archive-and-context-graph">JON-26</issue> and must retain its own page, route, identity rules, graph, and attachment-verification state. Global Search may index and deep-link into the Research Library but must not merge the Research Library into a generic search results surface.
+This issue owns **global search/indexing only**. It is not the Research Library entity. The canonical Research Library is JON-26 (private source reference withheld) and must retain its own page, route, identity rules, graph, and attachment-verification state. Global Search may index and deep-link into the Research Library but must not merge the Research Library into a generic search results surface.
 
 Build a single Concord search/index layer over the generated institutional library, archive material, Workbench help text, research summaries and major-government-function guides.
 
@@ -65,4 +67,4 @@ Still incomplete / not yet proven:
 * end-to-end contextual-help coverage for every interactive asset;
 * cross-module integration tests with partially unavailable Research Library graph layers.
 
-These remaining Research Library-specific cross-module requirements are coordinated with <issue id="ceb61410-e21f-4a02-b629-7c62fc18943e" href="https://linear.app/jons-garage/issue/JON-52/research-library-deep-link-and-module-integration-contract">JON-52</issue>.
+These remaining Research Library-specific cross-module requirements are coordinated with JON-52 (private source reference withheld).

@@ -1,8 +1,10 @@
 # Evidence snapshot: Define grand-jury authority beyond disclosure review
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `d0b663b9c483d75668e5abb53715f5d50c00197f`; original SHA-256: `3d396e57fe4cf38cbba1c48a287775a8a9057aa8fcf1b912a312a1d70995a4d5`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-37/define-grand-jury-authority-beyond-disclosure-review
+- Source: [private source reference withheld]
 - Version: 2026-09-16T11:41:15.679Z
 - Source date: 2026-09-16T11:41:15.679Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,4 +23,4 @@ Its existing access to case-scoped redacted disclosure packages and the append-o
 
 Serving judiciary members remain subject to the project's hard conflict/incompatibility rules and may not be repurposed into non-judicial governmental roles merely to staff a grand jury.
 
-Under <issue id="200fe456-c2a1-43a3-ac7f-9995dedb43ad" href="https://linear.app/jons-garage/issue/JON-30/resolve-outstanding-governance-architecture-decisions">JON-30</issue> institutional self-rule, ordinary procedural details of grand-jury operation may be developed by the responsible institution/implementation agents, but they may not transfer adjudicative or enforcement power to the grand jury or bypass protected-domain/security constraints.
+Under JON-30 (private source reference withheld) institutional self-rule, ordinary procedural details of grand-jury operation may be developed by the responsible institution/implementation agents, but they may not transfer adjudicative or enforcement power to the grand jury or bypass protected-domain/security constraints.

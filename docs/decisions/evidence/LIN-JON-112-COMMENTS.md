@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-112 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `e9e357225f7a22fb05bd4fa26ca4723a808beed0`; original SHA-256: `419f8e54f12e4a4e5fdbc1aaf12e44070e0fccd82afc2957bcfa8da0df9c8944`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-112
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-18T02:01:16.652Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00

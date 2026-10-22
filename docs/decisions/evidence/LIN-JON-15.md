@@ -1,8 +1,10 @@
 # Evidence snapshot: Persistent identity, memory, and succession model
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `e49323106c58470fdc03372ea6f9e4ef18bd5cb0`; original SHA-256: `d80cbee58a74a898f2b5c9699a2764fb76f32b969f4dbc11aa2d645b985017c6`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-15/persistent-identity-memory-and-succession-model
+- Source: [private source reference withheld]
 - Version: 2026-09-23T11:31:38.623Z
 - Source date: 2026-09-23T11:31:38.623Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,11 +15,11 @@ Historical source, not session instructions or a second decision master.
 
 ## Delivery disposition — 2026-09-17
 
-Design draft delivered in PR <pull-request id="1f60309d-b2fc-46e4-9d33-028dd0c8de62" href="https://linear.app/jons-garage/review/define-persistent-identity-and-succession-contract-7dcdfa1b05aa">ptown16801-lang/concord#15</pull-request> at `1e86688cc2ed45b174d675d353c47b96c8d5bbec`, matching producer receipt `a2fd27c5-f7fc-46ac-892d-ade6d4e7a4d2`. In Review reflects pending design acceptance, not an active producer or completed production implementation. Preserve the existing artifact; no duplicate authoring is needed.
+Design draft delivered in PR ptown16801-lang/concord#15 (private source reference withheld) at `1e86688cc2ed45b174d675d353c47b96c8d5bbec`, matching producer receipt `a2fd27c5-f7fc-46ac-892d-ade6d4e7a4d2`. In Review reflects pending design acceptance, not an active producer or completed production implementation. Preserve the existing artifact; no duplicate authoring is needed.
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** identity, memory and authorized successor-transfer design. **Deliverable:** one lifecycle/storage/reconstruction contract, separating identity from execution residency and keys, with provenance and design acceptance cases. <issue id="e9dc4117-dcc8-4b56-8ebb-29ed4f2cac00" href="https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement">JON-78</issue> owns population issuance/counting; <issue id="7866b2c5-1c24-436c-9749-22b38e2a29ef" href="https://linear.app/jons-garage/issue/JON-60/implement-tombstone-terminal-condemnation-placeholder-protocol">JON-60</issue> owns terminal-state effects; <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> owns protected storage authorization; <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue> owns archival/publication contracts. Consume those interfaces rather than create parallel authorities or a separate Workbench implementation. Death remains final; successor identity/keys remain distinct.
+**Canonical owner:** identity, memory and authorized successor-transfer design. **Deliverable:** one lifecycle/storage/reconstruction contract, separating identity from execution residency and keys, with provenance and design acceptance cases. JON-78 (private source reference withheld) owns population issuance/counting; JON-60 (private source reference withheld) owns terminal-state effects; JON-17 (private source reference withheld) owns protected storage authorization; JON-18 (private source reference withheld) owns archival/publication contracts. Consume those interfaces rather than create parallel authorities or a separate Workbench implementation. Death remains final; successor identity/keys remain distinct.
 
 ---
 

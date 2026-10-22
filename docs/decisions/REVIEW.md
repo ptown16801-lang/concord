@@ -1,5 +1,7 @@
 # PR41 review packet
 
+Public redacted derivative. Private author-session provenance has been withheld; the exact original is retained privately. Original Git blob: `d739a1ab9981d0fe550c39e23d4db5d597b9678a`; original SHA-256: `c4db7b0205d7bb64b3e8db0a17e5bb51ccdfc130726432ff0c45ef61ce07cb92`. Historical review scope and outcomes are unchanged.
+
 Artifact: [PR41](https://github.com/ptown16801-lang/concord/pull/41), branch
 `docs/decisions-consolidation-20260924`, integration target `Develo`.
 Expected base: `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
@@ -25,7 +27,7 @@ or a concrete defect may justify a targeted additional check.
 
 ## Reviewer eligibility and response
 
-The author is this Codex session (`01a0d549-7f33-7213-832f-7e0a75087ea8`, OpenAI).
+The author is this Codex session (`[private session identifier withheld]`, OpenAI).
 It authored the master, source selection/reconciliation and maintenance tooling;
 its checks cannot constitute independent validation. Exact immutable model-family
 provenance is not established by this packet. Preserve that limitation.

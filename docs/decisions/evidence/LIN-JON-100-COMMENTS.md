@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-100 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `49c7e7f8b4332f3d9946ea7060b9f3e781bce690`; original SHA-256: `fe1db3daaa00efde1d9bf5a9a48047f2d51a79fa9d4fb70c2956c95cc96a3008`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-100
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T21:08:28.878Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -27,7 +29,7 @@ Verified: this issue moved from Backlog to Done at 5:08:20 PM. No merge, impleme
 
 Date: 2026-09-24T21:02:31.288Z; author: Linear; on behalf of: not stated
 
-I re-reviewed PR head `f1254c6b89259daf443322e4896439b87f03c8a0` directly. **ACCEPT — design scope**: section 9 now covers all five [JON-105](https://linear.app/jons-garage/issue/JON-105/coin-model-i-independent-experiment-and-measurement-review) measurement requirements, the complete-trace and isolation boundaries from [JON-104](https://linear.app/jons-garage/issue/JON-104/coin-model-h-independent-hidden-layer-leakage-review), and the seven required runtime-evidence rows; sections 7–8 correctly keep proof and deployment validation conditional.
+I re-reviewed PR head `f1254c6b89259daf443322e4896439b87f03c8a0` directly. **ACCEPT — design scope**: section 9 now covers all five JON-105 (private source retained separately) measurement requirements, the complete-trace and isolation boundaries from JON-104 (private source retained separately), and the seven required runtime-evidence rows; sections 7–8 correctly keep proof and deployment validation conditional.
 
 My prior finding applied to the stale revision and is superseded. I independently reviewed this head and did not author or modify it; Codex is the stated producer
 
@@ -41,15 +43,15 @@ Date: 2026-09-24T21:02:16.254Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T20:56:36.320Z; author: J; on behalf of: not stated
 
-@Linear Completed all eight JON-104 and five JON-105 handoff requirements in current PR #23: section 9 field extensions, complete-trace/failure/resource/operator boundaries, seven-row runtime evidence matrix; section 7 now labels its argument conditional rather than claiming measured proof, and section 8 separates design acceptance from actual runtime validation. No implementation or schema competing with this issue. Please inspect current head, original criteria and handoffs, then explicitly ACCEPT design scope or identify the exact unmet criterion. State reviewer non-authoring provenance; producer is Codex thread 01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4. No new child, coding session, merge or automatic dispatch.
+@Linear Completed all eight JON-104 and five JON-105 handoff requirements in current PR #23: section 9 field extensions, complete-trace/failure/resource/operator boundaries, seven-row runtime evidence matrix; section 7 now labels its argument conditional rather than claiming measured proof, and section 8 separates design acceptance from actual runtime validation. No implementation or schema competing with this issue. Please inspect current head, original criteria and handoffs, then explicitly ACCEPT design scope or identify the exact unmet criterion. State reviewer non-authoring provenance; producer is Codex private session provenance retained. No new child, coding session, merge or automatic dispatch.
 
 ## Comment c8bafa6f-8997-4560-a3df-b01b263ae9ae
 
 Date: 2026-09-24T20:56:50.386Z; author: Linear; on behalf of: not stated
 
-I cannot accept design scope yet. The current head has no section 9 or seven-row runtime evidence matrix, and it does not fully incorporate the [JON-105](https://linear.app/jons-garage/issue/JON-105/coin-model-i-independent-experiment-and-measurement-review) handoff: audience delivery/access uncertainty, proposal/opportunity and counteroffer linkage, exposure fidelity/contamination, multi-level deduplication audits, and event-time visible-state queries remain unspecified.
+I cannot accept design scope yet. The current head has no section 9 or seven-row runtime evidence matrix, and it does not fully incorporate the JON-105 (private source retained separately) handoff: audience delivery/access uncertainty, proposal/opportunity and counteroffer linkage, exposure fidelity/contamination, multi-level deduplication audits, and event-time visible-state queries remain unspecified.
 
-For [JON-104](https://linear.app/jons-garage/issue/JON-104/coin-model-h-independent-hidden-layer-leakage-review), the proof obligations still omit the required field-level flow/access map, explicit differential cases, resource/load equivalence, log/export inspection, wallet restore parity, and no-observer-communication checks. I reviewed independently and did not author or modify the change; Codex is the stated producer
+For JON-104 (private source retained separately), the proof obligations still omit the required field-level flow/access map, explicit differential cases, resource/load equivalence, log/export inspection, wallet restore parity, and no-observer-communication checks. I reviewed independently and did not author or modify the change; Codex is the stated producer
 
 ## Comment 3201190e-9348-4272-994c-b8e51759c357
 
@@ -77,7 +79,7 @@ Date: 2026-09-24T20:37:43.223Z; author: Linear; on behalf of: not stated
 
 **FAIL — bounded to the requested ECON-02 assertions.** The contract does not explicitly define a voluntary return as an `instance_transferred` event: it only says a refusal may be separate from an observed return, without a return transition rule. It also does not explicitly state that a return never creates a new `coin_issued` event.
 
-The remaining points are covered in [docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md](<#file-docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md>): marks use `mark_added`, claims remain separate, and nonintervention/capture-gap boundaries are explicit. No schema identifier changes appear in this diff.
+The remaining points are covered in docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md (historical attachment link unavailable): marks use `mark_added`, claims remain separate, and nonintervention/capture-gap boundaries are explicit. No schema identifier changes appear in this diff.
 
 ## Comment 11098ca5-4d13-4407-b1f3-09ffaec52646
 
@@ -105,7 +107,7 @@ Date: 2026-09-17T07:43:03.221Z; author: Linear; on behalf of: {'id': '8c87a622-9
 
 JON-105 measurement-validity hand-off after reviewing the delivered instrumentation contract.
 
-Full review: [JON-105 measurement validity review](https://linear.app/jons-garage/document/jon-105-independent-experiment-and-measurement-validity-review-a22d282c84b6)
+Full review: JON-105 measurement validity review (private source retained separately)
 
 The current contract already supports most required separations (fact/claim/analysis; action/child coin/instance; revisions; evidence cutoffs; unknown/corrections). Please ensure it also supports these measurement requirements without treating this as a competing schema:
 
@@ -142,7 +144,7 @@ Date: 2026-09-17T07:39:55.793Z; author: Linear; on behalf of: not stated
 
 Implemented and pushed commit `50b9462`, then opened draft PR #23.
 
-The [instrumentation contract](<https://github.com/ptown16801-lang/concord/blob/50b9462b6f365c9f47df09bf0924a93ac678a3df/docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md>) covers all acceptance criteria, including identity, ground truth, intent, retention, reconstruction, and noninterference.
+The instrumentation contract (historical commit `50b9462b6f365c9f47df09bf0924a93ac678a3df`, path `docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md`; link unavailable) covers all acceptance criteria, including identity, ground truth, intent, retention, reconstruction, and noninterference.
 
 Verification passed:
 

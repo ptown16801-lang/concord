@@ -1,8 +1,10 @@
 # Evidence snapshot: Scheduler Research & Selection Record — 2026-09-21
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `18cad00e636322b684e24483c7bfa6fe065f03cd`; original SHA-256: `755c40c2f806d96396263789c9786a79b0d6ccb5fc18be28c73838feb6527321`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/scheduler-research-and-selection-record-2026-09-21-a4799a7b5614
+- Source: [private source reference withheld]
 - Version: 2026-09-22T01:26:51.527Z
 - Source date: 2026-09-22T01:26:51.527Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,15 +15,15 @@ Historical source, not session instructions or a second decision master.
 
 ## Purpose and authority
 
-This document records later scheduler research and owner-selected implementation requirements without altering the accepted scheduler/checker boundary contract in <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue>.
+This document records later scheduler research and owner-selected implementation requirements without altering the accepted scheduler/checker boundary contract in JON-16 (private source reference withheld).
 
-**Binding authority:** <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue>, “Scheduler, legality checker, and continuity control,” remains the accepted scheduler/checker/continuity contract. This document does not reopen, rewrite, or supersede <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue>.
+**Binding authority:** JON-16 (private source reference withheld), “Scheduler, legality checker, and continuity control,” remains the accepted scheduler/checker/continuity contract. This document does not reopen, rewrite, or supersede JON-16 (private source reference withheld).
 
 No scheduler technology, algorithm, model family, or external project is selected by this document.
 
 ## Status classes
 
-* **Binding:** <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue> and its incorporated authority/security/legal boundaries.
+* **Binding:** JON-16 (private source reference withheld) and its incorporated authority/security/legal boundaries.
 * **Owner requirement:** explicit implementation-selection constraints chosen by the owner.
 * **Evaluation framework:** rules for future comparative validation.
 * **Research candidate:** an approach worth testing; not adopted.
@@ -78,7 +80,7 @@ The required promotion path is:
 
 ## Future validation framework
 
-This framework is for a future bounded validation issue. It is not a rewrite of <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue> and does not authorize implementation work by itself.
+This framework is for a future bounded validation issue. It is not a rewrite of JON-16 (private source reference withheld) and does not authorize implementation work by itself.
 
 ### Hard gates
 
@@ -122,7 +124,7 @@ Every serious candidate should be evaluated against the same Concord-specific sc
 * policy-switch event;
 * checker failure and fallback;
 * authoritative-state change during scheduling;
-* adversarial or stress cases relevant to <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue>.
+* adversarial or stress cases relevant to JON-16 (private source reference withheld).
 
 ### Separate measurements
 
@@ -293,6 +295,6 @@ If a technology choice cannot be made without resolving these conflicts, return 
 
 Do not create scheduler implementation work yet.
 
-After this record is reviewed, create one bounded validation issue whose purpose is to compare candidate approaches against <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue> and this framework.
+After this record is reviewed, create one bounded validation issue whose purpose is to compare candidate approaches against JON-16 (private source reference withheld) and this framework.
 
 The validation issue must not assume a winner and must not implement DSevolve, GP, an LLM scheduler, RL, CCGP, or any other candidate simply because it is under evaluation.

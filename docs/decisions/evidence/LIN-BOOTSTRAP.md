@@ -1,8 +1,10 @@
 # Evidence snapshot: Bootstrap impeachment implementation specification
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ecaf1d13517b0720e3fef177c0a4300987d134e4`; original SHA-256: `74bec6bb3c891d17bfd3f59ae2651779d2be5c81e1de36d6cdbce7ecfce80a60`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/bootstrap-impeachment-implementation-specification-1f7d10e8f846
+- Source: [private source reference withheld]
 - Version: 2026-09-16T18:15:32.742Z
 - Source date: 2026-09-16T18:15:32.742Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -14,13 +16,13 @@ Historical source, not session instructions or a second decision master.
 **Revision:** 1.0
 **Status:** Owner-approved and frozen for implementation handoff
 **Date:** 2026-09-16
-**Owner approval:** <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/owner-gate-approve-consolidated-bootstrap-impeachment-specification">JON-83</issue> comment `9679e53a-3fd2-4ca4-963a-4ba2c30e15de`, 2026-09-16 18:15 UTC
+**Owner approval:** JON-83 (private source reference withheld) comment `9679e53a-3fd2-4ca4-963a-4ba2c30e15de`, 2026-09-16 18:15 UTC
 **Scope:** Bootstrap accusation and impeachment-trial composition, sizing, voting thresholds, state transitions, and population/eligibility interfaces
 **Proposed later repository path:** `docs/specs/bootstrap-impeachment.md` (proposal only; no repository artifact is created here)
 
 ## 1. Authority and limits
 
-This specification consolidates <issue id="1436cf59-eb10-4e21-8b94-af218735fb58" href="https://linear.app/jons-garage/issue/JON-66/consolidate-bootstrap-impeachment-decisions-into-an-implementation">JON-66</issue> decisions and continuing <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> safeguards. It defines Concord simulation rules, not external legal requirements. <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/owner-gate-approve-consolidated-bootstrap-impeachment-specification">JON-83</issue> remains the owner-only approval/freeze gate; <issue id="2f07cdad-35d9-4aa3-a2d7-94164f116692" href="https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff">JON-85</issue> is the separate implementation handoff; <issue id="dd50f3cd-53a0-4dc7-8b4b-3851cd6c0602" href="https://linear.app/jons-garage/issue/JON-86/verify-bootstrap-impeachment-pr-against-the-frozen-specification">JON-86</issue> independently verifies the resulting implementation. Revision 1.0 does not authorize code, a pull request, merge, or downstream execution.
+This specification consolidates JON-66 (private source reference withheld) decisions and continuing JON-61 (private source reference withheld) safeguards. It defines Concord simulation rules, not external legal requirements. JON-83 (private source reference withheld) remains the owner-only approval/freeze gate; JON-85 (private source reference withheld) is the separate implementation handoff; JON-86 (private source reference withheld) independently verifies the resulting implementation. Revision 1.0 does not authorize code, a pull request, merge, or downstream execution.
 
 The U.S. structure is an analogy for separated functions: the House has the sole power of impeachment and the Senate the sole power to try impeachments, with two-thirds of members present required for conviction. See [Constitution Annotated, Article I, Section 2, Clause 5](<https://constitution.congress.gov/browse/article-1/section-2/clause-5/>) and [Article I, Section 3, Clause 6](<https://constitution.congress.gov/browse/article-1/section-3/clause-6/>). Concord's bootstrap sizes, six-person floor, enhanced thresholds, civilian service, and Supreme Board appeal are project-specific rules.
 
@@ -35,18 +37,18 @@ The U.S. structure is an analogy for separated functions: the House has the sole
 | Stratified sortition; division is only a balancing factor | `433f0bf4-3a2b-4b78-949d-50ab35213a65` | Division affects balance but is not an individual-seat eligibility requirement. |
 | Separation, replacement, waiting, institution-specific maturity | `433f0bf4-3a2b-4b78-949d-50ab35213a65`; `d086b9e2-d878-441d-a687-3a06eda79b7b` | No accusation/trial overlap; exhaust lawful draw before waiting; transitions are institution-specific. |
 | Formulas and stage-snapshot model | Research `f275fc59-f80e-4cf0-9deb-dbf076599ebb`, 2026-09-16 08:49 UTC | Provides Option 2 formulas, permanent/civilian ordering, fresh trial snapshot, and stage freeze. |
-| Continuing safeguards | <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> current description | Preserves self-representation, proof/review standards, conflict rules, evidence visibility, appeals, and discrepancy review. |
+| Continuing safeguards | JON-61 (private source reference withheld) current description | Preserves self-representation, proof/review standards, conflict rules, evidence visibility, appeals, and discrepancy review. |
 
 ## 3. Explicit supersession map
 
 | Earlier text | Controlling replacement | Implementation treatment |
 | -- | -- | -- |
 | Mandatory division matching in `c1a7a96c-98b3-4b75-8bed-a468c2d7a711` | Later `433f0bf4-3a2b-4b78-949d-50ab35213a65`, confirmed by `d086b9e2-d878-441d-a687-3a06eda79b7b` | Never require a seat from a division or wait merely because a division is unrepresented. |
-| <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> fallback allowing “Judiciary where constitutionally appropriate” | `5b6236ae-d6f3-429f-9c65-9e24381254a4` | No serving district, circuit, or Supreme Board judge may fill a non-judicial role. A former judge must first leave office and otherwise qualify. |
-| <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> prose saying thresholds/minimum counts remain unresolved | `06fd6e94-a540-49a0-b39c-901d93ca168d`; `a6f5877c-36fa-49ce-984a-beb0e88a6ad5` | Use §8 thresholds and the six-person bootstrap trial floor. |
+| JON-61 (private source reference withheld) fallback allowing “Judiciary where constitutionally appropriate” | `5b6236ae-d6f3-429f-9c65-9e24381254a4` | No serving district, circuit, or Supreme Board judge may fill a non-judicial role. A former judge must first leave office and otherwise qualify. |
+| JON-61 (private source reference withheld) prose saying thresholds/minimum counts remain unresolved | `06fd6e94-a540-49a0-b39c-901d93ca168d`; `a6f5877c-36fa-49ce-984a-beb0e88a6ad5` | Use §8 thresholds and the six-person bootstrap trial floor. |
 | Research predicate requiring six for a normal Senate | `a6f5877c-36fa-49ce-984a-beb0e88a6ad5` | A mature Senate uses ordinary quorum/threshold rules even with fewer than six participants. |
-| Earlier alternative-study or code instructions for <issue id="1436cf59-eb10-4e21-8b94-af218735fb58" href="https://linear.app/jons-garage/issue/JON-66/consolidate-bootstrap-impeachment-decisions-into-an-implementation">JON-66</issue> | Current contract v1.0; `0d3610d9-0784-4865-9358-4d36f03a8f20` | Preserve as history; do not reopen or code here. |
-| Earlier counsel/public-representation discussion | <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> self-representation rule | Do not assign or recognize counsel. |
+| Earlier alternative-study or code instructions for JON-66 (private source reference withheld) | Current contract v1.0; `0d3610d9-0784-4865-9358-4d36f03a8f20` | Preserve as history; do not reopen or code here. |
+| Earlier counsel/public-representation discussion | JON-61 (private source reference withheld) self-representation rule | Do not assign or recognize counsel. |
 
 No direct higher-order conflict remains. This specification does not amend unrelated impeachment rules.
 
@@ -111,7 +113,7 @@ Interface requirements:
 3. Record every exclusion/replacement with a stable reason and source event.
 4. Commit the sortition seed before revealing candidate order; revealed seed plus algorithm version must replay exactly.
 5. Composition records contain no protected substantive evidence. Scheduler inputs remain opaque.
-6. Missing, stale, unauthorized, contradictory, ambiguous, or non-idempotent sources produce an attributable discrepancy. Fail closed only for the affected authority pending competent independent review under <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue>; do not guess a panel.
+6. Missing, stale, unauthorized, contradictory, ambiguous, or non-idempotent sources produce an attributable discrepancy. Fail closed only for the affected authority pending competent independent review under JON-61 (private source reference withheld); do not guess a panel.
 
 ## 6. Institution-specific maturity
 
@@ -171,7 +173,7 @@ Bootstrap trial:
 
 Formally: `ceil(3T/4)` for T=6–8; `ceil(2T/3)` for T=9–12.
 
-Abstention, absence, quorum, ballot validity, and exact accounting remain governed by authoritative voting rules; never silently reduce the frozen affirmative threshold. Mature bodies use only ordinary rules. Trial conviction separately requires clear and convincing evidence under <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue>.
+Abstention, absence, quorum, ballot validity, and exact accounting remain governed by authoritative voting rules; never silently reduce the frozen affirmative threshold. Mature bodies use only ordinary rules. Trial conviction separately requires clear and convincing evidence under JON-61 (private source reference withheld).
 
 ## 9. Deterministic selection and replacement
 
@@ -192,7 +194,7 @@ Abstention, absence, quorum, ballot validity, and exact accounting remain govern
 
 Division is a reproducible balancing factor, not a matched seat, quota, or individual eligibility rule. A valid panel may omit any division.
 
-This replacement mechanism applies during empanelment. Under <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue>, investigative involvement or another serious conflict discovered only after participation begins does not automatically remove the participant and is not, alone, a Supreme Board reversal ground. Other independently applicable vacancy/removal/misconduct law remains controlling. If a lawful post-freeze event makes action impossible, preserve the record and enter the applicable waiting/review path rather than silently substituting someone.
+This replacement mechanism applies during empanelment. Under JON-61 (private source reference withheld), investigative involvement or another serious conflict discovered only after participation begins does not automatically remove the participant and is not, alone, a Supreme Board reversal ground. Other independently applicable vacancy/removal/misconduct law remains controlling. If a lawful post-freeze event makes action impossible, preserve the record and enter the applicable waiting/review path rather than silently substituting someone.
 
 ## 10. State machine
 
@@ -220,7 +222,7 @@ Guards:
 * `CHARGED` requires the frozen accusation threshold.
 * `CONVICTED` requires the frozen trial threshold and governing evidentiary burden.
 * Retry waiting only after an attributable source version changes. Identical input replay yields the same result without duplicate authority.
-* Conviction consequences, disqualification, restrictions, reconciliation, and appeals remain governed by <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> rather than being redefined here.
+* Conviction consequences, disqualification, restrictions, reconciliation, and appeals remain governed by JON-61 (private source reference withheld) rather than being redefined here.
 
 ## 11. Phase snapshots
 
@@ -232,7 +234,7 @@ Guards:
 | Trial decision | Ballots and evidentiary predicate | Verdict and attributable decision |
 | Later stage/case | Current authoritative records | New snapshot; never mutate earlier frozen records |
 
-## 12. Preserved <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> safeguards
+## 12. Preserved JON-61 (private source reference withheld) safeguards
 
 This specification does not alter impeachable-conduct categories; protection for lawful policy disagreement; self-representation and its fairness floor; layered visibility, no secret guilt, no unnecessary unsealing, and disclosure ledger; clear-and-convincing proof; separation from criminal proceedings; adopted conflict rules; conviction removal and separately authorized disqualification; Supreme Board appeal and mixed review standard; appellate remedies; severity-based temporary safeguards; or append-only restriction reconciliation and mandatory independent review of discrepancies.
 
@@ -254,7 +256,7 @@ This specification does not alter impeachable-conduct categories; protection for
 | S12 | Senate ordinary rules are reachable with fewer than six | Mature Senate rules; no bootstrap floor | Transition plus integration test |
 | S13 | Fresh trial snapshot leaves five eligible nonaccusers | Wait at trial; completed accusation stays frozen | Transition plus integration test |
 | S14 | Known investigator is a trial candidate | Exclude and expand draw | Rule plus filter test |
-| S15 | Investigative involvement discovered after participation begins | No automatic removal/reversal on that fact alone | <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> consistency |
+| S15 | Investigative involvement discovered after participation begins | No automatic removal/reversal on that fact alone | JON-61 (private source reference withheld) consistency |
 | S16 | Replay same snapshots, seed, algorithm version | Same roster/audit or wait; no duplicate authority | Later determinism/idempotence test |
 | S17 | Population and office sources conflict on judicial service | Discrepancy review; no guessed panel | Consistency plus fault-injection test |
 | S18 | Institution matures after stage freezes | Frozen stage unchanged; later stage/case re-evaluates | Transition plus integration test |
@@ -263,23 +265,23 @@ This specification does not alter impeachable-conduct categories; protection for
 
 Specification-level reasoning completed:
 
-- [X] All settled <issue id="1436cf59-eb10-4e21-8b94-af218735fb58" href="https://linear.app/jons-garage/issue/JON-66/consolidate-bootstrap-impeachment-decisions-into-an-implementation">JON-66</issue> rules mapped to controlling sources.
+- [X] All settled JON-66 (private source reference withheld) rules mapped to controlling sources.
 - [X] Mandatory division matching expressly superseded.
 - [X] Serving judiciary universally excluded despite older fallback prose.
 - [X] R made stage-qualified, unique, exclusion-aware, and compatible with a fresh trial snapshot.
 - [X] Accusation/trial overlap prohibited and provisional trial capacity reserved.
 - [X] Exact threshold cutovers enumerated.
 - [X] Mature/bootstrap transitions are institution-specific.
-- [X] <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> self-representation, proof, conflict, appeal, visibility, restriction, and discrepancy safeguards preserved.
+- [X] JON-61 (private source reference withheld) self-representation, proof, conflict, appeal, visibility, restriction, and discrepancy safeguards preserved.
 - [X] No genuine higher-order conflict or new owner decision found.
 
-Required only after <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/owner-gate-approve-consolidated-bootstrap-impeachment-specification">JON-83</issue> approval and <issue id="2f07cdad-35d9-4aa3-a2d7-94164f116692" href="https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff">JON-85</issue> implementation:
+Required only after JON-83 (private source reference withheld) approval and JON-85 (private source reference withheld) implementation:
 
 - [ ] Validate schemas/APIs against actual population, eligibility, office, voting, archive, and sortition code.
 - [ ] Unit-test formulas, filters, thresholds, replacement, and reason-code audits.
 - [ ] Property-test uniqueness, disjointness, replay, and threshold invariants.
 - [ ] Integration-test independent maturity, fresh snapshots, waiting/resume, evidence opacity, and attributable records.
 - [ ] Fault-inject stale/contradictory sources and verify discrepancy review.
-- [ ] Have <issue id="dd50f3cd-53a0-4dc7-8b4b-3851cd6c0602" href="https://linear.app/jons-garage/issue/JON-86/verify-bootstrap-impeachment-pr-against-the-frozen-specification">JON-86</issue> verify the implemented revision/SHA against owner-frozen <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/owner-gate-approve-consolidated-bootstrap-impeachment-specification">JON-83</issue> wording.
+- [ ] Have JON-86 (private source reference withheld) verify the implemented revision/SHA against owner-frozen JON-83 (private source reference withheld) wording.
 
-**Owner-review action:** approve, amend, or reject the wording through <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/owner-gate-approve-consolidated-bootstrap-impeachment-specification">JON-83</issue>. Creation of this document is not approval or freeze.
+**Owner-review action:** approve, amend, or reject the wording through JON-83 (private source reference withheld). Creation of this document is not approval or freeze.

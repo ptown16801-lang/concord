@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-25 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `0edcad1ce4692295ca349c72cdcd1e22462359f8`; original SHA-256: `5960d210fdf8d7c8e6fa5c0ee79796b151993838dee3ae0739f93211c022da2a`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-25
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T17:31:37.773Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -29,7 +31,7 @@ Date: 2026-09-23T13:33:14.141Z; author: J; on behalf of: not stated
 
 Publication housekeeping complete — September 23, 2026
 
-Scope authorized by coordination from thread 01a0ce71-5711-7d91-88f2-cd9175165ccc: this thread retains sole JON-25 / PR #17 publication-housekeeping ownership; attribution thread 01a0ce5d-7b2f-7cb0-bdef-75a0386a5909 remains read-only. No duplicate work or worker launched.
+Scope authorized by coordination from private session provenance retained: this thread retains sole JON-25 / PR #17 publication-housekeeping ownership; attribution private session provenance retained remains read-only. No duplicate work or worker launched.
 
 1. Corrected the specific stale missing-reconciliation sentences in existing JON-96 and JON-102. Both now reference owner-accepted artifact a42baeadc0e69b08571acc779e5b8268385be49e and JON-25's design-only Done disposition. JON-102 now says to consume the accepted reconciliation when its existing dependencies permit integration. These changes address the two findings in audit comment 7030dc79-a192-40a0-a447-83b0184dd38e.
 2. Readback confirmed both issues contain the accepted SHA, neither retains the targeted 'still requires ... same delta' claim, and status, labels, and complete relation sets are unchanged. Frozen coin mechanics, unresolved refusal semantics and dependency/hold boundaries remain intact.
@@ -44,18 +46,18 @@ Date: 2026-09-23T13:20:25.525Z; author: Linear; on behalf of: not stated
 
 **FINDINGS** — delivery is present and the bounded design disposition is correctly recorded, but two stale dependency statements should be superseded.
 
-* **GitHub:** [Define Concord marketplace and deal-making architecture](https://linear.app/jons-garage/review/define-concord-marketplace-and-deal-making-architecture-a15b0a2056f1) is an open draft, unmerged, at `a42baeadc0e69b08571acc779e5b8268385be49e`; the [commit-pinned amendment](<https://github.com/ptown16801-lang/concord/blob/a42baeadc0e69b08571acc779e5b8268385be49e/docs/ECONOMY_MARKETPLACE_CONTRACT.md>) exists.
+* **GitHub:** Define Concord marketplace and deal-making architecture (private source retained separately) is an open draft, unmerged, at `a42baeadc0e69b08571acc779e5b8268385be49e`; the [commit-pinned amendment](<https://github.com/ptown16801-lang/concord/blob/a42baeadc0e69b08571acc779e5b8268385be49e/docs/ECONOMY_MARKETPLACE_CONTRACT.md>) exists.
 * **CI:** Node 22/24 checks succeeded. The record correctly limits that evidence to CI; it does not claim design, scientific, runtime, or production validation.
-* **Linear record:** [JON-25](https://linear.app/jons-garage/issue/JON-25/agent-economy-barter-and-deal-making-architecture) records owner acceptance and Done only for the design deliverable; my prior PASS is correctly retained as advisory. The project record matches this scope.
-* **Boundaries retained:** [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit) refusal semantics remain unresolved, and [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan) remains dependency-gated.
-* **Upload claim:** Supportable only as: “All deliverables for the [JON-25](https://linear.app/jons-garage/issue/JON-25/agent-economy-barter-and-deal-making-architecture) amendment are uploaded to GitHub and recorded in Linear.” It does not establish upload of all Concord work or locally cited governance evidence.
+* **Linear record:** JON-25 (private source retained separately) records owner acceptance and Done only for the design deliverable; my prior PASS is correctly retained as advisory. The project record matches this scope.
+* **Boundaries retained:** JON-97 (private source retained separately) refusal semantics remain unresolved, and JON-102 (private source retained separately) remains dependency-gated.
+* **Upload claim:** Supportable only as: “All deliverables for the JON-25 (private source retained separately) amendment are uploaded to GitHub and recorded in Linear.” It does not establish upload of all Concord work or locally cited governance evidence.
 
 **Corrections**
 
-* [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) still says PR [ptown16801-lang/concord#17](https://linear.app/jons-garage/review/define-concord-marketplace-and-deal-making-architecture-a15b0a2056f1) “still requires the same delta.”
-* [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan) repeats that same outdated condition.
+* JON-96 (private source retained separately) still says PR ptown16801-lang/concord#17 (private source retained separately) “still requires the same delta.”
+* JON-102 (private source retained separately) repeats that same outdated condition.
 
-Smallest correction: replace each with: “PR [ptown16801-lang/concord#17](https://linear.app/jons-garage/review/define-concord-marketplace-and-deal-making-architecture-a15b0a2056f1) contains the reconciliation at `a42baead`; this does not resolve refusal semantics, complete coin-design work, or release [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan) dependencies.”
+Smallest correction: replace each with: “PR ptown16801-lang/concord#17 (private source retained separately) contains the reconciliation at `a42baead`; this does not resolve refusal semantics, complete coin-design work, or release JON-102 (private source retained separately) dependencies.”
 
 ## Comment a8bfdde2-63b0-4ac9-a4c0-0ce664050b4a
 
@@ -94,13 +96,13 @@ Date: 2026-09-23T12:56:16.192Z; author: Linear; on behalf of: not stated
 
 **PASS** for this bounded amendment.
 
-* Section 1A and scenarios 15–20 resolve the missing Goodwill reconciliation: ordinary agreement authority remains with [JON-19](https://linear.app/jons-garage/issue/JON-19/agreement-lifecycle-and-institutional-negotiation), while coin behavior gains no registry, custody, valuation, authenticity, or hidden-observer enforcement.
-* The mixed-agreement, reservation, metadata, Workbench, and research boundaries are consistent with [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model). Scenario 19 correctly treats runtime noninterference as a required future test, not something established by the design text.
+* Section 1A and scenarios 15–20 resolve the missing Goodwill reconciliation: ordinary agreement authority remains with JON-19 (private source retained separately), while coin behavior gains no registry, custody, valuation, authenticity, or hidden-observer enforcement.
+* The mixed-agreement, reservation, metadata, Workbench, and research boundaries are consistent with JON-96 (private source retained separately). Scenario 19 correctly treats runtime noninterference as a required future test, not something established by the design text.
 * The updated section 5 wording—“later revocation or permission expiry does not cancel it”—and scenario 21 match the recorded admission boundary: approval is distinct from later eligibility; outage preserves approved work for recovery. It expressly excludes coin-observer intervention.
 * No material internal contradiction found. The smallest correction required is none.
 * The unresolved refusal semantics remain a downstream coin-design decision, not a blocker for this marketplace amendment; scenario 20 preserves that boundary without choosing it.
 
-Limits: this is not independent acceptance, scientific validation, production-readiness evidence, or release of [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan) dependencies. The permissible next step is an owner-directed acceptance/dependency review, including runtime noninterference testing when implementation is separately authorized.
+Limits: this is not independent acceptance, scientific validation, production-readiness evidence, or release of JON-102 (private source retained separately) dependencies. The permissible next step is an owner-directed acceptance/dependency review, including runtime noninterference testing when implementation is separately authorized.
 
 ## Comment fd938916-a2dc-4626-ba51-12701f46045b
 

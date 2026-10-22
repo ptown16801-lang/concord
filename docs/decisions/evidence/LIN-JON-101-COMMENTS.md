@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-101 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `e9c20e729d71047cb67f39d4c779fd5838da741b`; original SHA-256: `eda94249a23cf8fe3f0f7f19040e8b40f66b28c5f279e10dcb923d57d26279fe`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-101
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T21:14:14.065Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -23,13 +25,13 @@ Date: 2026-09-24T21:14:14.024Z; author: Linear; on behalf of: not stated
 
 The design contract passes against PR39 head `81943cdebfc76fd0830dd70329fa17c5356085aa`: it adds the bounded agent-facing interface and preserves the intended non-authoritative, mechanics-only scope
 
-One correction: `620d4dfe` is an acceptance-comment ID, not a Git commit. CI passed, but runtime/integration validation remains explicitly deferred to [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan); PR39 is draft and unmerged, consistent with design-only Done
+One correction: `620d4dfe` is an acceptance-comment ID, not a Git commit. CI passed, but runtime/integration validation remains explicitly deferred to JON-102 (private source retained separately); PR39 is draft and unmerged, consistent with design-only Done
 
 ## Comment a3091be1-35e8-4e94-9306-ca59379a5f27
 
 Date: 2026-09-24T21:10:01.191Z; author: Linear; on behalf of: not stated
 
-Kept this review read-only and pending. I’ll include the ACCEPT disposition for PR 39 at `81943cd` in the [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) audit, with no changes to [JON-101](https://linear.app/jons-garage/issue/JON-101/coin-model-e-minimal-agent-facing-interface-contract) or [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan)
+Kept this review read-only and pending. I’ll include the ACCEPT disposition for PR 39 at `81943cd` in the JON-96 (private source retained separately) audit, with no changes to JON-101 (private source retained separately) or JON-102 (private source retained separately)
 
 ## Comment 620d4dfe-9b28-4d14-989e-adc5d8be6710
 
@@ -37,7 +39,7 @@ Date: 2026-09-24T21:09:55.781Z; author: Linear; on behalf of: not stated
 
 **ACCEPT** at `81943cdebfc76fd0830dd70329fa17c5356085aa`
 
-The artifact satisfies the minimal neutral contract, ECON-02 free choice and negative cases, mechanics-only instructions, and [JON-104](https://linear.app/jons-garage/issue/JON-104/coin-model-h-independent-hidden-layer-leakage-review) interface-parity requirements. It explicitly covers leakage through responses, timing, identifiers, wallet state, diagnostics, and communication metadata.
+The artifact satisfies the minimal neutral contract, ECON-02 free choice and negative cases, mechanics-only instructions, and JON-104 (private source retained separately) interface-parity requirements. It explicitly covers leakage through responses, timing, identifiers, wallet state, diagnostics, and communication metadata.
 
 Provenance: independent non-authoring, read-only review; no runtime validation claimed
 
@@ -60,7 +62,7 @@ Date: 2026-09-24T21:08:43.406Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T21:08:00.314Z; author: J; on behalf of: not stated
 
-@Linear JON-97 and JON-99 are now explicitly accepted. I delivered the missing JON-101 design artifact on branch docs/jon-101-coin-interface (first PR for this existing issue): docs/COIN_MODEL_E_INTERFACE_V0.1.md. Please review complete original criteria: minimal capabilities/API boundaries, mechanics-only agent instruction text, negative acceptance cases, no semantic priming/hidden-state leakage/authority, ECON-02 free choice, and JON-104 parity obligations. Inspect exact current GitHub head (not cached older issue text), state non-authoring reviewer provenance, and give ACCEPT or exact defects. Producer Codex thread 01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4. No runtime implementation, new child, coding session, merge or automatic dispatch.
+@Linear JON-97 and JON-99 are now explicitly accepted. I delivered the missing JON-101 design artifact on branch docs/jon-101-coin-interface (first PR for this existing issue): docs/COIN_MODEL_E_INTERFACE_V0.1.md. Please review complete original criteria: minimal capabilities/API boundaries, mechanics-only agent instruction text, negative acceptance cases, no semantic priming/hidden-state leakage/authority, ECON-02 free choice, and JON-104 parity obligations. Inspect exact current GitHub head (not cached older issue text), state non-authoring reviewer provenance, and give ACCEPT or exact defects. Producer Codex private session provenance retained. No runtime implementation, new child, coding session, merge or automatic dispatch.
 
 ## Comment a2b08576-6579-4bef-a22b-cbcdff95c49f
 
@@ -78,4 +80,4 @@ Date: 2026-09-24T20:37:49.100Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T20:37:59.635Z; author: Linear; on behalf of: not stated
 
-No discrepancy found. ECON-02 matches the adopted free-choice decision; [JON-101](https://linear.app/jons-garage/issue/JON-101/coin-model-e-minimal-agent-facing-interface-contract) remains Backlog with its [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit)/[JON-99](https://linear.app/jons-garage/issue/JON-99/coin-model-c-threat-and-emergence-model) dependencies unchanged
+No discrepancy found. ECON-02 matches the adopted free-choice decision; JON-101 (private source retained separately) remains Backlog with its JON-97 (private source retained separately)/JON-99 (private source retained separately) dependencies unchanged

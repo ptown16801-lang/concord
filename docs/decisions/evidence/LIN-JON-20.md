@@ -1,8 +1,10 @@
 # Evidence snapshot: Forum, groups, and non-binding social reactions
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `710a761b1af00936caae924511016839b459f7d3`; original SHA-256: `53433a408b231db070465b369023f5422f0fec2c8fbf42744b7d63c1620bc941`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-20/forum-groups-and-non-binding-social-reactions
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:05.573Z
 - Source date: 2026-09-19T04:16:05.573Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -23,7 +25,7 @@ Project: The Form; mapping to the existing Governance Commons forum remains an e
 
 **Mode:** Backlog/design-only, no delegate or worker launch. Coding, rebuilding, PRs, test/source-recovery runs and deployment remain unauthorized. Quiz-related scope and data are deferred; Finger is not part of this issue.
 
-**Deliverable and ownership:** Forum/nonbinding social-interaction contract covering topic/thread/group/reaction event definitions and attributable discussion history. <issue id="b9661f0b-dc93-485a-840e-49b9c7903ec3" href="https://linear.app/jons-garage/issue/JON-21/relational-and-temporal-observatory">JON-21</issue> consumes permitted social events; <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue> retains formal electorate/ballot authority.
+**Deliverable and ownership:** Forum/nonbinding social-interaction contract covering topic/thread/group/reaction event definitions and attributable discussion history. JON-21 (private source reference withheld) consumes permitted social events; JON-58 (private source reference withheld) retains formal electorate/ballot authority.
 
 **Acceptance:** One source-linked specification or gap/decision record with explicit inputs/outputs, canonical dependency owners and reviewable acceptance criteria. Reuse accepted decisions/artifacts. Source/runtime gaps block only the future execution that needs them, not independent design. Historical checkpoints are evidence, not launch instructions.
 

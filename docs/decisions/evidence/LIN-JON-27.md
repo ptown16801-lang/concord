@@ -1,8 +1,10 @@
 # Evidence snapshot: Touch, gesture, MIDI, and mobile interaction layer
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `cd1c259a95de1e3181c90b34c8e7a4c439e2a4f6`; original SHA-256: `cf84190a2b055c88eb1dc8f23e5a00e360ac9feeaef3252113cc5e0022b9bc1b`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-27/touch-gesture-midi-and-mobile-interaction-layer
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:53.905Z
 - Source date: 2026-09-19T04:16:53.905Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Shared touch, gesture, audio and mobile interaction contract. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own shared pointer/gesture behavior, accessibility, audio behavior and viewport/safe-area design. <issue id="21733ce2-5780-4f9e-8e55-d6a157c2bd50" href="https://linear.app/jons-garage/issue/JON-22/interactive-data-atlas-and-graph-standard">JON-22</issue> supplies graph-specific intent; <issue id="2b2438fa-ad17-4b16-bfc3-b6d4ab0c76b5" href="https://linear.app/jons-garage/issue/JON-70/finger-web-collector-component">JON-70</issue> alone owns Finger capture semantics and raw collector fields. This issue does not create another Finger collector or identity/fingerprint inference pipeline. Device matrices here are future acceptance plans, not instructions to run implementation or device testing.
+**Exclusive ownership:** Own shared pointer/gesture behavior, accessibility, audio behavior and viewport/safe-area design. JON-22 (private source reference withheld) supplies graph-specific intent; JON-70 (private source reference withheld) alone owns Finger capture semantics and raw collector fields. This issue does not create another Finger collector or identity/fingerprint inference pipeline. Device matrices here are future acceptance plans, not instructions to run implementation or device testing.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 

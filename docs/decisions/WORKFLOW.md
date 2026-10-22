@@ -2,19 +2,18 @@
 
 ## Authority and integration identity
 
-The designated master is `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`.
-The current documentation branch is a candidate until reviewed and integrated.
-Linear preserves actual owner decisions, discussions, dependencies and work status;
-the master consolidates their operative effect. Historical interviews, specs, source
-snapshots and handoffs are evidence. CURRENT_DECISIONS.md is generated navigation.
-An unincorporated later explicit owner correction still controls: identify it, record
-it and reconcile it before dependent work; a stale master cannot cancel owner intent.
+The canonical register is `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`.
+The published register and candidate changes have distinct revisions. Each entry
+retains its own acceptance and implementation limits. Historical records and
+source snapshots preserve provenance; `CURRENT_DECISIONS.md` is generated
+navigation. A later explicit owner correction still controls. Identify and
+reconcile relevant corrections before dependent work; an older register cannot
+cancel owner intent.
 
-This task’s integration base is Develo `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
-This avoids importing unaccepted runtime branches. JON-141 has a separate existing
-runtime integrator. Do not rewrite that branch or assume its candidate is integrated.
-The documentation candidate can be reviewed independently; if the runtime aggregate
-lands first, reconcile documentation, package scripts and CI against the new Develo.
+Use the actual current default revision as the integration baseline. The old
+September 2026 reconciliation base and writer assignments are historical, not
+standing ownership of future changes. Keep unrelated runtime candidates separate
+unless their exact scope and integration are authorized.
 
 ## Before consequential work
 
@@ -33,9 +32,14 @@ lands first, reconcile documentation, package scripts and CI against the new Dev
 
 ## When a decision changes
 
-Update the stable entry before task completion. Record precise operative text, status,
-scope, acceptance source/date (or explicit unavailability), rationale/alternatives,
-superseded IDs, related issue/review and distinct implementation/verification state.
+Decision-record maintenance is owner-controlled. This workflow grants no standing
+authority to draft or edit governing instructions or decision records. Follow the
+current bounded task; otherwise report outcomes and proposed corrections for the
+owner without adopting them.
+
+An authorized record change identifies precise operative text, status, scope,
+acceptance source/date (or explicit unavailability), rationale, superseded IDs,
+and distinct implementation and verification states.
 A proposal remains Proposed until actual acceptance. Use Unresolved for a narrow
 unknown; ordinary delegated engineering choices need no invented owner gate.
 Do not add entries for routine implementation details. An unchanged decision gets
@@ -43,14 +47,20 @@ Do not add entries for routine implementation details. An unchanged decision get
 
 New decisions use the next unused CON number; never recycle IDs. Existing ECON, DEC
 and subsystem IDs retain their identities and namespaces, including recovered
-CONCORD-WF-### records. Before large decisions, apply CONCORD-WF-002's Linear
-consultation requirement; retain actual advice without substituting it for human
-authority or qualifying independent review. Routine source-backed corrections do
-not constitute a new material policy decision. Source records go in
-`sources.json`: exact URL/path, revision/date, classification, scope, relationship and
-snapshot digest. A missing original date is `Unavailable: <reason>`, not retrieval
-or file-modification time. Do not import full unrelated conversations or private
-reasoning. Save only relevant user-visible excerpts with line/date provenance.
+CONCORD-WF-### records. Apply any owner-reserved consultation and acceptance
+requirements, including CONCORD-WF-002, through the route authorized for the
+current task. A historical instruction does not override a later prohibition or
+authorize private-account access or communication. Outside contributors can
+submit a public proposal without a private task-tracker account; the owner
+resolves reserved coordination and acceptance dependencies.
+
+Source records go in `sources.json`: public location or an honest private-original
+notice, exact revision/date, classification, scope, relationship and snapshot
+digest. Keep private originals outside the public repository. A sanitized
+snapshot has its own digest; retain separate original provenance instead of
+claiming changed bytes are the original. A missing original date is
+`Unavailable: <reason>`, not retrieval or file-modification time. Do not import
+conversations, account/session records or private reasoning into public evidence.
 
 Supersession is directed from the replacement entry to the replaced entry. Preserve
 replaced wording under Superseded and explain partial replacement/scope explicitly.
@@ -107,14 +117,21 @@ Report these separately:
 
 - Decision impact: Updated IDs, or No decision change.
 - Local branch, base and commit/revision (or explicitly uncommitted).
-- Committed, pushed, reviewed and integrated: each with its actual state/evidence.
+- Saved locally and checked/tested: each with its actual scope and evidence.
+- Committed, pushed, reviewed, integrated/merged and deployed: each with its actual
+  state and evidence, or explicitly not performed or unknown.
 - Pending semantic conflict, owner question, inaccessible source or publication step.
+
+Follow the [checks and delivery guidance](../../AGENTS.md#checks-and-delivery) for
+completion reporting and pending commits. Complete an already-authorized commit
+after the required checks. If it remains pending, name the reason and exact next
+action; if owner input is needed, identify the precise decision and its source.
 
 Saved is not committed; committed is not pushed; pushed is not reviewed; merged is
 not policy acceptance, runtime verification or deployment. A handoff request is not
 a received review. Do not say ongoing enforcement is active because instructions or
-CI edits were written. This candidate's local checks and PR41 CI have been exercised;
-canonical-branch integration and ongoing adherence remain separate, unverified states.
+CI edits were written. Attach check and review evidence for the exact candidate;
+older receipts do not verify its current state.
 
 ## Automated checks and limits
 
@@ -122,13 +139,14 @@ The dependency-free Node validator checks entry IDs/statuses/fields, referenced 
 records and immutable snapshot digests, stable anchors/local links, supersession
 references/cycles and generated-summary drift. Focused tests mutate representative
 inputs, including failed provenance, cycle, drift and moved-base cases. Existing CI
-checks master/summary and PR disposition; no recurring job, bot, hook or service is
-activated. The PR template makes decision impact mandatory in the documented review
-process. CI presence is not repository branch protection; no settings were changed.
+checks master/summary and PR disposition. The separate review-context workflow
+posts navigation links; it does not perform a provider review or adopt a decision.
+The PR template makes decision impact explicit. CI presence alone does not
+establish branch protection or permission to change repository settings.
 
 Checks do not establish semantic completeness, actual owner acceptance, truth of a
 source, reviewer independence or absence of a later offline correction. External links
 are recorded but not network-validated in ordinary checks. Historical source links
-remain as issued even when a snapshot references an unavailable file. Humans must
-review these limits. Required owner decisions cannot be satisfied with fabricated
+may be redacted or marked unavailable in a public derivative, with originals
+preserved privately. Humans must review these limits. Required owner decisions cannot be satisfied with fabricated
 URLs/dates, a passing check or a placeholder “approval.”

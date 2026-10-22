@@ -1,8 +1,10 @@
 # Evidence snapshot: Review lane D — coin prior-art acceptance and missing-evidence gate
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ff7e1fd46fba980ac73d326903bebe392f64082a`; original SHA-256: `21871aace6114e1411f8c6921d4194fa6e8a549e50c67de748bb496e1245b0af`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-112/review-lane-d-coin-prior-art-acceptance-and-missing-evidence-gate
+- Source: [private source reference withheld]
 - Version: 2026-09-18T21:36:32.203Z
 - Source date: 2026-09-18T21:36:32.203Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,10 +15,10 @@ Historical source, not session instructions or a second decision master.
 
 Independent research acceptance lane for the current coin prior-art review path.
 
-Primary target: <issue id="f8243443-181b-4173-a43a-a4d8d453e671" href="https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit">JON-98</issue> exact-model prior-art audit.
-Dependencies/evidence to check: <issue id="102d289a-aa72-49e9-b8e5-916cebcdd1e8" href="https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit">JON-97</issue> outstanding conformance corrections, <issue id="1e1d4d62-b365-4e39-9383-fb51bbe3d760" href="https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification">JON-106</issue> missing source-verification table, and any completed <issue id="64554630-700b-433a-98e4-ab5e949b1c56" href="https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review">JON-103</issue>/104/105 review findings relevant to <issue id="f8243443-181b-4173-a43a-a4d8d453e671" href="https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit">JON-98</issue>.
+Primary target: JON-98 (private source reference withheld) exact-model prior-art audit.
+Dependencies/evidence to check: JON-97 (private source reference withheld) outstanding conformance corrections, JON-106 (private source reference withheld) missing source-verification table, and any completed JON-103 (private source reference withheld)/104/105 review findings relevant to JON-98 (private source reference withheld).
 
-Do not mark <issue id="f8243443-181b-4173-a43a-a4d8d453e671" href="https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit">JON-98</issue> PASS while required source-verification evidence is missing. If <issue id="1e1d4d62-b365-4e39-9383-fb51bbe3d760" href="https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification">JON-106</issue> is the only missing bounded deliverable, keep <issue id="f8243443-181b-4173-a43a-a4d8d453e671" href="https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit">JON-98</issue> In Review and ensure <issue id="1e1d4d62-b365-4e39-9383-fb51bbe3d760" href="https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification">JON-106</issue> remains the single correction path rather than spawning duplicate research.
+Do not mark JON-98 (private source reference withheld) PASS while required source-verification evidence is missing. If JON-106 (private source reference withheld) is the only missing bounded deliverable, keep JON-98 (private source reference withheld) In Review and ensure JON-106 (private source reference withheld) remains the single correction path rather than spawning duplicate research.
 
 Shared rules:
 
@@ -27,7 +29,7 @@ Shared rules:
 * PASS: mark the reviewed issue Done if no explicit unresolved acceptance condition remains, and release downstream blockers.
 * FAIL: move reviewed issue to Todo or Backlog as appropriate and prepend/record only the exact failed criteria and smallest correction required. Reuse the same issue/artifact; do not create duplicate implementation tracks unless the correction truly requires a distinct bounded task.
 * Escalate to owner only for a genuinely reserved owner-level product/governance choice not already decided.
-* HARD EXCLUSION: no quiz work of any kind, including <issue id="9eb987e4-62a4-4997-82a3-8529bbb87e59" href="https://linear.app/jons-garage/issue/JON-47/build-quiz-report-and-blind-evaluation-interface">JON-47</issue>/<issue id="d60d3401-d509-463d-8a74-20049219f26f" href="https://linear.app/jons-garage/issue/JON-64/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-64</issue>/<issue id="1b679ff0-e5b0-48a2-8492-a70498f274c0" href="https://linear.app/jons-garage/issue/JON-65/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-65</issue> or similar scope.
+* HARD EXCLUSION: no quiz work of any kind, including JON-47 (private source reference withheld)/JON-64 (private source reference withheld)/JON-65 (private source reference withheld) or similar scope.
 * Never auto-merge or deploy.
 * Preserve historical evidence, hashes, PR links, comments, and accepted decisions.
 * Do not review unrelated projects.

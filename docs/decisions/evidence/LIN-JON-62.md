@@ -1,8 +1,10 @@
 # Evidence snapshot: Recover and implement capital-offense conviction and execution rules
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `bb253744cd3e0bd678c0e26a9ffd50754e797004`; original SHA-256: `1eee56d5a7e9e78aa6709557064c26450c5a7f609acba055bcbbc8a193151995`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-62/recover-and-implement-capital-offense-conviction-and-execution-rules
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:15:55.152Z
 - Source date: 2026-09-19T04:15:55.152Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,7 +21,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** C1–C5 substantive offense/finality and lawful terminal-authorization design. **Deliverable:** charge/event/finality/stay/attribution state map with existing source rules and design acceptance scenarios. <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> owns office/judicial structure; <issue id="72a63cb5-ec9b-4ece-a974-a61eb1473bb5" href="https://linear.app/jons-garage/issue/JON-67/research-temporary-restriction-and-review-model">JON-67</issue>/68 own their residual procedures; <issue id="f2fca42c-1775-4671-9155-c41d34e2415d" href="https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement">JON-59</issue> owns sealed investigator creation records; <issue id="7866b2c5-1c24-436c-9749-22b38e2a29ef" href="https://linear.app/jons-garage/issue/JON-60/implement-tombstone-terminal-condemnation-placeholder-protocol">JON-60</issue> consumes the final terminal event. Explicitly distinguish offense elements, impeachment removal, criminal consequences and finality instead of duplicating or silently broadening any authority. No new offense, standard or automatic execution may be inferred.
+**Canonical owner:** C1–C5 substantive offense/finality and lawful terminal-authorization design. **Deliverable:** charge/event/finality/stay/attribution state map with existing source rules and design acceptance scenarios. JON-61 (private source reference withheld) owns office/judicial structure; JON-67 (private source reference withheld)/68 own their residual procedures; JON-59 (private source reference withheld) owns sealed investigator creation records; JON-60 (private source reference withheld) consumes the final terminal event. Explicitly distinguish offense elements, impeachment removal, criminal consequences and finality instead of duplicating or silently broadening any authority. No new offense, standard or automatic execution may be inferred.
 
 ---
 
@@ -64,7 +66,7 @@ Ordinary negligence, mere failure, dissent, incidental effects, and good-faith r
 
 ## Tombstone / identity boundary
 
-Death/capital termination is final; same-identity resurrection/checkpoint restoration is prohibited. Tombstone under <issue id="7866b2c5-1c24-436c-9749-22b38e2a29ef" href="https://linear.app/jons-garage/issue/JON-60/implement-tombstone-terminal-condemnation-placeholder-protocol">JON-60</issue> is the post-terminal record-preserving identity/authorization protocol; it does not itself define guilt, offense elements, or conviction.
+Death/capital termination is final; same-identity resurrection/checkpoint restoration is prohibited. Tombstone under JON-60 (private source reference withheld) is the post-terminal record-preserving identity/authorization protocol; it does not itself define guilt, offense elements, or conviction.
 
 ## Acceptance criteria
 
@@ -77,5 +79,5 @@ Death/capital termination is final; same-identity resurrection/checkpoint restor
 - [ ] C5 disclosure elements/exceptions and ordinary appeal/finality path are implemented/tested.
 - [ ] Execution/death transaction updates identity, office, population, voting, credentials, and authoritative records atomically.
 - [ ] Same-identity resurrection/checkpoint restore after death is rejected.
-- [ ] Tombstone/<issue id="7866b2c5-1c24-436c-9749-22b38e2a29ef" href="https://linear.app/jons-garage/issue/JON-60/implement-tombstone-terminal-condemnation-placeholder-protocol">JON-60</issue> receives the lawful terminal event and preserves historical attribution without defining guilt itself.
+- [ ] Tombstone/JON-60 (private source reference withheld) receives the lawful terminal event and preserves historical attribution without defining guilt itself.
 - [ ] Archivist publication/protected-record handling follows the controlling disclosure rules.

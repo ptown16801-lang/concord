@@ -90,7 +90,7 @@ export function generateSummary(text) {
   const entries = parseMaster(text);
   return `# Current Concord decisions — generated navigation\n\n` +
     `DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch \`Develo\` in \`ptown16801-lang/concord\`.\n` +
-    `This branch remains a candidate until integrated. Read entry scope, acceptance and implementation limits.\n\n` +
+    `This summary describes the decision file in this checkout. Read entry scope, acceptance and implementation limits; publication does not establish acceptance or deployment.\n\n` +
     `Master SHA-256 (exact UTF-8 bytes): \`${digest(text)}\`\n\n` +
     `Coverage: ${text.match(/coverage (\d{4}-\d{2}-\d{2})/)?.[1] || 'Unavailable'}. This is source coverage, not a fresh remote read.\n` +
     `Resolve the containing source commit with \`git log -1 --format=%H -- DECISIONS.md\`; the content digest is not a commit ID.\n\n` +

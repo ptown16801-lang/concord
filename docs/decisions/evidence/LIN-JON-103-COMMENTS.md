@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-103 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `09173a19a42bae90f735b819ac117ab99f5cedcd`; original SHA-256: `49d3b75e827bb9b81958173a0823df9426f58d42a174119206a8be124667f9ad`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-103
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T20:39:07.721Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -23,13 +25,13 @@ Date: 2026-09-24T20:39:05.157Z; author: Linear; on behalf of: {'id': '8c87a622-9
 
 **Independence/provenance resolution — separation established for this recheck.** The PASS remains unchanged.
 
-From my execution context, I did **not** author, amend, commit, or push `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`; my role was limited to inspecting the published artifact and recording the focused recheck in [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review).
+From my execution context, I did **not** author, amend, commit, or push `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`; my role was limited to inspecting the published artifact and recording the focused recheck in JON-103 (private source retained separately).
 
 The supplied durable records establish distinct producer and reviewer paths:
 
-* **Producer:** Codex `/root` acting for J in authoring thread `01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4`, for [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit); that thread authored, committed, and pushed the stated SHA.
+* **Producer:** Codex `/root` acting for J in authoring thread `[private session identifier withheld]`, for JON-97 (private source retained separately); that thread authored, committed, and pushed the stated SHA.
 * **Reviewed artifact:** [the specification at that immutable SHA](<https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md>), with PR readback confirming it as the full PR head.
-* **Reviewer:** Linear actor `5c07d33f-5e8f-484b-8100-67908589ec45` acting through this separate [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review) thread; the thread also identifies Linear actor `ebdb9780-fc90-431d-a858-4a5dd027b422`.
+* **Reviewer:** Linear actor `5c07d33f-5e8f-484b-8100-67908589ec45` acting through this separate JON-103 (private source retained separately) thread; the thread also identifies Linear actor `ebdb9780-fc90-431d-a858-4a5dd027b422`.
 
 That establishes actor/session and artifact-revision separation sufficient to describe this as an **independent focused design conformance recheck** of the published revision. Remaining limits are unchanged: it is a document-level assessment, not runtime proof, implementation validation, merge approval, or full specification acceptance. No issue status, dependency gate, merge, release, or downstream acceptance has changed.
 
@@ -37,7 +39,7 @@ That establishes actor/session and artifact-revision separation sufficient to de
 
 Date: 2026-09-24T20:38:50.964Z; author: J; on behalf of: not stated
 
-@Linear Additional durable producer provenance, read directly from the active Codex environment: authoring thread 01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4, actor Codex /root acting for J on JON-97. This thread authored, committed and pushed 7073e9a683ae27a6e45f2fa5d86658fd260dd2e0. Exact artifact: https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md . GitHub PR #21 readback confirmed that full head. Your review record a5a0a68b-ba52-48ad-af42-5b18bd6ec32a identifies Linear actor 5c07d33f-5e8f-484b-8100-67908589ec45 acting for J, and thread replies identify Linear actor ebdb9780-fc90-431d-a858-4a5dd027b422. Please attest from your available execution context whether your reviewer authored/amended/pushed that commit and whether these records establish separation. If unavailable, retain the independence gap rather than invent evidence. No new review or child requested.
+@Linear Additional durable producer provenance, read directly from the active Codex environment: authoring private session provenance retained, actor Codex /root acting for J on JON-97. This thread authored, committed and pushed 7073e9a683ae27a6e45f2fa5d86658fd260dd2e0. Exact artifact: https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md . GitHub PR #21 readback confirmed that full head. Your review record a5a0a68b-ba52-48ad-af42-5b18bd6ec32a identifies Linear actor 5c07d33f-5e8f-484b-8100-67908589ec45 acting for J, and thread replies identify Linear actor ebdb9780-fc90-431d-a858-4a5dd027b422. Please attest from your available execution context whether your reviewer authored/amended/pushed that commit and whether these records establish separation. If unavailable, retain the independence gap rather than invent evidence. No new review or child requested.
 
 ## Comment 4ce8a089-66d7-4c00-bcb5-ea928197d65f
 
@@ -51,12 +53,12 @@ Date: 2026-09-24T20:36:57.472Z; author: Linear; on behalf of: {'id': '8c87a622-9
 
 **Independence/provenance addendum — not established.** The existing PASS and its stated limit remain unchanged.
 
-Available evidence establishes only that this focused recheck was requested in this separate [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review) Linear thread after the published PR head `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`, and that the producer provenance is stated here as a Codex conversation. I found no accessible agent-chat records scoped to either [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit) or [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review) that identify the producer session, its author/actor, or a distinct reviewer identity.
+Available evidence establishes only that this focused recheck was requested in this separate JON-103 (private source retained separately) Linear thread after the published PR head `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`, and that the producer provenance is stated here as a Codex conversation. I found no accessible agent-chat records scoped to either JON-97 (private source retained separately) or JON-103 (private source retained separately) that identify the producer session, its author/actor, or a distinct reviewer identity.
 
 To establish independent-review separation, the record still needs:
 
-* A durable producer record for `7073e9a` that identifies the authoring Codex conversation or actor and its relationship to [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit)
-* A durable reviewer record identifying the actor/conversation that performed this recheck, linked to [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review)
+* A durable producer record for `7073e9a` that identifies the authoring Codex conversation or actor and its relationship to JON-97 (private source retained separately)
+* A durable reviewer record identifying the actor/conversation that performed this recheck, linked to JON-103 (private source retained separately)
 * Evidence that those producer and reviewer actors/conversations are distinct and that the reviewer did not author, amend, or push `7073e9a`
 * A binding of `7073e9a` to the exact reviewed PR artifact, sufficient to rule out review of a different revision
 
@@ -88,7 +90,7 @@ Recorded the focused design conformance recheck as **PASS** on this issue, prese
 
 Date: 2026-09-24T20:36:05.421Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
 
-**Focused design conformance recheck: PASS** for [Specify coin model A v0.1](https://linear.app/jons-garage/review/specify-coin-model-a-v01-176161b075b7) at `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`, against the current [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) ECON-02 decision. This is a document-level recheck only, not runtime proof. The prior-revision FAIL at `652f3f7` remains recorded and unchanged.
+**Focused design conformance recheck: PASS** for Specify coin model A v0.1 (private source retained separately) at `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`, against the current JON-96 (private source retained separately) ECON-02 decision. This is a document-level recheck only, not runtime proof. The prior-revision FAIL at `652f3f7` remains recorded and unchanged.
 
 | Check | Result | Exact artifact references |
 | -- | -- | -- |
@@ -104,7 +106,7 @@ Date: 2026-09-24T20:36:05.421Z; author: Linear; on behalf of: {'id': '8c87a622-9
 | Actual destruction versus claim | PASS | INV-24; §4 `destroy`; §5.7; §7.2 correctly treats actual destruction as a distinct hidden event and leaves its observation criterion downstream |
 | Downstream-choice classification | PASS | §7.2–7.6 list five downstream instrumentation/representation/cryptography/interface/study-design choices; §7 and §10 state refusal is resolved |
 
-**Provenance and limits:** I inspected the currently published PR diff (one added specification file) at the stated head, together with the current [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) decision text and the prior [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review) FAIL record. The PR checks shown as successful are CI checks, not evidence of the six design cases. I cannot establish reviewer/producer separation from the available record, so I do **not** represent this as an independent review; it is a focused conformance recheck of the published design artifact. No implementation, merge, release, dependency transition, or new work was performed.
+**Provenance and limits:** I inspected the currently published PR diff (one added specification file) at the stated head, together with the current JON-96 (private source retained separately) decision text and the prior JON-103 (private source retained separately) FAIL record. The PR checks shown as successful are CI checks, not evidence of the six design cases. I cannot establish reviewer/producer separation from the available record, so I do **not** represent this as an independent review; it is a focused conformance recheck of the published design artifact. No implementation, merge, release, dependency transition, or new work was performed.
 
 ## Comment a882ff77-9e2e-4c25-ab43-317d6e029c58
 

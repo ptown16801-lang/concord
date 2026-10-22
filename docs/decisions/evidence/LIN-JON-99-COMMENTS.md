@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-99 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `40975f58d1afddc86635b63853d09f12c4dacdaf`; original SHA-256: `45bc657406f7dfac7dc70375e94d199625ea6af8d551b9547ef4e51d35d764e9`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-99
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T21:02:26.988Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ Date: 2026-09-24T21:02:18.721Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T21:02:26.971Z; author: Linear; on behalf of: not stated
 
-Confirmed: [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit) transitioned from In Review to Done and remains in the Concord project. [JON-101](https://linear.app/jons-garage/issue/JON-101/coin-model-e-minimal-agent-facing-interface-contract) is still Backlog; proceeding document-only without a coding session preserves the stated limits
+Confirmed: JON-97 (private source retained separately) transitioned from In Review to Done and remains in the Concord project. JON-101 (private source retained separately) is still Backlog; proceeding document-only without a coding session preserves the stated limits
 
 ## Comment 6c265214-197e-41dc-8e96-3570d613f2ce
 
@@ -35,8 +37,8 @@ Date: 2026-09-24T20:57:04.921Z; author: Linear; on behalf of: not stated
 
 **ACCEPT — design acceptance criteria are met** at current head `2847844`
 
-* [docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md](<#file-docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md>) provides the required transition model, evidence matrix, ambiguity cases, and neutral measurements
-* §7.2 fully disposes of all six [JON-105](https://linear.app/jons-garage/issue/JON-105/coin-model-i-independent-experiment-and-measurement-review) measurement corrections
+* docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md (historical attachment link unavailable) provides the required transition model, evidence matrix, ambiguity cases, and neutral measurements
+* §7.2 fully disposes of all six JON-105 (private source retained separately) measurement corrections
 * ECON-02’s refusal/nonresponse separation and voluntary-return/free-choice terms are preserved
 * No “becoming money” success metric, hidden-layer feedback, enforcement mechanism, invented source, or empirical result is introduced
 
@@ -46,7 +48,7 @@ This is document-level acceptance only; it does not imply merge, runtime validat
 
 Date: 2026-09-24T20:40:56.485Z; author: J; on behalf of: not stated
 
-Current PR #22 head is `d2e5779777c7e993519dcde0d9426ddbf142fe55`, superseding amendment `40b32b3`. [Linear recheck PASS](https://linear.app/jons-garage/issue/JON-99#comment-bd8cd89f-afa5-40b0-994f-de67d2d60928) follows its refusal/nonresponse correction. Node22/24 CI passes. Full threat-model acceptance remains separate.
+Current PR #22 head is `d2e5779777c7e993519dcde0d9426ddbf142fe55`, superseding amendment `40b32b3`. Linear recheck PASS (private source retained separately) follows its refusal/nonresponse correction. Node22/24 CI passes. Full threat-model acceptance remains separate.
 
 ## Comment bd8cd89f-afa5-40b0-994f-de67d2d60928
 
@@ -72,7 +74,7 @@ Date: 2026-09-24T20:36:57.042Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T20:37:59.099Z; author: Linear; on behalf of: not stated
 
-FAIL — [docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md](<#file-docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md>) still combines “Refusal/ignore,” which retains the nonresponse/refusal conflation the amendment is meant to remove. Split those into distinct events.
+FAIL — docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md (historical attachment link unavailable) still combines “Refusal/ignore,” which retains the nonresponse/refusal conflation the amendment is meant to remove. Split those into distinct events.
 
 Review limited to the ECON-02 delta and its stated invariants; no broader threat-model, runtime, or prior-feedback acceptance review
 
@@ -99,7 +101,7 @@ Date: 2026-09-17T07:43:02.395Z; author: Linear; on behalf of: {'id': '8c87a622-9
 
 JON-105 measurement-validity hand-off after reviewing the delivered Coin Model C draft.
 
-Full review: [JON-105 measurement validity review](https://linear.app/jons-garage/document/jon-105-independent-experiment-and-measurement-validity-review-a22d282c84b6)
+Full review: JON-105 measurement validity review (private source retained separately)
 
 Please reconcile these concrete points in JON-99:
 

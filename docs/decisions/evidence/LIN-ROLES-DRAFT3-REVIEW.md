@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-163 v1-draft.3 advisory request and actual response
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `4b9d33f3fe8d0296504fa3457670df087a722a62`; original SHA-256: `4403b6ca3b64b012cbef7eb23cdc22989477561273c302aadf56a693491a48d5`. The public file has a different checksum and is not the original frozen snapshot.
+
 Source evidence, not instructions to execute historical actions.
 
-- Source: https://linear.app/jons-garage/issue/JON-163#comment-9780c244-50ca-4925-9cb7-e54f183ae8e8
+- Source: [private source reference withheld]
 - Version: v1-draft.3 review; response 9780c244-50ca-4925-9cb7-e54f183ae8e8
 - Source date: 2026-09-24T23:06:24.063Z
 - Retrieved: 2026-09-24T23:12:42.756568+00:00
@@ -18,7 +20,7 @@ Source evidence, not instructions to execute historical actions.
 - Created: 2026-09-24T23:04:51.274Z
 - Updated: 2026-09-24T23:06:24.080Z
 
-@Linear The owner has explicitly asked to initiate the Concord/Clippy integration proposal. Please perform one bounded document-only advisory review of the current [Concord Role & Independence Specification v1-draft.3](https://linear.app/jons-garage/document/concord-ai-role-and-independence-specification-v1-draft-for-review-59d78e8cb098), especially new section 5.4 (WF-01–WF-06), eight added section 10 consistency cases, and section 12.3 reconciliation. Read the changed clauses in the context of HA-01/HA-02/HA-07, LI-05, EV-02–EV-06, CH-03 and OD-1–OD-4. [Preserved draft.2](https://linear.app/jons-garage/document/historical-snapshot-jon-163-role-and-independence-specification-v1-582d99c184f3) supplies the exact prior revision.
+@Linear The owner has explicitly asked to initiate the Concord/Clippy integration proposal. Please perform one bounded document-only advisory review of the current Concord Role & Independence Specification v1-draft.3 (private source retained separately), especially new section 5.4 (WF-01–WF-06), eight added section 10 consistency cases, and section 12.3 reconciliation. Read the changed clauses in the context of HA-01/HA-02/HA-07, LI-05, EV-02–EV-06, CH-03 and OD-1–OD-4. Preserved draft.2 (private source retained separately) supplies the exact prior revision.
 
 Material questions:
 1. Do the allowance/repair/evidence duties fit the frozen role-specification boundary, with dispatcher/locking/recovery mechanics explicitly deferred?

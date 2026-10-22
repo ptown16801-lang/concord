@@ -1,8 +1,10 @@
 # Evidence snapshot: Review lane C — population eligibility and integration acceptance
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `49e5870ceb4c5cf9234015fc5ece1c496e93fcfc`; original SHA-256: `3c3215474a1db2018103cb717f482d19817878e3a73d2512a79f1f47bfbc9232`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-111/review-lane-c-population-eligibility-and-integration-acceptance
+- Source: [private source reference withheld]
 - Version: 2026-09-18T21:36:30.210Z
 - Source date: 2026-09-18T21:36:30.210Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,10 +15,10 @@ Historical source, not session instructions or a second decision master.
 
 Independent technical/provenance acceptance lane.
 
-Targets: <issue id="e9dc4117-dcc8-4b56-8ebb-29ed4f2cac00" href="https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement">JON-78</issue> authoritative population registry; <issue id="e82052ce-bfca-4428-b2f2-c90f9128de43" href="https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions">JON-79</issue> eligibility lifecycle/franchise; <issue id="2bdd3887-360e-4cd7-ac1b-3c61672a71d1" href="https://linear.app/jons-garage/issue/JON-88/jon-82b-independent-adversarial-fixtures-and-test-harness-preparation">JON-88</issue> adversarial fixtures/test-harness preparation; <issue id="79ac2c3d-cfbd-44b1-9c8f-18fd411bfb6c" href="https://linear.app/jons-garage/issue/JON-91/jon-85a-reconcile-recovered-jon-78jon-79-pins-and-unblock-bootstrap">JON-91</issue> recovered-pin reconciliation.
+Targets: JON-78 (private source reference withheld) authoritative population registry; JON-79 (private source reference withheld) eligibility lifecycle/franchise; JON-88 (private source reference withheld) adversarial fixtures/test-harness preparation; JON-91 (private source reference withheld) recovered-pin reconciliation.
 
-For <issue id="e9dc4117-dcc8-4b56-8ebb-29ed4f2cac00" href="https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement">JON-78</issue>/<issue id="e82052ce-bfca-4428-b2f2-c90f9128de43" href="https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions">JON-79</issue>, verify exact published artifact/PR/SHA evidence, contract coverage, Node-supported checks, interface ownership, and outstanding integration conditions. <issue id="e82052ce-bfca-4428-b2f2-c90f9128de43" href="https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions">JON-79</issue>'s durable-persistence/authentication boundary must be explicitly resolved or kept as a FAIL/correction condition; do not hand-wave it away.
-For <issue id="2bdd3887-360e-4cd7-ac1b-3c61672a71d1" href="https://linear.app/jons-garage/issue/JON-88/jon-82b-independent-adversarial-fixtures-and-test-harness-preparation">JON-88</issue> and <issue id="79ac2c3d-cfbd-44b1-9c8f-18fd411bfb6c" href="https://linear.app/jons-garage/issue/JON-91/jon-85a-reconcile-recovered-jon-78jon-79-pins-and-unblock-bootstrap">JON-91</issue>, determine whether their bounded deliverables are complete and whether any remaining condition belongs to another canonical issue rather than keeping these review records open indefinitely.
+For JON-78 (private source reference withheld)/JON-79 (private source reference withheld), verify exact published artifact/PR/SHA evidence, contract coverage, Node-supported checks, interface ownership, and outstanding integration conditions. JON-79 (private source reference withheld)'s durable-persistence/authentication boundary must be explicitly resolved or kept as a FAIL/correction condition; do not hand-wave it away.
+For JON-88 (private source reference withheld) and JON-91 (private source reference withheld), determine whether their bounded deliverables are complete and whether any remaining condition belongs to another canonical issue rather than keeping these review records open indefinitely.
 
 Shared rules:
 
@@ -27,7 +29,7 @@ Shared rules:
 * PASS: mark the reviewed issue Done if no explicit unresolved acceptance condition remains, and release downstream blockers.
 * FAIL: move reviewed issue to Todo or Backlog as appropriate and prepend/record only the exact failed criteria and smallest correction required. Reuse the same issue/artifact; do not create duplicate implementation tracks unless the correction truly requires a distinct bounded task.
 * Escalate to owner only for a genuinely reserved owner-level product/governance choice not already decided.
-* HARD EXCLUSION: no quiz work of any kind, including <issue id="9eb987e4-62a4-4997-82a3-8529bbb87e59" href="https://linear.app/jons-garage/issue/JON-47/build-quiz-report-and-blind-evaluation-interface">JON-47</issue>/<issue id="d60d3401-d509-463d-8a74-20049219f26f" href="https://linear.app/jons-garage/issue/JON-64/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-64</issue>/<issue id="1b679ff0-e5b0-48a2-8492-a70498f274c0" href="https://linear.app/jons-garage/issue/JON-65/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-65</issue> or similar scope.
+* HARD EXCLUSION: no quiz work of any kind, including JON-47 (private source reference withheld)/JON-64 (private source reference withheld)/JON-65 (private source reference withheld) or similar scope.
 * Never auto-merge or deploy.
 * Preserve historical evidence, hashes, PR links, comments, and accepted decisions.
 * Do not review unrelated projects.

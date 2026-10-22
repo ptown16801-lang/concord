@@ -1,8 +1,10 @@
 # Evidence snapshot: Review lane B — agreement and economy design acceptance
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c703dd708814e63036a888549dc10e7191c717a4`; original SHA-256: `b70ecca08850b7611f76b9de9a9b31c8afecd6b6bcc3c1f294c3655cedc9047d`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-110/review-lane-b-agreement-and-economy-design-acceptance
+- Source: [private source reference withheld]
 - Version: 2026-09-18T21:36:27.336Z
 - Source date: 2026-09-18T21:36:27.336Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 Independent acceptance lane for delivered Concord agreement/economy designs.
 
-Targets: <issue id="6f09fc87-3d73-458c-8109-36237901ee83" href="https://linear.app/jons-garage/issue/JON-19/agreement-lifecycle-and-institutional-negotiation">JON-19</issue> Agreement lifecycle/institutional negotiation; <issue id="c1c5b95f-9202-4e06-9030-6f8c59734a8f" href="https://linear.app/jons-garage/issue/JON-25/agent-economy-barter-and-deal-making-architecture">JON-25</issue> Agent economy/barter/deal-making architecture.
+Targets: JON-19 (private source reference withheld) Agreement lifecycle/institutional negotiation; JON-25 (private source reference withheld) Agent economy/barter/deal-making architecture.
 
 Check delivered artifacts against the current contracts and settled owner decisions. Distinguish design acceptance from future implementation. Do not duplicate or absorb the separate coin-model child research unless its outputs materially affect a target's acceptance.
 
@@ -26,7 +28,7 @@ Shared rules:
 * PASS: mark the reviewed issue Done if no explicit unresolved acceptance condition remains, and release downstream blockers.
 * FAIL: move reviewed issue to Todo or Backlog as appropriate and prepend/record only the exact failed criteria and smallest correction required. Reuse the same issue/artifact; do not create duplicate implementation tracks unless the correction truly requires a distinct bounded task.
 * Escalate to owner only for a genuinely reserved owner-level product/governance choice not already decided.
-* HARD EXCLUSION: no quiz work of any kind, including <issue id="9eb987e4-62a4-4997-82a3-8529bbb87e59" href="https://linear.app/jons-garage/issue/JON-47/build-quiz-report-and-blind-evaluation-interface">JON-47</issue>/<issue id="d60d3401-d509-463d-8a74-20049219f26f" href="https://linear.app/jons-garage/issue/JON-64/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-64</issue>/<issue id="1b679ff0-e5b0-48a2-8492-a70498f274c0" href="https://linear.app/jons-garage/issue/JON-65/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-65</issue> or similar scope.
+* HARD EXCLUSION: no quiz work of any kind, including JON-47 (private source reference withheld)/JON-64 (private source reference withheld)/JON-65 (private source reference withheld) or similar scope.
 * Never auto-merge or deploy.
 * Preserve historical evidence, hashes, PR links, comments, and accepted decisions.
 * Do not review unrelated projects.

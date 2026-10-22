@@ -1,8 +1,10 @@
 # Evidence snapshot: Implement COAIA/L-COAIA dual-census and CRA ceiling enforcement
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `77eb861d25975ef1447400bccec16743ef1860dd`; original SHA-256: `d7a47c77784129d89f05a17764567bbd28fa0d5cca3e5bc776ad87eb81a0ab1f`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement
+- Source: [private source reference withheld]
 - Version: 2026-09-23T20:05:05.678Z
 - Source date: 2026-09-23T20:05:05.678Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,7 +21,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** sealed-census, investigator lifecycle, capacity-reservation and access design. **Deliverable:** R/T/C/P/K invariants, authorized snapshot/read contracts, reservation lifecycle and scenario matrix, consuming the single <issue id="e9dc4117-dcc8-4b56-8ebb-29ed4f2cac00" href="https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement">JON-78</issue> population authority through the <issue id="803d539b-92f8-4baa-8e5f-d295a8455c61" href="https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification">JON-82</issue> boundary contract. <issue id="fe321d82-df40-4788-9cc9-7a7a68bafcec" href="https://linear.app/jons-garage/issue/JON-62/recover-and-implement-capital-offense-conviction-and-execution-rules">JON-62</issue> owns C4 merits/finality/attribution consequences; this issue owns the sealed creation record and census effects, not a parallel adjudication model. The <issue id="803d539b-92f8-4baa-8e5f-d295a8455c61" href="https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification">JON-82</issue> blocking relation is a future implementation/integration gate; specification drafting may use current authoritative rules with explicit unresolved interface fields. Preserve secrecy and no-resurrection requirements.
+**Canonical owner:** sealed-census, investigator lifecycle, capacity-reservation and access design. **Deliverable:** R/T/C/P/K invariants, authorized snapshot/read contracts, reservation lifecycle and scenario matrix, consuming the single JON-78 (private source reference withheld) population authority through the JON-82 (private source reference withheld) boundary contract. JON-62 (private source reference withheld) owns C4 merits/finality/attribution consequences; this issue owns the sealed creation record and census effects, not a parallel adjudication model. The JON-82 (private source reference withheld) blocking relation is a future implementation/integration gate; specification drafting may use current authoritative rules with explicit unresolved interface fields. Preserve secrecy and no-resurrection requirements.
 
 ---
 
@@ -73,4 +75,4 @@ The later archived constitutional source supersedes the older public-census mode
 - [ ] House/Senate/Judiciary investigatory archives remain separate security domains.
 - [ ] Recovered C4 proposal/vote/event-review/finality/ballot-attribution rules are implemented without adding individualized intent trials or broadening offense scope.
 - [ ] Reconciliation and disclosure events are append-only and attributable.
-- [ ] Integration tests cross-check <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue> ballot/population accounting at ceiling and eligibility boundaries.
+- [ ] Integration tests cross-check JON-58 (private source reference withheld) ballot/population accounting at ceiling and eligibility boundaries.

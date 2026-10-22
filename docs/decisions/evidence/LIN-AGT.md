@@ -1,8 +1,10 @@
 # Evidence snapshot: Proposal for review — Concord AGT integration and bounded delegation
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ebd5a2562ffa660ad601bd0652a31e5addc88dab`; original SHA-256: `7254ff90809ed2705a58bc7a32c0aa8f0d8a136c842444c2f805aba099e9d5a1`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/proposal-for-review-concord-agt-integration-and-bounded-delegation-50c0e9dbe914
+- Source: [private source reference withheld]
 - Version: 2026-09-23T14:33:04.644Z
 - Source date: 2026-09-23T14:33:04.644Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Current disposition — September 23, 2026
 
-This proposal is preserved as the reviewed design snapshot. [JON-137](<https://linear.app/jons-garage/issue/JON-137>) contains two delivered Linear advisory reviews and the owner's subsequent “Implement changes” instruction. The initial draft-only/no-implementation wording below records the proposal's original authorization; later bounded sandbox authorization is now recorded on <issue id="9e6621ef-e8ea-4c18-9f97-5440c5d22343" href="https://linear.app/jons-garage/issue/JON-138/concord-subsystem-microsoft-agent-governance-integration-sandbox">JON-138</issue>/<issue id="6005bf0d-9260-4aed-87c8-cd4619497a9c" href="https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter">JON-130</issue>–135. Continue through those existing issues and <issue id="750a2b17-6734-47c9-b999-10039fc5f30d" href="https://linear.app/jons-garage/issue/JON-141/reconcile-audited-cross-branch-governance-and-workflow-conflicts">JON-141</issue>'s sole integration writer. <issue id="89712dda-5b58-4c0e-b2db-e33795c4c3fe" href="https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report">JON-135</issue> independent acceptance remains pending. This update does not authorize broader production work or Linear Coding Sessions.
+This proposal is preserved as the reviewed design snapshot. JON-137 (private source reference withheld) contains two delivered Linear advisory reviews and the owner's subsequent “Implement changes” instruction. The initial draft-only/no-implementation wording below records the proposal's original authorization; later bounded sandbox authorization is now recorded on JON-138 (private source reference withheld)/JON-130 (private source reference withheld)–135. Continue through those existing issues and JON-141 (private source reference withheld)'s sole integration writer. JON-135 (private source reference withheld) independent acceptance remains pending. This update does not authorize broader production work or Linear Coding Sessions.
 
 ## Original proposal and review scope
 
@@ -23,7 +25,7 @@ This proposal is preserved as the reviewed design snapshot. [JON-137](<https://l
 
 Owner request, September 23, 2026: “Can you create a proposal and send it to linear agent for review.”
 
-This authorizes creation and a bounded Linear-agent design review only. No coding, installation, repository changes, implementation dispatch, further delegation, merges, deployment, or global hold release is authorized. <issue id="6005bf0d-9260-4aed-87c8-cd4619497a9c" href="https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter">JON-130</issue>–135 were created prematurely during the earlier planning exchange; they are proposed work packages, not approved execution orders. Leave those issues parked and their delegates unset. Linear Coding Sessions are not needed or authorized for this review.
+This authorizes creation and a bounded Linear-agent design review only. No coding, installation, repository changes, implementation dispatch, further delegation, merges, deployment, or global hold release is authorized. JON-130 (private source reference withheld)–135 were created prematurely during the earlier planning exchange; they are proposed work packages, not approved execution orders. Leave those issues parked and their delegates unset. Linear Coding Sessions are not needed or authorized for this review.
 
 ## Goal
 
@@ -35,7 +37,7 @@ The inspected checkout contains Node.js 22+ JavaScript, a native HTTP server and
 
 Earlier authorized installation added @microsoft/agent-governance-sdk 5.0.0 and a scoped js-yaml 5.4.2 override. package.json, package-lock.json and CHANGELOG.md are local uncommitted changes above 40f647e5b8d23307f713fc3a3753a1d3a46611cb. A future implementation handoff must preserve and deliver those changes; a remote reviewer must not assume access to them. Session evidence reports zero npm audit findings, passing SDK import/YAML allow-deny checks, syntax checks and 23 existing regression tests. These establish installation, not integration, OS isolation or production security. Review may evaluate these reported results without running code.
 
-Reuse the completed designs in <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> / PR <pull-request id="97398c4a-8bc0-42cd-a0c0-f087067ced37" href="https://linear.app/jons-garage/review/define-protected-domain-security-contract-74c16b3cb3d9">ptown16801-lang/concord#19</pull-request> (49c19837191b83e93844653f7bf6259ee838d3ef) and <issue id="9456331b-a71c-4a13-beb6-b627a381d12f" href="https://linear.app/jons-garage/issue/JON-15/persistent-identity-memory-and-succession-model">JON-15</issue> / PR <pull-request id="1f60309d-b2fc-46e4-9d33-028dd0c8de62" href="https://linear.app/jons-garage/review/define-persistent-identity-and-succession-contract-7dcdfa1b05aa">ptown16801-lang/concord#15</pull-request> (1e86688cc2ed45b174d675d353c47b96c8d5bbec). Their Done status must not be interpreted as a deployed runtime. <issue id="01f01456-3c06-45aa-af7b-10c99f6cd777" href="https://linear.app/jons-garage/issue/JON-35/finalize-cross-domain-commit-and-revocation-ordering">JON-35</issue> controls admitted-operation revocation semantics. <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue> owns Archivist/publication contracts. No completed design should be reopened or duplicated.
+Reuse the completed designs in JON-17 (private source reference withheld) / PR ptown16801-lang/concord#19 (private source reference withheld) (49c19837191b83e93844653f7bf6259ee838d3ef) and JON-15 (private source reference withheld) / PR ptown16801-lang/concord#15 (private source reference withheld) (1e86688cc2ed45b174d675d353c47b96c8d5bbec). Their Done status must not be interpreted as a deployed runtime. JON-35 (private source reference withheld) controls admitted-operation revocation semantics. JON-18 (private source reference withheld) owns Archivist/publication contracts. No completed design should be reopened or duplicated.
 
 ## Proposed architecture
 
@@ -47,9 +49,9 @@ A request binds stable actor identity, operation ID, domain/audience, action/res
 
 Capability validation, one-use consumption, version check, state mutation and commit audit/outbox evidence must be coordinated transactionally. Retries must not duplicate effects. Denial/admission records and execution outcomes have explicit persistence/failure rules; hash chains alone do not prove protection against privileged rewriting.
 
-<issue id="01f01456-3c06-45aa-af7b-10c99f6cd777" href="https://linear.app/jons-garage/issue/JON-35/finalize-cross-domain-commit-and-revocation-ordering">JON-35</issue>: revocation blocks new admission but does not cancel an already lawfully admitted operation. Once approved, an action must be carried out; no party may cancel it. Permission expiry after admission likewise does not prevent the approved action from completing. These rules do not waive the operation’s original admitted scope, expected-version/transactional conditions, domain invariants, or other validity checks.
+JON-35 (private source reference withheld): revocation blocks new admission but does not cancel an already lawfully admitted operation. Once approved, an action must be carried out; no party may cancel it. Permission expiry after admission likewise does not prevent the approved action from completing. These rules do not waive the operation’s original admitted scope, expected-version/transactional conditions, domain invariants, or other validity checks.
 
-Keep protected domains and investigatory archives separate. Keep Finger behavioral data, security audit and public publication distinct. <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue>'s Archivist remains sole public-ledger publisher; this proposal does not create a competing publication authority.
+Keep protected domains and investigatory archives separate. Keep Finger behavioral data, security audit and public publication distinct. JON-18 (private source reference withheld)'s Archivist remains sole public-ledger publisher; this proposal does not create a competing publication authority.
 
 ## Owner design decisions
 
@@ -61,12 +63,12 @@ Keep protected domains and investigatory archives separate. Keep Finger behavior
 
 | Stage | Existing draft | Deliverable | Proposed role | Dependency |
 | -- | -- | -- | -- | -- |
-| A | <issue id="6005bf0d-9260-4aed-87c8-cd4619497a9c" href="https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter">JON-130</issue> | Reconcile accepted contracts; define schemas and AGT adapter; preserve dependency baseline | Integration engineer / Codex | Future implementation authorization |
-| B | <issue id="d579391c-eae9-4374-be08-52de0d05eec4" href="https://linear.app/jons-garage/issue/JON-131/agt-b-persistent-identity-and-domain-scoped-capabilities">JON-131</issue> | Persistent identity mapping, authentication and domain-scoped capabilities | Identity/security engineer / Codex | Accepted A interface |
-| C | <issue id="5f1078db-8d70-404b-9987-bd2244c190f7" href="https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit">JON-132</issue> | Domain writer, atomic capability use, versioned commits and durable audit | Storage engineer / Codex | Accepted A interface |
-| D | <issue id="199d1e88-9d51-4774-a169-9c67a3648ebc" href="https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness">JON-133</issue> | Local harness connecting actual A–C components across synthetic domains | Integration engineer / Codex | Accepted B and C |
-| E | <issue id="b4c2a4bd-a9ab-4d1f-84a8-25707d0355cb" href="https://linear.app/jons-garage/issue/JON-134/agt-e-linux-process-isolation-and-recovery-boundary">JON-134</issue> | Linux separation, real bypass tests, stop/restart and recovery runbook | Infrastructure engineer / Codex | Accepted D |
-| F | <issue id="89712dda-5b58-4c0e-b2db-e33795c4c3fe" href="https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report">JON-135</issue> | Independent adversarial suite and evidence-backed acceptance report | Separate security reviewer | Accepted E |
+| A | JON-130 (private source reference withheld) | Reconcile accepted contracts; define schemas and AGT adapter; preserve dependency baseline | Integration engineer / Codex | Future implementation authorization |
+| B | JON-131 (private source reference withheld) | Persistent identity mapping, authentication and domain-scoped capabilities | Identity/security engineer / Codex | Accepted A interface |
+| C | JON-132 (private source reference withheld) | Domain writer, atomic capability use, versioned commits and durable audit | Storage engineer / Codex | Accepted A interface |
+| D | JON-133 (private source reference withheld) | Local harness connecting actual A–C components across synthetic domains | Integration engineer / Codex | Accepted B and C |
+| E | JON-134 (private source reference withheld) | Linux separation, real bypass tests, stop/restart and recovery runbook | Infrastructure engineer / Codex | Accepted D |
+| F | JON-135 (private source reference withheld) | Independent adversarial suite and evidence-backed acceptance report | Separate security reviewer | Accepted E |
 
 Sequence: A → (B and C in parallel) → D → E → F.
 
@@ -93,7 +95,7 @@ Initial completion means tested synthetic-domain runtime readiness. Real registr
 
 ## Questions for Linear agent's review
 
-* Does the design preserve <issue id="9456331b-a71c-4a13-beb6-b627a381d12f" href="https://linear.app/jons-garage/issue/JON-15/persistent-identity-memory-and-succession-model">JON-15</issue>/17/35/18, including operation admission versus commit, expiry and revocation?
+* Does the design preserve JON-15 (private source reference withheld)/17/35/18, including operation admission versus commit, expiry and revocation?
 * Are any existing accepted implementations/contracts overlooked or duplicated?
 * Are schemas, authenticated trust boundaries and audit/transaction semantics sufficient to begin A after approval?
 * Can B/C proceed independently with explicit ownership and stable interfaces?
@@ -105,4 +107,4 @@ Initial completion means tested synthetic-domain runtime readiness. Real registr
 
 Reply on the review issue with: recommendation (ready for owner consideration / revise / blocked), prioritized findings with source links and proposed corrections, dependency/ownership changes, acceptance-test gaps, and the smallest recommended first milestone. Explain actual blockers rather than treating historical holds as a reason not to perform this expressly authorized review.
 
-Do not modify <issue id="6005bf0d-9260-4aed-87c8-cd4619497a9c" href="https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter">JON-130</issue>–135, launch their workers, implement fixes, or approve execution on the owner's behalf. This review provides advice only.
+Do not modify JON-130 (private source reference withheld)–135, launch their workers, implement fixes, or approve execution on the owner's behalf. This review provides advice only.

@@ -1,8 +1,10 @@
 # Evidence snapshot: Homepage artwork — approved source and editing workflow v1.0.0
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c5badac8288d9105b834a5a877f33129ec0763e3`; original SHA-256: `5f10bf928e413ca18312fce6e124faec7e7be663b2e7e97fd52d596dca61dda4`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/homepage-artwork-approved-source-and-editing-workflow-v100-b695d75df212
+- Source: [private source reference withheld]
 - Version: 2026-09-15T23:01:10.168Z
 - Source date: 2026-09-15T23:01:10.168Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -17,11 +19,11 @@ Historical source, not session instructions or a second decision master.
 
 On September 15, 2026, the user selected the final neon wireframe camera-headed presenter image as the Concord homepage artwork and asked that its available sources, revisions, and editing data be retained as a reusable workflow. This designation applies to the artwork; it does not authorize silently replacing unrelated Workbench content.
 
-**Workflow issue:** [JON-55](<https://linear.app/jons-garage/issue/JON-55/homepage-artwork-approved-master-and-reusable-editing-workflow>)
+**Workflow issue:** JON-55 (private source reference withheld)
 
-**Canonical asset folder:** [Concord — Homepage Artwork on Google Drive](<https://drive.google.com/drive/folders/1Wc5xIhc7YDLIczTop1ZSLRuGgDlypkdp>)
+**Canonical asset folder:** Concord — Homepage Artwork on Google Drive (private source reference withheld)
 
-**Approved PNG:** [Concord_Homepage_APPROVED_v1.0.0.png](<https://drive.google.com/file/d/1jMYd9RYLjDapZbxXWwTsv9RcU61nq-eC/view?usp=drivesdk>)
+**Approved PNG:** Concord_Homepage_APPROVED_v1.0.0.png (private source reference withheld)
 
 ## Exact source identity
 
@@ -34,7 +36,7 @@ On September 15, 2026, the user selected the final neon wireframe camera-headed 
 
 ## Workflow package
 
-`Concord_Homepage_Workflow_v1.0.0.zip` contains the approved PNG, three user-supplied visual references, 14 available generated PNG revisions, the visible edit requests and generation IDs, explicit rejected/missing-revision status, masks, transparent regional PNGs, an OpenRaster editing file, an embedded-image SVG, an offline homepage preview, an offline regional editing studio, reproducible scripts, and a checksummed manifest. The archive is stored in the canonical folder; its final attachment link is indexed in <issue id="ba724b93-fe3c-42ed-8921-b13dde7fe2f0" href="https://linear.app/jons-garage/issue/JON-55/homepage-artwork-approved-master-and-reusable-editing-workflow">JON-55</issue>.
+`Concord_Homepage_Workflow_v1.0.0.zip` contains the approved PNG, three user-supplied visual references, 14 available generated PNG revisions, the visible edit requests and generation IDs, explicit rejected/missing-revision status, masks, transparent regional PNGs, an OpenRaster editing file, an embedded-image SVG, an offline homepage preview, an offline regional editing studio, reproducible scripts, and a checksummed manifest. The archive is stored in the canonical folder; its final attachment link is indexed in JON-55 (private source reference withheld).
 
 The selected image is retained byte-for-byte. The six visible editing layers partition the source into backdrop/logo, floor/reflections, beam/smoke, presenter/camera, podium, and chair regions. A hidden original reference and an empty new-logo overlay are included in the OpenRaster file.
 

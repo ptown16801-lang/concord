@@ -1,8 +1,10 @@
 # Evidence snapshot: Resolve petition-credit duplicate and refund accounting
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `a59828e4b03d446c331217c87778ae72be64159a`; original SHA-256: `cedf487820ea10b9a6cebdf3f25cea3aee2c619fd91bcd00a43617c83fba4ec7`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-33/resolve-petition-credit-duplicate-and-refund-accounting
+- Source: [private source reference withheld]
 - Version: 2026-09-18T21:34:01.362Z
 - Source date: 2026-09-18T21:34:01.362Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,4 +21,4 @@ A petition filing determined to be a duplicate **consumes the filer's petition c
 
 Preserve the accepted broader baseline: fixed credit supply; renewal through accepted qualifying work; successful qualifying petitions receive the already-adopted success refund; withdrawal consumes a credit; empirically calibrated bank cap. A duplicate filing is not treated as a successful petition merely because the underlying earlier petition later succeeds.
 
-Duplicate determination and its evidence must be recorded with append-only provenance sufficient for lawful review. Ordinary duplicate-detection mechanics may be defined by the responsible institution/implementation team under <issue id="200fe456-c2a1-43a3-ac7f-9995dedb43ad" href="https://linear.app/jons-garage/issue/JON-30/resolve-outstanding-governance-architecture-decisions">JON-30</issue>, but they may not create a refund or merge path that defeats this adopted accounting rule.
+Duplicate determination and its evidence must be recorded with append-only provenance sufficient for lawful review. Ordinary duplicate-detection mechanics may be defined by the responsible institution/implementation team under JON-30 (private source reference withheld), but they may not create a refund or merge path that defeats this adopted accounting rule.

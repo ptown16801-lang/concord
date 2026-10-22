@@ -1,12 +1,14 @@
 # Local consolidation receipt — 2026-09-24
 
+Public redacted derivative. Private operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `1fd019ba3349f4a0a92483947d0183342bc81114`; original SHA-256: `93802b9c7672383febc5e6f5530c53d0a0ee00cb5cf98a1131a8d323ea16d4eb`. Historical dates and outcomes are unchanged.
+
 Decision impact: Updated CON-001, CON-002, CON-003, CON-004, CON-005, CON-006, CON-007, CON-008, CON-009, CON-010, CON-011, CON-012, CON-013, CON-014, CON-015, CON-016, CON-017, CON-018, CON-019, CON-020, CON-021, CON-022, CON-023, CON-024, CON-025, CON-031, CON-032, CON-033, CON-034, CON-035, CON-036, CON-037, CON-038, CON-040, CON-041, CON-042, CON-043, CON-045, CON-046, CON-047, ECON-01, ECON-02, ECON-03, CON-050, CON-051, CON-052, CON-060, CON-061, CON-062, CON-063, CON-064, CON-065, CON-066, CON-070, CON-071, CON-072, CON-073, CON-074, CON-080, CON-081, CON-082, CON-090, CON-091, CON-092
 
 “Updated” means recovered/consolidated existing policy and recorded existing proposal/
 supersession/evidence state. Only the requested maintenance workflow is newly installed;
 no substantive policy was adopted on the owner’s behalf.
 
-- Worktree: `/tmp/concord-decisions-20260924` on verified Ubuntu host `Cornhole`.
+- Worktree: `/tmp/concord-decisions-20260924` on verified Ubuntu host `the inspected workstation`.
 - Branch: `docs/decisions-consolidation-20260924`.
 - Base / expected canonical revision: `29ca0b44cf8d911df6978e84c7a91e7777afd304`.
 - Canonical integration target: `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`.
@@ -39,7 +41,7 @@ These are instructions for a later authorized publication, not actions executed 
    ```
 
 4. Open a PR targeting **Develo**, using the prepared local
-   [PR description](PR_DESCRIPTION.md), exact source/decision disposition and sync
+   [PR description](../PR_DESCRIPTION.md), exact source/decision disposition and sync
    receipt. Obtain the required independent/reviewer and human integration disposition;
    verify CI on the resulting exact revision. Do not count author tests as independent
    review or a PR merge as adoption of unresolved proposals.

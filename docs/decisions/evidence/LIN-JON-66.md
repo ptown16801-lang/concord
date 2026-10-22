@@ -1,8 +1,10 @@
 # Evidence snapshot: Consolidate bootstrap impeachment decisions into an implementation specification
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `297cab8612b4c3d69f9fa073e1ebb71f11edf955`; original SHA-256: `8526058c3c37f84eb2bb502236021ac0382566ec39afd59ed16f006440d8767d`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-66/consolidate-bootstrap-impeachment-decisions-into-an-implementation
+- Source: [private source reference withheld]
 - Version: 2026-09-19T03:08:42.710Z
 - Source date: 2026-09-19T03:08:42.710Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,7 +21,7 @@ The owner instructed **“Implement the above”** after approving this consolid
 
 ## Inputs and authority
 
-Read this contract and the latest checkpoint first, then <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> and the specific decision sources below. Reuse the existing research result (`f275fc59-f80e-4cf0-9deb-dbf076599ebb`, 2026-09-16 08:49 UTC). A document timestamp alone is not evidence of an owner reversal. New explicit owner instructions remain controlling and must be reconciled into the contract before continuing affected work.
+Read this contract and the latest checkpoint first, then JON-61 (private source reference withheld) and the specific decision sources below. Reuse the existing research result (`f275fc59-f80e-4cf0-9deb-dbf076599ebb`, 2026-09-16 08:49 UTC). A document timestamp alone is not evidence of an owner reversal. New explicit owner instructions remain controlling and must be reconciled into the contract before continuing affected work.
 
 ## Settled decisions — preserve, do not reopen
 
@@ -36,7 +38,7 @@ The adopted Option 2 research gives `A = min(5, max(2, floor(R/3)))` and `T = mi
 
 Thresholds: accusation A=2 requires 2/2; A=3–4 requires `ceil(2A/3)`; A=5 uses simple majority. Trial T=6–8 requires `ceil(3T/4)`; T=9–12 requires `ceil(2T/3)`. Do not turn these simulation rules into claims about external legal requirements.
 
-<issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue>'s other adopted safeguards remain controlling, including self-representation, case independence, governing proof/review standards, and attributable discrepancy review. Reconcile superseded descriptions of judiciary fallback and unresolved thresholds explicitly, without inventing new authority or silently amending unrelated rules.
+JON-61 (private source reference withheld)'s other adopted safeguards remain controlling, including self-representation, case independence, governing proof/review standards, and attributable discrepancy review. Reconcile superseded descriptions of judiciary fallback and unresolved thresholds explicitly, without inventing new authority or silently amending unrelated rules.
 
 ## Deliverable and acceptance
 
@@ -46,7 +48,7 @@ Include boundary cases for insufficient independent participants, all serving-ju
 
 If a real higher-order conflict remains, attach the exact conflicting source passages and the smallest owner decision required. Do not manufacture alternatives merely to satisfy the obsolete research brief.
 
-Move to In Review only with the specification link/version and source/consistency checklist. <issue id="1436cf59-eb10-4e21-8b94-af218735fb58" href="https://linear.app/jons-garage/issue/JON-66/research-bootstrap-impeachment-scaling-model">JON-66</issue> can complete after its specification acceptance; completion does not imply code exists, tests passed, or final owner approval occurred. <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/jon-61-decision-gate-select-bootstrap-impeachment-scaling-model">JON-83</issue> remains the owner-only final approval gate for the consolidated wording. Do not close or decide it on the owner's behalf.
+Move to In Review only with the specification link/version and source/consistency checklist. JON-66 (private source reference withheld) can complete after its specification acceptance; completion does not imply code exists, tests passed, or final owner approval occurred. JON-83 (private source reference withheld) remains the owner-only final approval gate for the consolidated wording. Do not close or decide it on the owner's behalf.
 
 ## Boundaries and stop conditions
 
@@ -54,10 +56,10 @@ Stop only the affected path for unavailable required source/access, a genuine co
 
 ## Latest checkpoint — DELIVERED_AND_APPROVED / 2026-09-16
 
-**Completed:** Bootstrap impeachment implementation specification revision 1.0 was delivered in document `1db79f6f-a631-43e2-ac85-e8f55561b232`; the owner approved and froze it through <issue id="876e097e-65c8-4669-89e3-2f66d855e38e" href="https://linear.app/jons-garage/issue/JON-83/owner-gate-approve-consolidated-bootstrap-impeachment-specification">JON-83</issue> comment `9679e53a-3fd2-4ca4-963a-4ba2c30e15de` at 18:15 UTC. This specification-consolidation issue is Done.
+**Completed:** Bootstrap impeachment implementation specification revision 1.0 was delivered in document `1db79f6f-a631-43e2-ac85-e8f55561b232`; the owner approved and froze it through JON-83 (private source reference withheld) comment `9679e53a-3fd2-4ca4-963a-4ba2c30e15de` at 18:15 UTC. This specification-consolidation issue is Done.
 **Evidence boundary:** specification delivery/approval does not establish an implementation, a code test, or a merged PR.
 **Correction:** the 17:16 BLOCKED_RUNTIME_START checkpoint was historical and was superseded by subsequent delivery and approval. Preserve its original error and session history; it is not a current reason to restart this completed task.
-**Remaining elsewhere:** <issue id="2f07cdad-35d9-4aa3-a2d7-94164f116692" href="https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff">JON-85</issue> requires accepted published population/eligibility interfaces and exact dependency pins; <issue id="dd50f3cd-53a0-4dc7-8b4b-3851cd6c0602" href="https://linear.app/jons-garage/issue/JON-86/verify-bootstrap-impeachment-pr-against-the-frozen-specification">JON-86</issue> verifies its eventual implementation. <issue id="31df609d-b332-4982-b3f4-85999e0e19f9" href="https://linear.app/jons-garage/issue/JON-89/jon-83a-independent-source-traceability-review-of-bootstrap">JON-89</issue> is advisory source review.
+**Remaining elsewhere:** JON-85 (private source reference withheld) requires accepted published population/eligibility interfaces and exact dependency pins; JON-86 (private source reference withheld) verifies its eventual implementation. JON-89 (private source reference withheld) is advisory source review.
 **Next action:** reuse frozen revision 1.0 and its decision-source index. Do not rerun consolidation, reopen settled owner decisions, or repeat startup diagnostics for this completed issue.
 
 For subsequent checkpoints record `Contract revision / Executor-session / Completed / Evidence / Remaining / Blocker / Next action`. Include repository/branch/SHA only when actually inspected. Older comments are historical evidence, not parallel execution prompts.

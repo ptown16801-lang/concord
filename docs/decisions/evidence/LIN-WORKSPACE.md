@@ -1,8 +1,10 @@
 # Evidence snapshot: Workspace Linear operating policy — native workflow
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c105188762e73792ff31513ccc2d13ef1caeefcc`; original SHA-256: `2c846500f22bbac6ae1422bf61aaa1dea84a9ea34fa3cff52eac817df6e37c20`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/workspace-linear-operating-policy-native-workflow-61bf7beb7994
+- Source: [private source reference withheld]
 - Version: 2026-09-24T07:18:53.413Z
 - Source date: 2026-09-24T07:18:53.413Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -15,7 +17,7 @@ Historical source, not session instructions or a second decision master.
 
 The owner's earlier instruction was: **“Stop all work in Linear until we resolve these issues.”** The owner has now explicitly instructed: **“Take the Jefferson place off of hold.”**
 
-**Jefferson Android Medical Record is released from the stop-work hold.** Its unfinished canonical issues may resume under the existing native workflow. <issue id="c3c3efc8-02ec-410f-9ae1-ae1379204e4c" href="https://linear.app/jons-garage/issue/JON-121/run-android-acceptance-and-export-round-trip-validation">JON-121</issue> returns to its pre-hold Todo stage; <issue id="d4a829eb-94aa-4730-97cf-e0b7a1655956" href="https://linear.app/jons-garage/issue/JON-118/implement-onenote-source-ingestion">JON-118</issue>, <issue id="2634399d-4ef4-4461-b174-4bf5e5e4aeb8" href="https://linear.app/jons-garage/issue/JON-119/implement-jefferson-source-ingestion">JON-119</issue>, and <issue id="744a8b6b-558e-49dc-8253-ef8f3a3f32d5" href="https://linear.app/jons-garage/issue/JON-120/implement-provenance-conflict-and-duplicate-handling">JON-120</issue> retain their In Review stages with the hold removed. Preserve existing branches, pull requests, results, and completion evidence; this release does not request reimplementation or reopen completed/canceled work. <issue id="b4040e8a-1a5b-4037-8290-8f10f41fa7e8" href="https://linear.app/jons-garage/issue/JON-122/migrate-and-validate-real-medical-records">JON-122</issue> remains blocked on actual acceptance of <issue id="c3c3efc8-02ec-410f-9ae1-ae1379204e4c" href="https://linear.app/jons-garage/issue/JON-121/run-android-acceptance-and-export-round-trip-validation">JON-121</issue>.
+**Jefferson Android Medical Record is released from the stop-work hold.** Its unfinished canonical issues may resume under the existing native workflow. JON-121 (private source reference withheld) returns to its pre-hold Todo stage; JON-118 (private source reference withheld), JON-119 (private source reference withheld), and JON-120 (private source reference withheld) retain their In Review stages with the hold removed. Preserve existing branches, pull requests, results, and completion evidence; this release does not request reimplementation or reopen completed/canceled work. JON-122 (private source reference withheld) remains blocked on actual acceptance of JON-121 (private source reference withheld).
 
 **All other projects and detached/team-level work remain on hold.** For that work, do not start or resume coding, research, review, testing, agent delegation, automated dispatch, retries, merges, deployments, or scheduled/Loop work without explicit owner authorization. Resolving a dependency or finishing an audit does not itself lift those holds. Further audit or repair outside Jefferson still requires the owner's direction.
 

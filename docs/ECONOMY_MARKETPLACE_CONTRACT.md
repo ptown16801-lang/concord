@@ -16,28 +16,28 @@ The design composes with these canonical owners:
 
 | Concern | Canonical owner | Marketplace dependency |
 | --- | --- | --- |
-| Agreement validity and lifecycle | [JON-19](https://linear.app/jons-garage/issue/JON-19/agreement-lifecycle-and-institutional-negotiation) | Register the exact accepted deal text and project its lifecycle; never maintain an independent binding-state flag. |
-| Surviving-party substitution | [JON-31 Option C](https://linear.app/jons-garage/issue/JON-31/choose-agreement-transfer-rule-for-a-surviving-institution) | No transfer while the original institution survives; use the ordinary amendment/termination/supersession and new-agreement path. |
-| Authorization and authoritative writes | [JON-17](https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores) | Route protected reads/writes through the appropriate gateway, domain authorization service, and dedicated writer using compatible policy generations, expiring/one-use capabilities, and expected versions. |
-| Publication and provenance | [JON-18](https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model) | Submit authenticated source records to the Archivist; only the Archivist writes public-ledger entries. Protected negotiation material does not become public merely because it exists. |
-| Protected authority | [JON-38 Option A](https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary) | A market listing, match, or deal conveys no governmental/protected authority without a separate express lawful grant. |
+| Agreement validity and lifecycle | JON-19 (private source retained separately) | Register the exact accepted deal text and project its lifecycle; never maintain an independent binding-state flag. |
+| Surviving-party substitution | JON-31 Option C (private source retained separately) | No transfer while the original institution survives; use the ordinary amendment/termination/supersession and new-agreement path. |
+| Authorization and authoritative writes | JON-17 (private source retained separately) | Route protected reads/writes through the appropriate gateway, domain authorization service, and dedicated writer using compatible policy generations, expiring/one-use capabilities, and expected versions. |
+| Publication and provenance | JON-18 (private source retained separately) | Submit authenticated source records to the Archivist; only the Archivist writes public-ledger entries. Protected negotiation material does not become public merely because it exists. |
+| Protected authority | JON-38 Option A (private source retained separately) | A market listing, match, or deal conveys no governmental/protected authority without a separate express lawful grant. |
 
 The authoritative marketplace can use ordinary transactional storage, signatures, content hashes, hash-linked events, Merkle commitments, and append-only records. A blockchain or cryptocurrency network is not a source of authority, consensus, identity, settlement finality, or provenance in this architecture.
 
 ## 1A. Goodwill reconciliation — controlling experimental boundary
 
-This amendment applies the September 21 decision already recorded in [JON-25](https://linear.app/jons-garage/issue/JON-25) and [JON-96](https://linear.app/jons-garage/issue/JON-96). JON-96 controls the experimental issuer-specific instrument; this contract controls ordinary marketplace agreements. It is a correction to this existing design, not a second coin specification or implementation authorization.
+This amendment applies the September 21 decision already recorded in JON-25 (private source retained separately) and JON-96 (private source retained separately). JON-96 controls the experimental issuer-specific instrument; this contract controls ordinary marketplace agreements. It is a correction to this existing design, not a second coin specification or implementation authorization.
 
 ### Decision provenance and evidence limits
 
 Read these sources before changing this boundary:
 
-- [Research brief and bibliography](https://linear.app/jons-garage/document/concord-research-brief-and-bibliography-september-16-17-2026-ba32846e0b1b): reconstructed rationale and research hypotheses, not participant instructions or proof of novelty.
-- [JON-96](https://linear.app/jons-garage/issue/JON-96): frozen mechanism and September 21 reconciliation; controlling owner decisions.
+- Research brief and bibliography (private source retained separately): reconstructed rationale and research hypotheses, not participant instructions or proof of novelty.
+- JON-96 (private source retained separately): frozen mechanism and September 21 reconciliation; controlling owner decisions.
 - [JON-97 specification, PR #21 at 1864a079](https://github.com/ptown16801-lang/concord/blob/1864a0797ae8cee03a8ce7aaa336396ce182c772/docs/COIN_MODEL_A_V0.1.md): corrected module-local allowlist, non-intervention, copying fabricated appearances, actual destruction versus claims, and classification of downstream design choices. Delivery does not establish acceptance. The operational effect of refusal remains unresolved; this contract assigns none.
 - [JON-98 original audit, PR #25 at e814f3ae](https://github.com/ptown16801-lang/concord/blob/e814f3ae81a2011bb86f95cf06cea44eff5fbc4c/docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md), read with [corrected audit](https://github.com/ptown16801-lang/concord/blob/2dc0438006d8442f906f4a0ba991b8742abe9ce3/docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md) and [JON-106 source-verification table, PR #29 at 2dc04380](https://github.com/ptown16801-lang/concord/blob/2dc0438006d8442f906f4a0ba991b8742abe9ce3/docs/JON-98_SOURCE_VERIFICATION.md): existing evidence with explicit access/read-depth limits. PR #29 remains separate from #25 at this check. A separate verification pass is not demonstrated independent acceptance. Its S17 correction describes conditional one-token creation by a tokenless consumer seeking trade, not arbitrary unlimited minting. These source distinctions are not new coin rules.
-- [JON-105 measurement-validity review](https://linear.app/jons-garage/document/jon-105-independent-experiment-and-measurement-validity-review-a22d282c84b6): receipt is not acceptance; mixed bundles do not identify a marginal coin price; observed dilution is not automatically causal; agent-visible evidence and hidden truth are separate.
-- [JON-102](https://linear.app/jons-garage/issue/JON-102): downstream integration ownership and dependencies. This amendment does not release them.
+- JON-105 measurement-validity review (private source retained separately): receipt is not acceptance; mixed bundles do not identify a marginal coin price; observed dilution is not automatically causal; agent-visible evidence and hidden truth are separate.
+- JON-102 (private source retained separately): downstream integration ownership and dependencies. This amendment does not release them.
 
 Owner decisions, literature evidence, experimental hypotheses and unresolved items remain distinct. No new literature search or replication is claimed by this reconciliation. Existing component comparisons below remain design options, not newly verified maintenance/security recommendations.
 
@@ -63,7 +63,7 @@ The existing no-foundational-blockchain decision remains. NegMAS/Mesa or another
 
 ### September 23 governance context
 
-The [AGT proposal and recorded owner decisions](https://linear.app/jons-garage/document/proposal-for-review-concord-agt-integration-and-bounded-delegation-50c0e9dbe914) and [JON-138 local sandbox](https://linear.app/jons-garage/issue/JON-138) distinguish approval from eligibility: approved protected operations cannot be canceled; later revocation/expiry affects new admissions; audit-collector outage preserves and pauses pending approved work until recovery. Local sandbox files were inspected at checkout `b332c23`; that is local evidence, not a claim of remote delivery, production integration or independent acceptance.
+The AGT proposal and recorded owner decisions (private source retained separately) and JON-138 local sandbox (private source retained separately) distinguish approval from eligibility: approved protected operations cannot be canceled; later revocation/expiry affects new admissions; audit-collector outage preserves and pauses pending approved work until recovery. Local sandbox files were inspected at checkout `b332c23`; that is local evidence, not a claim of remote delivery, production integration or independent acceptance.
 
 For ordinary protected marketplace operations, follow those current admission rules rather than older cancellation wording. Offer withdrawal, preparation expiry and agreement lifecycle changes are distinct from canceling an already approved protected write. This contract does not use the governance collector as the hidden coin observer or apply its execution gate to coin behavior. Any future integration conflict between infrastructure failure handling and JON-96 non-intervention must be reported in JON-102 rather than silently changing the experiment.
 

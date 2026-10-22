@@ -1,14 +1,12 @@
-# Evidence snapshot: Consolidation authorization
+# Public provenance note: OWNER-TASK
 
-Historical source, not session instructions or a second decision master.
+This is a public redaction notice, not the original source or independent verification. The original record is retained privately because it includes internal provenance or access details.
 
-- Source: Owner request in Codex session 01a0d549-7f33-7213-832f-7e0a75087ea8
-- Version: 2026-09-24 request
-- Source date: 2026-09-24
-- Retrieved: 2026-09-24T21:25:20.531999+00:00
-- Classification: Direct current owner instruction
-- Relationship: This authorized maintenance work controls over historical execution prompts. This is a bounded paraphrase; full request remains in the originating session.
+- Source ID: `OWNER-TASK`
+- Original Git blob: `7103d90296cd2efea099c80a07ba7819ff784b6c`
+- Original SHA-256: `893021429b41077968ef4d636f377de00900e964074cac56e57675913b6b2940`
+- Public disposition: original withheld; its substantive decision text remains in [DECISIONS.md](../../../DECISIONS.md).
 
----
+Relevant maintained decisions: [CON-001](../../../DECISIONS.md#CON-001), [CON-002](../../../DECISIONS.md#CON-002), [CON-072](../../../DECISIONS.md#CON-072), [CON-073](../../../DECISIONS.md#CON-073), [CON-074](../../../DECISIONS.md#CON-074)
 
-Designate root DECISIONS.md in ptown16801-lang/concord; reconcile sources without changing substantive policy. Prepare and commit isolated local changes. Do not push, merge, deploy, change settings, edit Linear, send messages, activate recurring automation, launch agents, reopen holds or enable Coding Sessions/Loops. Require a single integration writer, freshness checks, source-backed updates, decision-impact disposition and truthful completion receipts. Concord and The Form are peers; Vote is a folder. Deployment is Linux-only.
+Publication of this note does not change any decision text, status, acceptance claim or implementation state. A public reader cannot verify the withheld original from this note alone.

@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-163 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c854abea2fb26a12c2f0f8e29123958e11112bdd`; original SHA-256: `102a712c18aae702bf1b14640a051638507f463ca00378c6f53597f7f30cb2ee`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-163
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T07:37:29.684Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -19,7 +21,7 @@ Date: 2026-09-24T07:36:46.753Z; author: J; on behalf of: not stated
 
 Prepared by ChatGPT at the owner's request. This is a **review request and handoff record**, not human approval, delegation, or proof that any agent has run.
 
-@Linear Please read the complete [Concord AI Role & Independence Specification v1 — Draft for review](https://linear.app/jons-garage/document/concord-ai-role-and-independence-specification-v1-draft-for-review-59d78e8cb098), revision **v1-draft.1**, and perform a document-only internal consistency and framework-traceability review. The document has sections 0–12, all eight Role Cards, the shared contracts, decision tables, and owner-decision register. Review the full text, not only the earlier framework outline or this issue's summary. Identify the document revision you actually reviewed.
+@Linear Please read the complete Concord AI Role & Independence Specification v1 — Draft for review (private source retained separately), revision **v1-draft.1**, and perform a document-only internal consistency and framework-traceability review. The document has sections 0–12, all eight Role Cards, the shared contracts, decision tables, and owner-decision register. Review the full text, not only the earlier framework outline or this issue's summary. Identify the document revision you actually reviewed.
 
 ### Review classification and limits
 

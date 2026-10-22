@@ -1,8 +1,10 @@
 # Evidence snapshot: Concord AI Role & Independence Specification — design convergence
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `1fd90b1b522ffb30484fc5dc72adaeb32a8b7dca`; original SHA-256: `807088bf2cf49a5fd438f460d237bc6d2b1c4724ff1ca43e3ba169a844d884c5`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence
+- Source: [private source reference withheld]
 - Version: 2026-09-24T10:22:10.205Z
 - Source date: 2026-09-24T10:22:10.205Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -65,7 +67,7 @@ Still out of scope until the specification passes its own internal review:
 
 ## Specification draft delivered — September 24, 2026
 
-The owner's instruction to initiate drafting has been carried out. The canonical document is [Concord AI Role & Independence Specification v1 — Draft for review](<https://linear.app/jons-garage/document/concord-ai-role-and-independence-specification-v1-draft-for-review-59d78e8cb098>), revision **v1-draft.1**.
+The owner's instruction to initiate drafting has been carried out. The canonical document is Concord AI Role & Independence Specification v1 — Draft for review (private source reference withheld), revision **v1-draft.1**.
 
 The document contains the eight complete Role Cards; shared lineage/independence contract; proposed consequence definitions and floors; normative routing table; common evidence, retention, and freshness rules; Integrator admission checklist; proposed waiver matrix and human-exception procedure; human authority and amendment rules; document consistency cases; and author/review lineage.
 
@@ -83,9 +85,9 @@ The associated review request is a handoff record only unless an actual response
 
 ## Document continuation delivered — v1-draft.2, September 24, 2026
 
-At the owner's request to start work on <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue>, Codex continued the existing specification task from Linear's actual advisory response (comment `4b7e68ca-5cf7-467d-b020-80d0f85da977`). That response reviewed v1-draft.1, found no blocking contradiction within its advisory scope, and proposed six nonblocking clarifications.
+At the owner's request to start work on JON-163 (private source reference withheld), Codex continued the existing specification task from Linear's actual advisory response (comment `4b7e68ca-5cf7-467d-b020-80d0f85da977`). That response reviewed v1-draft.1, found no blocking contradiction within its advisory scope, and proposed six nonblocking clarifications.
 
-The [canonical specification](<https://linear.app/jons-garage/document/concord-ai-role-and-independence-specification-v1-draft-for-review-59d78e8cb098>) is now **v1-draft.2**. The [exact prior draft snapshot](<https://linear.app/jons-garage/document/historical-snapshot-jon-163-role-and-independence-specification-v1-f6cd7ca6c7b3>) preserves v1-draft.1.
+The canonical specification (private source reference withheld) is now **v1-draft.2**. The exact prior draft snapshot (private source reference withheld) preserves v1-draft.1.
 
 All six findings are addressed as draft clarifications: the L1 proportionality question remains an explicit owner choice; an eligibility decider needs separately attested eligibility before taking a qualifying lane; supplemental evidence must identify claim and oracle basis; the integration ledger tracks affected/new claims; exceptions cannot aggregate multiple supplementary items on one artifact revision; and **OD-4** now records the retention-system/readiness decision required before adoption. Eight Role Cards and the frozen framework remain intact.
 

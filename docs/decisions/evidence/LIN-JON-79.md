@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-58B — Eligibility lifecycle and franchise-state transitions
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `cebc87beb67b28143c49124289f026025e232d91`; original SHA-256: `a978f3760e04808ab599eb4bb72a2659900419123e279a8209666971abfe0e98`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions
+- Source: [private source reference withheld]
 - Version: 2026-09-23T20:05:05.678Z
 - Source date: 2026-09-23T20:05:05.678Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Routing clarification — September 23, 2026 consistency audit
 
-<issue id="19637321-042f-49cb-b95f-1372c253a2ce" href="https://linear.app/jons-garage/issue/JON-90/enable-concord-linear-coding-sessions-environment">JON-90</issue> is Canceled and confers no current workflow gate. Older references below to its being the sole native-workflow gate are historical. Current native status, issue-specific remaining scope, published artifacts, and latest explicit owner authorization govern. Preserve existing delivered work and accepted dependency pins; do not restart or create a replacement worker from the historical handoffs below.
+JON-90 (private source reference withheld) is Canceled and confers no current workflow gate. Older references below to its being the sole native-workflow gate are historical. Current native status, issue-specific remaining scope, published artifacts, and latest explicit owner authorization govern. Preserve existing delivered work and accepted dependency pins; do not restart or create a replacement worker from the historical handoffs below.
 
 ## Current workflow authority — 2026-09-19
 
@@ -23,13 +25,13 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** eligibility/franchise event and projection contract. **Current disposition:** preserve In Review and recovery PR <pull-request id="2c0919d3-97c3-4a34-a40d-c426c4e4cca8" href="https://linear.app/jons-garage/review/jon-79-recover-existing-eligibility-lifecycle-implementation-cc4a24578b3b">ptown16801-lang/concord#7</pull-request>. **Design follow-up:** specify the durable authenticated event boundary, required event IDs, replay identity and population/ballot ordering from <issue id="99b1f17f-3716-40af-b9fa-c65c845d6d5f" href="https://linear.app/jons-garage/issue/JON-87/jon-82a-cross-track-interface-and-integration-readiness-audit">JON-87</issue> IR-01–07. <issue id="79ac2c3d-cfbd-44b1-9c8f-18fd411bfb6c" href="https://linear.app/jons-garage/issue/JON-91/jon-85a-reconcile-recovered-jon-78jon-79-pins-and-unblock-bootstrap">JON-91</issue>'s conditional domain-interface acceptance explicitly depends on trusted authentication and durable storage/replay; it is not acceptance as an independently authenticated durable authority. <issue id="e9dc4117-dcc8-4b56-8ebb-29ed4f2cac00" href="https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement">JON-78</issue> owns identity issuance; <issue id="222e207e-e722-4b1e-bc8a-691f1c41d8e3" href="https://linear.app/jons-garage/issue/JON-80/jon-58c-immutable-ballot-receipt-and-submission-handling">JON-80</issue> owns ballot acceptance; <issue id="3adec4a1-9036-4132-80cd-fd0ffc3eb1d7" href="https://linear.app/jons-garage/issue/JON-81/jon-58d-exact-electorate-and-d-b-u-accounting">JON-81</issue> consumes eligibility events. Preserve prior sessions/results without restarting.
+**Canonical owner:** eligibility/franchise event and projection contract. **Current disposition:** preserve In Review and recovery PR ptown16801-lang/concord#7 (private source reference withheld). **Design follow-up:** specify the durable authenticated event boundary, required event IDs, replay identity and population/ballot ordering from JON-87 (private source reference withheld) IR-01–07. JON-91 (private source reference withheld)'s conditional domain-interface acceptance explicitly depends on trusted authentication and durable storage/replay; it is not acceptance as an independently authenticated durable authority. JON-78 (private source reference withheld) owns identity issuance; JON-80 (private source reference withheld) owns ballot acceptance; JON-81 (private source reference withheld) consumes eligibility events. Preserve prior sessions/results without restarting.
 
 ---
 
 ## Interface-readiness handoff — 2026-09-16 audit
 
-[Complete JON-87 continuation](<https://linear.app/jons-garage/document/jon-87-published-source-interfacereadiness-continuation-v10-06a4bd4f959b>) records exact inspected commits, current source contracts, proof limits and integration order.
+Complete JON-87 continuation (private source reference withheld) records exact inspected commits, current source contracts, proof limits and integration order.
 
 IR-01–07: consistent identity/class handling, durable authenticated eligibility, required event identifiers, replay identity, and atomic/ordered population-ballot handoffs.
 
@@ -39,7 +41,7 @@ These are review/coordination findings for the existing scope and owners. Public
 
 **Published and reviewable; not merged or accepted as an integrated authority.**
 
-* Real draft PR: <pull-request id="2c0919d3-97c3-4a34-a40d-c426c4e4cca8" href="https://linear.app/jons-garage/review/jon-79-recover-existing-eligibility-lifecycle-implementation-cc4a24578b3b">ptown16801-lang/concord#7</pull-request>
+* Real draft PR: ptown16801-lang/concord#7 (private source reference withheld)
 * Fetchable branch: `delivery/jon-79-recovery-20260916`
 * Published SHA: `51a102259785a5b53dc6ec4bc4bbca54c4a8fc37`
 * Base: `40f647e5b8d23307f713fc3a3753a1d3a46611cb`
@@ -49,11 +51,11 @@ These are review/coordination findings for the existing scope and owners. Public
 
 The source implementation was not redone, edited, or merged. The connector published its exact exported tree in a separate recovery branch. Required review still includes authority/persistence/authentication boundaries and cross-track integration. The in-memory history implementation and caller-provided authentication evidence need review against controlling requirements; tree equivalence and passing tests alone are not constitutional/security approval.
 
-<issue id="2f07cdad-35d9-4aa3-a2d7-94164f116692" href="https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff">JON-85</issue> may inspect this fetchable artifact once explicitly continued, but its old unavailable dependency pin must not be silently substituted. No restart, new coding session, merge, or automatic successor dispatch was performed. <issue id="0691be94-2cff-4aef-9190-4da85b926ead" href="https://linear.app/jons-garage/issue/JON-84/temporary-fresh-codex-internet-verification">JON-84</issue> remains informational; <issue id="19637321-042f-49cb-b95f-1372c253a2ce" href="https://linear.app/jons-garage/issue/JON-90/enable-concord-linear-coding-sessions-environment">JON-90</issue> remains the sole native-workflow gate.
+JON-85 (private source reference withheld) may inspect this fetchable artifact once explicitly continued, but its old unavailable dependency pin must not be silently substituted. No restart, new coding session, merge, or automatic successor dispatch was performed. JON-84 (private source reference withheld) remains informational; JON-90 (private source reference withheld) remains the sole native-workflow gate.
 
 ---
 
-Child of <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue>. Implement authoritative, versioned voting-eligibility transitions.
+Child of JON-58 (private source reference withheld). Implement authoritative, versioned voting-eligibility transitions.
 
 ## Scope
 
@@ -86,9 +88,9 @@ Planning only until explicitly authorized. Do not delegate or start coding autom
 
 ## Historical authorized execution handoff — superseded for new work by design-only contract
 
-This child is explicitly authorized for implementation now as one of the parallel <issue id="d33ad735-f8ac-462e-a080-39f99da08177" href="https://linear.app/jons-garage/issue/JON-58/implement-authoritative-population-voting-eligibility-and-exact-ballot">JON-58</issue> tracks.
+This child is explicitly authorized for implementation now as one of the parallel JON-58 (private source reference withheld) tracks.
 
-Work only within the eligibility/franchise-state scope defined above. Use the existing Concord repository and authoritative-state architecture; verify repository, branch, and base commit before editing. Do not implement ballot counting, exact D/B/U arithmetic, <issue id="f2fca42c-1775-4671-9155-c41d34e2415d" href="https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement">JON-59</issue> dual-census internals, quiz work, or unrelated subsystems.
+Work only within the eligibility/franchise-state scope defined above. Use the existing Concord repository and authoritative-state architecture; verify repository, branch, and base commit before editing. Do not implement ballot counting, exact D/B/U arithmetic, JON-59 (private source reference withheld) dual-census internals, quiz work, or unrelated subsystems.
 
 Preserve the adopted distinctions among allegation, formal proceeding, C4 event opening, death/capital termination, felony conviction, temporary restoration, and post-ballot disqualification. Do not collapse these into one generic restriction flag.
 

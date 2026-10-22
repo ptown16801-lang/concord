@@ -1,8 +1,10 @@
 # Evidence snapshot: Decision propagation catalog and replay engine
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `898748245535c6e108e37e02c1893aaccfaac1a6`; original SHA-256: `8400187aabb947cf4dad73b4ebaed38ec378b6ffa89230bfaefd15ef9fdf654c`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-24/decision-propagation-catalog-and-replay-engine
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:49.249Z
 - Source date: 2026-09-19T04:16:49.249Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Decision-propagation catalog and replay design. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own institutional pathway/state-transition definitions, source-qualified simulations, append-only replay ordering, counterfactual separation and provenance contracts. <issue id="21733ce2-5780-4f9e-8e55-d6a157c2bd50" href="https://linear.app/jons-garage/issue/JON-22/interactive-data-atlas-and-graph-standard">JON-22</issue> supplies graph presentation conventions; <issue id="01ec4151-6043-4196-af21-78c6eaf3f8e1" href="https://linear.app/jons-garage/issue/JON-14/workbench-shell-and-navigation">JON-14</issue> hosts the surface; <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue> owns public record provenance. Finger raw interaction replay belongs to <issue id="6110e028-79c1-470b-88b3-addf5ad0468d" href="https://linear.app/jons-garage/issue/JON-73/finger-replay-and-heat-map-processing">JON-73</issue> and is a separate deliverable. The existing researched handoff is reusable evidence; its coding, extraction, browser-run and release leaves are not dispatched by this design audit.
+**Exclusive ownership:** Own institutional pathway/state-transition definitions, source-qualified simulations, append-only replay ordering, counterfactual separation and provenance contracts. JON-22 (private source reference withheld) supplies graph presentation conventions; JON-14 (private source reference withheld) hosts the surface; JON-18 (private source reference withheld) owns public record provenance. Finger raw interaction replay belongs to JON-73 (private source reference withheld) and is a separate deliverable. The existing researched handoff is reusable evidence; its coding, extraction, browser-run and release leaves are not dispatched by this design audit.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 
@@ -29,7 +31,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Workbench handoff reconciliation — 2026-09-16
 
-The issue's current Backlog/held scope governs execution; historical descriptions of 'In Progress' or prior implementation snapshots do not establish a currently running worker. <issue id="4ff79420-33e1-4ae3-9dba-ab264dd6101c" href="https://linear.app/jons-garage/issue/JON-24/decision-propagation-catalog-and-replay-engine">JON-24</issue> remains planning-only under its researched handoff; no code assignment is authorized here.
+The issue's current Backlog/held scope governs execution; historical descriptions of 'In Progress' or prior implementation snapshots do not establish a currently running worker. JON-24 (private source reference withheld) remains planning-only under its researched handoff; no code assignment is authorized here.
 
 Before any later project-specific implementation, resolve the exact editable Workbench artifact or repository directory, verify its recorded hash/version and accepted destination/base, and attach current source and acceptance references to the assignment. Concord repository identity alone does not prove the older full Workbench HTML is present: PROJECT_RECORD.md at `40f647e5b8d23307f713fc3a3753a1d3a46611cb` explicitly bounds the available source and records the historical Workbench hash as index evidence. Do not recreate missing historical work or treat old static checks as fresh browser/integration acceptance. Missing source identification blocks only the affected implementation assignment; planning and unrelated work can continue.
 

@@ -1,5 +1,7 @@
 # Evidence snapshot: docs/SECURITY_DOMAIN_CONTRACT.md
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `e09616951ad7b619f796ef564cd68635d832f7cf`; original SHA-256: `e20c0d2c0815f145a65f070947bdbab6a2f3ddd2fc9c8a3b797526a2f28d2e58`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/blob/49c19837191b83e93844653f7bf6259ee838d3ef/docs/SECURITY_DOMAIN_CONTRACT.md
@@ -441,11 +443,11 @@ store query, policy edit, recovery promotion, or writer shortcut.
 
 ## Source basis
 
-- [JON-17](https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores), current owner instruction dated 2026-09-16.
-- [JON-35](https://linear.app/jons-garage/issue/JON-35/finalize-cross-domain-commit-and-revocation-ordering), adopted start-time authority and revocation decision.
-- [JON-38](https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary), adopted express-authorization decision.
-- [JON-15](https://linear.app/jons-garage/issue/JON-15/persistent-identity-memory-and-succession-model), identity/history interface owner.
-- [JON-18](https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model), records/publication interface owner.
-- [JON-59](https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement), sealed-census visibility owner.
-- [JON-16](https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control), opaque protected scheduling interface owner.
+- JON-17 (private source retained separately), current owner instruction dated 2026-09-16.
+- JON-35 (private source retained separately), adopted start-time authority and revocation decision.
+- JON-38 (private source retained separately), adopted express-authorization decision.
+- JON-15 (private source retained separately), identity/history interface owner.
+- JON-18 (private source retained separately), records/publication interface owner.
+- JON-59 (private source retained separately), sealed-census visibility owner.
+- JON-16 (private source retained separately), opaque protected scheduling interface owner.
 

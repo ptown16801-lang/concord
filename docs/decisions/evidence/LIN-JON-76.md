@@ -1,8 +1,10 @@
 # Evidence snapshot: Persistent article acquisition, checkpoint, and recovery pipeline
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `153e28146a1521389e1c0d9a504a5dfeeb3f7d88`; original SHA-256: `a247477f1189f56b6adbdf3a5065503965288199534334c2fc54d1ae415a6517`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-76/persistent-article-acquisition-checkpoint-and-recovery-pipeline
+- Source: [private source reference withheld]
 - Version: 2026-09-18T05:26:43.496Z
 - Source date: 2026-09-18T05:26:43.496Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -38,7 +40,7 @@ Bring the existing ChatGPT Library acquisition workflow into the canonical Linea
 
 - [ ] SQLite/ledger schema and state machine are documented and versioned.
 - [ ] Queue and checkpoint resume is idempotent after simulated interruption.
-- [ ] Identity verification feeds <issue id="91304de0-9b09-4806-813a-f31a0019335e" href="https://linear.app/jons-garage/issue/JON-40/library-integrity-gate-verify-pdf-attachments-against-canonical-gov">JON-40</issue> without creating a second canonical identity system.
+- [ ] Identity verification feeds JON-40 (private source reference withheld) without creating a second canonical identity system.
 - [ ] Mismatch/quarantine behavior is regression-tested.
 - [ ] Duplicate/version handling is explicit and non-destructive.
 - [ ] Retry/abandonment policy prevents infinite zero-yield loops.

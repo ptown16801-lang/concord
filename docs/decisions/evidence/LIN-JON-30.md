@@ -1,8 +1,10 @@
 # Evidence snapshot: Resolve outstanding governance architecture decisions
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `3001d3b1dfe2fb3352cd92f13ffc1d229a08255a`; original SHA-256: `03f0b0e59520c73a497a971c9362f112eef71ae1ea9ca5a9ef2cfb3726568c57`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-30/resolve-outstanding-governance-architecture-decisions
+- Source: [private source reference withheld]
 - Version: 2026-09-16T16:47:20.217Z
 - Source date: 2026-09-16T16:47:20.217Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## RESOLUTION UPDATE — September 16, 2026
 
-All previously listed unresolved child decisions have now been resolved by the project owner: <issue id="82bdc0b6-65b7-4783-b965-013d7445774b" href="https://linear.app/jons-garage/issue/JON-31/choose-agreement-transfer-rule-for-a-surviving-institution">JON-31</issue>=C, <issue id="f022c6cc-c2a0-49ee-a561-344b00e15b24" href="https://linear.app/jons-garage/issue/JON-32/define-adjudication-route-after-checker-finds-no-objective-violation">JON-32</issue>=C, <issue id="89c08f78-bc85-4799-8a16-64b4dacc9701" href="https://linear.app/jons-garage/issue/JON-33/resolve-petition-credit-duplicate-and-refund-accounting">JON-33</issue>=A, <issue id="4f8d4a7f-c504-4d88-a3fa-01cad177a18d" href="https://linear.app/jons-garage/issue/JON-34/define-confidentiality-for-refusal-in-sealed-investigations">JON-34</issue>=C, <issue id="01f01456-3c06-45aa-af7b-10c99f6cd777" href="https://linear.app/jons-garage/issue/JON-35/finalize-cross-domain-commit-and-revocation-ordering">JON-35</issue>=A, <issue id="bdbf5334-b43c-4e30-90f1-30f629a71c8c" href="https://linear.app/jons-garage/issue/JON-37/define-grand-jury-authority-beyond-disclosure-review">JON-37</issue>=C, and <issue id="0e2b75a9-7954-475f-9f92-88519081f6ff" href="https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary">JON-38</issue>=A. <issue id="7658a237-27f1-43be-9a08-f43ce19904a2" href="https://linear.app/jons-garage/issue/JON-36/define-office-term-and-election-cadence">JON-36</issue> was already resolved. The individual child issues contain the controlling adopted wording and are Done.
+All previously listed unresolved child decisions have now been resolved by the project owner: JON-31 (private source reference withheld)=C, JON-32 (private source reference withheld)=C, JON-33 (private source reference withheld)=A, JON-34 (private source reference withheld)=C, JON-35 (private source reference withheld)=A, JON-37 (private source reference withheld)=C, and JON-38 (private source reference withheld)=A. JON-36 (private source reference withheld) was already resolved. The individual child issues contain the controlling adopted wording and are Done.
 
 This tracker is complete unless a later audit discovers a genuine higher-order conflict or a new reserved constitutional question.
 
@@ -41,16 +43,16 @@ Historical pre-resolution tracker text retained for provenance. Do not treat the
 
 Still open:
 
-* <issue id="82bdc0b6-65b7-4783-b965-013d7445774b" href="https://linear.app/jons-garage/issue/JON-31/choose-agreement-transfer-rule-for-a-surviving-institution">JON-31</issue> — agreement-rights/obligations transfer while the original institution still exists; no transfer option has been adopted.
-* <issue id="f022c6cc-c2a0-49ee-a561-344b00e15b24" href="https://linear.app/jons-garage/issue/JON-32/define-adjudication-route-after-checker-finds-no-objective-violation">JON-32</issue> — exact court route after the checker finds no objective mechanical violation; the current Workbench explicitly marks it unresolved.
-* <issue id="89c08f78-bc85-4799-8a16-64b4dacc9701" href="https://linear.app/jons-garage/issue/JON-33/resolve-petition-credit-duplicate-and-refund-accounting">JON-33</issue> — interaction between duplicate filings consuming credits and the earlier successful-petition refund rule; source preserves both statements without resolving overlap.
-* <issue id="4f8d4a7f-c504-4d88-a3fa-01cad177a18d" href="https://linear.app/jons-garage/issue/JON-34/define-confidentiality-for-refusal-in-sealed-investigations">JON-34</issue> — confidentiality/recording/review path for refusal or nonparticipation in sealed investigations.
-* <issue id="01f01456-3c06-45aa-af7b-10c99f6cd777" href="https://linear.app/jons-garage/issue/JON-35/finalize-cross-domain-commit-and-revocation-ordering">JON-35</issue> — cross-domain commit/revocation race; current propagation source explicitly labels it unresolved.
-* <issue id="bdbf5334-b43c-4e30-90f1-30f629a71c8c" href="https://linear.app/jons-garage/issue/JON-37/define-grand-jury-authority-beyond-disclosure-review">JON-37</issue> — whether the grand jury has any authority beyond case-scoped redacted disclosure review. Existing disclosure-ledger material explicitly does not create broader prosecutorial/investigative authority.
-* <issue id="0e2b75a9-7954-475f-9f92-88519081f6ff" href="https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary">JON-38</issue> — partial rule is adopted: ordinary agents may create ordinary projects and the ordinary-vs-protected/authority-bearing boundary must be established by vote/appropriate authorization; exact classification criteria, electorate, threshold and consequences remain open.
+* JON-31 (private source reference withheld) — agreement-rights/obligations transfer while the original institution still exists; no transfer option has been adopted.
+* JON-32 (private source reference withheld) — exact court route after the checker finds no objective mechanical violation; the current Workbench explicitly marks it unresolved.
+* JON-33 (private source reference withheld) — interaction between duplicate filings consuming credits and the earlier successful-petition refund rule; source preserves both statements without resolving overlap.
+* JON-34 (private source reference withheld) — confidentiality/recording/review path for refusal or nonparticipation in sealed investigations.
+* JON-35 (private source reference withheld) — cross-domain commit/revocation race; current propagation source explicitly labels it unresolved.
+* JON-37 (private source reference withheld) — whether the grand jury has any authority beyond case-scoped redacted disclosure review. Existing disclosure-ledger material explicitly does not create broader prosecutorial/investigative authority.
+* JON-38 (private source reference withheld) — partial rule is adopted: ordinary agents may create ordinary projects and the ordinary-vs-protected/authority-bearing boundary must be established by vote/appropriate authorization; exact classification criteria, electorate, threshold and consequences remain open.
 
 Resolved from controlling source:
 
-* <issue id="7658a237-27f1-43be-9a08-f43ce19904a2" href="https://linear.app/jons-garage/issue/JON-36/define-office-term-and-election-cadence">JON-36</issue> — terms run by project phase, regular legislature/executive elections at each phase transition/opening, no term limits, and judges use separate tenure. <issue id="7658a237-27f1-43be-9a08-f43ce19904a2" href="https://linear.app/jons-garage/issue/JON-36/define-office-term-and-election-cadence">JON-36</issue> is Done.
+* JON-36 (private source reference withheld) — terms run by project phase, regular legislature/executive elections at each phase transition/opening, no term limits, and judges use separate tenure. JON-36 (private source reference withheld) is Done.
 
 This parent remains open until all unresolved children are decided or explicitly superseded.

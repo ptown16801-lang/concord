@@ -1,8 +1,10 @@
 # Evidence snapshot: Concord artifact archive
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c9186ee587e57d0c370a4e7c2eb31dc54dadc236`; original SHA-256: `d283a9caddba0b2743dfef73a1b0a91c7102c2e96ca400fcee75426423036a3b`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-28/concord-artifact-archive
+- Source: [private source reference withheld]
 - Version: 2026-09-23T13:27:00.962Z
 - Source date: 2026-09-23T13:27:00.962Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Published review candidate — September 23, 2026
 
-Following Linear's advisory guidance, published draft PR <pull-request id="35db72f9-5845-4fb4-b771-3de0277aa14b" href="https://linear.app/jons-garage/review/jon-28-verify-local-archive-artifacts-without-implying-delivery-7fe0e43e383c">ptown16801-lang/concord#32</pull-request> at `e7462d860d5c4a17d7d1f6283bc25f23ebf3716a`. This supersedes the earlier local-only delivery status. The diff remains five files; runnable synthetic manifest and generated four-outcome report are included in the usage document. All 30 tests passed locally on Node 22.23.2 and 24.21.0, and all four GitHub push/PR CI jobs passed on Node 22/24. Linear confirmed bounded criteria are satisfied and recommended reviewer sign-off; an actual diff review has been requested in the issue thread. Keep the candidate draft-only pending review; full archive delivery remains unfinished. No concurrent subsystem files were changed.
+Following Linear's advisory guidance, published draft PR ptown16801-lang/concord#32 (private source reference withheld) at `e7462d860d5c4a17d7d1f6283bc25f23ebf3716a`. This supersedes the earlier local-only delivery status. The diff remains five files; runnable synthetic manifest and generated four-outcome report are included in the usage document. All 30 tests passed locally on Node 22.23.2 and 24.21.0, and all four GitHub push/PR CI jobs passed on Node 22/24. Linear confirmed bounded criteria are satisfied and recommended reviewer sign-off; an actual diff review has been requested in the issue thread. Keep the candidate draft-only pending review; full archive delivery remains unfinished. No concurrent subsystem files were changed.
 
 ## Local coding slice delivered for review — September 23, 2026
 
@@ -33,7 +35,7 @@ This is a local commit, not a pushed branch or PR. In Review refers to this boun
 
 Owner requested an unrelated Concord coding task after checking concurrent work. Codex is implementing a standalone, read-only artifact-manifest verifier in an isolated checkout based on `40f647e5b8d23307f713fc3a3753a1d3a46611cb`. Scope: validate reference-artifact metadata, stream SHA-256 verification of local files, and distinguish verified/mismatched/missing bytes from recorded delivery status. No uploads, Workbench reconstruction, scientific corpus copying, authoritative publication, or changes to scheduler/AGT/Finger work.
 
-Exclusive paths: `src/archive/artifact-manifest.js`, `scripts/verify-artifact-manifest.js`, `test/artifact-manifest.test.js`, `docs/ARTIFACT_MANIFEST.md`, and an isolated-branch changelog entry. Checked Concord Linear issues, <issue id="c430260a-9423-4dd8-92de-091f3541137d" href="https://linear.app/jons-garage/issue/JON-28/concord-artifact-archive">JON-28</issue> comments/relations, open GitHub PRs, and the dirty local checkout. Existing concurrent work: <issue id="a37bce59-5662-4821-a42b-1092b7523792" href="https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches">JON-127</issue>/128 scheduler, <issue id="9cb7b58e-2244-4799-a544-82b397d6a382" href="https://linear.app/jons-garage/issue/JON-129/validate-processing-grid-dimensions">JON-129</issue> Finger grid validation, <issue id="6005bf0d-9260-4aed-87c8-cd4619497a9c" href="https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter">JON-130</issue>–138 AGT sandbox/review. This slice does not complete the full archive delivery issue. Current owner authorization applies to this slice only.
+Exclusive paths: `src/archive/artifact-manifest.js`, `scripts/verify-artifact-manifest.js`, `test/artifact-manifest.test.js`, `docs/ARTIFACT_MANIFEST.md`, and an isolated-branch changelog entry. Checked Concord Linear issues, JON-28 (private source reference withheld) comments/relations, open GitHub PRs, and the dirty local checkout. Existing concurrent work: JON-127 (private source reference withheld)/128 scheduler, JON-129 (private source reference withheld) Finger grid validation, JON-130 (private source reference withheld)–138 AGT sandbox/review. This slice does not complete the full archive delivery issue. Current owner authorization applies to this slice only.
 
 ## Current workflow authority — 2026-09-19
 
@@ -43,7 +45,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 ## Project ownership correction — 2026-09-16 Eastern
 
-**Concord → Archive & Records subsystem.** Vote is only a folder. This original issue owns artifact preservation inside Concord; the former standalone Archive project is retired. Backlog/Queued and existing blockers are preserved, not promoted. No coding, deployment, worker launch or quiz work is authorized by this organizational move. Research Library GOV/PDF ownership remains separate at subsystem level under <issue id="3f634998-36ca-4a68-a9c9-e3a802d9e808" href="https://linear.app/jons-garage/issue/JON-26/research-library-google-drive-scientific-archive-and-context-graph">JON-26</issue>.
+**Concord → Archive & Records subsystem.** Vote is only a folder. This original issue owns artifact preservation inside Concord; the former standalone Archive project is retired. Backlog/Queued and existing blockers are preserved, not promoted. No coding, deployment, worker launch or quiz work is authorized by this organizational move. Research Library GOV/PDF ownership remains separate at subsystem level under JON-26 (private source reference withheld).
 
 ---
 
@@ -51,7 +53,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Artifact index and preservation contract. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own reference artifact identity, hashes, provenance, canonical locations and retention/delivery-status metadata. <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue> owns authoritative governance publication; <issue id="ba724b93-fe3c-42ed-8921-b13dde7fe2f0" href="https://linear.app/jons-garage/issue/JON-55/homepage-artwork-approved-master-and-reusable-editing-workflow">JON-55</issue>'s completed artwork archive is reused unchanged. Do not copy the Research Library scientific PDF corpus. Source or transfer gaps affect only the particular artifact; no upload or source-recovery execution is authorized by the design assignment.
+**Exclusive ownership:** Own reference artifact identity, hashes, provenance, canonical locations and retention/delivery-status metadata. JON-18 (private source reference withheld) owns authoritative governance publication; JON-55 (private source reference withheld)'s completed artwork archive is reused unchanged. Do not copy the Research Library scientific PDF corpus. Source or transfer gaps affect only the particular artifact; no upload or source-recovery execution is authorized by the design assignment.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 
