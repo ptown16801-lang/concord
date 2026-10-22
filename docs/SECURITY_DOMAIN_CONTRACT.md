@@ -1,11 +1,11 @@
 # Concord protected-domain security contract
 This maintained copy derives from [the accepted design revision `49c1983`](https://github.com/ptown16801-lang/concord/blob/49c19837191b83e93844653f7bf6259ee838d3ef/docs/SECURITY_DOMAIN_CONTRACT.md); [decision CON-040](../DECISIONS.md#CON-040) records its design status. Implementation and production integration are separate. Private task links have been replaced with plain source labels.
 
-Later [admission](../DECISIONS.md#CON-045) and [audit-outage](../DECISIONS.md#CON-046) requirements qualify the older contract: lawfully admitted work retains its immutable scope despite later cancellation, revocation, or expiry; unsafe effects pause and resume under the retained authority. They supersede the older post-admission cancellation/deadline language. This copy labels that historical conflict rather than silently claiming it is resolved in runtime code.
+Later [admission](../DECISIONS.md#CON-045) and [audit-outage](../DECISIONS.md#CON-046) requirements qualify the older contract: lawfully admitted work retains its immutable scope despite later cancellation, revocation, or expiry; unsafe effects pause and resume under the retained authority. The operative clauses below are reconciled to those later accepted decisions. This documentation correction does not establish corresponding runtime implementation.
 
 **Status:** design contract; no runtime implementation is claimed
 **Owner:** JON-17
-**Contract revision:** 2026-09-17
+**Contract revision:** 2026-09-17 design, reconciled October 22, 2026 to CON-045/CON-046
 **Deployment boundary:** Linux only
 
 This contract defines Concord's security gateways, domain-local authorization,
@@ -234,7 +234,9 @@ download/cache/clipboard, and a non-retentive isolated session when feasible.
 Domain policy may shorten these limits but cannot lengthen them without a signed,
 reviewed policy generation naming the affected classification and justification.
 
-Expiry and revocation stop future admission/redemption. Capability consumption
+Expiry and revocation stop admission or redemption for a new action. They do not
+cancel or expire the retained authority of an already lawfully admitted operation
+under section 7. Capability consumption
 is durably recorded before or atomically with the protected action so a crash
 cannot make it reusable. Denials, consumption, expiry, and suspected replay are
 attributable without logging the token itself.
@@ -254,28 +256,38 @@ authorizes the exact operation, participants, local scope, expected versions,
 deadline, and compensation/abort behavior. The resulting admission record is an
 immutable authority snapshot bound to the operation and domain set.
 
-JON-35 controls revocation order:
+[CON-045](../DECISIONS.md#CON-045) narrows JON-35's earlier cancellation caveat:
 
-- revocation before admission or capability redemption prevents the new action;
-- after a cross-domain operation has lawfully started, later revocation alone
-  does not cancel it or invalidate its admitted authority snapshot;
+- revocation or permission expiry before lawful admission prevents a new action;
 - lawful start occurs only after every named participant has durably admitted
-  the same immutable operation envelope; its operation-scoped capabilities
-  remain redeemable until the admitted operation deadline despite later grant
-  revocation, but only for that operation;
-- the snapshot cannot expand scope, add domains, change payloads, relax expected
-  versions, or start a retry as a new operation;
-- all other checks still apply, including capability validity at the defined
-  redemption point (signature, audience, binding, consumption, and deadline),
-  expected versions, domain invariants, compatible policy state, and an explicit
-  lawful cancellation mechanism; and
-- completion or abort is append-only and attributable in every participant.
+  the same immutable operation envelope;
+- after lawful admission, no party may cancel the action. Later revocation or
+  permission expiry does not invalidate its recorded authority or turn its
+  admitted deadline into a cancellation of the approved scope;
+- the snapshot cannot expand scope, add domains, change canonical arguments,
+  relax expected versions, or start a retry as a new operation;
+- signature, audience, binding, consumption, expected-version, transaction,
+  domain-invariant and compatible-policy checks still apply. A failed check
+  prevents unsafe effects; it does not silently cancel admitted work or authorize
+  a changed operation. An actual technical conflict must be reported; and
+- attempted effects, pauses, recovery and completion remain append-only and
+  attributable in every participant. An aborted transaction attempt is distinct
+  from cancellation of the lawfully admitted operation.
 
 The protocol never reports success until every required participant has a
 durable outcome under its declared commit protocol. Uncertain outcomes enter a
 sealed `in_doubt` state: no blind retry or compensating mutation occurs. Recovery
-uses the recorded operation, participant receipts, authority snapshot, and
-versions to finish or abort only as the pre-authorized protocol permits.
+preserves the operation, participant receipts, authority snapshot and versions.
+It must complete the admitted scope without duplicate effects, or retain the
+paused state and report the actual conflict. It cannot use the older abort or
+compensation wording to cancel admitted work or broaden its authority.
+
+[CON-046](../DECISIONS.md#CON-046) also requires protected effects to pause while
+the audit collector is unavailable. A secure local queue alone is insufficient.
+Preserve approved work durably and resume under its retained authority when the
+collector is available, without duplicate effects or fabricated historical
+receipts. This rule does not waive transaction conditions or domain invariants.
+
 
 ## 8. Freeze, evidence preservation, and recovery
 
@@ -371,16 +383,17 @@ store query, policy edit, recovery promotion, or writer shortcut.
 6. **Scope substitution:** a mediator changes a selector, response field, purpose,
    payload, expected version, or operation ID after authorization. Audience and
    digest binding causes rejection.
-7. **Expired temporary read:** an earlier viewer retries after expiry. No payload
+7. **Expired temporary read:** an earlier viewer requests a new read after expiry. No payload
    is returned, while the earlier exposure receipt remains attributable.
 8. **Stale write:** authoritative version is newer than the capability's expected
    version. The entire mutation aborts without partial state or auto-merge.
 9. **Revocation before start:** authority is revoked before admission. No new
    operation or retry is admitted.
-10. **Revocation after lawful start:** the admitted cross-domain operation may
-    finish within its immutable snapshot if all other checks pass. Revocation
-    cannot be used to widen it, and an applicable lawful cancellation still
-    stops it.
+10. **Revocation, expiry or cancellation after lawful start:** the admitted
+    cross-domain operation retains its immutable authority and must complete.
+    No party may cancel it. Unsafe effects pause while failed transaction or
+    invariant checks are addressed; neither recovery nor later grants may widen
+    the admitted scope.
 11. **Partial cross-domain failure:** a participant outcome is uncertain. The
     operation becomes `in_doubt`; evidence is preserved and controlled recovery
     resolves only the recorded protocol—never a blind duplicate write.
@@ -410,6 +423,9 @@ store query, policy edit, recovery promotion, or writer shortcut.
 20. **Recovery disagreement:** provenance or quorum cannot be established. The
     domain remains frozen, evidence remains preserved, and Workbench reports the
     blocked recovery phase without inventing a healthy version.
+21. **Audit collector unavailable:** preserve admitted work durably and pause
+    protected effects. A local audit queue does not permit execution. On recovery,
+    resume the same admitted scope without duplicate effects or invented receipts.
 
 ## 11. Owner interfaces consumed
 
