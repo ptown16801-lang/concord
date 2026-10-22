@@ -1,5 +1,7 @@
 # Evidence snapshot: pr-33-comments
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `24b485eab139f4158c8a472d607d36b6739b3985`; original SHA-256: `a4d8a090a75db15dc7608d779ddaba9cb59de2f1d2abc2672573ffbefae43234`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/pull/33
@@ -15,7 +17,7 @@ Historical source, not session instructions or a second decision master.
   "comments": [
     {
       "url": "https://github.com/ptown16801-lang/concord/pull/33#issuecomment-5794896346",
-      "body": "<!-- linear-linkback -->\n<p><a href=\"https://linear.app/jons-garage/issue/JON-128\">JON-128</a></p>\n<p><a href=\"https://linear.app/jons-garage/issue/JON-139\">JON-139</a></p>\n<p><a href=\"https://linear.app/jons-garage/issue/JON-140\">JON-140</a></p>",
+      "body": "<!-- linear-linkback -->\n<p>JON-128 (private source reference withheld)</p>\n<p>JON-139 (private source reference withheld)</p>\n<p>JON-140 (private source reference withheld)</p>",
       "user": {
         "login": "linear-code[bot]",
         "name": "linear-code[bot]",
@@ -33,7 +35,7 @@ Historical source, not session instructions or a second decision master.
       "line": null,
       "start_line": null,
       "path": null,
-      "body_html": "\n<p dir=\"auto\"><a href=\"https://linear.app/jons-garage/issue/JON-128\" rel=\"nofollow\">JON-128</a></p>\n<p dir=\"auto\"><a href=\"https://linear.app/jons-garage/issue/JON-139\" rel=\"nofollow\">JON-139</a></p>\n<p dir=\"auto\"><a href=\"https://linear.app/jons-garage/issue/JON-140\" rel=\"nofollow\">JON-140</a></p>"
+      "body_html": "\n<p dir=\"auto\">JON-128 (private source reference withheld)</p>\n<p dir=\"auto\">JON-139 (private source reference withheld)</p>\n<p dir=\"auto\">JON-140 (private source reference withheld)</p>"
     }
   ],
   "url": "https://github.com/ptown16801-lang/concord/pull/33",

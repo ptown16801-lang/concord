@@ -1,8 +1,10 @@
 # Evidence snapshot: Build rudimentary ASCII cornfield prototype
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `cf38194502f0191199bcb637323c84e23f5bda77`; original SHA-256: `74f8b4319b8bb99c9b3e621b80b7eff1dadef68d954d78b01f1e4610f513f6af`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-13/build-rudimentary-ascii-cornfield-prototype
+- Source: [private source reference withheld]
 - Version: 2026-09-09T03:17:04.784Z
 - Source date: 2026-09-09T03:17:04.784Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00

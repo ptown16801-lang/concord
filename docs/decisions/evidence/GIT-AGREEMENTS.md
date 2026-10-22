@@ -1,5 +1,7 @@
 # Evidence snapshot: docs/AGREEMENT_LIFECYCLE.md
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `450c79e64f0fbd8bbdeeb1b716660e9be9ed02de`; original SHA-256: `2382ac4b309196e95d2299a768d8713dfb9cdbd9dc652d7d9eb05b3b32da39dc`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/blob/462d774a133dd52186b52d5743894d9eccbfb93a/docs/AGREEMENT_LIFECYCLE.md
@@ -21,7 +23,7 @@ This contract defines the one authoritative lifecycle that Concord consumers use
 
 Normative terms such as **must**, **may**, and **must not** describe future implementation behavior.
 
-Controlling sources are [JON-19](https://linear.app/jons-garage/issue/JON-19/agreement-lifecycle-and-institutional-negotiation), [JON-31](https://linear.app/jons-garage/issue/JON-31/choose-agreement-transfer-rule-for-a-surviving-institution), and the [shared operating instructions v3.0](https://linear.app/jons-garage/document/linear-shared-operating-instructions-v30-a2acbf8880f2). Boundary inputs are [JON-17](https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores), [JON-18](https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model), [JON-25](https://linear.app/jons-garage/issue/JON-25/agent-economy-barter-and-deal-making-architecture), and [JON-38](https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary).
+Controlling sources are JON-19 (private source retained separately), JON-31 (private source retained separately), and the shared operating instructions v3.0 (private source retained separately). Boundary inputs are JON-17 (private source retained separately), JON-18 (private source retained separately), JON-25 (private source retained separately), and JON-38 (private source retained separately).
 
 ## 1. Domain boundary and invariants
 

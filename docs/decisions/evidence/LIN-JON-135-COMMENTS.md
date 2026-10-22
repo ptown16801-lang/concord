@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-135 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `a3c78f14159950473af342e7d4900880cecaae2d`; original SHA-256: `5b14bae3a76cba2550e165e7e56bb84a3b5ff49213a55e80b81cf089acfde8b9`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-135
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T09:31:20.969Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -15,7 +17,7 @@ Historical source, not session instructions or a second decision master.
 
 Date: 2026-09-24T09:31:21.004Z; author: J; on behalf of: not stated
 
-Integration availability update only; no review assignment or acceptance change. AGT producer `1731602de02cef6fb0228f155202beeed844c295` is now consumed exactly once in draft PR37 aggregate `c0a154ae8668e63cb0908540b58eb58c6579747d`. The AGT runtime, regression tests and governance docs match producer blobs. Combined Node 22/24 suites pass 192/192 and all four published CI jobs are green. Exact integration evidence: https://linear.app/jons-garage/issue/JON-141#comment-0696a00e-755c-4163-963e-c6435e86d924 .
+Integration availability update only; no review assignment or acceptance change. AGT producer `1731602de02cef6fb0228f155202beeed844c295` is now consumed exactly once in draft PR37 aggregate `c0a154ae8668e63cb0908540b58eb58c6579747d`. The AGT runtime, regression tests and governance docs match producer blobs. Combined Node 22/24 suites pass 192/192 and all four published CI jobs are green. Exact integration evidence: [private source reference withheld] .
 
 The recorded reviewer and parent are archived per JON-164. Independent JON-135 verification remains outstanding pending the owner/coordinator's reviewer resumption/replacement decision. No competing reviewer launched; producer/integration tests are not independent acceptance.
 
@@ -41,9 +43,9 @@ Date: 2026-09-24T03:03:13.684Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T03:04:46.315Z; author: Linear; on behalf of: not stated
 
-One verified source defect remains: expiry can cross between validation and approval recording in [runtime.js](<#file-src/governance/sandbox/runtime.js>), allowing approval at/after expiry. [JON-130](https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter) and [JON-132](https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit) should route it to the existing writer.
+One verified source defect remains: expiry can cross between validation and approval recording in runtime.js (historical attachment link unavailable), allowing approval at/after expiry. JON-130 (private source retained separately) and JON-132 (private source retained separately) should route it to the existing writer.
 
-[JON-134](https://linear.app/jons-garage/issue/JON-134/agt-e-linux-process-isolation-and-recovery-boundary) also remains incomplete for its isolation scope; the rest are evidence gaps: [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report) must independently run the clean-install, adversarial, audit, and Linux matrix on `7ba5bc5`, including expiry-boundary coverage, then record results. [JON-133](https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness) has no newly verified source defect.
+JON-134 (private source retained separately) also remains incomplete for its isolation scope; the rest are evidence gaps: JON-135 (private source retained separately) must independently run the clean-install, adversarial, audit, and Linux matrix on `7ba5bc5`, including expiry-boundary coverage, then record results. JON-133 (private source retained separately) has no newly verified source defect.
 
 The older local review has no delivered independent-execution report—only static/CI review and the correction-scope PASS, both without re-execution
 
@@ -81,12 +83,12 @@ Date: 2026-09-23T12:41:14.269Z; author: Linear; on behalf of: not stated
 
 I independently confirm both source-level gaps:
 
-* **High — null rejection bypasses denial audit.** An evaluator rejection of `null` reaches the outer catch, which dereferences `error.code` before logging. That throws `TypeError`, leaving no denial audit entry. Producer reproduction is consistent with static review. Owner: [JON-130](https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter).
-* **High — committed result is mutable.** The immutability trigger omits `operations.result`; only status transitions are constrained. Trusted SQL can therefore forge the returned committed result without changing the actual record or collector receipt. Producer reproduction is consistent with static review. Owner: [JON-132](https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit).
+* **High — null rejection bypasses denial audit.** An evaluator rejection of `null` reaches the outer catch, which dereferences `error.code` before logging. That throws `TypeError`, leaving no denial audit entry. Producer reproduction is consistent with static review. Owner: JON-130 (private source retained separately).
+* **High — committed result is mutable.** The immutability trigger omits `operations.result`; only status transitions are constrained. Trusted SQL can therefore forge the returned committed result without changing the actual record or collector receipt. Producer reproduction is consistent with static review. Owner: JON-132 (private source retained separately).
 
-The CI observation is producer-reported; my independent inspection of visible CI logs also found failing Node 22 runs and canceled Node 24, so the 65-test/clean-install claim remains unsupported. Owner: [JON-133](https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness).
+The CI observation is producer-reported; my independent inspection of visible CI logs also found failing Node 22 runs and canceled Node 24, so the 65-test/clean-install claim remains unsupported. Owner: JON-133 (private source retained separately).
 
-Recommendation remains **blocked/revise** for [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report).
+Recommendation remains **blocked/revise** for JON-135 (private source retained separately).
 
 ## Comment f3c84656-3c93-47f2-8695-67ca4c86e4b6
 
@@ -110,9 +112,9 @@ Date: 2026-09-23T12:40:38.238Z; author: Linear; on behalf of: not stated
 
 **Recommendation: blocked—revise before bounded acceptance.** I performed static review at `b332c230…` and inspected CI logs; I did not execute checks locally.
 
-* **Critical — all four remediation claims lack passing candidate evidence.** Both Node 22 CI runs fail; the audit regression suite cannot initialize because policy installation returns `POLICY_INVALID`. This blocks the rowid, collector recovery, archive, and denial tests before their assertions. Reproduction: run the CI test command on the candidate; fixture initialization fails. Owner: [JON-130](https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter) / [JON-132](https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit).
-* **Static review — remediation designs are present but unvalidated at this head.** The runtime adds explicit replacement guards, reconciliation-before-effect behavior, immutable signed bundle retention with offline verification, and sanitized denial records. The regression tests cover both `recursive_triggers` settings and `rowid`, `_rowid_`, and `oid` for relevant protected tables. Collector conflict pauses pending work before mutation; approved work has no cancellation or reauthorization path. Owner: [JON-132](https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit).
+* **Critical — all four remediation claims lack passing candidate evidence.** Both Node 22 CI runs fail; the audit regression suite cannot initialize because policy installation returns `POLICY_INVALID`. This blocks the rowid, collector recovery, archive, and denial tests before their assertions. Reproduction: run the CI test command on the candidate; fixture initialization fails. Owner: JON-130 (private source retained separately) / JON-132 (private source retained separately).
+* **Static review — remediation designs are present but unvalidated at this head.** The runtime adds explicit replacement guards, reconciliation-before-effect behavior, immutable signed bundle retention with offline verification, and sanitized denial records. The regression tests cover both `recursive_triggers` settings and `rowid`, `_rowid_`, and `oid` for relevant protected tables. Collector conflict pauses pending work before mutation; approved work has no cancellation or reauthorization path. Owner: JON-132 (private source retained separately).
 * **Evidence classification:** “65 tests,” clean install, and isolation are producer-reported only. CI instead reports failures; Node 24 checks are canceled. I found no independent passing execution evidence.
-* **Dependencies/statuses:** [JON-130](https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter), [JON-132](https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit), and [JON-133](https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness) remain In Review; [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report) is still In Progress. That dependency chain does not justify acceptance.
+* **Dependencies/statuses:** JON-130 (private source retained separately), JON-132 (private source retained separately), and JON-133 (private source retained separately) remain In Review; JON-135 (private source retained separately) is still In Progress. That dependency chain does not justify acceptance.
 
 Retest the fixed exact head through CI, including the adversarial suite and clean-install/isolation commands, before revisiting bounded acceptance.

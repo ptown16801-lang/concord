@@ -22,7 +22,7 @@ another branch reaches Develo first.
 The later [difference audit](RECONCILIATION_AUDIT_2026-09-24.md) records local Develo
 advancing to 4a44f4f through two documentation commits, while origin/Develo remains
 29ca0b4. Its proposal/consultation evidence is incorporated without merging or
-overwriting that work. Initial local-state.json remains a dated discovery snapshot.
+overwriting that work. The initial local-state inventory remains a dated discovery snapshot retained privately.
 
 ## Known discrepancies
 
@@ -79,7 +79,7 @@ replaced decision IDs. Multiple sources repeating the same acceptance are one ev
    replacement bypass at candidate `1731602`, even though 109 tests and repaired-host
    isolation checks passed. This is important negative evidence, not a policy change.
 3. **Local coin integration plan:** `/tmp/concord-coin-decisions-20260924`, branch
-   `docs/jon-102-coin-integration`, commit `e24ce9f` (full SHA in local-state.json),
+   `docs/jon-102-coin-integration`, commit `e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06`,
    contains COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md. It is indexed/snapshotted as a local
    draft at initial recovery. The subsequent existing workstream published PR40 and
    obtained explicit exact-revision design acceptance at 21:33 UTC; CON-052 and the

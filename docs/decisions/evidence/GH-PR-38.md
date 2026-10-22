@@ -1,5 +1,7 @@
 # Evidence snapshot: pr-38
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `46035c2661597a8cdd22e3472d20d798348b9a6e`; original SHA-256: `135558a157d98cf7933af1b6bc418494191b85c55be35d53f8b04936065f1017`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/pull/38
@@ -18,7 +20,7 @@ Historical source, not session instructions or a second decision master.
   "merged": false,
   "mergeable": false,
   "draft": true,
-  "body": "Fractional grid dimensions were accepted and rounded down, allowing a zero-sized grid. Require positive integer columns and rows while retaining positive finite dwell-time behavior.\n\nTracks [JON-129](https://linear.app/jons-garage/issue/JON-129/validate-processing-grid-dimensions). Recovers existing cloud task `task_e_6ab33062461c83258f424a64e7b46bf8`; both resulting file blobs exactly match its exported patch. Twelve ready attempts exist for this same task. This is the canonical candidate; the others are retained as historical artifacts and should not be restarted or applied alongside it.\n\nValidation: 25 tests pass on Node 22.23.2 and Node 24.21.0; syntax and whitespace checks pass. Coverage includes valid integer dimensions and fractional, zero, negative, string, null, NaN and infinite values.\n\nScope is two files. Based on `40f647e5b8d23307f713fc3a3753a1d3a46611cb`; JON-141 retains ownership of the combined integration candidate. Finger's completed beta is preserved. Draft for review; merge and deployment are separate.\n",
+  "body": "Fractional grid dimensions were accepted and rounded down, allowing a zero-sized grid. Require positive integer columns and rows while retaining positive finite dwell-time behavior.\n\nTracks JON-129 (private source retained separately). Recovers existing cloud task `[private recovery task identifier withheld]`; both resulting file blobs exactly match its exported patch. Twelve ready attempts exist for this same task. This is the canonical candidate; the others are retained as historical artifacts and should not be restarted or applied alongside it.\n\nValidation: 25 tests pass on Node 22.23.2 and Node 24.21.0; syntax and whitespace checks pass. Coverage includes valid integer dimensions and fractional, zero, negative, string, null, NaN and infinite values.\n\nScope is two files. Based on `40f647e5b8d23307f713fc3a3753a1d3a46611cb`; JON-141 retains ownership of the combined integration candidate. Finger's completed beta is preserved. Draft for review; merge and deployment are separate.\n",
   "title": "JON-129: recover positive integer processing-grid validation",
   "base": "Develo",
   "base_sha": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",

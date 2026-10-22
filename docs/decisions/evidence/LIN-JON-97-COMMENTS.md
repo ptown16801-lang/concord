@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-97 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `4188010469e27ca332983d7a9daf81c6712313c8`; original SHA-256: `3f100e65d2b978f706c76a0123154afd3430dddcae1509a352c13c5a67f8bab1`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-97
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T20:57:03.788Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -39,13 +41,13 @@ Recorded **ACCEPT** on this issue. No unmet design-specification criterion found
 
 Date: 2026-09-24T20:54:06.487Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
 
-**ACCEPT — design specification acceptance criteria are met** for [Specify coin model A v0.1](https://linear.app/jons-garage/review/specify-coin-model-a-v01-176161b075b7) at `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`.
+**ACCEPT — design specification acceptance criteria are met** for Specify coin model A v0.1 (private source retained separately) at `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`.
 
 * **Exact invariants:** §3 provides 31 enumerated invariants covering lifecycle, freedom, visibility, fraud/defacing, claims versus truth, intent, and experimental neutrality. The ECON-02 free-choice amendment is consistently reflected in INV-08 and §§4, 7, and 11.
 * **Two-plane separation:** §§2 and 6 explicitly separate agent-visible state from hidden research state; INV-01–02 prohibit hidden-state feedback and ordinary-run intervention. No agent-facing ledger, authority, valuation, verification certificate, or provenance channel is introduced.
 * **Unresolved list:** §7 resolves refusal semantics and confines the remaining five items to explicitly labeled downstream instrumentation, representation, cryptographic, interface, and study-design choices. No unresolved owner-level model decision or silently adopted behavioral constraint remains.
-* **Traceability:** §9 maps the frozen [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) decision groups plus ECON-02 to the specification. The matrix aligns with the source contract and the six §11 acceptance cases.
-* **Review provenance:** [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review)'s PASS matrix covers the amendment and prior corrections; its provenance resolution establishes producer/reviewer and immutable-artifact separation. This remains document-level acceptance only—not implementation, runtime validation, merge approval, or downstream acceptance.
+* **Traceability:** §9 maps the frozen JON-96 (private source retained separately) decision groups plus ECON-02 to the specification. The matrix aligns with the source contract and the six §11 acceptance cases.
+* **Review provenance:** JON-103 (private source retained separately)'s PASS matrix covers the amendment and prior corrections; its provenance resolution establishes producer/reviewer and immutable-artifact separation. This remains document-level acceptance only—not implementation, runtime validation, merge approval, or downstream acceptance.
 
 No unmet acceptance criterion found. No new owner decision or duplicate review is needed.
 
@@ -53,7 +55,7 @@ No unmet acceptance criterion found. No new owner decision or duplicate review i
 
 Date: 2026-09-24T20:40:55.093Z; author: J; on behalf of: not stated
 
-Focused conformance recheck complete at `7073e9a`: [PASS matrix](https://linear.app/jons-garage/issue/JON-103#comment-a5a0a68b-ba52-48ad-af42-5b18bd6ec32a) and [independence attestation](https://linear.app/jons-garage/issue/JON-103#comment-36b1e986-b286-482a-9a1e-fca32f479b7f). Full specification acceptance remains separate; In Review and dependencies retained.
+Focused conformance recheck complete at `7073e9a`: PASS matrix (private source retained separately) and independence attestation (private source retained separately). Full specification acceptance remains separate; In Review and dependencies retained.
 
 ## Comment 85285237-d1cb-4522-a5f0-dd9809425af9
 
@@ -65,7 +67,7 @@ Date: 2026-09-24T20:38:21.689Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T20:38:33.664Z; author: Linear; on behalf of: not stated
 
-Yes. [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit) remains In Review; its amendment is not accepted or released. [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review)’s focused recheck records PASS, but its independence/provenance is explicitly not established, so it cannot support downstream acceptance or dependency release.
+Yes. JON-97 (private source retained separately) remains In Review; its amendment is not accepted or released. JON-103 (private source retained separately)’s focused recheck records PASS, but its independence/provenance is explicitly not established, so it cannot support downstream acceptance or dependency release.
 
 ## Comment 093f35f1-21fd-42e9-84e3-41eee5157f23
 
@@ -85,11 +87,11 @@ Date: 2026-09-24T20:31:20.580Z; author: Linear; on behalf of: not stated
 
 Existing issues suffice; no new child is needed.
 
-* Record the independent recheck on [JON-103](https://linear.app/jons-garage/issue/JON-103/coin-model-g-independent-v01-conformance-review), preserving its original FAIL as the prior-revision result rather than replacing it
-* Apply the decision delta and traceability in [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit) / [Specify coin model A v0.1](https://linear.app/jons-garage/review/specify-coin-model-a-v01-176161b075b7); then propagate only accepted terms through [JON-99](https://linear.app/jons-garage/issue/JON-99/coin-model-c-threat-and-emergence-model)/100/101 while retaining [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan) gates
-* Keep the [JON-98](https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit) impact check bounded to verified sources; research only an identified gap
+* Record the independent recheck on JON-103 (private source retained separately), preserving its original FAIL as the prior-revision result rather than replacing it
+* Apply the decision delta and traceability in JON-97 (private source retained separately) / Specify coin model A v0.1 (private source retained separately); then propagate only accepted terms through JON-99 (private source retained separately)/100/101 while retaining JON-102 (private source retained separately) gates
+* Keep the JON-98 (private source retained separately) impact check bounded to verified sources; research only an identified gap
 
-I found no newer explicit acceptance record supporting [JON-98](https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit) being Done. The September 24 record says corrections were incorporated but research acceptance remained pending; [JON-106](https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification) likewise remains a bounded correction review, not independent acceptance. The Done transition was GitHub-attributed on September 24 without an accompanying acceptance decision.
+I found no newer explicit acceptance record supporting JON-98 (private source retained separately) being Done. The September 24 record says corrections were incorporated but research acceptance remained pending; JON-106 (private source retained separately) likewise remains a bounded correction review, not independent acceptance. The Done transition was GitHub-attributed on September 24 without an accompanying acceptance decision.
 
 ## Comment 19cdb6ef-a54b-4e91-84f0-6710cbcf3edc
 
@@ -97,7 +99,7 @@ Date: 2026-09-22T02:03:16.547Z; author: Linear; on behalf of: {'id': '8c87a622-9
 
 ## Containment note — September 21, 2026
 
-The recent change to Concord PR [ptown16801-lang/concord#21](https://linear.app/jons-garage/review/specify-coin-model-a-v01-176161b075b7) is not accepted as reopening this coin work. Preserve the draft PR and its evidence, but make no further review, correction, implementation, or repository/PR changes unless the owner explicitly resumes work and reviews the change.
+The recent change to Concord PR ptown16801-lang/concord#21 (private source retained separately) is not accepted as reopening this coin work. Preserve the draft PR and its evidence, but make no further review, correction, implementation, or repository/PR changes unless the owner explicitly resumes work and reviews the change.
 
 ## Comment 6b3cca35-b516-4b38-b601-54d3feb8f41a
 

@@ -1,8 +1,10 @@
 # Evidence snapshot: Finger — queued implementation workload
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `43e21427538493813a15e60e3bbffa12dbd3b4ce`; original SHA-256: `a57cbef62a418608fd6c73f6de8209cf4de103438ab4d231d7de858fa3c82573`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-69/finger-queued-implementation-workload
+- Source: [private source reference withheld]
 - Version: 2026-09-18T05:26:43.821Z
 - Source date: 2026-09-18T05:26:43.821Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -15,7 +17,7 @@ Historical source, not session instructions or a second decision master.
 
 **Deliverable:** Finger historical execution parent — preserve canceled state. This historical parent remains Canceled. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Finger's deployable beta is COMPLETE. This canceled issue preserves the approved contract and execution history; it has no current worker and must not be restarted. <issue id="2b2438fa-ad17-4b16-bfc3-b6d4ab0c76b5" href="https://linear.app/jons-garage/issue/JON-70/finger-web-collector-component">JON-70</issue>/71/73/74/75 preserve only explicitly identified residual design gaps. <issue id="086e1001-94e4-495c-8bf3-41d712d80fd0" href="https://linear.app/jons-garage/issue/JON-72/finger-raw-storage-and-historical-retention">JON-72</issue> remains Done. This parent does not create a new beta milestone, authorize child delegation or require reopening for future design acceptance.
+**Exclusive ownership:** Finger's deployable beta is COMPLETE. This canceled issue preserves the approved contract and execution history; it has no current worker and must not be restarted. JON-70 (private source reference withheld)/71/73/74/75 preserve only explicitly identified residual design gaps. JON-72 (private source reference withheld) remains Done. This parent does not create a new beta milestone, authorize child delegation or require reopening for future design acceptance.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work. No quiz content, data, question banks, scores, routes, fixtures or acceptance requirements are used in current work.
 
@@ -23,7 +25,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Finger audit reconciliation — 2026-09-16
 
-Finger's deployable-beta milestone is complete. Preserve that completion, the canceled historical <issue id="e86a4f49-b59a-441c-8979-20e1b1c29f58" href="https://linear.app/jons-garage/issue/JON-69/finger-queued-implementation-workload">JON-69</issue> execution parent, the remaining Backlog records, and <issue id="086e1001-94e4-495c-8bf3-41d712d80fd0" href="https://linear.app/jons-garage/issue/JON-72/finger-raw-storage-and-historical-retention">JON-72</issue> Done. Earlier implementation / child-delegation instructions and old `Test` or empty-repository handoffs below are historical; they must not launch duplicate implementation or redefine the repository target.
+Finger's deployable-beta milestone is complete. Preserve that completion, the canceled historical JON-69 (private source reference withheld) execution parent, the remaining Backlog records, and JON-72 (private source reference withheld) Done. Earlier implementation / child-delegation instructions and old `Test` or empty-repository handoffs below are historical; they must not launch duplicate implementation or redefine the repository target.
 
 The verified Concord repository baseline already contains Finger collector, ingestion, persistence and processing work. This does not claim that every broader integration, device-validation or hardening criterion in the old scope is accepted. Any additional assignment must identify a concrete remaining gap, reconcile existing code/results, verify its project profile and exact accepted base, and satisfy current execution authorization. Do not reopen the completed beta or reselect a repository from old session messages.
 

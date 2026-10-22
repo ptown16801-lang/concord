@@ -3,7 +3,7 @@
 Audit input: PR41 head `3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77`.
 Canonical integration base: `29ca0b44cf8d911df6978e84c7a91e7777afd304` (`origin/Develo`).
 This is an author reconciliation audit and correction record, not qualifying
-independent validation. [Pinned audit state](audit-state-2026-09-24.json) records
+independent validation. Pinned audit state (retained privately) records
 the observation time, local commits, exact paths/blobs/digests and overlap.
 
 ## Method and coverage

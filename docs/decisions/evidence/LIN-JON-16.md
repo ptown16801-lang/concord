@@ -1,8 +1,10 @@
 # Evidence snapshot: Scheduler, legality checker, and continuity control
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `3d0d147da8a0c52a8901f70ba147b1786235bc97`; original SHA-256: `1c05ea55fdd01c56c4e24b13f34d96f5fa109078489724fecbfbbbe59fc0e4a0`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control
+- Source: [private source reference withheld]
 - Version: 2026-09-23T12:45:04.084Z
 - Source date: 2026-09-23T12:45:04.084Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,11 +15,11 @@ Historical source, not session instructions or a second decision master.
 
 ## Delivery disposition — 2026-09-17
 
-Design draft delivered in PR <pull-request id="13dfd584-39ed-4969-8443-27c4fd944731" href="https://linear.app/jons-garage/review/define-scheduler-legality-checker-and-continuity-contract-05f2d52ecd5c">ptown16801-lang/concord#20</pull-request> at `c86701512a64c58ade9707d8368a48bad1e8fc03`, matching producer receipt `bc0eea15-4654-403a-995e-a2ea825d14a2`. In Review reflects pending design acceptance, not completed production implementation. Preserve the delivered contract and recorded checks rather than treating the finished producer response as a live worker.
+Design draft delivered in PR ptown16801-lang/concord#20 (private source reference withheld) at `c86701512a64c58ade9707d8368a48bad1e8fc03`, matching producer receipt `bc0eea15-4654-403a-995e-a2ea825d14a2`. In Review reflects pending design acceptance, not completed production implementation. Preserve the delivered contract and recorded checks rather than treating the finished producer response as a live worker.
 
 ## Current design-only contract — 2026-09-16 owner instruction
 
-**Canonical owner:** scheduler, checker and continuity design. **Deliverable:** queue/opaque-envelope contract, mechanical legality versus interpretive-admission sequence, outage/standby state model and acceptance scenarios. Consume <issue id="f022c6cc-c2a0-49ee-a561-344b00e15b24" href="https://linear.app/jons-garage/issue/JON-32/define-adjudication-route-after-checker-finds-no-objective-violation">JON-32</issue>'s settled admission gate, <issue id="89c08f78-bc85-4799-8a16-64b4dacc9701" href="https://linear.app/jons-garage/issue/JON-33/resolve-petition-credit-duplicate-and-refund-accounting">JON-33</issue>'s settled petition-credit rule, <issue id="0e2b75a9-7954-475f-9f92-88519081f6ff" href="https://linear.app/jons-garage/issue/JON-38/define-protected-or-authority-bearing-initiative-boundary">JON-38</issue>'s express-authority rule and <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue>'s self-representation/fairness safeguards. <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> owns authorization; <issue id="389526da-d8a3-47cf-b522-c1c132c7da30" href="https://linear.app/jons-garage/issue/JON-61/implement-constitutional-branch-succession-impeachment-and-judiciary">JON-61</issue> owns legal adjudication. No fresh policy-option interview or scheduler implementation.
+**Canonical owner:** scheduler, checker and continuity design. **Deliverable:** queue/opaque-envelope contract, mechanical legality versus interpretive-admission sequence, outage/standby state model and acceptance scenarios. Consume JON-32 (private source reference withheld)'s settled admission gate, JON-33 (private source reference withheld)'s settled petition-credit rule, JON-38 (private source reference withheld)'s express-authority rule and JON-61 (private source reference withheld)'s self-representation/fairness safeguards. JON-17 (private source reference withheld) owns authorization; JON-61 (private source reference withheld) owns legal adjudication. No fresh policy-option interview or scheduler implementation.
 
 ---
 

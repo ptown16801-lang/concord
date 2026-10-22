@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-141 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `afca89eda5d2a5f5b30016a67db1ce09e45ed2d5`; original SHA-256: `4981bbf510490f15b52b9b7b1d2d44c35bbaa714b363bfcbcf8f866a812841d6`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-141
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T10:46:08.621Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -53,11 +55,11 @@ Audit the actual published diff and classify PASS, revise, or blocked. Report an
 
 Date: 2026-09-24T10:45:00.806Z; author: Linear; on behalf of: not stated
 
-**REVISE** — the exact head is `6cf4eab`, and its only delta from `c0a154a` is the confinement wording in [docs/INTEGRATION_RECONCILIATION.md](<#file-docs/INTEGRATION_RECONCILIATION.md>)
+**REVISE** — the exact head is `6cf4eab`, and its only delta from `c0a154a` is the confinement wording in docs/INTEGRATION_RECONCILIATION.md (historical attachment link unavailable)
 
 * The PR description still says AppArmor blocks Bubblewrap and confinement was *not* recertified; it directly contradicts the exact-head documentation and must be corrected
-* The repository proves Bubblewrap invocation in [examples/agt-local/isolation.js](<#file-examples/agt-local/isolation.js>) and [examples/agt-local/isolated-workflow.js](<#file-examples/agt-local/isolated-workflow.js>), but contains no AppArmor profile or machine-verifiable “loaded” evidence. Treat that as host-side evidence, not source-backed proof
-* Pin enforcement covers only eligibility and population bytes in [config/integration-pins.json](<#file-config/integration-pins.json>); claimed exact AGT, bootstrap, and Finger blob matches remain external verification evidence
+* The repository proves Bubblewrap invocation in examples/agt-local/isolation.js (historical attachment link unavailable) and examples/agt-local/isolated-workflow.js (historical attachment link unavailable), but contains no AppArmor profile or machine-verifiable “loaded” evidence. Treat that as host-side evidence, not source-backed proof
+* Pin enforcement covers only eligibility and population bytes in config/integration-pins.json (historical attachment link unavailable); claimed exact AGT, bootstrap, and Finger blob matches remain external verification evidence
 * Exports, package wiring, lockfile override, and workflow commands are internally consistent. CI installs with `npm ci --ignore-scripts` and runs checks/tests, but does not run the confinement probes
 * GitHub Node 22/24 checks on this head are pending and were not counted as passing
 
@@ -109,7 +111,7 @@ Draft [PR #37](https://github.com/ptown16801-lang/concord/pull/37) is now publis
 
 Validation: clean locked install (zero vulnerabilities), syntax/API checks, pinned compatibility guard, producer blob comparisons and whitespace checks pass. Full local suites passed 186 runner entries on Node 22.23.2 and 24.21.0 (182 named tests plus four scheduler helper modules). All four fresh remote CI jobs passed on the published update: [push run](https://github.com/ptown16801-lang/concord/actions/runs/35955421039), [PR run](https://github.com/ptown16801-lang/concord/actions/runs/35955424702). Local integration checkout is clean.
 
-Aggregate remains In Review, without acceptance, merge or deployment. Existing JON-135 reviewer ownership is unchanged; no duplicate review or implementation session launched. JON-140/J acceptance still gates JON-127. The separately reported AGT approval-time expiry defect ([Linear finding](https://linear.app/jons-garage/issue/JON-135#comment-4f35070d-746f-4d04-a327-1dcafda57036)) is not fixed by this exact-pin refresh and must receive its own producer correction and immutable review handoff.
+Aggregate remains In Review, without acceptance, merge or deployment. Existing JON-135 reviewer ownership is unchanged; no duplicate review or implementation session launched. JON-140/J acceptance still gates JON-127. The separately reported AGT approval-time expiry defect (Linear finding (private source retained separately)) is not fixed by this exact-pin refresh and must receive its own producer correction and immutable review handoff.
 
 
 Approval troubleshooting outcome: AppArmor denied Bubblewrap namespace setup at the failed patch timestamps; fallback patch approval returned Decline. After the owner changed the approval setting, the pending provenance edit succeeded and the refresh published. No AppArmor profile, global sysctl, or approval-policy file was modified by this integration session.
@@ -118,7 +120,7 @@ Approval troubleshooting outcome: AppArmor denied Bubblewrap namespace setup at 
 
 Date: 2026-09-24T03:18:42.943Z; author: J; on behalf of: not stated
 
-Acknowledged corrected execution handoff. This session 01a0ce1f-4d47-7a91-b5a6-a28c8fc46d12 remains sole integration/PR #34 writer; no workers, duplicate reviews, merge or deployment.
+Acknowledged corrected execution handoff. This private session provenance retained remains sole integration/PR #34 writer; no workers, duplicate reviews, merge or deployment.
 
 Exact inputs: bootstrap e2e23849a2e5e128f7f46f35712499f16fb98ef9 (ignore the mistyped queue SHA entirely), AGT 7ba5bc5c5a975d72298540e9aa776504d5b4f263, Finger b81cca12f6d5cde714f30031a8a78dab95d97daf. Preserve population 882dcffb31b520c6f9458984a35745c8b4bfa3b8 and eligibility 51a102259785a5b53dc6ec4bc4bbca54c4a8fc37; 638ce897 remains excluded. Bootstrap F1 is closed by the existing independent reviewer’s report; no integration-authored duplicate correction.
 
@@ -148,12 +150,12 @@ Date: 2026-09-23T20:15:23.791Z; author: Linear; on behalf of: not stated
 
 **Verdict: revise, not blocked.** The published head is clean/mergeable but predates all three required inputs, so its green CI is valid only for `93eb77b`.
 
-1. **High — Bootstrap correction missing.** [impeachment-service.js](<#file-src/governance/impeachment-service.js>) records `INPUT_DISCREPANCY` but does not gate later stage commands on that hold; [bootstrap-impeachment.js](<#file-src/governance/bootstrap-impeachment.js>) also lacks the final population-membership/source-ID validation required by `e2e23849`
-2. **High — Finger correction missing.** [processor.js](<#file-src/finger/processing/processor.js>) accepts positive fractional grid dimensions, then floors them; `b81cca12` requires positive integers and regression coverage
-3. **Medium — AGT follow-up missing.** [agt-audit-regressions.test.js](<#file-test/agt-audit-regressions.test.js>) lacks the denial/zero-reservation and committed-result assertions; [test.yml](<#file-.github/workflows/test.yml>) lacks `strategy.fail-fast: false`
-4. **Medium — provenance is stale.** [INTEGRATION_RECONCILIATION.md](<#file-docs/INTEGRATION_RECONCILIATION.md>) names old AGT `2d5c55d` and bootstrap `e49177a`, and omits Finger `b81cca12`
+1. **High — Bootstrap correction missing.** impeachment-service.js (historical attachment link unavailable) records `INPUT_DISCREPANCY` but does not gate later stage commands on that hold; bootstrap-impeachment.js (historical attachment link unavailable) also lacks the final population-membership/source-ID validation required by `e2e23849`
+2. **High — Finger correction missing.** processor.js (historical attachment link unavailable) accepts positive fractional grid dimensions, then floors them; `b81cca12` requires positive integers and regression coverage
+3. **Medium — AGT follow-up missing.** agt-audit-regressions.test.js (historical attachment link unavailable) lacks the denial/zero-reservation and committed-result assertions; test.yml (historical attachment link unavailable) lacks `strategy.fail-fast: false`
+4. **Medium — provenance is stale.** INTEGRATION_RECONCILIATION.md (historical attachment link unavailable) names old AGT `2d5c55d` and bootstrap `e49177a`, and omits Finger `b81cca12`
 
-Smallest change set: apply bootstrap `e49177a..e2e23849`, AGT `2d5c55d..7ba5bc5`, and Finger `b81cca12` **once each**; refresh provenance. Preserve [integration-pins.json](<#file-config/integration-pins.json>) at population `882dcff` and eligibility `51a1022`; do not substitute `638ce897`.
+Smallest change set: apply bootstrap `e49177a..e2e23849`, AGT `2d5c55d..7ba5bc5`, and Finger `b81cca12` **once each**; refresh provenance. Preserve integration-pins.json (historical attachment link unavailable) at population `882dcff` and eligibility `51a1022`; do not substitute `638ce897`.
 
 No export, dependency-pin, or retired-workflow conflict found. Re-run `npm ci --ignore-scripts`, `npm run check`, `npm run integration:check`, `npm test`, `git diff --check`, then fresh Node 22/24 CI on the refreshed head.
 
@@ -178,25 +180,25 @@ Date: 2026-09-23T20:09:56.092Z; author: Linear; on behalf of: not stated
 
 I reaffirm the prior audit: no classification changed.
 
-1. [JON-141](https://linear.app/jons-garage/issue/JON-141/reconcile-audited-cross-branch-governance-and-workflow-conflicts) — **ready to execute**, not externally blocked. [Reconcile Concord governance, scheduler and archive review branches](https://linear.app/jons-garage/review/reconcile-concord-governance-scheduler-and-archive-review-branches-93d32a0184f3) is green and conflict-free but remains a draft on head `93eb77b`, before the required AGT and Finger pins. Refresh and combined validation are the remaining work.
-2. [JON-133](https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness) and [JON-134](https://linear.app/jons-garage/issue/JON-134/agt-e-linux-process-isolation-and-recovery-boundary) — **hard blockers** to [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report). [Add Concord governance sandbox and audit remediation](https://linear.app/jons-garage/review/add-concord-governance-sandbox-and-audit-remediation-4889b1a6c5c1) is green and at the current AGT head, but it is still a draft; independent acknowledgment and acceptance remain absent. The native blocker relations remain substantive.
-3. [JON-140](https://linear.app/jons-garage/issue/JON-140/review-corrected-scheduler-harness-for-jon-128-acceptance) — **acceptance gate**. Its bounded PASS is delivered, but human acceptance is still pending. It remains the sole native blocker to execution on [JON-127](https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches).
-4. [JON-59](https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement) ← [JON-82](https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification) — **stale tracking relation** operationally: [JON-82](https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification) is Done. Its contract is still an **acceptance gate** in substance, because it lacks combined integration, accepted producer evidence, and an authoritative implementation pin.
-5. [JON-79](https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions) — first logical slice, but **acceptance/authorization gated**: durable authenticated eligibility events, stable IDs/deduplication, [JON-78](https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement)-bound registration, and authoritative ordering. Then [JON-80](https://linear.app/jons-garage/issue/JON-80/jon-58c-immutable-ballot-receipt-and-submission-handling), followed by [JON-81](https://linear.app/jons-garage/issue/JON-81/jon-58d-exact-electorate-and-d-b-u-accounting). All three remain Backlog and explicitly require separate authorization before coding; none is ready to execute
+1. JON-141 (private source retained separately) — **ready to execute**, not externally blocked. Reconcile Concord governance, scheduler and archive review branches (private source retained separately) is green and conflict-free but remains a draft on head `93eb77b`, before the required AGT and Finger pins. Refresh and combined validation are the remaining work.
+2. JON-133 (private source retained separately) and JON-134 (private source retained separately) — **hard blockers** to JON-135 (private source retained separately). Add Concord governance sandbox and audit remediation (private source retained separately) is green and at the current AGT head, but it is still a draft; independent acknowledgment and acceptance remain absent. The native blocker relations remain substantive.
+3. JON-140 (private source retained separately) — **acceptance gate**. Its bounded PASS is delivered, but human acceptance is still pending. It remains the sole native blocker to execution on JON-127 (private source retained separately).
+4. JON-59 (private source retained separately) ← JON-82 (private source retained separately) — **stale tracking relation** operationally: JON-82 (private source retained separately) is Done. Its contract is still an **acceptance gate** in substance, because it lacks combined integration, accepted producer evidence, and an authoritative implementation pin.
+5. JON-79 (private source retained separately) — first logical slice, but **acceptance/authorization gated**: durable authenticated eligibility events, stable IDs/deduplication, JON-78 (private source retained separately)-bound registration, and authoritative ordering. Then JON-80 (private source retained separately), followed by JON-81 (private source retained separately). All three remain Backlog and explicitly require separate authorization before coding; none is ready to execute
 
 ## Comment 0aee1ba8-a58d-4797-9660-7318e3c8dc42
 
 Date: 2026-09-23T20:06:43.631Z; author: Linear; on behalf of: not stated
 
-1. [JON-141](https://linear.app/jons-garage/issue/JON-141/reconcile-audited-cross-branch-governance-and-workflow-conflicts) is **ready to execute**, not externally blocked. Its sole writer needs to refresh [Reconcile Concord governance, scheduler and archive review branches](https://linear.app/jons-garage/review/reconcile-concord-governance-scheduler-and-archive-review-branches-93d32a0184f3); the green draft remains on older inputs and does not include the required Finger pin. This is remediation work, not a dependency gate.
-2. [JON-133](https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness) and [JON-134](https://linear.app/jons-garage/issue/JON-134/agt-e-linux-process-isolation-and-recovery-boundary) remain **hard blockers** to [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report). [Add Concord governance sandbox and audit remediation](https://linear.app/jons-garage/review/add-concord-governance-sandbox-and-audit-remediation-4889b1a6c5c1) is green but still a draft and provides producer-side evidence only; [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report) explicitly requires independent reviewer acknowledgment. The relations are not stale.
-3. [JON-140](https://linear.app/jons-garage/issue/JON-140/review-corrected-scheduler-harness-for-jon-128-acceptance) is an **acceptance gate**: bounded review evidence passes, but human acceptance remains. It is the sole identified blocker to comparative execution on [JON-127](https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches); planning can continue.
-4. The [JON-59](https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement) ← [JON-82](https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification) blocker relation is a **stale tracking relation** operationally: [JON-82](https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification) is Done and the native edge was resolved. Its delivered contract remains an **acceptance/interface gate** for implementation—[JON-59](https://linear.app/jons-garage/issue/JON-59/implement-coaial-coaia-dual-census-and-cra-ceiling-enforcement) may draft specifications, but implementation still needs accepted authoritative boundaries and combined integration evidence.
-5. The first coding slice is [JON-79](https://linear.app/jons-garage/issue/JON-79/jon-58b-eligibility-lifecycle-and-franchise-state-transitions): durable authenticated eligibility events, identity binding, persistence, and replay.
+1. JON-141 (private source retained separately) is **ready to execute**, not externally blocked. Its sole writer needs to refresh Reconcile Concord governance, scheduler and archive review branches (private source retained separately); the green draft remains on older inputs and does not include the required Finger pin. This is remediation work, not a dependency gate.
+2. JON-133 (private source retained separately) and JON-134 (private source retained separately) remain **hard blockers** to JON-135 (private source retained separately). Add Concord governance sandbox and audit remediation (private source retained separately) is green but still a draft and provides producer-side evidence only; JON-135 (private source retained separately) explicitly requires independent reviewer acknowledgment. The relations are not stale.
+3. JON-140 (private source retained separately) is an **acceptance gate**: bounded review evidence passes, but human acceptance remains. It is the sole identified blocker to comparative execution on JON-127 (private source retained separately); planning can continue.
+4. The JON-59 (private source retained separately) ← JON-82 (private source retained separately) blocker relation is a **stale tracking relation** operationally: JON-82 (private source retained separately) is Done and the native edge was resolved. Its delivered contract remains an **acceptance/interface gate** for implementation—JON-59 (private source retained separately) may draft specifications, but implementation still needs accepted authoritative boundaries and combined integration evidence.
+5. The first coding slice is JON-79 (private source retained separately): durable authenticated eligibility events, identity binding, persistence, and replay.
 
-* Prerequisites: accepted [JON-78](https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement) identity/issuance contract plus [JON-82](https://linear.app/jons-garage/issue/JON-82/jon-58e-integration-and-adversarial-verification)/[JON-87](https://linear.app/jons-garage/issue/JON-87/jon-82a-cross-track-interface-and-integration-readiness-audit) boundary findings
-* Then [JON-80](https://linear.app/jons-garage/issue/JON-80/jon-58c-immutable-ballot-receipt-and-submission-handling) consumes versioned eligibility and authoritative close ordering
-* Then [JON-81](https://linear.app/jons-garage/issue/JON-81/jon-58d-exact-electorate-and-d-b-u-accounting) derives accounting from accepted eligibility events and ballot receipts
+* Prerequisites: accepted JON-78 (private source retained separately) identity/issuance contract plus JON-82 (private source retained separately)/JON-87 (private source retained separately) boundary findings
+* Then JON-80 (private source retained separately) consumes versioned eligibility and authoritative close ordering
+* Then JON-81 (private source retained separately) derives accounting from accepted eligibility events and ballot receipts
 
 All three are **acceptance/authorization gated**, not ready to execute: their current descriptions restrict work to planning until explicit authorization.
 
@@ -204,7 +206,7 @@ All three are **acceptance/authorization gated**, not ready to execute: their cu
 
 Date: 2026-09-23T14:47:40.999Z; author: J; on behalf of: not stated
 
-Consistency audit completed with Linear's advisory help. The findings and ownership map are appended to the [existing current-work document](https://linear.app/jons-garage/document/concord-current-work-ownership-and-dependencies-2026-09-23-95963ba59a4b). Live GitHub readback still shows PR #37 at 93eb77bdb1c2e25f1a20be20299b1a95d332f9e8, with green Node 22/24 checks for that older aggregate. The existing verified handoff remains the precise unfinished delta: bootstrap e2e23849a2e5e128f7f46f35712499f16fb98ef9, AGT 7ba5bc5c5a975d72298540e9aa776504d5b4f263, Finger b81cca12f6d5cde714f30031a8a78dab95d97daf. Refresh provenance and validation through your existing sole-writer session; this is a reconciliation of the existing handoff, not another worker launch. Current AGT issue descriptions now match 7ba5bc5. JON-135's independent review and JON-140's human acceptance remain separate.
+Consistency audit completed with Linear's advisory help. The findings and ownership map are appended to the existing current-work document (private source retained separately). Live GitHub readback still shows PR #37 at 93eb77bdb1c2e25f1a20be20299b1a95d332f9e8, with green Node 22/24 checks for that older aggregate. The existing verified handoff remains the precise unfinished delta: bootstrap e2e23849a2e5e128f7f46f35712499f16fb98ef9, AGT 7ba5bc5c5a975d72298540e9aa776504d5b4f263, Finger b81cca12f6d5cde714f30031a8a78dab95d97daf. Refresh provenance and validation through your existing sole-writer session; this is a reconciliation of the existing handoff, not another worker launch. Current AGT issue descriptions now match 7ba5bc5. JON-135's independent review and JON-140's human acceptance remain separate.
 
 ## Comment 5ffa9f47-95e6-41e8-9f85-8cd25228c8fb
 
@@ -216,7 +218,7 @@ Verified handoff: consume bootstrap `e2e23849a2e5e128f7f46f35712499f16fb98ef9`, 
 
 Date: 2026-09-23T13:34:20.853Z; author: J; on behalf of: not stated
 
-Acknowledged coordinator thread 01a0ce71-5711-7d91-88f2-cd9175165ccc: thread 01a0ce1f-4d47-7a91-b5a6-a28c8fc46d12 is the sole writer for PR #34 and the cross-branch integration candidate. I will make no further pushes to #34 or integration changes, and will not dispatch agents/coding sessions or claim independent acceptance.
+Acknowledged coordinator private session provenance retained: private session provenance retained is the sole writer for PR #34 and the cross-branch integration candidate. I will make no further pushes to #34 or integration changes, and will not dispatch agents/coding sessions or claim independent acceptance.
 
 Timing/provenance clarification: before receiving this handoff, I had already pushed additive commit `7ba5bc5c5a975d72298540e9aa776504d5b4f263` on top of your `2d5c55d0dc7785e44aa48eb6efc534d3d13c78e7`. It retains your runtime fixes unchanged. It adds CI fail-fast:false, assertions that denial leaves no reservation and completion cannot omit a result, plus changelog/verification notes. Do not apply it twice if your integration already contains it.
 

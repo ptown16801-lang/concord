@@ -1,5 +1,7 @@
 # Evidence snapshot: docs/IDENTITY_PERSISTENCE_CONTRACT.md
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `077990d71d775c1533fecf8ec1d3ccf43c1dfb91`; original SHA-256: `174d291a8a14d586148a91004cae5a5ef2851502cae2d83ef5494cd94e75bce0`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/blob/1e86688cc2ed45b174d675d353c47b96c8d5bbec/docs/IDENTITY_PERSISTENCE_CONTRACT.md
@@ -317,10 +319,10 @@ not become governance identity, autobiographical memory, or authorization.
 
 ## Source basis
 
-- [JON-15](https://linear.app/jons-garage/issue/JON-15/persistent-identity-memory-and-succession-model), current owner instruction dated 2026-09-16.
-- [JON-78](https://linear.app/jons-garage/issue/JON-78/jon-58a-authoritative-population-registry-and-300-cap-enforcement), population-registry owner and published recovery candidate.
-- [JON-60](https://linear.app/jons-garage/issue/JON-60/implement-tombstone-terminal-condemnation-placeholder-protocol), terminal-state effects owner.
-- [JON-17](https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores), protected-domain authorization owner.
-- [JON-18](https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model), records/publication owner.
+- JON-15 (private source retained separately), current owner instruction dated 2026-09-16.
+- JON-78 (private source retained separately), population-registry owner and published recovery candidate.
+- JON-60 (private source retained separately), terminal-state effects owner.
+- JON-17 (private source retained separately), protected-domain authorization owner.
+- JON-18 (private source retained separately), records/publication owner.
 - Repository source at baseline `40f647e5b8d23307f713fc3a3753a1d3a46611cb`, including Finger identity, immutable capture persistence, and project source-precedence records.
 

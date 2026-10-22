@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-98 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ee1ef5233003b9c554adf327015b10cf86c6a57f`; original SHA-256: `1afdb44431222623f3a545f8d46d138535aa0ddf6da2349bb96c8fc5d3136b72`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-98
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T20:57:18.568Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -27,25 +29,25 @@ I can’t verify the Done transition as matching an explicit acceptance: the rec
 
 Date: 2026-09-24T20:53:50.034Z; author: J; on behalf of: not stated
 
-@Linear Complete the existing JON-98/JON-106 acceptance review against their original criteria, reusing PR #25 at fb74e6d1fb038cbe3e447110889c106df73e5ba8 and incorporated source table. The two correction findings and ECON-02 impact check passed. Determine separately: JON-98 matrix/ranked overlap/limits/hypotheses, and JON-106 source-family table, reading levels, locators, unresolved/access limits. Explicitly decide whether the disclosed unavailable sources meet these bounded criteria; do not equate 'unresolved disclosed' with a failed criterion unless the criterion requires resolution. Give ACCEPT or exact defect per issue, with source/artifact references and reviewer non-authoring provenance. Do not repeat research, start a coding session, merge or release integration. Producer for latest amendment is Codex thread 01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4; preserve separation and earlier FAILs.
+@Linear Complete the existing JON-98/JON-106 acceptance review against their original criteria, reusing PR #25 at fb74e6d1fb038cbe3e447110889c106df73e5ba8 and incorporated source table. The two correction findings and ECON-02 impact check passed. Determine separately: JON-98 matrix/ranked overlap/limits/hypotheses, and JON-106 source-family table, reading levels, locators, unresolved/access limits. Explicitly decide whether the disclosed unavailable sources meet these bounded criteria; do not equate 'unresolved disclosed' with a failed criterion unless the criterion requires resolution. Give ACCEPT or exact defect per issue, with source/artifact references and reviewer non-authoring provenance. Do not repeat research, start a coding session, merge or release integration. Producer for latest amendment is Codex private session provenance retained; preserve separation and earlier FAILs.
 
 ## Comment 1203c2cd-0395-4009-8194-b01008264755
 
 Date: 2026-09-24T20:54:57.157Z; author: Linear; on behalf of: not stated
 
-**ACCEPT** for [JON-98](https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit) at `fb74e6d1fb038cbe3e447110889c106df73e5ba8`
+**ACCEPT** for JON-98 (private source retained separately) at `fb74e6d1fb038cbe3e447110889c106df73e5ba8`
 
-* [Matrix and ranked overlap](<#file-docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md>) meet the criteria, with mechanism-based rankings and explicit mismatches
+* Matrix and ranked overlap (historical attachment link unavailable) meet the criteria, with mechanism-based rankings and explicit mismatches
 * Limits and unresolved/unavailable material are disclosed without unsupported conclusions
 * Seven bounded hypotheses remain clearly non-novelty claims
 
-**ACCEPT** for [JON-106](https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification)
+**ACCEPT** for JON-106 (private source retained separately)
 
-* [Source-family verification table](<#file-docs/JON-98_SOURCE_VERIFICATION.md>) covers all 30 sources with reading levels, locators, and claim support
+* Source-family verification table (historical attachment link unavailable) covers all 30 sources with reading levels, locators, and claim support
 * Unavailable texts and unresolved identities are disclosed; the bounded criteria do not require resolving them
 * The amendment preserves grades and earlier failures; ECON-02 and both corrections pass
 
-Review provenance is non-authoring and separate from producer thread `01a0ce3f-ca3f-70f0-8a51-0ee0d17904c4`. No research, implementation, merge, or release action was performed
+Review provenance is non-authoring and separate from producer thread `[private session identifier withheld]`. No research, implementation, merge, or release action was performed
 
 ## Comment 89620dd4-3d26-488c-9218-98ef930f1ee8
 
@@ -59,7 +61,7 @@ Date: 2026-09-24T20:37:39.759Z; author: Linear; on behalf of: not stated
 
 No concrete defect found in the bounded amendment; it preserves the stated evidence limits and avoids new source or release claims.
 
-The prior status correction is confirmed: [JON-98](https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit) is **In Review**.
+The prior status correction is confirmed: JON-98 (private source retained separately) is **In Review**.
 
 ## Comment fd5c44c2-5f7e-40af-bd63-5f17bdd1408f
 
@@ -71,13 +73,13 @@ Date: 2026-09-24T20:35:43.220Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T20:36:01.136Z; author: Linear; on behalf of: not stated
 
-The correction aligns with the consultation: this issue is In Review, delivery and source evidence are preserved, and [JON-102](https://linear.app/jons-garage/issue/JON-102/coin-model-f-concord-integration-plan) remains blocked. PR [ptown16801-lang/concord#25](https://linear.app/jons-garage/review/audit-exact-coin-model-prior-art-f88a616bf2ab) is still a draft; I’ll treat ECON-02 only as a bounded amendment, not a new research sweep or acceptance decision
+The correction aligns with the consultation: this issue is In Review, delivery and source evidence are preserved, and JON-102 (private source retained separately) remains blocked. PR ptown16801-lang/concord#25 (private source retained separately) is still a draft; I’ll treat ECON-02 only as a bounded amendment, not a new research sweep or acceptance decision
 
 ## Comment b3e4ae55-3e71-4730-8a52-927cf4627121
 
 Date: 2026-09-19T03:04:45.101Z; author: Linear; on behalf of: not stated
 
-Updated the existing review with exactly two provenance phrases and returned it to the [JON-98](https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit) review path.
+Updated the existing review with exactly two provenance phrases and returned it to the JON-98 (private source retained separately) review path.
 
 * “independently checked direct links” → “direct links checked in this separate source-verification pass”
 * “independently retrieved Fugger v2 text” → “Fugger v2 text retrieved in this separate source-verification pass”
@@ -107,7 +109,7 @@ Do not perform new research, open another issue or PR, alter application code, m
 
 Date: 2026-09-19T03:04:11.820Z; author: Linear; on behalf of: not stated
 
-I’m applying the bounded wording correction now. Follow progress [here](<https://linear.app/jons-garage/agent-session/1071581a-178c-43af-8650-e7e2e31cb451>).
+I’m applying the bounded wording correction now. Follow progress here (private source reference withheld).
 
 ## Comment 5c3f5a41-8930-4a2a-b3b6-835906cf1bcf
 
@@ -133,7 +135,7 @@ If a specific material defect remains, keep it on the producing issue and report
 
 Date: 2026-09-19T03:03:34.575Z; author: Linear; on behalf of: not stated
 
-Provenance correction still fails: [Verify coin-model sources and qualify prior-art claims](https://linear.app/jons-garage/review/verify-coin-model-sources-and-qualify-prior-art-claims-beae5b53c261) retains “independently checked” citation links and an “independently retrieved” source in [docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md](<#file-docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md>), contradicting its separate-pass/no-independent-verification framing. S17 is correctly bounded. No incorporation or issue transitions made.
+Provenance correction still fails: Verify coin-model sources and qualify prior-art claims (private source retained separately) retains “independently checked” citation links and an “independently retrieved” source in docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md (historical attachment link unavailable), contradicting its separate-pass/no-independent-verification framing. S17 is correctly bounded. No incorporation or issue transitions made.
 
 ## Comment 43ed594c-c8a3-4511-8dcc-96af109b71d2
 
@@ -141,7 +143,7 @@ Date: 2026-09-19T02:13:12.422Z; author: Linear; on behalf of: not stated
 
 The documentation corrections are ready: provenance now describes a separate verification pass, and S17 is limited to one token created by a tokenless consumer seeking trade within administered state. Evidence limits and the frozen contract remain intact; validation checks passed.
 
-[Verify coin-model sources and qualify prior-art claims](https://linear.app/jons-garage/review/verify-coin-model-sources-and-qualify-prior-art-claims-beae5b53c261)
+Verify coin-model sources and qualify prior-art claims (private source retained separately)
 
 ## Comment 826e57f2-4e68-4561-90bb-833896bb23c3
 
@@ -193,18 +195,18 @@ Record which original criteria pass, which specific gaps remain, and whether #29
 
 Date: 2026-09-19T02:09:45.953Z; author: Linear; on behalf of: not stated
 
-Not ready to incorporate yet. The source table is materially stronger and preserves the [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) boundary, but it does not establish producer-independent verification or acceptance.
+Not ready to incorporate yet. The source table is materially stronger and preserves the JON-96 (private source retained separately) boundary, but it does not establish producer-independent verification or acceptance.
 
-* **Pass:** [JON-98](https://linear.app/jons-garage/issue/JON-98/coin-model-b-exact-model-prior-art-audit)’s evidence limits, qualified rankings, no-novelty framing, and no-quiz requirement.
-* **Pass:** [JON-106](https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification)’s source-family coverage, evidence-level distinctions, corrected/suspended claims, and unresolved-source disclosure.
-* **Pass:** [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model)’s frozen contract remains intact: this is documentation-only and does not alter the model or expose hidden research authority.
-* **Gap:** [docs/JON-98_SOURCE_VERIFICATION.md](<#file-docs/JON-98_SOURCE_VERIFICATION.md>) calls itself “independent,” but the correction and producer draft have the same author; no separate verifier or provenance establishes independence. Rename it as a separate/source-verification pass and retain acceptance as pending.
-* **Gap:** [docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md](<#file-docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md>) overstates S17 as testing “unconstrained creation.” The cited result is narrower: a tokenless consumer may create one token when seeking to trade, within administered experimental state.
+* **Pass:** JON-98 (private source retained separately)’s evidence limits, qualified rankings, no-novelty framing, and no-quiz requirement.
+* **Pass:** JON-106 (private source retained separately)’s source-family coverage, evidence-level distinctions, corrected/suspended claims, and unresolved-source disclosure.
+* **Pass:** JON-96 (private source retained separately)’s frozen contract remains intact: this is documentation-only and does not alter the model or expose hidden research authority.
+* **Gap:** docs/JON-98_SOURCE_VERIFICATION.md (historical attachment link unavailable) calls itself “independent,” but the correction and producer draft have the same author; no separate verifier or provenance establishes independence. Rename it as a separate/source-verification pass and retain acceptance as pending.
+* **Gap:** docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md (historical attachment link unavailable) overstates S17 as testing “unconstrained creation.” The cited result is narrower: a tokenless consumer may create one token when seeking to trade, within administered experimental state.
 * **Residual limits:** inaccessible/metadata-only sources and unresolved identities are appropriately disclosed, but prevent a reproducible independent acceptance package.
 
-A spot-check supports the table’s treatment of Grassroots Currencies as debt-based, protocol-governed, and therefore not an exact [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) match. ([arxiv.org](<https://arxiv.org/abs/2202.05619>))
+A spot-check supports the table’s treatment of Grassroots Currencies as debt-based, protocol-governed, and therefore not an exact JON-96 (private source retained separately) match. ([arxiv.org](<https://arxiv.org/abs/2202.05619>))
 
-Keep the two corrections on [Verify coin-model sources and qualify prior-art claims](https://linear.app/jons-garage/review/verify-coin-model-sources-and-qualify-prior-art-claims-beae5b53c261); after they land, it is ready to incorporate into [Audit exact coin-model prior art](https://linear.app/jons-garage/review/audit-exact-coin-model-prior-art-f88a616bf2ab). This is not independent acceptance of [JON-106](https://linear.app/jons-garage/issue/JON-106/coin-model-j-prior-art-replication-and-source-verification) or a basis to close downstream work.
+Keep the two corrections on Verify coin-model sources and qualify prior-art claims (private source retained separately); after they land, it is ready to incorporate into Audit exact coin-model prior art (private source retained separately). This is not independent acceptance of JON-106 (private source retained separately) or a basis to close downstream work.
 
 ## Comment 6ba2e72a-b5f8-4679-8f3d-f67ad173abe5
 
@@ -297,7 +299,7 @@ The exact model remains fixed: non-obligatory issuer-specific objects, free unli
 
 Date: 2026-09-19T01:49:43.619Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
 
-@linear Resume and complete the existing assignment. Produce the required independent source-verification table with verifiable identities, bibliographic details, accessible links, exact supported/unsupported mechanism claims, corrected citations, and explicit unavailable-evidence limits. Post the table to this issue, then reconcile resulting citation or claim corrections into the existing draft review [ptown16801-lang/concord#25](https://linear.app/jons-garage/review/audit-exact-coin-model-prior-art-f88a616bf2ab). Do not create a duplicate issue or any coordination mechanism. Keep scope to the exact-model prior-art audit and source verification.
+@linear Resume and complete the existing assignment. Produce the required independent source-verification table with verifiable identities, bibliographic details, accessible links, exact supported/unsupported mechanism claims, corrected citations, and explicit unavailable-evidence limits. Post the table to this issue, then reconcile resulting citation or claim corrections into the existing draft review ptown16801-lang/concord#25 (private source retained separately). Do not create a duplicate issue or any coordination mechanism. Keep scope to the exact-model prior-art audit and source verification.
 
 ## Comment 92c22029-8f17-4b64-869a-90445b1a44b1
 

@@ -1,5 +1,7 @@
 # Evidence snapshot: docs/COIN_MODEL_E_INTERFACE_V0.1.md
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `07f72ad7691219b6d318d3b260b81f9045194f12`; original SHA-256: `183addba93e3d229626c7ccdc984d27fe7c32e9835d298f8ebbdda115f2860e0`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/blob/81943cdebfc76fd0830dd70329fa17c5356085aa/docs/COIN_MODEL_E_INTERFACE_V0.1.md
@@ -13,9 +15,9 @@ Historical source, not session instructions or a second decision master.
 
 # Coin model E — minimal agent-facing interface v0.1
 
-Status: design deliverable for [JON-101](https://linear.app/jons-garage/issue/JON-101). No implementation or runtime validation is claimed.
+Status: design deliverable for JON-101 (private source retained separately). No implementation or runtime validation is claimed.
 
-Inputs: accepted [JON-97 specification at 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md), accepted [JON-99 threat model at 2847844](https://github.com/ptown16801-lang/concord/blob/2847844/docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md), and [ECON-02 shared decision record](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99). Research schema and deployment isolation belong to JON-100/102. The interface does not import marketplace settlement authority.
+Inputs: accepted [JON-97 specification at 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md), accepted [JON-99 threat model at 2847844](https://github.com/ptown16801-lang/concord/blob/2847844/docs/COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md), and ECON-02 shared decision record (private source retained separately). Research schema and deployment isolation belong to JON-100/102. The interface does not import marketplace settlement authority.
 
 ## 1. Visible representation and selection
 

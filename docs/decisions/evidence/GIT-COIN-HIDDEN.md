@@ -1,5 +1,7 @@
 # Evidence snapshot: docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `d159e9fb25767fc6a9f1320ab7a79c91406c514a`; original SHA-256: `deeb5cee7d25cd28afc2c9768784b04d4eb4ab430e77367e973c7ce1570725cd`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/blob/f1254c6b89259daf443322e4896439b87f03c8a0/docs/COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md
@@ -15,9 +17,9 @@ Historical source, not session instructions or a second decision master.
 
 **Status:** design specification; no application implementation is authorized
 
-**Normative sources:** [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) and [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit), authoritative v0.1 revision [`652f3f7`](https://github.com/ptown16801-lang/concord/blob/652f3f7b13214bf7e651b0228f654621f568a641/docs/COIN_MODEL_A_V0.1.md)
+**Normative sources:** JON-96 (private source retained separately) and JON-97 (private source retained separately), authoritative v0.1 revision [`652f3f7`](https://github.com/ptown16801-lang/concord/blob/652f3f7b13214bf7e651b0228f654621f568a641/docs/COIN_MODEL_A_V0.1.md)
 
-**Deliverable:** [JON-100](https://linear.app/jons-garage/issue/JON-100/coin-model-d-hidden-research-instrumentation-contract)
+**Deliverable:** JON-100 (private source retained separately)
 
 ## 1. Purpose, authority, and hard boundary
 
@@ -312,7 +314,7 @@ Still deliberately undecided and outside this deliverable are the cryptographic 
 
 ## September 24 amendment — return observations under ECON-02
 
-Source: [project-wide ECON-02 decision](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99) and [JON-97 revision 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). This supplements the historical specification pin for the owner-adopted return/free-choice terms. It does not claim full specification acceptance or resolve the other JON-104/JON-105 review obligations.
+Source: project-wide ECON-02 decision (private source retained separately) and [JON-97 revision 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). This supplements the historical specification pin for the owner-adopted return/free-choice terms. It does not claim full specification acceptance or resolve the other JON-104/JON-105 review obligations.
 
 Refusal alone never synthesizes a transfer or destruction event. An elected return uses `instance_transferred`; an optional preceding signature uses `mark_added`. Do not create a new legitimate `coin_issued` event merely because an appearance returns to its issuer. Existing copy/instance rules still apply when a sender retains a usable representation. A subsequent genuine create-and-give is a separate issuance event.
 
@@ -325,7 +327,7 @@ Focused design checks: a refusal statement produces no synthetic transfer/destru
 
 ## 9. Existing JON-104/JON-105 review disposition — September 24
 
-Controlling specification: [JON-97 at 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). Sources: [JON-104 leakage handoff](https://linear.app/jons-garage/issue/JON-100#comment-f03b20a6-95d2-40d4-b868-3273d4adf93e) and [JON-105 measurement handoff](https://linear.app/jons-garage/issue/JON-100#comment-1a3a780f-9652-4b4d-90d4-7f214a87f067). These requirements extend the existing schema and proof obligations; they create no competing observer or agent capability.
+Controlling specification: [JON-97 at 7073e9a](https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md). Sources: JON-104 leakage handoff (private source retained separately) and JON-105 measurement handoff (private source retained separately). These requirements extend the existing schema and proof obligations; they create no competing observer or agent capability.
 
 ### 9.1 Measurement reconstruction fields (JON-105 requirements 1–5)
 

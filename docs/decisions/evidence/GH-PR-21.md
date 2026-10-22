@@ -1,5 +1,7 @@
 # Evidence snapshot: pr-21
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `d7ce91b8e3cdd05a663a4e876b6671310302bb13`; original SHA-256: `421d0e7428b98a18cd2e6ff0a691e8f29c1c2e6c692b9e0b953f7dd0c0143833`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/pull/21
@@ -18,7 +20,7 @@ Historical source, not session instructions or a second decision master.
   "merged": false,
   "mergeable": true,
   "draft": true,
-  "body": "## Status: On hold \u2014 not accepted\n\nThis draft preserves a design-only specification produced during a paused coin-work stream. It is **not approved for merge** and does not resume [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) or [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit). Do not make further review, correction, implementation, or repository changes without explicit owner authorization.\n\n---\n\nAdds the authoritative design-only v0.1 coin-model specification derived from the frozen [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model) interview decisions.\n\nThe document defines the two-plane state model, 31 exact invariants, neutral agent-visible primitives, private-storage and fraud semantics, hidden-research separation, six explicitly unresolved design points, and full source traceability. It also records the interview-drift assumptions that downstream work must not reintroduce.\n\nVerification: documentation whitespace check plus invariant-sequence and traceability-coverage validation.",
+  "body": "## Status: On hold \u2014 not accepted\n\nThis draft preserves a design-only specification produced during a paused coin-work stream. It is **not approved for merge** and does not resume JON-96 (private source retained separately) or JON-97 (private source retained separately). Do not make further review, correction, implementation, or repository changes without explicit owner authorization.\n\n---\n\nAdds the authoritative design-only v0.1 coin-model specification derived from the frozen JON-96 (private source retained separately) interview decisions.\n\nThe document defines the two-plane state model, 31 exact invariants, neutral agent-visible primitives, private-storage and fraud semantics, hidden-research separation, six explicitly unresolved design points, and full source traceability. It also records the interview-drift assumptions that downstream work must not reintroduce.\n\nVerification: documentation whitespace check plus invariant-sequence and traceability-coverage validation.",
   "title": "Specify coin model A v0.1",
   "base": "ptown16801/jon-71-finger-server-ingestion-and-session-identity-3d8f",
   "base_sha": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",

@@ -1,5 +1,7 @@
 # Evidence snapshot: pr-35
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `35e9ec8d57a5b2195e7713bfc009b6a126ce7415`; original SHA-256: `cf86701129a4b761cdc9c7a5970d566aa13aa13f3daf89fef69d865ef5efec61`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/pull/35
@@ -18,7 +20,7 @@ Historical source, not session instructions or a second decision master.
   "merged": false,
   "mergeable": false,
   "draft": false,
-  "body": "Concord's local collector gate does not establish a remote collector availability guarantee. This brief records the fixed governance candidate, the acknowledgement-to-mutation race, three protocol options, and twelve proposed failure scenarios with acceptance criteria.\n\nResearch only: no runtime changes, policy changes, or independent acceptance claims. The implementation referenced is in PR #34; this documentation PR targets Develo independently.\n\nValidation: reviewed source attribution and candidate status; `git diff --check` passed. No runtime tests are required for these documentation-only changes.\n\nRelated: https://linear.app/jons-garage/issue/JON-138\n",
+  "body": "Concord's local collector gate does not establish a remote collector availability guarantee. This brief records the fixed governance candidate, the acknowledgement-to-mutation race, three protocol options, and twelve proposed failure scenarios with acceptance criteria.\n\nResearch only: no runtime changes, policy changes, or independent acceptance claims. The implementation referenced is in PR #34; this documentation PR targets Develo independently.\n\nValidation: reviewed source attribution and candidate status; `git diff --check` passed. No runtime tests are required for these documentation-only changes.\n\nRelated: [private source reference withheld]",
   "title": "Document Concord governance recovery research",
   "base": "Develo",
   "base_sha": "40f647e5b8d23307f713fc3a3753a1d3a46611cb",

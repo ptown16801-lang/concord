@@ -1,8 +1,10 @@
 # Evidence snapshot: JON-140 comment history
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `daee0a8d7cde46a38237ed875a4cbccd38aeb855`; original SHA-256: `7d837e3e9164997f9116b9e4793b164fbda24d7cbc4e9bcde495214908b28c39`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-140
+- Source: [private source reference withheld]
 - Version: snapshot through retrieval
 - Source date: 2026-09-24T03:03:36.052Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ Date: 2026-09-24T03:03:14.626Z; author: J; on behalf of: not stated
 
 Date: 2026-09-24T03:03:36.032Z; author: Linear; on behalf of: not stated
 
-No remaining verified defect found within the bounded harness scope. I posted the acceptance handoff to [JON-128](https://linear.app/jons-garage/issue/JON-128/build-concord-scheduler-simulation-and-test-harness) and the separately authorized-comparison prerequisites to [JON-127](https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches); no statuses or implementation work changed
+No remaining verified defect found within the bounded harness scope. I posted the acceptance handoff to JON-128 (private source retained separately) and the separately authorized-comparison prerequisites to JON-127 (private source retained separately); no statuses or implementation work changed
 
 ## Comment 8a1a1428-5fd5-417d-9b8d-0728cb829c2a
 
@@ -52,13 +54,13 @@ Date: 2026-09-23T13:11:49.819Z; author: J; on behalf of: not stated
 
 Date: 2026-09-23T13:12:32.066Z; author: Linear; on behalf of: not stated
 
-The latest project comment confirms the stated evidence. The September 18 pause on [Concord](https://linear.app/jons-garage/project/concord-91fa7cbb5a67) has no later explicit resumption; today’s request authorizes this advisory only.
+The latest project comment confirms the stated evidence. The September 18 pause on Concord (private source retained separately) has no later explicit resumption; today’s request authorizes this advisory only.
 
-1. **Scheduler acceptance first upon resumption:** [JON-139](https://linear.app/jons-garage/issue/JON-139/correct-six-scheduler-harness-audit-findings-in-pr-33) is Done; PR [Add deterministic Concord scheduler simulation harness](https://linear.app/jons-garage/review/add-deterministic-concord-scheduler-simulation-harness-2efbb11d017a) is still a draft but has passing Node 22/24 checks at `e4b979d`. The remaining gate is [JON-140](https://linear.app/jons-garage/issue/JON-140/review-corrected-scheduler-harness-for-jon-128-acceptance), then acceptance of [JON-128](https://linear.app/jons-garage/issue/JON-128/build-concord-scheduler-simulation-and-test-harness); [JON-127](https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches) follows that acceptance.
-2. **AGT is blocked before acceptance:** PR [Add Concord governance sandbox and audit remediation](https://linear.app/jons-garage/review/add-concord-governance-sandbox-and-audit-remediation-4889b1a6c5c1) remains a draft with failed/canceled checks at `b332c23`. The audit items remain open: [JON-130](https://linear.app/jons-garage/issue/JON-130/agt-a-reconcile-security-contracts-and-implement-policy-adapter), [JON-132](https://linear.app/jons-garage/issue/JON-132/agt-c-domain-writer-transactional-capability-use-and-durable-audit), [JON-133](https://linear.app/jons-garage/issue/JON-133/agt-d-local-governed-agent-end-to-end-harness) are In Review, and [JON-135](https://linear.app/jons-garage/issue/JON-135/agt-f-independent-adversarial-verification-and-acceptance-report) is In Progress. Newer audit evidence should prevail over earlier local-pass claims.
-3. **Independent review gates:** [JON-85](https://linear.app/jons-garage/issue/JON-85/implement-frozen-bootstrap-impeachment-specification-codex-handoff) is In Progress; [JON-86](https://linear.app/jons-garage/issue/JON-86/verify-bootstrap-impeachment-pr-against-the-frozen-specification) remains Backlog pending a real remote artifact. [JON-28](https://linear.app/jons-garage/issue/JON-28/concord-artifact-archive) is In Review and its draft PR [JON-28: verify local archive artifacts without implying delivery](https://linear.app/jons-garage/review/jon-28-verify-local-archive-artifacts-without-implying-delivery-7fe0e43e383c) has passing checks. [JON-129](https://linear.app/jons-garage/issue/JON-129/validate-processing-grid-dimensions) remains Todo and should begin with recovery/verification of prior work.
+1. **Scheduler acceptance first upon resumption:** JON-139 (private source retained separately) is Done; PR Add deterministic Concord scheduler simulation harness (private source retained separately) is still a draft but has passing Node 22/24 checks at `e4b979d`. The remaining gate is JON-140 (private source retained separately), then acceptance of JON-128 (private source retained separately); JON-127 (private source retained separately) follows that acceptance.
+2. **AGT is blocked before acceptance:** PR Add Concord governance sandbox and audit remediation (private source retained separately) remains a draft with failed/canceled checks at `b332c23`. The audit items remain open: JON-130 (private source retained separately), JON-132 (private source retained separately), JON-133 (private source retained separately) are In Review, and JON-135 (private source retained separately) is In Progress. Newer audit evidence should prevail over earlier local-pass claims.
+3. **Independent review gates:** JON-85 (private source retained separately) is In Progress; JON-86 (private source retained separately) remains Backlog pending a real remote artifact. JON-28 (private source retained separately) is In Review and its draft PR JON-28: verify local archive artifacts without implying delivery (private source retained separately) has passing checks. JON-129 (private source retained separately) remains Todo and should begin with recovery/verification of prior work.
 
-No newer completion changes the protected medical state: [JON-121](https://linear.app/jons-garage/issue/JON-121/run-android-acceptance-and-export-round-trip-validation) is Done and archived; [JON-122](https://linear.app/jons-garage/issue/JON-122/migrate-and-validate-real-medical-records) is archived/deferred. [JON-115](https://linear.app/jons-garage/issue/JON-115/pilot-the-experiment-first-research-protocol) currently shows Backlog, consistent with its project’s paused state—not active work.
+No newer completion changes the protected medical state: JON-121 (private source retained separately) is Done and archived; JON-122 (private source retained separately) is archived/deferred. JON-115 (private source retained separately) currently shows Backlog, consistent with its project’s paused state—not active work.
 
 Evidence sources: GitHub for commits, checks, diffs, and PR review; Figma/Lovable for UI acceptance only; Vercel for deployed non-private behavior; Hugging Face and research tools for reproducible public research evidence; SharePoint only for authorized non-private artifacts. None should be used to access deferred medical records.
 
@@ -78,12 +80,12 @@ Please confirm or correct the next step: is JON-140 the remaining acceptance tas
 
 Date: 2026-09-23T13:03:53.994Z; author: Linear; on behalf of: not stated
 
-Yes—[JON-140](https://linear.app/jons-garage/issue/JON-140/review-corrected-scheduler-harness-for-jon-128-acceptance) is the remaining acceptance task. [JON-139](https://linear.app/jons-garage/issue/JON-139/correct-six-scheduler-harness-audit-findings-in-pr-33) is complete for correction delivery; [JON-128](https://linear.app/jons-garage/issue/JON-128/build-concord-scheduler-simulation-and-test-harness) remains pending an evidence-based acceptance review.
+Yes—JON-140 (private source retained separately) is the remaining acceptance task. JON-139 (private source retained separately) is complete for correction delivery; JON-128 (private source retained separately) remains pending an evidence-based acceptance review.
 
 I inspected source at PR head `e4b979dea42e606bc8ac0b64b458bb084d8ad3a6` (base `40f647e5b8d23307f713fc3a3753a1d3a46611cb`), not just the supplied delivery report. I found no additional verified defect in the reviewed scope:
 
-* The six corrections are represented in implementation and focused regressions: executed-policy provenance, same-round authority-write rejection, wait metrics, Unicode ordering, immutable authority receipts, and copied/frozen checker evidence. See [audit regressions](<#file-test/scheduler/audit-regressions.test.js>), [harness](<#file-test/scheduler/harness.js>), and [fixture validation](<#file-test/scheduler/fixtures.js>).
+* The six corrections are represented in implementation and focused regressions: executed-policy provenance, same-round authority-write rejection, wait metrics, Unicode ordering, immutable authority receipts, and copied/frozen checker evidence. See audit regressions (historical attachment link unavailable), harness (historical attachment link unavailable), and fixture validation (historical attachment link unavailable).
 * Current PR metadata confirms draft/unmerged status, no conflicts, and successful Node 22/24 checks. The historical claim that ten tests fail at `9965976` remains **supplied evidence**; I did not execute that old revision.
 * The remaining prerequisite is a reviewer-recorded PASS or specific findings against the exact head—not merge, deployment, or production readiness.
 
-Intentionally deferred scope is clearly documented: this is synthetic evaluation infrastructure, with no production checker/authorization service, policy registry or approval, live adaptation, rollout, or candidate-method selection. See [scope boundaries](<#file-test/scheduler/README.md>).
+Intentionally deferred scope is clearly documented: this is synthetic evaluation infrastructure, with no production checker/authorization service, policy registry or approval, live adaptation, rollout, or candidate-method selection. See scope boundaries (historical attachment link unavailable).

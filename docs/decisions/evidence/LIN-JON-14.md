@@ -1,8 +1,10 @@
 # Evidence snapshot: Workbench shell and navigation
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `02510fae70c901669a851d2783b5bb857843c63e`; original SHA-256: `d098f9019263f04b4418f82694f98d6423501a38e542a8ab3fe3bdd315fccfeb`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-14/workbench-shell-and-navigation
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:31.273Z
 - Source date: 2026-09-19T04:16:31.273Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Workbench shell, navigation, floating-window and module-mounting design. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own the shell/navigation/window contract and integration slots. <issue id="fa39a3bb-8e99-433f-9aa2-00c1fab50ba4" href="https://linear.app/jons-garage/issue/JON-23/global-search-autocomplete-and-indexed-library">JON-23</issue> alone owns search/index behavior; <issue id="88373de2-d0e1-4cbf-8021-525be96c5a50" href="https://linear.app/jons-garage/issue/JON-29/institutional-learning-library-and-interactive-guides">JON-29</issue> owns guide content; <issue id="444552bc-0804-4de8-862d-7952762ab334" href="https://linear.app/jons-garage/issue/JON-27/touch-gesture-midi-and-mobile-interaction-layer">JON-27</issue> owns shared input/audio behavior; <issue id="21733ce2-5780-4f9e-8e55-d6a157c2bd50" href="https://linear.app/jons-garage/issue/JON-22/interactive-data-atlas-and-graph-standard">JON-22</issue> owns graph presentation. Consume their interfaces without rewriting their specifications. Preserve <issue id="ba724b93-fe3c-42ed-8921-b13dde7fe2f0" href="https://linear.app/jons-garage/issue/JON-55/homepage-artwork-approved-master-and-reusable-editing-workflow">JON-55</issue>'s completed artwork archive.
+**Exclusive ownership:** Own the shell/navigation/window contract and integration slots. JON-23 (private source reference withheld) alone owns search/index behavior; JON-29 (private source reference withheld) owns guide content; JON-27 (private source reference withheld) owns shared input/audio behavior; JON-22 (private source reference withheld) owns graph presentation. Consume their interfaces without rewriting their specifications. Preserve JON-55 (private source reference withheld)'s completed artwork archive.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 

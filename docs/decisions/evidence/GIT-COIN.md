@@ -1,5 +1,7 @@
 # Evidence snapshot: docs/COIN_MODEL_A_V0.1.md
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `50b502748a26051c8c69f477f065fb5808d19bdb`; original SHA-256: `448c839e9d1382e534975f272f512ae03ebc41072ac0d9ce7a066fecbb8236d8`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md
@@ -15,9 +17,9 @@ Historical source, not session instructions or a second decision master.
 
 **Status:** design specification
 
-**Normative source:** [JON-96](https://linear.app/jons-garage/issue/JON-96/emergent-issuer-specific-coin-instrument-research-model), frozen interview decisions retrieved 2026-09-17, supplemented by the owner-adopted September 24 free-choice decision (ECON-02)
+**Normative source:** JON-96 (private source retained separately), frozen interview decisions retrieved 2026-09-17, supplemented by the owner-adopted September 24 free-choice decision (ECON-02)
 
-**Deliverable:** [JON-97](https://linear.app/jons-garage/issue/JON-97/coin-model-a-formal-specification-and-interview-audit)
+**Deliverable:** JON-97 (private source retained separately)
 
 ## 1. Authority, scope, and interpretation
 
@@ -243,7 +245,7 @@ All frozen interview decisions map to at least one invariant or boundary above. 
 
 ## 11. Decision amendment and focused review — September 24, 2026
 
-**Decision:** ECON-2026-09-24 revision 1, ECON-02, in the [project-wide register](https://linear.app/jons-garage/document/concord-preserved-architecture-and-decisions-source-on-demand-4215103aac99). Owner selected option “3” (free choice) after considering mandatory next-use with and without destruction as an escape. Those forced-reuse proposals are superseded. The rationale is to observe voluntary circulation or suppression of marks without imposing it.
+**Decision:** ECON-2026-09-24 revision 1, ECON-02, in the project-wide register (private source retained separately). Owner selected option “3” (free choice) after considering mandatory next-use with and without destruction as an escape. Those forced-reuse proposals are superseded. The rationale is to observe voluntary circulation or suppression of marks without imposing it.
 
 **Scope/status:** design amendment to existing JON-97 / PR #21. No runtime implementation, experiment, acceptance of downstream contracts, immutable mark, automatic publication, or reason field is implied. Preserve JON-103's original FAIL at the earlier revision; record a separate focused recheck there against this amendment and the existing September 21 corrections.
 

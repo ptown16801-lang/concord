@@ -1,8 +1,10 @@
 # Evidence snapshot: Research Execution Protocol — Experiment-First Case Study
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ba1da3032c33edfd0a173440647222447ed6ce70`; original SHA-256: `d2a14e6cbbb35846879773ed819f165bb47a2c83c0ccc94b873412efd0383848`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/research-execution-protocol-experiment-first-case-study-c1b77765cb16
+- Source: [private source reference withheld]
 - Version: 2026-09-18T05:55:39.062Z
 - Source date: 2026-09-18T05:55:39.062Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00

@@ -1,8 +1,10 @@
 # Evidence snapshot: Interactive data atlas and graph standard
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `79e1c4c08efc3b55df78a5d0cd5f95309b39ca25`; original SHA-256: `4c12df29491565c23be3037e171eaab0ad9fc6426beeea2e691344055143c70c`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-22/interactive-data-atlas-and-graph-standard
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:46.442Z
 - Source date: 2026-09-19T04:16:46.442Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Data Atlas, checkpoint projection and graph presentation contract. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own the checkpoint/typed-relationship presentation and permission-safe neighborhood projection contract, chart choice and graph-specific interaction requirements. Consume source event/record identities from their canonical owners; <issue id="2265cde3-4122-4c70-9fea-3ee4038eaf31" href="https://linear.app/jons-garage/issue/JON-18/archivist-records-and-publication-model">JON-18</issue> owns publication records and <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> owns authorization controls. <issue id="b9661f0b-dc93-485a-840e-49b9c7903ec3" href="https://linear.app/jons-garage/issue/JON-21/relational-and-temporal-observatory">JON-21</issue> owns relational metrics; <issue id="4ff79420-33e1-4ae3-9dba-ab264dd6101c" href="https://linear.app/jons-garage/issue/JON-24/decision-propagation-catalog-and-replay-engine">JON-24</issue> owns propagation transitions; <issue id="444552bc-0804-4de8-862d-7952762ab334" href="https://linear.app/jons-garage/issue/JON-27/touch-gesture-midi-and-mobile-interaction-layer">JON-27</issue> owns shared gestures. Research Library projections remain optional held interfaces under <issue id="ceb61410-e21f-4a02-b629-7c62fc18943e" href="https://linear.app/jons-garage/issue/JON-52/research-library-deep-link-and-module-integration-contract">JON-52</issue>; do not recreate its graph or make its parked work block non-Library design.
+**Exclusive ownership:** Own the checkpoint/typed-relationship presentation and permission-safe neighborhood projection contract, chart choice and graph-specific interaction requirements. Consume source event/record identities from their canonical owners; JON-18 (private source reference withheld) owns publication records and JON-17 (private source reference withheld) owns authorization controls. JON-21 (private source reference withheld) owns relational metrics; JON-24 (private source reference withheld) owns propagation transitions; JON-27 (private source reference withheld) owns shared gestures. Research Library projections remain optional held interfaces under JON-52 (private source reference withheld); do not recreate its graph or make its parked work block non-Library design.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 
@@ -58,7 +60,7 @@ Still incomplete / requiring validation:
 * chart-by-chart verification of scaling, sensitivity, density, and meaningful use of available space;
 * complete crosshair/value-readout/pan/zoom coverage where applicable;
 * physical phone/device interaction and accessibility regression;
-* proof that Data Atlas projections of Research Library relationships consume canonical GOV IDs without forking graph state, coordinated with <issue id="ceb61410-e21f-4a02-b629-7c62fc18943e" href="https://linear.app/jons-garage/issue/JON-52/research-library-deep-link-and-module-integration-contract">JON-52</issue>;
+* proof that Data Atlas projections of Research Library relationships consume canonical GOV IDs without forking graph state, coordinated with JON-52 (private source reference withheld);
 * replacement of any remaining illustrative/filler visualization with domain-appropriate data encodings.
 
 Current status is Backlog for visualization design and acceptance planning; historical framework evidence does not establish those criteria.

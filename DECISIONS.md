@@ -1,12 +1,6 @@
 # Concord decisions
 
-**Integration-ready candidate · coverage 2026-09-24.** Canonical identity: repository
-`ptown16801-lang/concord`, path `/DECISIONS.md`, designated integration branch `Develo`.
-Candidate branch: `docs/decisions-consolidation-20260924`, based on
-`29ca0b44cf8d911df6978e84c7a91e7777afd304`. Until integration, this is a proposed
-consolidation of existing decisions, not an assertion that Develo already contains it.
-Other branch copies and source snapshots are not coequal masters. Integration into
-Develo is the documentation destination, not approval of unrelated product branches.
+**Decision register · source coverage 2026-09-24.** Canonical location: `ptown16801-lang/concord`, `Develo`, `/DECISIONS.md`. This register is published in the default branch. Individual entries retain their recorded scope, acceptance, implementation, and evidence limits. A copy on another branch may contain proposed changes; compare its exact revision with the default before relying on it. Publication does not adopt a proposal, approve unrelated product branches, or establish deployment.
 
 Later explicit owner corrections control over conflicting summaries. Acceptance is
 separate from implementation, verification, publication and execution permission.
@@ -1020,7 +1014,7 @@ Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo 
 
 - Status: Accepted
 - Scope: Material Concord decisions; advisory consultation, not authority transfer
-- Acceptance: Exact owner instruction recovered from user message line 237 in session 01a0d5a3-a74c-72c3-9928-603f4ae64bcc; retained under the existing ID in local commit 4a44f4f.
+- Acceptance: Owner instruction retained in source OWNER-LINEAR-CONSULT and under the existing decision ID in local commit 4a44f4f. The original provenance is retained privately.
 - Acceptance date: 2026-09-24
 - Sources: [OWNER-LINEAR-CONSULT](docs/decisions/evidence/OWNER-LINEAR-CONSULT.md), [LOCAL-WORKFLOW-CONTINUATION](docs/decisions/evidence/LOCAL-WORKFLOW-CONTINUATION.md)
 - Supersedes: None

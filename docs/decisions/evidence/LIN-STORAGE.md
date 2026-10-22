@@ -1,8 +1,10 @@
 # Evidence snapshot: Research Data Storage & Context Policy
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `7600f01d8e46dcbdbb4d3cd6e25e0f5ebee84b88`; original SHA-256: `a97838f7fa5a8b9e3b2004b7d0b3ff42e523abc66765c89447e88e3667eac60d`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/research-data-storage-and-context-policy-48eb47b813ec
+- Source: [private source reference withheld]
 - Version: 2026-09-18T06:01:54.390Z
 - Source date: 2026-09-18T06:01:54.390Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00

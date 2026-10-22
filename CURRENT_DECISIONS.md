@@ -1,9 +1,9 @@
 # Current Concord decisions — generated navigation
 
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
-This branch remains a candidate until integrated. Read entry scope, acceptance and implementation limits.
+This summary describes the decision file in this checkout. Read entry scope, acceptance and implementation limits; publication does not establish acceptance or deployment.
 
-Master SHA-256 (exact UTF-8 bytes): `e71f1a349c92ffd0fb33b34a472445690457fe8cbce206f382f63ea59749be68`
+Master SHA-256 (exact UTF-8 bytes): `284b8ef8b5a85a5264cf22e82a927e038039d00b21e5a3baf79432bc0ccb6f13`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.

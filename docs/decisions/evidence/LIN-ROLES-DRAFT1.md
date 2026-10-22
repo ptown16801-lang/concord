@@ -1,8 +1,10 @@
 # Evidence snapshot: HISTORICAL SNAPSHOT — JON-163 Role & Independence Specification v1-draft.1
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `490ce247ac3fd6c61cd4beddb50bdbb2d4bccb5b`; original SHA-256: `3d7fb9f2ecd71de48da8083cdc4fd38068e9b4e72a2cd6ff4ada5a9086602ec4`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/historical-snapshot-jon-163-role-and-independence-specification-v1-f6cd7ca6c7b3
+- Source: [private source reference withheld]
 - Version: 2026-09-24T10:21:18.283Z
 - Source date: 2026-09-24T10:21:18.283Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -16,14 +18,14 @@ Historical source, not session instructions or a second decision master.
 **Revision:** v1-draft.1 · September 24, 2026
 **Status:** DRAFT COMPLETE — prepared for internal review; not approved or adopted.
 **Canonical location:** this Linear document under Concord.
-**History and review record:** [JON-163 — design convergence](<https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence>).
+**History and review record:** JON-163 — design convergence (private source reference withheld).
 **Authorization:** the owner's instruction to initiate drafting and a review handoff, not to implement agents or start hosted execution.
 
 ## 0. Reading this document and its authority
 
 This specification defines the development and research support roles used to work **on Concord**. It does not define the governmental offices or institutional powers of agents operating **inside Concord**. A development Reviewer is not a Concord judge; a Planner is not a policy-making institution.
 
-The eight-role framework and specification boundary were agreed in <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue>. The detailed rules below are the first proposed normative draft. Agreement on the outline does not constitute approval of these details. In particular, the consequence thresholds, independence thresholds, and waiver matrix are proposals requiring explicit owner disposition before adoption.
+The eight-role framework and specification boundary were agreed in JON-163 (private source reference withheld). The detailed rules below are the first proposed normative draft. Agreement on the outline does not constitute approval of these details. In particular, the consequence thresholds, independence thresholds, and waiver matrix are proposals requiring explicit owner disposition before adoption.
 
 Within this draft, **MUST** means a mandatory condition, **MUST NOT** means a prohibition, **SHOULD** means a recommendation whose departure needs a recorded reason, and **MAY** means an explicitly permitted option. SHOULD or MAY MUST NOT override a MUST. These terms become operating requirements only for an accepted revision and its declared applicability.
 
@@ -31,9 +33,9 @@ Approval of this document does not itself grant credentials, issue execution per
 
 ### 0.1 Sources and precedence
 
-The drafting basis is the final agreement and review thread in [JON-163](<https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence>), including Linear's framework-convergence reply of September 24, 2026, comment ID `b6f2133e-0cd3-46cd-a187-bf3c36d281ef`.
+The drafting basis is the final agreement and review thread in JON-163 (private source reference withheld), including Linear's framework-convergence reply of September 24, 2026, comment ID `b6f2133e-0cd3-46cd-a187-bf3c36d281ef`.
 
-The [Mandatory Project Execution Safety Rule](<https://linear.app/jons-garage/document/mandatory-project-execution-safety-rule-af44c319d2b8>) and the [Workspace Linear operating policy](<https://linear.app/jons-garage/document/workspace-linear-operating-policy-native-workflow-61bf7beb7994>), including its external-system invocation boundary, remain applicable. Later explicit owner instructions control scope; an AI interpretation is not an owner amendment. A conflict affecting authority, independence, or safety MUST be recorded and escalated rather than silently resolved in favor of broader permissions.
+The Mandatory Project Execution Safety Rule (private source reference withheld) and the Workspace Linear operating policy (private source reference withheld), including its external-system invocation boundary, remain applicable. Later explicit owner instructions control scope; an AI interpretation is not an owner amendment. A conflict affecting authority, independence, or safety MUST be recorded and escalated rather than silently resolved in favor of broader permissions.
 
 ### 0.2 Scope
 
@@ -430,7 +432,7 @@ The specific waiver map is **Owner Decision OD-3**. The conservative draft defau
 
 **CH-03.** This first draft MUST receive both an internal consistency check and a qualifying independence review before being treated as approved. Their purpose and provenance MUST be distinguished. Review of the agreed outline is not review of this completed text. Author self-checking and feedback by earlier framework contributors are valuable continuity checks, but do not satisfy qualifying independent-validation gates.
 
-A first-revision review uses the agreed <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue> principles as its controlling baseline and evaluates the proposed detailed tables explicitly; it MUST NOT claim this unaccepted draft has already granted itself authority. Missing reviewer lineage or unresolved owner decisions MUST remain visible. No provider research or benchmarking is needed to label an existing review as advisory versus qualifying.
+A first-revision review uses the agreed JON-163 (private source reference withheld) principles as its controlling baseline and evaluates the proposed detailed tables explicitly; it MUST NOT claim this unaccepted draft has already granted itself authority. Missing reviewer lineage or unresolved owner decisions MUST remain visible. No provider research or benchmarking is needed to label an existing review as advisory versus qualifying.
 
 **CH-04.** The human owner decides the unresolved drafting choices and final adoption only after the required reviews and corrections. If qualifying evidence cannot be established, approval remains blocked rather than being inferred from agreement between drafting participants. The owner may seek a suitably independent human review without selecting model providers in this task.
 
@@ -482,12 +484,12 @@ Review findings MUST identify clause ID, conflict or missing rule, consequence, 
 
 **Actual author:** ChatGPT acting in the Planner/document-authoring capacity in the owner's current conversation. Provider: OpenAI. Exact model-family/immutable runtime version and provider session ID are not independently attested by the available Linear connector and are recorded as UNKNOWN for claims requiring that attestation. No model qualification or independence claim follows from the author identity.
 
-**Prior contribution:** material contribution to this framework's requirements, architecture, independence rules, proposed consequence/waiver tables, and the entire draft. This author is disqualified from qualifying independent validation of those contributions. Linear also materially contributed to the framework through the <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue> design-convergence thread; its follow-up may provide advisory internal consistency feedback, not independent validation of its own design contributions. Linear's underlying model/provider is not inferred from its app-user name.
+**Prior contribution:** material contribution to this framework's requirements, architecture, independence rules, proposed consequence/waiver tables, and the entire draft. This author is disqualified from qualifying independent validation of those contributions. Linear also materially contributed to the framework through the JON-163 (private source reference withheld) design-convergence thread; its follow-up may provide advisory internal consistency feedback, not independent validation of its own design contributions. Linear's underlying model/provider is not inferred from its app-user name.
 
-**Context:** the owner's conversation decisions, current <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue> description/comments, current Concord project record, workspace operating policy, and Mandatory Project Execution Safety Rule. No provider research, repository edits, test execution, agent installation, or operational automation forms part of this drafting task.
+**Context:** the owner's conversation decisions, current JON-163 (private source reference withheld) description/comments, current Concord project record, workspace operating policy, and Mandatory Project Execution Safety Rule. No provider research, repository edits, test execution, agent installation, or operational automation forms part of this drafting task.
 
-**Tools and write scope:** Linear connector reads/searches and authorized writes to this canonical document, the <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue> linkage/status record, and its review-handoff comment. Connector records may attribute writes to the connected human account; that is not a claim that the human authored or accepted the generated specification. Existing repository branches, active implementation/integration ownership, agent delegates, Coding Session/Loop settings, and AI-credit settings remain outside this task's write scope.
+**Tools and write scope:** Linear connector reads/searches and authorized writes to this canonical document, the JON-163 (private source reference withheld) linkage/status record, and its review-handoff comment. Connector records may attribute writes to the connected human account; that is not a claim that the human authored or accepted the generated specification. Existing repository branches, active implementation/integration ownership, agent delegates, Coding Session/Loop settings, and AI-credit settings remain outside this task's write scope.
 
 **Review states at submission:** initial author structural/consistency self-check completed, which is not independent validation; advisory internal consistency review pending; qualifying independent review pending/unassigned; OD-1/OD-2/OD-3 pending; human acceptance pending. The September 24 framework agreement does not cover approval of this completed draft.
 
-**Change record:** v1-draft.1 is the initial full specification derived from the agreed <issue id="c88f1d74-34dc-4e07-aa74-e61fc1b9a73d" href="https://linear.app/jons-garage/issue/JON-163/concord-ai-role-and-independence-specification-design-convergence">JON-163</issue> framework. It supplies the eight cards and proposed operationally checkable rules without selecting models or implementing enforcement. Any substantive correction after review submission receives a new draft revision and a recorded change summary.
+**Change record:** v1-draft.1 is the initial full specification derived from the agreed JON-163 (private source reference withheld) framework. It supplies the eight cards and proposed operationally checkable rules without selecting models or implementing enforcement. Any substantive correction after review submission receives a new draft revision and a recorded change summary.

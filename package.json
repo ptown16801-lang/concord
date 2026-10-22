@@ -1,5 +1,6 @@
 {
   "name": "concord",
+  "description": "Research and experimental components for persistent AI identities, collaboration, agreements, and institutions.",
   "version": "0.1.0",
   "private": true,
   "type": "module",

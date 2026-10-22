@@ -1,8 +1,10 @@
 # Evidence snapshot: Define adjudication route after checker finds no objective violation
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `51d37db36161ab7d743748d5de837a9bdb85f97a`; original SHA-256: `01b6e56c59efa871f561ae1d8036b35768e5e6637b97efd2aaf874ca1a1825a2`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-32/define-adjudication-route-after-checker-finds-no-objective-violation
+- Source: [private source reference withheld]
 - Version: 2026-09-18T21:34:07.825Z
 - Source date: 2026-09-18T21:34:07.825Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,4 +23,4 @@ A petitioner may reach the judiciary only through a **separate admission gate** 
 
 If admitted, the interpretive question proceeds to the competent court under the judiciary's lawful jurisdiction. Preserve the checker result, challenged scheduler action, petition, admission decision/reasons, and subsequent judicial record as linked append-only provenance.
 
-Consistent with <issue id="200fe456-c2a1-43a3-ac7f-9995dedb43ad" href="https://linear.app/jons-garage/issue/JON-30/resolve-outstanding-governance-architecture-decisions">JON-30</issue> institutional self-rule, the responsible institution/implementation team may define ordinary procedural mechanics for the admission process, provided they preserve neutrality, due-process floors, authoritative records, and the boundary that the admission gate does not itself adjudicate the merits.
+Consistent with JON-30 (private source reference withheld) institutional self-rule, the responsible institution/implementation team may define ordinary procedural mechanics for the admission process, provided they preserve neutrality, due-process floors, authoritative records, and the boundary that the admission gate does not itself adjudicate the merits.

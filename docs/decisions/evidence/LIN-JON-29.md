@@ -1,8 +1,10 @@
 # Evidence snapshot: Institutional learning library and interactive guides
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `cc815b7690aea89132c854174d9d8b476aefbac2`; original SHA-256: `0a5ac8549d00c60815eff979ecf0163ca5d4a2931d67645a042b9c6040438dd6`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-29/institutional-learning-library-and-interactive-guides
+- Source: [private source reference withheld]
 - Version: 2026-09-19T04:16:33.634Z
 - Source date: 2026-09-19T04:16:33.634Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -21,7 +23,7 @@ This issue remains **Backlog** and does not start automatically. Any issue-speci
 
 **Deliverable:** Institutional guide corpus and learning-reference contract. Current state remains Backlog with no delegate. Linear is being used for design, specification, dependencies and acceptance planning. No application coding, rebuild, PR, test run, source-recovery run, deployment or child-worker launch is authorized by this issue. Older implementation scopes/checkpoints below are reference history, not dispatch instructions.
 
-**Exclusive ownership:** Own guide content reconciliation, stable page/topic identity, source citations and distinction between fictional examples and accepted rules. <issue id="fa39a3bb-8e99-433f-9aa2-00c1fab50ba4" href="https://linear.app/jons-garage/issue/JON-23/global-search-autocomplete-and-indexed-library">JON-23</issue> alone owns global indexing/help retrieval; <issue id="01ec4151-6043-4196-af21-78c6eaf3f8e1" href="https://linear.app/jons-garage/issue/JON-14/workbench-shell-and-navigation">JON-14</issue> owns floating-reader hosting. Research Library paper identities and optional cross-links remain under <issue id="3f634998-36ca-4a68-a9c9-e3a802d9e808" href="https://linear.app/jons-garage/issue/JON-26/research-library-google-drive-scientific-archive-and-context-graph">JON-26</issue>/<issue id="ceb61410-e21f-4a02-b629-7c62fc18943e" href="https://linear.app/jons-garage/issue/JON-52/research-library-deep-link-and-module-integration-contract">JON-52</issue> and held. Adaptive quizzes, question banks, grading, quiz reinforcement and quiz-sourced examples/data are excluded entirely and remain future-only work outside this issue.
+**Exclusive ownership:** Own guide content reconciliation, stable page/topic identity, source citations and distinction between fictional examples and accepted rules. JON-23 (private source reference withheld) alone owns global indexing/help retrieval; JON-14 (private source reference withheld) owns floating-reader hosting. Research Library paper identities and optional cross-links remain under JON-26 (private source reference withheld)/JON-52 (private source reference withheld) and held. Adaptive quizzes, question banks, grading, quiz reinforcement and quiz-sourced examples/data are excluded entirely and remain future-only work outside this issue.
 
 **Completion evidence for design:** one source-linked specification or gap/decision record, explicit inputs/outputs, named canonical dependency owners, and reviewable acceptance criteria. Reuse accepted decisions and existing artifacts; an already completed deliverable is referenced, not reassigned. Source/runtime gaps block only affected future execution, not independent design work.
 
@@ -35,7 +37,7 @@ Before any later project-specific implementation, resolve the exact editable Wor
 
 ## Boundary with Research Library
 
-This issue owns the **Institutional Learning Library / generated guides corpus**. It is a separate content surface from the scientific Research Library in <issue id="3f634998-36ca-4a68-a9c9-e3a802d9e808" href="https://linear.app/jons-garage/issue/JON-26/research-library-google-drive-scientific-archive-and-context-graph">JON-26</issue>. It may cross-link to scientific papers where useful, but it must not share canonical identity, page state, attachment-verification logic, or research graph ownership with the Research Library.
+This issue owns the **Institutional Learning Library / generated guides corpus**. It is a separate content surface from the scientific Research Library in JON-26 (private source reference withheld). It may cross-link to scientific papers where useful, but it must not share canonical identity, page state, attachment-verification logic, or research graph ownership with the Research Library.
 
 Integrate the generated Concord learning corpus into the Workbench library/search system.
 
@@ -55,4 +57,4 @@ Remaining work includes:
 * contextual-help integration coverage;
 * browser/mobile regression of reader navigation and cross-module links.
 
-Research Library cross-link requirements are coordinated with <issue id="ceb61410-e21f-4a02-b629-7c62fc18943e" href="https://linear.app/jons-garage/issue/JON-52/research-library-deep-link-and-module-integration-contract">JON-52</issue>; the generated learning corpus remains a separate identity/content system.
+Research Library cross-link requirements are coordinated with JON-52 (private source reference withheld); the generated learning corpus remains a separate identity/content system.

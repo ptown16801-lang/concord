@@ -1,8 +1,10 @@
 # Evidence snapshot: Review lane A — governance foundation design acceptance
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `27cbe90746bd6d20f4de80a821d1dfaf75041f3b`; original SHA-256: `635e8f868257f055716538884f1444cc08df769f1009333a821dcfe0032be1a3`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-109/review-lane-a-governance-foundation-design-acceptance
+- Source: [private source reference withheld]
 - Version: 2026-09-18T21:36:24.252Z
 - Source date: 2026-09-18T21:36:24.252Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 Independent acceptance lane for delivered governance-foundation designs.
 
-Targets: <issue id="9456331b-a71c-4a13-beb6-b627a381d12f" href="https://linear.app/jons-garage/issue/JON-15/persistent-identity-memory-and-succession-model">JON-15</issue> Persistent identity/memory/succession; <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue> Scheduler/checker/continuity; <issue id="23e7c7df-a9fe-4ba3-b920-5079a466bb25" href="https://linear.app/jons-garage/issue/JON-17/security-gateways-domain-authorization-and-authoritative-stores">JON-17</issue> Security gateways/domain authorization/authoritative stores.
+Targets: JON-15 (private source reference withheld) Persistent identity/memory/succession; JON-16 (private source reference withheld) Scheduler/checker/continuity; JON-17 (private source reference withheld) Security gateways/domain authorization/authoritative stores.
 
 Review each target independently against its current issue contract and delivered PR/artifact. Confirm consistency with settled owner decisions and cross-issue ownership boundaries. Do not redesign the system.
 
@@ -26,7 +28,7 @@ Shared rules:
 * PASS: mark the reviewed issue Done if no explicit unresolved acceptance condition remains, and release downstream blockers.
 * FAIL: move reviewed issue to Todo or Backlog as appropriate and prepend/record only the exact failed criteria and smallest correction required. Reuse the same issue/artifact; do not create duplicate implementation tracks unless the correction truly requires a distinct bounded task.
 * Escalate to owner only for a genuinely reserved owner-level product/governance choice not already decided.
-* HARD EXCLUSION: no quiz work of any kind, including <issue id="9eb987e4-62a4-4997-82a3-8529bbb87e59" href="https://linear.app/jons-garage/issue/JON-47/build-quiz-report-and-blind-evaluation-interface">JON-47</issue>/<issue id="d60d3401-d509-463d-8a74-20049219f26f" href="https://linear.app/jons-garage/issue/JON-64/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-64</issue>/<issue id="1b679ff0-e5b0-48a2-8492-a70498f274c0" href="https://linear.app/jons-garage/issue/JON-65/future-adaptive-llm-quiz-and-reinforcement-curriculum">JON-65</issue> or similar scope.
+* HARD EXCLUSION: no quiz work of any kind, including JON-47 (private source reference withheld)/JON-64 (private source reference withheld)/JON-65 (private source reference withheld) or similar scope.
 * Never auto-merge or deploy.
 * Preserve historical evidence, hashes, PR links, comments, and accepted decisions.
 * Do not review unrelated projects.

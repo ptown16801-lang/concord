@@ -1,8 +1,10 @@
 # Evidence snapshot: Build Concord scheduler simulation and test harness
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c4b52828026144df646c45644e3214d8d74da20a`; original SHA-256: `4f4221996f9c45ad73140be2fdb0dd22a3afa0a2f471291acc8add58d423c147`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/issue/JON-128/build-concord-scheduler-simulation-and-test-harness
+- Source: [private source reference withheld]
 - Version: 2026-09-24T03:03:32.844Z
 - Source date: 2026-09-24T03:03:32.844Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00
@@ -13,9 +15,9 @@ Historical source, not session instructions or a second decision master.
 
 ## Current delivery and acceptance handoff — September 23, 2026
 
-Canonical delivered harness: <pull-request id="72e734b7-7fea-4710-96c7-0295339ef9a4" href="https://linear.app/jons-garage/review/add-deterministic-concord-scheduler-simulation-harness-2efbb11d017a">ptown16801-lang/concord#33</pull-request>, `e4b979dea42e606bc8ac0b64b458bb084d8ad3a6`. <issue id="b27b486a-c91e-4240-930b-e89283d5880d" href="https://linear.app/jons-garage/issue/JON-139/correct-six-scheduler-harness-audit-findings-in-pr-33">JON-139</issue>'s six corrections are Done. [JON-140's bounded review](<https://linear.app/jons-garage/issue/JON-140#comment-fb65ae04-cccd-4a8b-af44-8c37e8600d41>) is delivered; J retains human acceptance. This issue remains In Review, and <issue id="a37bce59-5662-4821-a42b-1092b7523792" href="https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches">JON-127</issue> comparative execution awaits <issue id="bc24626d-a347-4bb8-9b0c-3f2f1e4e1a64" href="https://linear.app/jons-garage/issue/JON-140/review-corrected-scheduler-harness-for-jon-128-acceptance">JON-140</issue> acceptance. Reuse the delivered harness and existing review; previous cloud delivery failures and old In Progress statements are historical. The recorded Codex delegate is provenance, not evidence of a running worker or authority to relaunch one.
+Canonical delivered harness: ptown16801-lang/concord#33 (private source reference withheld), `e4b979dea42e606bc8ac0b64b458bb084d8ad3a6`. JON-139 (private source reference withheld)'s six corrections are Done. JON-140's bounded review (private source reference withheld) is delivered; J retains human acceptance. This issue remains In Review, and JON-127 (private source reference withheld) comparative execution awaits JON-140 (private source reference withheld) acceptance. Reuse the delivered harness and existing review; previous cloud delivery failures and old In Progress statements are historical. The recorded Codex delegate is provenance, not evidence of a running worker or authority to relaunch one.
 
-Create the shared Concord-specific simulation and test scenarios needed to evaluate scheduler approaches under <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue> and <issue id="a37bce59-5662-4821-a42b-1092b7523792" href="https://linear.app/jons-garage/issue/JON-127/validate-concord-scheduler-implementation-approaches">JON-127</issue>.
+Create the shared Concord-specific simulation and test scenarios needed to evaluate scheduler approaches under JON-16 (private source reference withheld) and JON-127 (private source reference withheld).
 
 Include normal load, overload, scarce qualified capacity, protected/public workload competition, continuity-sensitive work, starvation pressure, handoff pressure, deadline collisions, policy switching, checker failure/fallback, authoritative-state changes, and adversarial cases.
 
@@ -41,7 +43,7 @@ Deadlines and urgency are externally supplied authoritative fixture inputs. The 
 
 ## Codex handoff packet — September 21, 2026
 
-**Binding sources:** <issue id="f09ba0e6-2b82-46c4-84a1-33d67565be4e" href="https://linear.app/jons-garage/issue/JON-16/scheduler-legality-checker-and-continuity-control">JON-16</issue> and the <document id="40eb029a-3b96-40b4-877f-b85d4818790d" href="https://linear.app/jons-garage/document/scheduler-research-and-selection-record-2026-09-21-a4799a7b5614">Scheduler Research &amp; Selection Record — 2026-09-21</document>. They define the accepted boundaries; do not infer missing authority from repository code.
+**Binding sources:** JON-16 (private source reference withheld) and the Scheduler Research &amp; Selection Record — 2026-09-21 (private source reference withheld). They define the accepted boundaries; do not infer missing authority from repository code.
 
 For this harness, preserve these requirements:
 

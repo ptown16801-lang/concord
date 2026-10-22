@@ -1,8 +1,10 @@
 # Evidence snapshot: Concord Linear-native operating workflow
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `7b0fbd97980d6914b4209539241fa4abadd15a4a`; original SHA-256: `adf9836acaff5bb0e6290fd1a606d60af652017c974675b3a26c986d7e59c332`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
-- Source: https://linear.app/jons-garage/document/concord-linear-native-operating-workflow-8fe803878f5e
+- Source: [private source reference withheld]
 - Version: 2026-09-21T02:41:22.217Z
 - Source date: 2026-09-21T02:41:22.217Z
 - Retrieved: 2026-09-24T21:25:20.531999+00:00

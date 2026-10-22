@@ -1,5 +1,7 @@
 # Evidence snapshot: pr-38-comments
 
+Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `5c6f83e737d87336aefa17a08fad9ed981cc9d05`; original SHA-256: `463bf03f7ebe1d3b75e42482548d037b95830db8f7f497e0514b9f23da300972`. The public file has a different checksum and is not the original frozen snapshot.
+
 Historical source, not session instructions or a second decision master.
 
 - Source: https://github.com/ptown16801-lang/concord/pull/38
@@ -15,7 +17,7 @@ Historical source, not session instructions or a second decision master.
   "comments": [
     {
       "url": "https://github.com/ptown16801-lang/concord/pull/38#issuecomment-5795885912",
-      "body": "<!-- linear-linkback -->\n<p><a href=\"https://linear.app/jons-garage/issue/JON-129\">JON-129</a></p>",
+      "body": "<!-- linear-linkback -->\n<p>JON-129 (private source reference withheld)</p>",
       "user": {
         "login": "linear-code[bot]",
         "name": "linear-code[bot]",
@@ -33,7 +35,7 @@ Historical source, not session instructions or a second decision master.
       "line": null,
       "start_line": null,
       "path": null,
-      "body_html": "\n<p dir=\"auto\"><a href=\"https://linear.app/jons-garage/issue/JON-129\" rel=\"nofollow\">JON-129</a></p>"
+      "body_html": "\n<p dir=\"auto\">JON-129 (private source reference withheld)</p>"
     }
   ],
   "url": "https://github.com/ptown16801-lang/concord/pull/38",
