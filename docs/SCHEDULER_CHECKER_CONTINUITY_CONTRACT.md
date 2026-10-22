@@ -1,9 +1,9 @@
 # Scheduler, legality checker, and continuity contract
 This maintained copy derives from [the accepted design revision `c867015`](https://github.com/ptown16801-lang/concord/blob/c86701512a64c58ade9707d8368a48bad1e8fc03/docs/SCHEDULER_CHECKER_CONTINUITY_CONTRACT.md); [decision CON-022](../DECISIONS.md#CON-022) records its design status. Implementation and production integration are separate. Private task links have been replaced with plain source labels.
 
-Later [admission](../DECISIONS.md#CON-045) and [audit-outage](../DECISIONS.md#CON-046) requirements qualify this older contract for lawfully admitted protected operations. Its general cancellation, expiry, and resumption transitions must not cancel or require fresh admission of that retained immutable scope. Unsafe effects pause; recovery retains the recorded authority while still satisfying transaction conditions and domain invariants. This qualification does not authorize new work or waive checks for new reservations. Runtime integration remains separately unverified.
+Later [admission](../DECISIONS.md#CON-045) and [audit-outage](../DECISIONS.md#CON-046) requirements qualify this older contract for lawfully admitted protected operations. Its general cancellation, expiry, and resumption transitions must not cancel or require fresh admission of that retained immutable scope. Unsafe effects pause; recovery retains the recorded authority while still satisfying transaction conditions and domain invariants. The operative transitions below distinguish retained admission from a new reservation or extension. This reconciliation does not authorize new work or waive its checks. Runtime integration remains separately unverified.
 
-**Contract revision:** 1.0
+**Contract revision:** 1.0 design, reconciled October 22, 2026 to CON-045/CON-046
 
 **Record date:** 2026-09-17
 
@@ -107,14 +107,14 @@ RECEIVED
 PROPOSED/CHECK_PENDING -> BLOCKED_OBJECTIVE
 QUEUED/RESERVED/ACTIVE/HANDOFF_PENDING -> FROZEN_CHECKER_OUTAGE
 RESERVED/ACTIVE -> PAUSED_BY_AUTHORITY
-any nonterminal state -> CANCELLED_BY_AUTHORITY
+nonterminal work outside a lawfully admitted protected scope -> CANCELLED_BY_AUTHORITY
 ```
 
-`HELD_FOR_INPUT` is not an authorization denial: the scheduler records the status supplied by the authorization owner. `BLOCKED_OBJECTIVE` records exact failed predicates and cannot be overridden by optimizer preference. Resumption creates a new proposal/version; it does not rewrite the blocked or frozen event.
+`HELD_FOR_INPUT` is not an authorization denial: the scheduler records the status supplied by the authorization owner. `BLOCKED_OBJECTIVE` records exact failed predicates and cannot be overridden by optimizer preference. A changed allocation or new reservation creates a new proposal/version; it does not rewrite the blocked or frozen event. Resuming the unchanged scope of lawfully admitted protected work retains its original admission and authority. Later cancellation, revocation or permission expiry cannot turn that pause into cancellation of the admitted operation. Resource availability and safe execution conditions remain separate requirements.
 
 ### 4.2 Authorization state (authoritative input)
 
-`PENDING`, `VALID`, `SUSPENDED`, `REVOKED`, or `EXPIRED`. Concord verifies issuer, scope, subject/resource binding, policy generation, capability lifetime/use count, and expected version. It does not mint or reinterpret the grant. Scheduling, labeling, protection, privileged creation, or archive placement never changes this axis to `VALID`.
+`PENDING`, `VALID`, `SUSPENDED`, `REVOKED`, or `EXPIRED`. Concord verifies issuer, scope, subject/resource binding, policy generation, capability lifetime/use count, and expected version. It does not mint or reinterpret the grant. Scheduling, labeling, protection, privileged creation, or archive placement never changes this axis to `VALID`. This axis describes current grants; the immutable authority of lawfully admitted protected work is recorded separately. A later grant-state change controls new admissions and cannot revoke that retained scope.
 
 ### 4.3 Checker state
 
@@ -175,7 +175,20 @@ When neither checker is available:
 - no actor, scheduler, or operator may label work essential during the outage to bypass the freeze; and
 - outage, attempted bypasses, essential uses, checkpoint state, and recovery are recorded append-only.
 
-On restoration, Concord verifies checker/policy compatibility, expires stale reservations, and rechecks every frozen or essential-continuity proposal whose inputs, authorization, rule version, or interval changed. Work resumes from a recorded checkpoint; no outage result is silently backfilled.
+On restoration, Concord verifies checker/policy compatibility and the safety of
+resuming from the recorded checkpoint. New or changed reservations require the
+applicable fresh checks, and stale unadmitted reservations may expire. Those
+checks do not cancel or require new authority for the unchanged scope of a
+lawfully admitted protected operation. Preserve that operation's identity,
+canonical arguments, participant/domain set, expected versions and admitted
+scope; report a technical conflict rather than inventing a policy exception.
+No outage result is silently backfilled.
+
+Checker availability and audit-collector availability are separate conditions.
+For protected effects, CON-046 requires durable preservation and pause whenever
+the audit collector is unavailable; a local queue or essential-continuity
+classification is insufficient to permit execution. Resume the retained scope
+when the collector returns without duplicate effects or fabricated receipts.
 
 ## 8. Handoff checkpoints
 
@@ -199,7 +212,7 @@ An interval donation transfers offered capacity, not priority, authorization, qu
 - The donor authenticates an offer with interval, capacity units, permitted scope, and expiry.
 - Validation ensures the offer is voluntary, unencumbered, and will not breach the donor's workload, service, continuity, or procedural floors.
 - The scheduler allocates donated capacity through the ordinary eligibility, priority, rotation, authorization, and checker path.
-- The donor may withdraw unallocated capacity; allocation acceptance pins the interval unless a lawful cancellation rule applies.
+- The donor may withdraw unallocated capacity; allocation acceptance pins the interval unless a lawful cancellation rule applies to work outside an admitted protected operation. A cancellation rule for capacity cannot cancel lawfully admitted protected work or change its retained authority; inability to execute safely must be recorded and resolved within the admitted scope.
 - Unused capacity returns or expires according to the recorded rule. It creates no petition credit, queue priority, personal favor, reciprocal obligation, or authority grant.
 
 Protected donors and recipients remain opaque to the global allocator unless separately authorized for disclosure.
@@ -208,7 +221,7 @@ Protected donors and recipients remain opaque to the global allocator unless sep
 
 A continuation request asks to extend an active assignment past a checkpoint. It is not an entitlement and does not modify urgency. It records the current allocation, requested interval, checkpoint, continuity rationale class, remaining-work class, participant consent/availability, and domain attestations.
 
-The scheduler treats the request as a new versioned proposal. It may preserve the incumbent only when qualification and authorization remain valid, continuity benefit is recognized by the pinned rules, checker availability exists, and workload, rotation, deadlines, ordinary service floors, and every party's procedural floors remain satisfied. Denial returns the work to ordinary allocation at the checkpoint; it is not an adverse merits or fairness ruling.
+An extension beyond the admitted interval or scope is new work, distinct from resuming the unchanged admitted operation after an outage. The scheduler treats that extension request as a new versioned proposal. It may preserve the incumbent only when qualification and authorization remain valid, continuity benefit is recognized by the pinned rules, checker availability exists, and workload, rotation, deadlines, ordinary service floors, and every party's procedural floors remain satisfied. Denial withholds the requested extension and returns its scheduling request to ordinary allocation at the checkpoint; it cannot cancel work already lawfully admitted. It is not an adverse merits or fairness ruling.
 
 ## 11. Scheduler-rule rollout
 
@@ -256,13 +269,16 @@ Distinct colors may supplement labels but never carry the distinction alone. Eve
 7. **Interpretive challenge:** a passed action is challenged on a constitutional interpretation. The checker result is preserved, a credit receipt is linked, and the separate admission gate—not the scheduler/checker—routes or rejects the question.
 8. **Duplicate petition:** the ledger marks the filing duplicate. Its consumed credit is not refunded or merged, even if the earlier petition later succeeds.
 9. **Standby activation:** the primary loses its lease before checking a proposal. A compatible approved same-domain standby checks it. The standby cannot revisit an existing primary result.
-10. **Total checker outage:** both leases fail. Ordinary affected work freezes at checkpoints. Only a previously designated essential category proceeds for its authorized minimum interval, and recovery triggers required rechecks.
+10. **Total checker outage:** both leases fail. Ordinary affected work freezes at checkpoints. Only a previously designated essential category proceeds for its authorized minimum interval, and recovery triggers checks appropriate to new or changed reservations while preserving any existing immutable admission.
 11. **High-impact proceeding:** extra capacity is available and lawful inputs justify expedition. Allocation proceeds only while ordinary service floors and both self-represented sides' procedural floors remain satisfied; no personal rank is stored.
 12. **Handoff:** an active worker becomes unavailable. Protected details remain local, a safe checkpoint is recorded, the replacement passes current eligibility/authorization and a fresh check, and the event chain remains auditable.
 13. **Donation:** a person offers an interval. The offer cannot name an ineligible favorite or raise priority; unused capacity returns under the pinned rule and creates no credit or reciprocal claim.
 14. **Continuation:** an incumbent requests another interval. Continuity is recorded separately, and the request is denied if it would breach a service floor or rotation constraint; denial makes no fairness or merits judgment.
 15. **Canary regression:** a new enacted rule increases service-floor breaches in its canary cohort. Advancement stops and the authorized rollback is recorded; legality/authorization gates were never relaxed.
 16. **Public visualization:** capacity is healthy, urgency is high, checker state is unavailable, and authorization is valid. The Workbench shows all four facts separately and the resulting freeze, not an averaged amber score.
+
+17. **Admission retained across outage:** grant revocation, permission expiry or a cancellation request during a pause does not cancel an already lawfully admitted protected operation. Recovery preserves its scope and still satisfies transaction and invariant checks; scope expansion requires a separately authorized new operation.
+18. **Audit outage despite essential classification:** the collector is unavailable. Protected effects pause even when a local queue is secure and the work is classified essential. Recovery resumes admitted work without duplicate effects or invented receipts.
 
 ## 14. Implementation handoff gates
 
