@@ -27,7 +27,7 @@ def read_request(path):
  return data
 
 def sandbox_command(payload, mounts=()):
- return ['bwrap','--unshare-net','--unshare-pid','--die-with-parent','--dev-bind','/','/',*mounts,*payload]
+ return ['bwrap','--unshare-net','--unshare-pid','--die-with-parent','--dev-bind','/','/','--proc','/proc',*mounts,*payload]
 
 def group_exists(pgid):
  try:os.killpg(pgid,0);return True
