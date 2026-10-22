@@ -8,3 +8,8 @@ coverage/
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
+
+# Private recovery copies and local worktree navigation
+.concord-recovery/
+.concord-save-states/
+.concord-worktrees/

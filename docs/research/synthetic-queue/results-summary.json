@@ -1,0 +1,743 @@
+{
+  "synthetic_only": true,
+  "model": "single pooled FIFO server; constant attempt duration",
+  "horizon_hours": 720,
+  "arrivals_per_day": 80,
+  "outage_hours": [
+    240,
+    288
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "variants": [
+    {
+      "name": "Baseline",
+      "capacity_per_day": 100,
+      "rework_probability": 0.2,
+      "end_unfinished_median": 167.0,
+      "end_unfinished_min": 130,
+      "end_unfinished_max": 217,
+      "seed0_first_daily_match_to_no_outage": null,
+      "seed0_no_outage_summary": {
+        "arrived": 2400,
+        "completed": 2383,
+        "unfinished": 17,
+        "completed_p50_hours": 3.42,
+        "completed_p95_hours": 8.22,
+        "oldest_unfinished_hours": 6.15,
+        "attempts_finished": 2996,
+        "reworks": 613
+      }
+    },
+    {
+      "name": "More capacity",
+      "capacity_per_day": 120,
+      "rework_probability": 0.2,
+      "end_unfinished_median": 1.0,
+      "end_unfinished_min": 1,
+      "end_unfinished_max": 4,
+      "seed0_first_daily_match_to_no_outage": 23,
+      "seed0_no_outage_summary": {
+        "arrived": 2400,
+        "completed": 2399,
+        "unfinished": 1,
+        "completed_p50_hours": 0.2,
+        "completed_p95_hours": 0.8,
+        "oldest_unfinished_hours": 0.15,
+        "attempts_finished": 3016,
+        "reworks": 617
+      }
+    },
+    {
+      "name": "Less rework",
+      "capacity_per_day": 100,
+      "rework_probability": 0.1,
+      "end_unfinished_median": 1.0,
+      "end_unfinished_min": 1,
+      "end_unfinished_max": 16,
+      "seed0_first_daily_match_to_no_outage": 29,
+      "seed0_no_outage_summary": {
+        "arrived": 2400,
+        "completed": 2399,
+        "unfinished": 1,
+        "completed_p50_hours": 0.24,
+        "completed_p95_hours": 0.72,
+        "oldest_unfinished_hours": 0.15,
+        "attempts_finished": 2659,
+        "reworks": 260
+      }
+    }
+  ],
+  "representative_seed": 0,
+  "representative": {
+    "Baseline": {
+      "summary": {
+        "arrived": 2400,
+        "completed": 2219,
+        "unfinished": 181,
+        "completed_p50_hours": 41.4,
+        "completed_p95_hours": 84.72,
+        "oldest_unfinished_hours": 196.05,
+        "attempts_finished": 2796,
+        "reworks": 577
+      },
+      "daily": [
+        {
+          "day": 0,
+          "arrived": 0,
+          "completed": 0,
+          "unfinished": 0
+        },
+        {
+          "day": 1,
+          "arrived": 80,
+          "completed": 77,
+          "unfinished": 3
+        },
+        {
+          "day": 2,
+          "arrived": 160,
+          "completed": 155,
+          "unfinished": 5
+        },
+        {
+          "day": 3,
+          "arrived": 240,
+          "completed": 235,
+          "unfinished": 5
+        },
+        {
+          "day": 4,
+          "arrived": 320,
+          "completed": 306,
+          "unfinished": 14
+        },
+        {
+          "day": 5,
+          "arrived": 400,
+          "completed": 390,
+          "unfinished": 10
+        },
+        {
+          "day": 6,
+          "arrived": 480,
+          "completed": 471,
+          "unfinished": 9
+        },
+        {
+          "day": 7,
+          "arrived": 560,
+          "completed": 547,
+          "unfinished": 13
+        },
+        {
+          "day": 8,
+          "arrived": 640,
+          "completed": 630,
+          "unfinished": 10
+        },
+        {
+          "day": 9,
+          "arrived": 720,
+          "completed": 712,
+          "unfinished": 8
+        },
+        {
+          "day": 10,
+          "arrived": 800,
+          "completed": 784,
+          "unfinished": 16
+        },
+        {
+          "day": 11,
+          "arrived": 880,
+          "completed": 784,
+          "unfinished": 96
+        },
+        {
+          "day": 12,
+          "arrived": 960,
+          "completed": 784,
+          "unfinished": 176
+        },
+        {
+          "day": 13,
+          "arrived": 1040,
+          "completed": 862,
+          "unfinished": 178
+        },
+        {
+          "day": 14,
+          "arrived": 1120,
+          "completed": 950,
+          "unfinished": 170
+        },
+        {
+          "day": 15,
+          "arrived": 1200,
+          "completed": 1027,
+          "unfinished": 173
+        },
+        {
+          "day": 16,
+          "arrived": 1280,
+          "completed": 1108,
+          "unfinished": 172
+        },
+        {
+          "day": 17,
+          "arrived": 1360,
+          "completed": 1191,
+          "unfinished": 169
+        },
+        {
+          "day": 18,
+          "arrived": 1440,
+          "completed": 1268,
+          "unfinished": 172
+        },
+        {
+          "day": 19,
+          "arrived": 1520,
+          "completed": 1343,
+          "unfinished": 177
+        },
+        {
+          "day": 20,
+          "arrived": 1600,
+          "completed": 1428,
+          "unfinished": 172
+        },
+        {
+          "day": 21,
+          "arrived": 1680,
+          "completed": 1513,
+          "unfinished": 167
+        },
+        {
+          "day": 22,
+          "arrived": 1760,
+          "completed": 1586,
+          "unfinished": 174
+        },
+        {
+          "day": 23,
+          "arrived": 1840,
+          "completed": 1663,
+          "unfinished": 177
+        },
+        {
+          "day": 24,
+          "arrived": 1920,
+          "completed": 1738,
+          "unfinished": 182
+        },
+        {
+          "day": 25,
+          "arrived": 2000,
+          "completed": 1824,
+          "unfinished": 176
+        },
+        {
+          "day": 26,
+          "arrived": 2080,
+          "completed": 1902,
+          "unfinished": 178
+        },
+        {
+          "day": 27,
+          "arrived": 2160,
+          "completed": 1983,
+          "unfinished": 177
+        },
+        {
+          "day": 28,
+          "arrived": 2240,
+          "completed": 2063,
+          "unfinished": 177
+        },
+        {
+          "day": 29,
+          "arrived": 2320,
+          "completed": 2144,
+          "unfinished": 176
+        },
+        {
+          "day": 30,
+          "arrived": 2400,
+          "completed": 2219,
+          "unfinished": 181
+        }
+      ]
+    },
+    "More capacity": {
+      "summary": {
+        "arrived": 2400,
+        "completed": 2399,
+        "unfinished": 1,
+        "completed_p50_hours": 0.5,
+        "completed_p95_hours": 43.1,
+        "oldest_unfinished_hours": 0.15,
+        "attempts_finished": 3016,
+        "reworks": 617
+      },
+      "daily": [
+        {
+          "day": 0,
+          "arrived": 0,
+          "completed": 0,
+          "unfinished": 0
+        },
+        {
+          "day": 1,
+          "arrived": 80,
+          "completed": 79,
+          "unfinished": 1
+        },
+        {
+          "day": 2,
+          "arrived": 160,
+          "completed": 158,
+          "unfinished": 2
+        },
+        {
+          "day": 3,
+          "arrived": 240,
+          "completed": 238,
+          "unfinished": 2
+        },
+        {
+          "day": 4,
+          "arrived": 320,
+          "completed": 319,
+          "unfinished": 1
+        },
+        {
+          "day": 5,
+          "arrived": 400,
+          "completed": 399,
+          "unfinished": 1
+        },
+        {
+          "day": 6,
+          "arrived": 480,
+          "completed": 479,
+          "unfinished": 1
+        },
+        {
+          "day": 7,
+          "arrived": 560,
+          "completed": 559,
+          "unfinished": 1
+        },
+        {
+          "day": 8,
+          "arrived": 640,
+          "completed": 639,
+          "unfinished": 1
+        },
+        {
+          "day": 9,
+          "arrived": 720,
+          "completed": 719,
+          "unfinished": 1
+        },
+        {
+          "day": 10,
+          "arrived": 800,
+          "completed": 799,
+          "unfinished": 1
+        },
+        {
+          "day": 11,
+          "arrived": 880,
+          "completed": 799,
+          "unfinished": 81
+        },
+        {
+          "day": 12,
+          "arrived": 960,
+          "completed": 799,
+          "unfinished": 161
+        },
+        {
+          "day": 13,
+          "arrived": 1040,
+          "completed": 896,
+          "unfinished": 144
+        },
+        {
+          "day": 14,
+          "arrived": 1120,
+          "completed": 991,
+          "unfinished": 129
+        },
+        {
+          "day": 15,
+          "arrived": 1200,
+          "completed": 1089,
+          "unfinished": 111
+        },
+        {
+          "day": 16,
+          "arrived": 1280,
+          "completed": 1184,
+          "unfinished": 96
+        },
+        {
+          "day": 17,
+          "arrived": 1360,
+          "completed": 1279,
+          "unfinished": 81
+        },
+        {
+          "day": 18,
+          "arrived": 1440,
+          "completed": 1374,
+          "unfinished": 66
+        },
+        {
+          "day": 19,
+          "arrived": 1520,
+          "completed": 1476,
+          "unfinished": 44
+        },
+        {
+          "day": 20,
+          "arrived": 1600,
+          "completed": 1569,
+          "unfinished": 31
+        },
+        {
+          "day": 21,
+          "arrived": 1680,
+          "completed": 1661,
+          "unfinished": 19
+        },
+        {
+          "day": 22,
+          "arrived": 1760,
+          "completed": 1754,
+          "unfinished": 6
+        },
+        {
+          "day": 23,
+          "arrived": 1840,
+          "completed": 1839,
+          "unfinished": 1
+        },
+        {
+          "day": 24,
+          "arrived": 1920,
+          "completed": 1919,
+          "unfinished": 1
+        },
+        {
+          "day": 25,
+          "arrived": 2000,
+          "completed": 1998,
+          "unfinished": 2
+        },
+        {
+          "day": 26,
+          "arrived": 2080,
+          "completed": 2079,
+          "unfinished": 1
+        },
+        {
+          "day": 27,
+          "arrived": 2160,
+          "completed": 2159,
+          "unfinished": 1
+        },
+        {
+          "day": 28,
+          "arrived": 2240,
+          "completed": 2239,
+          "unfinished": 1
+        },
+        {
+          "day": 29,
+          "arrived": 2320,
+          "completed": 2319,
+          "unfinished": 1
+        },
+        {
+          "day": 30,
+          "arrived": 2400,
+          "completed": 2399,
+          "unfinished": 1
+        }
+      ]
+    },
+    "Less rework": {
+      "summary": {
+        "arrived": 2400,
+        "completed": 2399,
+        "unfinished": 1,
+        "completed_p50_hours": 6.36,
+        "completed_p95_hours": 44.1,
+        "oldest_unfinished_hours": 0.15,
+        "attempts_finished": 2659,
+        "reworks": 260
+      },
+      "daily": [
+        {
+          "day": 0,
+          "arrived": 0,
+          "completed": 0,
+          "unfinished": 0
+        },
+        {
+          "day": 1,
+          "arrived": 80,
+          "completed": 79,
+          "unfinished": 1
+        },
+        {
+          "day": 2,
+          "arrived": 160,
+          "completed": 159,
+          "unfinished": 1
+        },
+        {
+          "day": 3,
+          "arrived": 240,
+          "completed": 237,
+          "unfinished": 3
+        },
+        {
+          "day": 4,
+          "arrived": 320,
+          "completed": 319,
+          "unfinished": 1
+        },
+        {
+          "day": 5,
+          "arrived": 400,
+          "completed": 399,
+          "unfinished": 1
+        },
+        {
+          "day": 6,
+          "arrived": 480,
+          "completed": 478,
+          "unfinished": 2
+        },
+        {
+          "day": 7,
+          "arrived": 560,
+          "completed": 559,
+          "unfinished": 1
+        },
+        {
+          "day": 8,
+          "arrived": 640,
+          "completed": 639,
+          "unfinished": 1
+        },
+        {
+          "day": 9,
+          "arrived": 720,
+          "completed": 719,
+          "unfinished": 1
+        },
+        {
+          "day": 10,
+          "arrived": 800,
+          "completed": 799,
+          "unfinished": 1
+        },
+        {
+          "day": 11,
+          "arrived": 880,
+          "completed": 799,
+          "unfinished": 81
+        },
+        {
+          "day": 12,
+          "arrived": 960,
+          "completed": 799,
+          "unfinished": 161
+        },
+        {
+          "day": 13,
+          "arrived": 1040,
+          "completed": 889,
+          "unfinished": 151
+        },
+        {
+          "day": 14,
+          "arrived": 1120,
+          "completed": 983,
+          "unfinished": 137
+        },
+        {
+          "day": 15,
+          "arrived": 1200,
+          "completed": 1072,
+          "unfinished": 128
+        },
+        {
+          "day": 16,
+          "arrived": 1280,
+          "completed": 1163,
+          "unfinished": 117
+        },
+        {
+          "day": 17,
+          "arrived": 1360,
+          "completed": 1258,
+          "unfinished": 102
+        },
+        {
+          "day": 18,
+          "arrived": 1440,
+          "completed": 1349,
+          "unfinished": 91
+        },
+        {
+          "day": 19,
+          "arrived": 1520,
+          "completed": 1434,
+          "unfinished": 86
+        },
+        {
+          "day": 20,
+          "arrived": 1600,
+          "completed": 1529,
+          "unfinished": 71
+        },
+        {
+          "day": 21,
+          "arrived": 1680,
+          "completed": 1616,
+          "unfinished": 64
+        },
+        {
+          "day": 22,
+          "arrived": 1760,
+          "completed": 1708,
+          "unfinished": 52
+        },
+        {
+          "day": 23,
+          "arrived": 1840,
+          "completed": 1802,
+          "unfinished": 38
+        },
+        {
+          "day": 24,
+          "arrived": 1920,
+          "completed": 1890,
+          "unfinished": 30
+        },
+        {
+          "day": 25,
+          "arrived": 2000,
+          "completed": 1977,
+          "unfinished": 23
+        },
+        {
+          "day": 26,
+          "arrived": 2080,
+          "completed": 2063,
+          "unfinished": 17
+        },
+        {
+          "day": 27,
+          "arrived": 2160,
+          "completed": 2150,
+          "unfinished": 10
+        },
+        {
+          "day": 28,
+          "arrived": 2240,
+          "completed": 2238,
+          "unfinished": 2
+        },
+        {
+          "day": 29,
+          "arrived": 2320,
+          "completed": 2318,
+          "unfinished": 2
+        },
+        {
+          "day": 30,
+          "arrived": 2400,
+          "completed": 2399,
+          "unfinished": 1
+        }
+      ]
+    }
+  },
+  "historical_checks_reported": [
+    "zero arrivals",
+    "zero capacity preserves pending work",
+    "no-rework analytic service time",
+    "outage pauses remaining service",
+    "boundary completion ordering",
+    "exact seeded rerun",
+    "exact fractional arrival-before-completion tie",
+    "sustained overload",
+    "all-run conservation, unique completion and outage invariants"
+  ],
+  "provenance": {
+    "experiment_date": "2026-09-30",
+    "simulator_sha256": "0abf97d5dd7408304cab51b004b00123a240034bf406b35003b9bdc02993f2c3",
+    "full_results_sha256": "8b64d1639732c34d07d3e679f4c678962ebfb723a45da9b401441e3d1d160a6c",
+    "chart_sha256": "0d92ef1c424101776320b4aeecbc569535ff6ea4e5e6c208d5b45a054ca0299d",
+    "selection": "All original model/parameter/seed/ensemble keys; representative summary and daily snapshots only; checks_passed renamed historical_checks_reported. Per-request records and event logs omitted.",
+    "scope": "Invented inputs. No measured Concord deployment, production acceptance or empirical assumption validation."
+  }
+}
