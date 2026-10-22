@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Propagation workbench · Concord</title>
+  <link rel="stylesheet" href="/propagation.css">
+  <script type="module" src="/propagation.js"></script>
+</head>
+<body>
+  <main>
+    <header><a href="/">Concord</a><span class="badge">Synthetic pilot</span><h1>Propagation workbench</h1><p>Explore how a decision changes a run. Nothing here casts a ballot or enacts a decision.</p></header>
+    <p class="notice">Runs live only in this tab. Reloading clears them. This demonstration requires five affirmative out of seven; you can explore other counts.</p>
+    <p id="feedback" role="status" aria-live="polite">Connecting to the local simulation…</p>
+    <noscript>This workbench needs JavaScript enabled.</noscript>
+    <fieldset id="workspace" disabled>
+      <legend class="sr-only">Propagation controls</legend>
+      <div class="toolbar"><label>Selected run <select id="run-select"></select></label><button id="new-run" type="button">New run</button><span id="mode" class="badge"></span></div>
+      <div class="grid">
+        <section class="panel" aria-labelledby="replay-heading">
+          <h2 id="replay-heading">Replay history</h2>
+          <label for="prefix">Position <output id="position" for="prefix">0 / 0</output></label>
+          <input id="prefix" type="range" min="0" max="0" value="0" step="1">
+          <p id="history-hint">At the latest event.</p>
+          <ol id="timeline"></ol>
+          <p id="baseline"></p>
+        </section>
+        <section class="panel" aria-labelledby="state-heading">
+          <h2 id="state-heading">State at this position</h2>
+          <div class="state-title" id="stage">Active</div>
+          <dl><dt>Observation</dt><dd id="observation">Not observed</dd><dt>Evaluation</dt><dd id="guard">Not evaluated</dd><dt>Required affirmative</dt><dd id="threshold">—</dd><dt>Hold</dt><dd id="hold">None</dd></dl>
+          <h3>Correction notes</h3><ul id="notes"></ul>
+        </section>
+        <section class="panel" aria-labelledby="event-heading">
+          <h2 id="event-heading">Add an event</h2>
+          <form id="event-form">
+            <label>Event <select id="kind"><option value="OBSERVE">Record observation</option><option value="EVALUATE">Evaluate threshold</option><option value="HOLD">Place hold</option><option value="RELEASE">Release hold</option><option value="NOTE_CORRECTED">Add correction note</option></select></label>
+            <div id="observation-fields"><label>Denominator <input id="denominator" value="7" inputmode="numeric" maxlength="128"></label><label>Affirmative <input id="affirmative" value="5" inputmode="numeric" maxlength="128"></label></div>
+            <div id="hold-fields" hidden><label>Hold ID <input id="hold-id" value="hold-1" maxlength="128"></label></div>
+            <div id="note-fields" hidden><label>Original event <select id="note-target"></select></label><label>Reason <input id="note-reason" maxlength="2048"></label><label>Correction explanation <textarea id="note-text" rows="3" maxlength="2048"></textarea></label><p>A note preserves the original inputs and result. To try changed inputs, branch from before the observation.</p></div>
+            <p id="action-hint"></p><button id="append" type="submit">Add event</button>
+          </form>
+        </section>
+        <section class="panel" aria-labelledby="branch-heading">
+          <h2 id="branch-heading">Try a hypothetical branch</h2>
+          <p>Start from the selected replay position. The original history stays intact.</p>
+          <form id="branch-form"><label>Reason <input id="branch-reason" maxlength="2048" required placeholder="What would you like to explore?"></label><label class="checkbox"><input type="checkbox" id="change-next"> Change the next observation</label><p id="branch-hint"></p><button type="submit">Create branch</button></form>
+        </section>
+      </div>
+    </fieldset>
+    <footer>Threshold demonstration · CON-011 · No persistent storage or institutional authority</footer>
+  </main>
+</body>
+</html>
