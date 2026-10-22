@@ -268,3 +268,9 @@ Historical workstation, session and local-discovery inventories are retained pri
 | LOCAL-WORKFLOW-CONTINUATION | [Public record](evidence/LOCAL-WORKFLOW-CONTINUATION.md) | private-original-public-notice | Mixed: local proposal checkpoint and recorded owner consultation instruction |
 | OWNER-LINEAR-CONSULT | [Public record](evidence/OWNER-LINEAR-CONSULT.md) | private-original-public-notice | Direct owner instruction |
 | OWNER-TASK | [Public record](evidence/OWNER-TASK.md) | private-original-public-notice | Direct current owner instruction |
+| REPAIR-C3-STANDARD-20261022 | [Public record](sources/REPAIR-C3-STANDARD-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
+| REPAIR-CLAUDE-ISOLATION-20261022 | [Public record](sources/REPAIR-CLAUDE-ISOLATION-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
+| REPAIR-FOUNDING-BASELINE-20261022 | [Public record](sources/REPAIR-FOUNDING-BASELINE-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
+| REPAIR-MOLTBOOK-BOUNDARY-20261022 | [Public record](sources/REPAIR-MOLTBOOK-BOUNDARY-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
+| REPAIR-REGISTER-PUBLICATION-20261022 | [Public record](sources/REPAIR-REGISTER-PUBLICATION-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
+| REPAIR-SPENDING-20261022 | [Public record](sources/REPAIR-SPENDING-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |

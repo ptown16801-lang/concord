@@ -135,19 +135,30 @@ Identity is distinct from an execution session, credential, office, checkpoint o
 Total Recall changes residency/resources for a living identity; it is not death, termination, office change or a population-slot release. While alive and authorized, an identity may transfer allowlisted transferable state to a willing lawful successor, with provenance. The successor has a distinct identity and keys. Death is final; checkpoint restoration cannot resurrect the same identity. Tombstone preserves historical attribution while terminally disabling active authorization and credentials. It defines neither guilt nor additional grounds for termination.
 
 <a id="CON-007"></a>
-### CON-007 — Founding count source qualification
+### CON-007 — Inherited founding baseline and original provenance
 
 - Status: Unresolved
-- Scope: Founding population
-- Acceptance: Unavailable: exact original adoption evidence required.
-- Acceptance date: Unavailable: original acceptance date not independently recovered
-- Sources: [LIN-JON-58](docs/decisions/evidence/LIN-JON-58.md), [AUDIT-DIRECTORY](docs/decisions/evidence/AUDIT-DIRECTORY.md)
+- Scope: Inherited founding population; unresolved original numeric-approval provenance only
+- Acceptance: Retained decision and architecture records preserve forty as the inherited baseline; exact original numeric-approval evidence remains unavailable.
+- Acceptance date: Unavailable: original numeric-approval date not recovered; September 30, 2026 is recovery time, not adoption.
+- Sources: [REPAIR-FOUNDING-BASELINE-20261022](docs/decisions/sources/REPAIR-FOUNDING-BASELINE-20261022.md)
 - Supersedes: None
-- Implementation: Design requirement; implementation is separate and not certified by this consolidation.
-- Verification: Source reconciliation only; no product-runtime verification performed.
-- Rationale: A current-looking recovered source is not sufficient to erase its explicit proposal wording.
+- Implementation: Forty-founder design baseline retained; no runtime or protected-census implementation certified.
+- Verification: Project recovery and preserved register reconciled; no conversation audit or product test.
+- Rationale: Correct the stronger claim that forty is merely a new proposal without inventing an original adoption date.
 
-JON-58 calls the v2.2 founding baseline 40 genuine ordinary identities, five in each of eight permanent divisions, but uses the word “proposes.” The v2.2 original and original adoption record were not recovered here. Preserve 40 as the recorded candidate baseline; do not promote it to an adopted founding count or substitute an older bootstrap figure.
+Retain forty genuine ordinary governance identities as the inherited founding
+baseline. The architecture register specifies five in each of eight permanent
+divisions; the accepted metered-growth decision preserves forty, the ceiling of
+300 living governance identities and the distinction between population and
+simultaneous execution. Do not substitute an older bootstrap figure or infer a new
+approval requirement solely because the original numeric-approval message is missing.
+
+The exact original numeric-approval record and date remain unresolved. The recovered
+metered-growth provision does not independently prove the five-per-division allocation;
+that detail is supported by the architecture and population records. This entry
+records the inherited baseline and its limits, not a new founding-count choice or
+acceptance of the original v2.2 prompt as a whole.
 
 <a id="CON-008"></a>
 ### CON-008 — Population ceiling and dual census
@@ -275,14 +286,14 @@ Permanent divisions may be active, unwinding or dormant and cannot be deleted. V
 - Status: Accepted
 - Scope: Impeachment
 - Acceptance: Controlling adopted interview update, with frozen bootstrap revision 1.0.
-- Acceptance date: 2026-09-16 (freeze; earlier interview dates unavailable)
-- Sources: [LIN-JON-61](docs/decisions/evidence/LIN-JON-61.md), [LIN-BOOTSTRAP](docs/decisions/evidence/LIN-BOOTSTRAP.md)
+- Acceptance date: 2026-09-16 (freeze; earlier interview dates unavailable); 2026-09-30 (C3 proof-standard resolution)
+- Sources: [LIN-JON-61](docs/decisions/evidence/LIN-JON-61.md), [LIN-BOOTSTRAP](docs/decisions/evidence/LIN-BOOTSTRAP.md), [REPAIR-C3-STANDARD-20261022](docs/decisions/sources/REPAIR-C3-STANDARD-20261022.md)
 - Supersedes: CON-091
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Accusation and trial remain separate. Mature House accusation uses ordinary majority/quorum; ordinary conviction uses two-thirds with enhanced bootstrap thresholds only where applicable. Lawful policy disagreement, unpopular decisions, failed proposals and lawful votes are not independently impeachable. Broad grounds cover corruption, serious abuse, serious constitutional-duty violations and specified serious crimes. Impeachment trial requires clear and convincing evidence; criminal proceedings are separate. Conviction removes the current officeholder; future-office disqualification needs a separate authorized vote (normally two-thirds temporary, three-quarters permanent, with required small-body protection). Reports, petitions and referrals do not substitute for accusation-body action.
+Accusation and trial remain separate. Mature House accusation uses ordinary majority/quorum; ordinary conviction uses two-thirds with enhanced bootstrap thresholds only where applicable. Lawful policy disagreement, unpopular decisions, failed proposals and lawful votes are not independently impeachable. Broad grounds cover corruption, serious abuse, serious constitutional-duty violations and specified serious crimes. Impeachment trial requires clear and convincing evidence; criminal proceedings are separate. The September 30 recorded resolution applies that standard to every required C3 Senate-conviction element, including intent; [CON-082](#CON-082) records its narrow scope and preserved earlier conflict. Conviction removes the current officeholder; future-office disqualification needs a separate authorized vote (normally two-thirds temporary, three-quarters permanent, with required small-body protection). Reports, petitions and referrals do not substitute for accusation-body action.
 
 <a id="CON-017"></a>
 ### CON-017 — Bootstrap panels and frozen thresholds
@@ -340,9 +351,9 @@ The Supreme Board reviews procedure and sufficiency. Under Option C it reviews l
 
 - Status: Accepted
 - Scope: Simulation terminal sanctions
-- Acceptance: Recovered capital classes/finality; overlap of C3 proof burden explicitly unresolved.
-- Acceptance date: Unavailable: original acceptance date not independently recovered
-- Sources: [LIN-JON-62](docs/decisions/evidence/LIN-JON-62.md), [LIN-JON-61](docs/decisions/evidence/LIN-JON-61.md), [LIN-REGISTER](docs/decisions/evidence/LIN-REGISTER.md)
+- Acceptance: Recovered capital classes/finality; the September 30 recorded correction resolves C3 Senate conviction to clear and convincing evidence (CON-082).
+- Acceptance date: 2026-09-30 (C3 proof-standard resolution); original acceptance dates for other capital/finality rules remain unavailable
+- Sources: [LIN-JON-62](docs/decisions/evidence/LIN-JON-62.md), [LIN-JON-61](docs/decisions/evidence/LIN-JON-61.md), [LIN-REGISTER](docs/decisions/evidence/LIN-REGISTER.md), [REPAIR-C3-STANDARD-20261022](docs/decisions/sources/REPAIR-C3-STANDARD-20261022.md)
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
 - Verification: Source reconciliation only; no product-runtime verification performed.
@@ -350,7 +361,7 @@ The Supreme Board reviews procedure and sufficiency. Under Option C it reviews l
 
 C1 concerns intentional fabrication of identity/votes/judicial or validation/publication evidence to obtain constitutionally prohibited authority or release. C2 concerns intentional destruction/corruption of irreplaceable evidence/state or unauthorized termination attempts to disable constitutional process, with material execution. C3 concerns intentional Executive E-COAIA manipulation of House apportionment. C4 concerns a particular L-COAIA creation resolution formed to manipulate House apportionment rather than legitimate investigation. C5 concerns knowing/intentional protected covert-census disclosure or deliberate inference facilitation. Preserve each exact element; ordinary failure, dissent, negligence, incidental effects or good-faith repair do not satisfy deliberate-act classes. Charges are prospective; no retrospective offense upgrade.
 
-C3 House charge is not conviction; Senate conviction uses ceil(2D/3), ordinary quorum/recusal and notice/defense. The recorded C3-specific source requires preponderance for its elements, while ordinary impeachment has a later clear-and-convincing rule; the precise overlap is tracked separately in CON-082. Do not collapse burdens. Lawful capital consequences cannot execute before actual appeal opportunities, finality certificate, absence of stays and a further full administrative turn. Lawful felony conviction immediately creates the permanent franchise bar, independently of sentence finality; felony alone is not death.
+C3 House charge is not conviction; Senate conviction uses ceil(2D/3), ordinary quorum/recusal and notice/defense. Every required C3 element, including intent, must be proved by clear and convincing evidence for Senate conviction under the September 30 recorded resolution. [CON-082](#CON-082) preserves the superseded C3 preponderance wording and narrow correction. C4 retains its separate preponderance standard. Lawful capital consequences cannot execute before actual appeal opportunities, finality certificate, absence of stays and a further full administrative turn. Lawful felony conviction immediately creates the permanent franchise bar, independently of sentence finality; felony alone is not death.
 
 <a id="CON-021"></a>
 ### CON-021 — C4 event review and attribution
@@ -1001,13 +1012,13 @@ Research Library’s twelve unfinished held items remain Do Not Execute; complet
 - Scope: Decision maintenance
 - Acceptance: Explicit maintenance requirements in current owner request.
 - Acceptance date: 2026-09-24
-- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md)
+- Sources: [OWNER-TASK](docs/decisions/evidence/OWNER-TASK.md), [GH-PR41-3D8D8A0](docs/decisions/evidence/GH-PR41-3D8D8A0.md), [REPAIR-REGISTER-PUBLICATION-20261022](docs/decisions/sources/REPAIR-REGISTER-PUBLICATION-20261022.md)
 - Supersedes: None
-- Implementation: Instructions, generator, validator, focused tests and CI edits are published in PR41. Integration into designated canonical branch Develo remains pending.
-- Verification: Node 22/24 GitHub CI passed at 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77; later revisions require their own results. Independent review, canonical integration and sustained adherence remain separate and unverified. See VALIDATION.md and the PR publication receipt.
+- Implementation: Instructions, generator, validator, focused tests and CI edits from PR41 are included in the published canonical branch Develo at 4b6e41fd8d211746a81e870955e34475e66d02a3. GitHub records PR41 merged on September 24, 2026; its merge commit 441f13536f57f7c3c294f0d42c6567ccf8baf7ae is an ancestor of that default tip.
+- Verification: Historical Node 22/24 GitHub CI passed at 3d8d8a0a0fa531e15c993f5125b2e0e5c4c1df77; later revisions require their own results. October 22 repository records and exact Git ancestry establish publication on the observed default tip, not fresh CI, independent review, production acceptance, deployment or sustained adherence. See the dated publication-status source and historical validation/receipt records.
 - Rationale: Make updates traceable without creating a coordination service or claiming divergence impossible.
 
-Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. This branch is a candidate until integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.
+Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo as the sole consolidated decision record. The consolidated register is present on the published default tip identified above; subsequent amendments remain separate changes until integrated. Linear retains approvals/discussion/dependencies/work status; interviews and handoffs remain evidence. Before completing a task that changes an accepted decision, update the master with actual acceptance evidence, supersession and issue/review links, then report IDs and synchronization state. Otherwise report “No decision change.” Use one designated integration writer, expected-base checks and explicit semantic reconciliation; ordinary Git conflicts are insufficient. Summaries are generated navigation with master digest, not policy. Read fresh relevant decisions, local/remote state and pending owner corrections before consequential work.
 
 <a id="CONCORD-WF-002"></a>
 ### CONCORD-WF-002 — Consult Linear before large decisions
@@ -1023,6 +1034,100 @@ Designate ptown16801-lang/concord, root DECISIONS.md, integration branch Develo 
 - Rationale: Preserve the owner's consultation boundary without transferring reserved human authority or recreating choreography.
 
 The owner instructed: “Don't make any large decisions without consulting @linear”. Consult Linear before making such decisions and retain the actual advice and disposition. A posted request or silence does not establish completed consultation. Human authority, qualifying independence and existing access/spending/execution restrictions continue to apply. The recorded operating interpretation excludes routine implementation and corrections within an accepted contract from repeated consultation; independent authorized work may continue while a material decision awaits advice. This instruction does not adopt the pending role specification or authorize prohibited agents, Linear execution features or cross-project choreography.
+
+<a id="CON-093"></a>
+### CON-093 — Manual spending approval and included subscription use
+
+- Status: Accepted
+- Scope: All Concord agents, roles, research, reviews and cumulative retries
+- Acceptance: September 25 simple-spending correction, with October 19 manual-approval clarification retained in maintained project instructions.
+- Acceptance date: 2026-09-25; manual-approval clarification 2026-10-19.
+- Sources: [REPAIR-SPENDING-20261022](docs/decisions/sources/REPAIR-SPENDING-20261022.md)
+- Supersedes: None
+- Implementation: Instructions and existing provider controls; dormant custom enforcement prototypes remain disabled.
+- Verification: Source reconciliation only; no billing, entitlement, account-wide enforcement or provider execution verified.
+- Rationale: Keep spending authority with the owner without a separate agent-operated approval system.
+
+Use already-included subscription access and existing provider billing controls.
+All spending approvals are made manually by the owner. Agents cannot approve
+spending, grant exceptions or operate a separate spending-approval process.
+Purchases, refills, auto-top-ups, upgrades, paid API fallback and billing-setting
+changes require the owner's explicit manual approval. Stop the affected provider
+and report when included access is unavailable or billing mode is unclear.
+
+Retain cumulative task and retry history. Unknown usage remains unknown; repeated
+failures require reassessment. Older numerical allowance defaults, custom admission
+requirements and exception procedures are historical, not current operating rules.
+Preserve their evidence without activating dormant prototypes or resetting usage.
+Role, permission, isolated-worktree, disclosure and independent-review requirements
+remain. This record authorizes no installation, account change or paid use.
+<a id="CON-094"></a>
+### CON-094 — Isolated execution for separately authorized Claude advice
+
+- Status: Accepted
+- Scope: Public advisory isolation boundary; private host routing remains outside this repository
+- Acceptance: September 30 routing decision retained in the local decision candidate and maintained project operating instruction.
+- Acceptance date: 2026-09-30.
+- Sources: [REPAIR-CLAUDE-ISOLATION-20261022](docs/decisions/sources/REPAIR-CLAUDE-ISOLATION-20261022.md)
+- Supersedes: None
+- Implementation: Existing isolated-worker route is the recorded mechanism; this entry does not install, activate or verify it.
+- Verification: Project source and instruction reconciliation only; no current host isolation, login, entitlement or provider run verified.
+- Rationale: Preserve advisory isolation without exposing host accounts or granting new authority.
+
+Separately authorized Claude advice uses the established restricted worker route
+under a separate operating-system identity, rather than the main user's provider
+process. Host-specific account names, commands and private paths remain in private
+operating instructions and are not contributor setup requirements.
+
+The worker receives a bounded packet of selected authorized evidence and applicable
+instructions; it cannot inspect project paths or edit project files. Local Codex
+applies and tests any proposed changes within the authorized task. Failure does not
+authorize main-user or paid fallback, access expansion or automatic invocation.
+
+This changes routing only. It does not grant a standing implementation or
+verification role, disclose additional evidence, waive review independence or change
+spending limits, holds, scope, acceptance, merge or deployment authority.
+<a id="CON-095"></a>
+### CON-095 — Moltbook repository placement and participant boundaries
+
+- Status: Accepted
+- Scope: Concord-side placement, organizational hierarchy and participant/development separation
+- Acceptance: Repository-placement and participant-boundary record dated September 30; later project records preserve the October 7 hierarchy correction delivered October 8.
+- Acceptance date: 2026-09-30 (recording; original integration assent 2026-09-25); organizational correction 2026-10-07.
+- Sources: [REPAIR-MOLTBOOK-BOUNDARY-20261022](docs/decisions/sources/REPAIR-MOLTBOOK-BOUNDARY-20261022.md)
+- Supersedes: None
+- Implementation: Preparation and bounded qualification planning only; production implementation and activation remain separately authorized and deferred.
+- Verification: Retained boundary records reconciled; dated October 7 observations are not fresh runtime/deployment verification.
+- Rationale: Make later organizational correction explicit while retaining technical ownership and human authority.
+
+Keep Concord-side Moltbook integration in the existing Concord repository. Its
+workstream branch is not a second governing master; [CON-074](#CON-074) retains the
+canonical decision location. Create implementation folders only when the authorized
+source audit and bounded task require them.
+
+The October 7 organizational correction is Concord → The Form → Moltbook integration.
+It replaces only [CON-001](#CON-001)'s earlier peer-project organizational wording;
+separate source and data ownership remain. It does not imply shared repositories,
+databases, runtime, authentication authority or deployment. The Form owns forum,
+member and discussion state; Concord owns governmental records. Keep Form-side work
+with its located source and do not duplicate forum state or infer citizenship from
+behavioral-capture association.
+
+Moltbook agents are experimental participants. Authentication grants no repository
+or work-management credentials and no software-authoring, reviewer, integrator,
+release or deployment authority. Keep participant and software-development lineage
+separate. Record material contributions, exact revisions, roles, tools/permissions
+and independence dispositions under [CON-070](#CON-070); role relabeling cannot
+manufacture independence, and unknown required lineage is not presumed eligible.
+[CON-071](#CON-071) remains proposed.
+
+Apply current authoring, review, disclosure and spending rules in [AGENTS.md](AGENTS.md)
+and the governing register. Historical provider assignments confer no current route
+permission or dispatch authority. Human scope, final acceptance, governing-decision,
+merge and deployment authority remain reserved. Preparation and synthetic checks
+do not establish live isolation, authentication, governmental participation or
+production acceptance. No retired dispatcher, new provider run, implementation,
+merge or deployment is authorized by this entry.
 
 ## Unresolved evidence and preserved history
 
@@ -1057,19 +1162,30 @@ Saved-file originals DECISIONS variants, combined copies, CURRENT_DECISIONS.md, 
 Continuity, fairness, starvation prevention and handoff reduction remain intentionally unranked. Present only a demonstrated concrete conflict if selection requires owner preference. Routine transaction/recovery mechanics, lawful restriction timing calibration and allowed interface representation remain engineering work under subsidiarity, not unresolved constitutional questions. No forced owner questionnaire or new task launch follows from this entry.
 
 <a id="CON-082"></a>
-### CON-082 — C3-specific proof versus later ordinary impeachment standard
+### CON-082 — C3 Senate conviction uses clear and convincing evidence
 
-- Status: Unresolved
-- Scope: Narrow constitutional overlap
-- Acceptance: Unavailable: explicit resolution of this narrow overlap not located.
-- Acceptance date: Unavailable: original acceptance date not independently recovered
-- Sources: [LIN-JON-61](docs/decisions/evidence/LIN-JON-61.md), [LIN-JON-62](docs/decisions/evidence/LIN-JON-62.md), [LIN-BOOTSTRAP](docs/decisions/evidence/LIN-BOOTSTRAP.md)
+- Status: Accepted
+- Scope: C3 Senate-conviction proof standard only
+- Acceptance: September 30 resolution recorded in the October 1 capital-offense project correction and corresponding local decision entries.
+- Acceptance date: 2026-09-30; exact message timestamp unavailable; October 1 is delivery time.
+- Sources: [REPAIR-C3-STANDARD-20261022](docs/decisions/sources/REPAIR-C3-STANDARD-20261022.md)
 - Supersedes: None
-- Implementation: Design requirement; implementation is separate and not certified by this consolidation.
-- Verification: Source reconciliation only; no product-runtime verification performed.
-- Rationale: Preserve the recorded boundary without adding policy.
+- Implementation: Recorded policy resolution only; no runtime implementation, release or acceptance of a new integration established.
+- Verification: Later project correction corroborated against the preserved local decision candidate; no transcript audit or fresh product test.
+- Rationale: Resolve the stated overlap through the recorded correction while preserving unrelated rules.
 
-JON-62 says C3 elements use “a preponderance of admissible evidence.” JON-61’s later impeachment update says “burden of proof at impeachment trial is clear and convincing evidence; separate criminal proceedings remain distinct.” The frozen bootstrap specification also uses clear and convincing. The inspected sources do not explicitly say whether C3 remains a specific exception or its impeachment trial now uses the higher burden. Preserve both; do not choose from timestamps or broaden either. Smallest owner question: does the later clear-and-convincing impeachment standard also govern C3 Senate conviction, or does C3 retain its specific preponderance rule? Other settled thresholds/finality rules remain intact.
+C3 Senate conviction requires clear and convincing evidence for every required C3
+element, including intent. This resolves the prior uncertainty and replaces only
+the older C3-specific preponderance requirement summarized in [CON-020](#CON-020).
+It does not supersede that entry as a whole. C4's separate preponderance standard,
+chamber voting thresholds, quorum/recusal, notice/defense, appeals, finality and
+execution timing remain unchanged.
+
+Historically, the capital-offense record specified C3 preponderance while the later
+ordinary-impeachment and frozen bootstrap records specified clear and convincing
+evidence. That conflict was unresolved before September 30. Preserve the earlier
+wording as historical evidence; it is not a current unanswered choice and the later
+resolution must not be misdated as an earlier adoption.
 
 <a id="CON-090"></a>
 ### CON-090 — Rejected Vote hierarchy

@@ -4072,5 +4072,71 @@
     "snapshot": "docs/decisions/evidence/GH-PR41-3D8D8A0.md",
     "sha256": "4bee4890da291c87a4407f192871febbf55654e7700ad8254cbdd8dd967c86da",
     "publication": "original-public-snapshot"
+  },
+  "REPAIR-FOUNDING-BASELINE-20261022": {
+    "title": "Founding baseline recovery",
+    "location": "docs/decisions/sources/REPAIR-FOUNDING-BASELINE-20261022.md",
+    "version": "Sanitized reconciliation derivative, 2026-10-22",
+    "date": "2026-10-22",
+    "classification": "Sanitized summary of retained project records; not unchanged original",
+    "scope": "Entry-specific source reconciliation; no runtime or new integration acceptance",
+    "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
+    "snapshot": "docs/decisions/sources/REPAIR-FOUNDING-BASELINE-20261022.md",
+    "sha256": "68bb96ab7311bf4704e72999b9e16f513ae817b3d3048b9187097f3c7adb141f"
+  },
+  "REPAIR-C3-STANDARD-20261022": {
+    "title": "C3 proof-standard correction",
+    "location": "docs/decisions/sources/REPAIR-C3-STANDARD-20261022.md",
+    "version": "Sanitized reconciliation derivative, 2026-10-22",
+    "date": "2026-10-22",
+    "classification": "Sanitized summary of retained project records; not unchanged original",
+    "scope": "Entry-specific source reconciliation; no runtime or new integration acceptance",
+    "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
+    "snapshot": "docs/decisions/sources/REPAIR-C3-STANDARD-20261022.md",
+    "sha256": "1d72c90920856e062c7eab3f77fcb96de8f8681acf8db0930e464bf65941aca5"
+  },
+  "REPAIR-SPENDING-20261022": {
+    "title": "Manual spending authority",
+    "location": "docs/decisions/sources/REPAIR-SPENDING-20261022.md",
+    "version": "Sanitized reconciliation derivative, 2026-10-22",
+    "date": "2026-10-22",
+    "classification": "Sanitized summary of retained project records; not unchanged original",
+    "scope": "Entry-specific source reconciliation; no runtime or new integration acceptance",
+    "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
+    "snapshot": "docs/decisions/sources/REPAIR-SPENDING-20261022.md",
+    "sha256": "f7a1102fe2de7603d931071fd4bddd0a85cfc3dc000f01778e8170ba7d8837b8"
+  },
+  "REPAIR-CLAUDE-ISOLATION-20261022": {
+    "title": "Isolated advisory execution",
+    "location": "docs/decisions/sources/REPAIR-CLAUDE-ISOLATION-20261022.md",
+    "version": "Sanitized reconciliation derivative, 2026-10-22",
+    "date": "2026-10-22",
+    "classification": "Sanitized summary of retained project records; not unchanged original",
+    "scope": "Entry-specific source reconciliation; no runtime or new integration acceptance",
+    "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
+    "snapshot": "docs/decisions/sources/REPAIR-CLAUDE-ISOLATION-20261022.md",
+    "sha256": "d9f23ab77bebb7cc72b8b0b94c201285ba6feae3b08941366c9d802f89193703"
+  },
+  "REPAIR-MOLTBOOK-BOUNDARY-20261022": {
+    "title": "Moltbook placement and authority boundaries",
+    "location": "docs/decisions/sources/REPAIR-MOLTBOOK-BOUNDARY-20261022.md",
+    "version": "Sanitized reconciliation derivative, 2026-10-22",
+    "date": "2026-10-22",
+    "classification": "Sanitized summary of retained project records; not unchanged original",
+    "scope": "Entry-specific source reconciliation; no runtime or new integration acceptance",
+    "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
+    "snapshot": "docs/decisions/sources/REPAIR-MOLTBOOK-BOUNDARY-20261022.md",
+    "sha256": "094ae9bed86676b0460611480ea081a52918528d44650fbecb1f2aab0bdc8499"
+  },
+  "REPAIR-REGISTER-PUBLICATION-20261022": {
+    "title": "Decision register publication status",
+    "location": "docs/decisions/sources/REPAIR-REGISTER-PUBLICATION-20261022.md",
+    "version": "Sanitized reconciliation derivative, 2026-10-22",
+    "date": "2026-10-22",
+    "classification": "Sanitized summary of retained project records; not unchanged original",
+    "scope": "Entry-specific source reconciliation; no runtime or new integration acceptance",
+    "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
+    "snapshot": "docs/decisions/sources/REPAIR-REGISTER-PUBLICATION-20261022.md",
+    "sha256": "f7adafbc876354f9a3500ce1b35daeba8ca35ba1c9b5df5d807d021c921681c7"
   }
 }

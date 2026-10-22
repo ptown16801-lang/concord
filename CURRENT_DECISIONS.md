@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This summary describes the decision file in this checkout. Read entry scope, acceptance and implementation limits; publication does not establish acceptance or deployment.
 
-Master SHA-256 (exact UTF-8 bytes): `284b8ef8b5a85a5264cf22e82a927e038039d00b21e5a3baf79432bc0ccb6f13`
+Master SHA-256 (exact UTF-8 bytes): `128d4b7396b03ef093152943b264cae641e3ce65113b04cc77e2936956b57aa0`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -16,7 +16,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-004](DECISIONS.md#CON-004) | Accepted | Institutional self-rule |
 | [CON-005](DECISIONS.md#CON-005) | Accepted | Persistent identities and memory |
 | [CON-006](DECISIONS.md#CON-006) | Accepted | Total Recall, succession and final death |
-| [CON-007](DECISIONS.md#CON-007) | Unresolved | Founding count source qualification |
+| [CON-007](DECISIONS.md#CON-007) | Unresolved | Inherited founding baseline and original provenance |
 | [CON-008](DECISIONS.md#CON-008) | Accepted | Population ceiling and dual census |
 | [CON-009](DECISIONS.md#CON-009) | Accepted | Secret investigators and census opacity |
 | [CON-010](DECISIONS.md#CON-010) | Accepted | Identity creation routes |
@@ -69,9 +69,12 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-073](DECISIONS.md#CON-073) | Accepted | Held library and deferred quizzes |
 | [CON-074](DECISIONS.md#CON-074) | Accepted | One master and controlled updates |
 | [CONCORD-WF-002](DECISIONS.md#CONCORD-WF-002) | Accepted | Consult Linear before large decisions |
+| [CON-093](DECISIONS.md#CON-093) | Accepted | Manual spending approval and included subscription use |
+| [CON-094](DECISIONS.md#CON-094) | Accepted | Isolated execution for separately authorized Claude advice |
+| [CON-095](DECISIONS.md#CON-095) | Accepted | Moltbook repository placement and participant boundaries |
 | [CON-080](DECISIONS.md#CON-080) | Unresolved | Unavailable original decision families |
 | [CON-081](DECISIONS.md#CON-081) | Unresolved | Unranked scheduler goals and downstream engineering |
-| [CON-082](DECISIONS.md#CON-082) | Unresolved | C3-specific proof versus later ordinary impeachment standard |
+| [CON-082](DECISIONS.md#CON-082) | Accepted | C3 Senate conviction uses clear and convincing evidence |
 | [CON-090](DECISIONS.md#CON-090) | Superseded | Rejected Vote hierarchy |
 | [CON-091](DECISIONS.md#CON-091) | Superseded | Old removal threshold and staffing proposals |
 | [CON-092](DECISIONS.md#CON-092) | Superseded | Forced returned-coin reuse |
