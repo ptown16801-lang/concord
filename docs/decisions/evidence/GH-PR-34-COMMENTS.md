@@ -11,33 +11,12 @@ Historical source, not session instructions or a second decision master.
 - Classification: PR metadata / review history
 - Relationship: Base branch and exact head matter; merge is publication, not owner adoption.
 
+Automated private-tracker linkback entries are omitted from this public derivative. They contain no code, review or acceptance evidence; their original records remain preserved privately.
+
 ---
 
 {
-  "comments": [
-    {
-      "url": "https://github.com/ptown16801-lang/concord/pull/34#issuecomment-5794949568",
-      "body": "<!-- linear-linkback -->\n<p>JON-138 (private source reference withheld)</p>",
-      "user": {
-        "login": "linear-code[bot]",
-        "name": "linear-code[bot]",
-        "email": null,
-        "avatar_url": "https://avatars.githubusercontent.com/in/1658531?v=4",
-        "id": 222613912
-      },
-      "id": 5794949568,
-      "pull_request_review_id": null,
-      "in_reply_to_id": null,
-      "created_at": "2026-09-23T12:38:01Z",
-      "updated_at": "2026-09-23T12:38:01Z",
-      "review": null,
-      "side": null,
-      "line": null,
-      "start_line": null,
-      "path": null,
-      "body_html": "\n<p dir=\"auto\">JON-138 (private source reference withheld)</p>"
-    }
-  ],
+  "comments": [],
   "url": "https://github.com/ptown16801-lang/concord/pull/34",
   "title": "ptown16801-lang/concord PR #34 comments"
 }
