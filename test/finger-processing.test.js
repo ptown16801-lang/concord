@@ -62,6 +62,28 @@ test("flattens multi-touch events and clamps long dwell intervals", () => {
   assert.equal(result.heatMaps.views.touch.path.segments.length, 1);
 });
 
+test("accepts positive integer processing grid dimensions", () => {
+  const result = processFingerSession(session, { columns: 1, rows: 3 });
+
+  assert.deepEqual(result.heatMaps.grid, { columns: 1, rows: 3 });
+  assert.equal(result.heatMaps.views.combined.position.cells.length, 3);
+  assert.equal(result.heatMaps.views.combined.position.cells[0].length, 1);
+});
+
+test("rejects processing grid dimensions that are not positive integers", () => {
+  const invalidDimensions = [0.5, 1.5, 0, -1, "2", null, Number.NaN, Infinity, -Infinity];
+
+  for (const key of ["columns", "rows"]) {
+    for (const value of invalidDimensions) {
+      assert.throws(
+        () => processFingerSession(session, { [key]: value }),
+        { name: "RangeError", message: `${key} must be a positive integer` },
+        `${key} should reject ${String(value)}`,
+      );
+    }
+  }
+});
+
 test("combines compatible analyses and retains session provenance on paths", () => {
   const first = processFingerSession(session, { columns: 2, rows: 2 });
   const second = processFingerSession({ ...session, id: "session-b" }, { columns: 2, rows: 2 });
