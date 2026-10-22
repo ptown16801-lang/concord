@@ -1,6 +1,14 @@
 # Concord development status
 
-Implementation baseline checked October 22, 2026. Public default branch before this documentation repair: `Develo` at `4b6e41fd8d211746a81e870955e34475e66d02a3`.
+Implementation and publication status checked October 22, 2026. The maintained
+project documentation, current design-contract reconciliation and approved
+decision-record corrections are published through
+[PR #52](https://github.com/ptown16801-lang/concord/pull/52),
+[PR #54](https://github.com/ptown16801-lang/concord/pull/54) and
+[PR #55](https://github.com/ptown16801-lang/concord/pull/55).
+These documentation merges do not establish a deployment or complete runtime
+integration. Candidate revisions below identify code available on separate
+branches.
 
 Concord has implemented components and substantial accepted design work. The complete environment is still being integrated and validated. The distinctions below concern the exact available artifacts, not an overall completion percentage.
 
@@ -14,6 +22,21 @@ Concord has implemented components and substantial accepted design work. The com
 | Propagation and replay | [PR #48](https://github.com/ptown16801-lang/concord/pull/48), `d72b8c1db1daa465e3f8e462f504918219be4e1a` | Implemented bounded synthetic pilot and guide on a development branch. Broader product persistence and visual acceptance remain separate. |
 | Coin experiment | [Research guide](RESEARCH.md#issuer-specific-coin-experiment) and [PR #40](https://github.com/ptown16801-lang/concord/pull/40) | Accepted mechanism and related design work exist. A complete implemented experiment, final study protocol, and research outcomes are not established. |
 | Observatory and research library | [Project overview](OVERVIEW.md#records-and-observation) and [research guide](RESEARCH.md#library-and-related-research) | Designs and reported partial artifacts exist. Broader integration is unfinished; deferred Library work remains deferred. |
+| Offline context validation | [PR #56](https://github.com/ptown16801-lang/concord/pull/56), `2ad248993f146e2e8ac7268fcba0ba015bdd48c2`; [API and evidence limits](https://github.com/ptown16801-lang/concord/blob/2ad248993f146e2e8ac7268fcba0ba015bdd48c2/docs/ai/BOUNDED_ENVELOPE_V2.md) | Provider-neutral validator preserved in a draft PR. Syntax and all 82 project tests passed on its repaired baseline. No provider invocation or production integration is claimed; not merged into default. |
+| Optional Wolfram tooling | [Safety-fix PR #49](https://github.com/ptown16801-lang/concord/pull/49) and [process-filesystem fix PR #57](https://github.com/ptown16801-lang/concord/pull/57), `e7b56b2e64ea2fe720730ab603e717ab7768e0f7` | Separate tooling candidates. PR #57 targets the PR #49 branch and retains its safety fixes; neither is included in default. Seven static and eleven mocked-process checks support the one-line fix; live namespace/licensed execution and host installation are not established. |
+
+## Incorporated design sources
+
+The maintained identity and agreement contracts were incorporated through PR #52.
+The protected-domain and scheduler contracts were incorporated there and their
+remaining operative clauses were reconciled through PR #54 to accepted CON-045
+and CON-046. Source PRs #15, #18, #19 and #20 are closed as incorporated; their
+historical branch tips were preserved rather than merged over current documents.
+Their accepted design status remains distinct from runtime implementation.
+
+The draft tooling PRs above preserve useful local work publicly with explicit
+dependencies and checks. Draft publication is a remote backup and review surface,
+not a claim of default-branch inclusion or permission to run a provider.
 
 ## How to interpret review and integration
 
