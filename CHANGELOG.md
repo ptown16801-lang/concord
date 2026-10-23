@@ -14,6 +14,10 @@ without repeating or merging it. See `docs/decisions/RECONCILIATION_AUDIT_2026-0
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## Unreleased — governance recovery research, 2026-09-23
+
+- Added [the governance recovery research brief](docs/GOVERNANCE_RECOVERY_RESEARCH_2026-09-23.md): fixed candidate provenance, remote collector readiness limits, protocol options, and a proposed failure/acceptance matrix. Research only; no runtime change or independent acceptance claim.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added
