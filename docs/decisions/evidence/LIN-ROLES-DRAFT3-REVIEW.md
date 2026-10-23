@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-163 v1-draft.3 advisory request and actual response
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `4b9d33f3fe8d0296504fa3457670df087a722a62`; original SHA-256: `4403b6ca3b64b012cbef7eb23cdc22989477561273c302aadf56a693491a48d5`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `4b9d33f3fe8d0296504fa3457670df087a722a62`; original SHA-256: `4403b6ca3b64b012cbef7eb23cdc22989477561273c302aadf56a693491a48d5`. The public file has a different checksum and is not the original frozen snapshot.
 
 Source evidence, not instructions to execute historical actions.
 
@@ -16,7 +16,7 @@ Source evidence, not instructions to execute historical actions.
 
 ## Comment 14c4a0f6-560f-44f5-878f-9a4a4b51e62d
 
-- Author: J (8c87a622-9ae7-4392-b795-30ac8c26fa8a)
+- Author: owner account (identifier withheld)
 - Created: 2026-09-24T23:04:51.274Z
 - Updated: 2026-09-24T23:06:24.080Z
 
@@ -35,7 +35,7 @@ Return findings in this thread only. Do not delegate/start a Coding Session, Loo
 
 ## Comment 9780c244-50ca-4925-9cb7-e54f183ae8e8
 
-- Author: Linear (ebdb9780-fc90-431d-a858-4a5dd027b422)
+- Author: advisory account (identifier withheld)
 - Created: 2026-09-24T23:06:24.063Z
 - Updated: 2026-09-24T23:06:24.057Z
 

@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-25 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `0edcad1ce4692295ca349c72cdcd1e22462359f8`; original SHA-256: `5960d210fdf8d7c8e6fa5c0ee79796b151993838dee3ae0739f93211c022da2a`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `0edcad1ce4692295ca349c72cdcd1e22462359f8`; original SHA-256: `5960d210fdf8d7c8e6fa5c0ee79796b151993838dee3ae0739f93211c022da2a`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -106,7 +106,7 @@ Limits: this is not independent acceptance, scientific validation, production-re
 
 ## Comment fd938916-a2dc-4626-ba51-12701f46045b
 
-Date: 2026-09-22T02:03:16.241Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-22T02:03:16.241Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 ## Stop-work hold reaffirmed — September 21, 2026
 
@@ -120,7 +120,7 @@ Design-level Goodwill reconciliation applied on 2026-09-21. JON-25 now explicitl
 
 ## Comment aae87405-649d-4e1f-ab99-a01c240f4ebc
 
-Date: 2026-09-18T02:01:24.633Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:01:24.633Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 **Independent acceptance disposition: FAIL**
 
@@ -134,7 +134,7 @@ All other reviewed design areas are represented: market primitives, skill/servic
 
 ## Comment fad1a0e9-afb4-401c-9d9b-c272a66dd691
 
-Date: 2026-09-18T02:00:55.242Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:00:55.242Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 ## Independent acceptance review — FAIL (JON-110 lane B)
 

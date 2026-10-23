@@ -1,6 +1,6 @@
 # Evidence snapshot: Verify bootstrap impeachment PR against the frozen specification
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `a5f9201e45babbc3fabb3e2721c57e45ef16c87c`; original SHA-256: `8414ebf1a2f7887021caa25e911bc78ccaca20af2517c8e807d109492ed86c42`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `a5f9201e45babbc3fabb3e2721c57e45ef16c87c`; original SHA-256: `8414ebf1a2f7887021caa25e911bc78ccaca20af2517c8e807d109492ed86c42`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -69,7 +69,7 @@ The implementation producer has **not** performed or claimed independent JON-86 
 
 ## Resumption checkpoint — 2026-09-23
 
-Owner explicitly instructed Codex: “Consult <user id="ebdb9780-fc90-431d-a858-4a5dd027b422">linear</user> resume jon86.” This authorizes JON-86 (private source reference withheld)'s bounded independent verification and supersedes its older parked/no-run wording once the artifact gate is satisfied. Preflight completed; implementation verification remains blocked by the missing JON-85 (private source reference withheld) delivery artifact. Keep the native JON-85 (private source reference withheld) blocking relation and Backlog status until a reviewable target exists.
+Owner explicitly instructed Codex: “Consult the recorded advisory reviewer resume jon86.” This authorizes JON-86 (private source reference withheld)'s bounded independent verification and supersedes its older parked/no-run wording once the artifact gate is satisfied. Preflight completed; implementation verification remains blocked by the missing JON-85 (private source reference withheld) delivery artifact. Keep the native JON-85 (private source reference withheld) blocking relation and Backlog status until a reviewable target exists.
 
 Fresh evidence from authenticated GitHub queries against `ptown16801-lang/concord`:
 

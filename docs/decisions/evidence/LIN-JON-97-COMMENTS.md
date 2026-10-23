@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-97 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `4188010469e27ca332983d7a9daf81c6712313c8`; original SHA-256: `3f100e65d2b978f706c76a0123154afd3430dddcae1509a352c13c5a67f8bab1`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `4188010469e27ca332983d7a9daf81c6712313c8`; original SHA-256: `3f100e65d2b978f706c76a0123154afd3430dddcae1509a352c13c5a67f8bab1`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -39,7 +39,7 @@ Recorded **ACCEPT** on this issue. No unmet design-specification criterion found
 
 ## Comment 46fc02b5-b042-4b4d-8afd-d4e5926bdf1c
 
-Date: 2026-09-24T20:54:06.487Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-24T20:54:06.487Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 **ACCEPT — design specification acceptance criteria are met** for Specify coin model A v0.1 (private source retained separately) at `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`.
 
@@ -95,7 +95,7 @@ I found no newer explicit acceptance record supporting JON-98 (private source re
 
 ## Comment 19cdb6ef-a54b-4e91-84f0-6710cbcf3edc
 
-Date: 2026-09-22T02:03:16.547Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-22T02:03:16.547Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 ## Containment note — September 21, 2026
 

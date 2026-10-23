@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-127 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `19f92497ba8e2bd5184707afaee523e6fc2af388`; original SHA-256: `4294af81a04b8a360e8a0931c1b9d458544458f43d85305ee865d29a773c332b`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `19f92497ba8e2bd5184707afaee523e6fc2af388`; original SHA-256: `4294af81a04b8a360e8a0931c1b9d458544458f43d85305ee865d29a773c332b`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -15,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Comment 69a82319-891f-4047-9cfe-db1bfa741ede
 
-Date: 2026-09-24T03:03:32.942Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-24T03:03:32.942Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 The corrected bounded harness is verified at commit `e4b979dea42e606bc8ac0b64b458bb084d8ad3a6`; no remaining defect was identified within its documented scope, and recorded Node 22/24 checks pass.
 

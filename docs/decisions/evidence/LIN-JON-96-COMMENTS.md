@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-96 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `c892e939e6ac75b0d4244515411b8679add57776`; original SHA-256: `d312b0ae8adff6eebd53c6f31c1210e9a666a389c20693a1f9343e33b55ecf54`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `c892e939e6ac75b0d4244515411b8679add57776`; original SHA-256: `d312b0ae8adff6eebd53c6f31c1210e9a666a389c20693a1f9343e33b55ecf54`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -108,7 +108,7 @@ ECON-02 is incorporated in existing PRs #21/#22/#23/#25 and the JON-101 task con
 
 ## Comment 709c8b1e-2b8f-4b88-8771-04f9bd87d4de
 
-Date: 2026-09-22T02:03:16.355Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-22T02:03:16.355Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 ## Stop-work hold reaffirmed — September 21, 2026
 

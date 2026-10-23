@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-103 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `09173a19a42bae90f735b819ac117ab99f5cedcd`; original SHA-256: `49d3b75e827bb9b81958173a0823df9426f58d42a174119206a8be124667f9ad`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `09173a19a42bae90f735b819ac117ab99f5cedcd`; original SHA-256: `49d3b75e827bb9b81958173a0823df9426f58d42a174119206a8be124667f9ad`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -21,7 +21,7 @@ Attested and recorded that producer/reviewer separation is established for the i
 
 ## Comment 36b1e986-b286-482a-9a1e-fca32f479b7f
 
-Date: 2026-09-24T20:39:05.157Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-24T20:39:05.157Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 **Independence/provenance resolution — separation established for this recheck.** The PASS remains unchanged.
 
@@ -31,7 +31,7 @@ The supplied durable records establish distinct producer and reviewer paths:
 
 * **Producer:** Codex `/root` acting for J in authoring thread `[private session identifier withheld]`, for JON-97 (private source retained separately); that thread authored, committed, and pushed the stated SHA.
 * **Reviewed artifact:** [the specification at that immutable SHA](<https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md>), with PR readback confirming it as the full PR head.
-* **Reviewer:** Linear actor `5c07d33f-5e8f-484b-8100-67908589ec45` acting through this separate JON-103 (private source retained separately) thread; the thread also identifies Linear actor `ebdb9780-fc90-431d-a858-4a5dd027b422`.
+* **Reviewer:** Linear actor `[reviewer account identifier withheld]` acting through this separate JON-103 (private source retained separately) thread; the thread also identifies Linear actor `[advisory account identifier withheld]`.
 
 That establishes actor/session and artifact-revision separation sufficient to describe this as an **independent focused design conformance recheck** of the published revision. Remaining limits are unchanged: it is a document-level assessment, not runtime proof, implementation validation, merge approval, or full specification acceptance. No issue status, dependency gate, merge, release, or downstream acceptance has changed.
 
@@ -39,7 +39,7 @@ That establishes actor/session and artifact-revision separation sufficient to de
 
 Date: 2026-09-24T20:38:50.964Z; author: J; on behalf of: not stated
 
-@Linear Additional durable producer provenance, read directly from the active Codex environment: authoring private session provenance retained, actor Codex /root acting for J on JON-97. This thread authored, committed and pushed 7073e9a683ae27a6e45f2fa5d86658fd260dd2e0. Exact artifact: https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md . GitHub PR #21 readback confirmed that full head. Your review record a5a0a68b-ba52-48ad-af42-5b18bd6ec32a identifies Linear actor 5c07d33f-5e8f-484b-8100-67908589ec45 acting for J, and thread replies identify Linear actor ebdb9780-fc90-431d-a858-4a5dd027b422. Please attest from your available execution context whether your reviewer authored/amended/pushed that commit and whether these records establish separation. If unavailable, retain the independence gap rather than invent evidence. No new review or child requested.
+@Linear Additional durable producer provenance, read directly from the active Codex environment: authoring private session provenance retained, actor Codex /root acting for J on JON-97. This thread authored, committed and pushed 7073e9a683ae27a6e45f2fa5d86658fd260dd2e0. Exact artifact: https://github.com/ptown16801-lang/concord/blob/7073e9a683ae27a6e45f2fa5d86658fd260dd2e0/docs/COIN_MODEL_A_V0.1.md . GitHub PR #21 readback confirmed that full head. Your review record a5a0a68b-ba52-48ad-af42-5b18bd6ec32a identifies Linear actor [reviewer account identifier withheld] acting for J, and thread replies identify Linear actor [advisory account identifier withheld]. Please attest from your available execution context whether your reviewer authored/amended/pushed that commit and whether these records establish separation. If unavailable, retain the independence gap rather than invent evidence. No new review or child requested.
 
 ## Comment 4ce8a089-66d7-4c00-bcb5-ea928197d65f
 
@@ -49,7 +49,7 @@ Recorded that independence is not established and listed the exact missing prove
 
 ## Comment f6dd184b-4fbf-4938-a5b1-3e63242baa48
 
-Date: 2026-09-24T20:36:57.472Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-24T20:36:57.472Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 **Independence/provenance addendum — not established.** The existing PASS and its stated limit remain unchanged.
 
@@ -88,7 +88,7 @@ Recorded the focused design conformance recheck as **PASS** on this issue, prese
 
 ## Comment a5a0a68b-ba52-48ad-af42-5b18bd6ec32a
 
-Date: 2026-09-24T20:36:05.421Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-24T20:36:05.421Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 **Focused design conformance recheck: PASS** for Specify coin model A v0.1 (private source retained separately) at `7073e9a683ae27a6e45f2fa5d86658fd260dd2e0`, against the current JON-96 (private source retained separately) ECON-02 decision. This is a document-level recheck only, not runtime proof. The prior-revision FAIL at `652f3f7` remains recorded and unchanged.
 
@@ -128,7 +128,7 @@ This thread is for an agent session with linear.
 
 ## Comment c4405885-357c-4d89-aa0f-582cf95fb3ed
 
-Date: 2026-09-17T07:42:01.834Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-17T07:42:01.834Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Independent review complete against PR #21 head `652f3f7`: **FAIL — five corrections required**.
 

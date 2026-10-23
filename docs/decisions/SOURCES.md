@@ -238,9 +238,9 @@ Historical workstation, session and local-discovery inventories are retained pri
 | LIN-JON-98-COMMENTS | [Public record](evidence/LIN-JON-98-COMMENTS.md) | public-redacted-derivative | Discussion / approval / review; inspect each attribution |
 | LIN-JON-99 | [Public record](evidence/LIN-JON-99.md) | public-redacted-derivative | Mixed: recorded decisions, historical checkpoints and implementation claims |
 | LIN-JON-99-COMMENTS | [Public record](evidence/LIN-JON-99-COMMENTS.md) | public-redacted-derivative | Discussion / approval / review; inspect each attribution |
-| LIN-PROJECT | [Public record](evidence/LIN-PROJECT.md) | public-redacted-derivative | Status / discussion, not blanket acceptance |
-| LIN-PROJECT-COMMENTS | [Public record](evidence/LIN-PROJECT-COMMENTS.md) | public-redacted-derivative | Status / discussion, not blanket acceptance |
-| LIN-PROJECT-UPDATES | [Public record](evidence/LIN-PROJECT-UPDATES.md) | public-redacted-derivative | Status / discussion, not blanket acceptance |
+| LIN-PROJECT | [Public summary](evidence/LIN-PROJECT.md) | public-curated-summary | Status / discussion, not blanket acceptance |
+| LIN-PROJECT-COMMENTS | [Public summary](evidence/LIN-PROJECT-COMMENTS.md) | public-curated-summary | Status / discussion, not blanket acceptance |
+| LIN-PROJECT-UPDATES | [Public summary](evidence/LIN-PROJECT-UPDATES.md) | public-curated-summary | Status / discussion, not blanket acceptance |
 | LIN-REGISTER | [Public record](evidence/LIN-REGISTER.md) | public-redacted-derivative | Mixed: recorded decisions, historical checkpoints and implementation claims |
 | LIN-REGISTER-R4 | [Public record](evidence/LIN-REGISTER-R4.md) | public-redacted-derivative | Recorded explicit design acceptance; runtime remains separate |
 | LIN-RESEARCH | [Public record](evidence/LIN-RESEARCH.md) | public-redacted-derivative | Mixed: recorded decisions, historical checkpoints and implementation claims |

@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-112 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `e9e357225f7a22fb05bd4fa26ca4723a808beed0`; original SHA-256: `419f8e54f12e4a4e5fdbc1aaf12e44070e0fccd82afc2957bcfa8da0df9c8944`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `e9e357225f7a22fb05bd4fa26ca4723a808beed0`; original SHA-256: `419f8e54f12e4a4e5fdbc1aaf12e44070e0fccd82afc2957bcfa8da0df9c8944`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -34,6 +34,6 @@ This thread is for an agent session with linear.
 
 ## Comment d4a30ed0-44e0-4db1-9c96-bfee67e8d9fd
 
-Date: 2026-09-18T02:00:58.425Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:00:58.425Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 JON-98 / independent JON-112 reviewer / draft PR #25 at `e814f3ae81a2011bb86f95cf06cea44eff5fbc4c` / **FAIL (missing-evidence gate), remain In Review** / structural acceptance sections are present and no unsupported novelty conclusion is made, but JON-106 has delivered no required source-verification table and its own producer comment confirms it remains unposted / retain JON-106 Todo as the single correction path, reconcile its findings into PR #25, then re-review / none; JON-102 remains blocked / no owner decision.

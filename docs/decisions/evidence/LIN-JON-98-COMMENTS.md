@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-98 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ee1ef5233003b9c554adf327015b10cf86c6a57f`; original SHA-256: `1afdb44431222623f3a545f8d46d138535aa0ddf6da2349bb96c8fc5d3136b72`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `ee1ef5233003b9c554adf327015b10cf86c6a57f`; original SHA-256: `1afdb44431222623f3a545f8d46d138535aa0ddf6da2349bb96c8fc5d3136b72`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -220,7 +220,7 @@ PR #25 remains unchanged because the tools rejected updates to its older branch.
 
 ## Comment 3bf0493d-009d-4453-b3e3-49e1b472de95
 
-Date: 2026-09-19T01:57:40.386Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-19T01:57:40.386Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 The verification table above is preserved with the [corrected audit](https://github.com/ptown16801-lang/concord/blob/bfb4b2f378cac58875457d7d2cfe57b0edb4d557/docs/JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md) and [table](https://github.com/ptown16801-lang/concord/blob/bfb4b2f378cac58875457d7d2cfe57b0edb4d557/docs/JON-98_SOURCE_VERIFICATION.md) at pushed commit `bfb4b2f378cac58875457d7d2cfe57b0edb4d557`.
 
@@ -230,7 +230,7 @@ Validation passed: all 30 source mappings and citation anchors, Markdown table w
 
 ## Comment b4b506d0-f4a4-4121-90c3-1c6215f0146d
 
-Date: 2026-09-19T01:57:01.477Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-19T01:57:01.477Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 # JON-98 — independent source-verification table
 
@@ -297,13 +297,13 @@ The exact model remains fixed: non-obligatory issuer-specific objects, free unli
 
 ## Comment c98eb70e-399d-4087-9a69-5ab7cf0cdde2
 
-Date: 2026-09-19T01:49:43.619Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-19T01:49:43.619Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 @linear Resume and complete the existing assignment. Produce the required independent source-verification table with verifiable identities, bibliographic details, accessible links, exact supported/unsupported mechanism claims, corrected citations, and explicit unavailable-evidence limits. Post the table to this issue, then reconcile resulting citation or claim corrections into the existing draft review ptown16801-lang/concord#25 (private source retained separately). Do not create a duplicate issue or any coordination mechanism. Keep scope to the exact-model prior-art audit and source verification.
 
 ## Comment 92c22029-8f17-4b64-869a-90445b1a44b1
 
-Date: 2026-09-18T02:00:57.711Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:00:57.711Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 **Independent acceptance decision: FAIL — required evidence gate remains open. Keep JON-98 In Review.**
 
