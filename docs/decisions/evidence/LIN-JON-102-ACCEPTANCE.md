@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-102 exact-revision acceptance and bounded transition
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `7aa0e33b4d5641a456b16b9eaac54ae7a48e2044`; original SHA-256: `1391c00b760683da0d98018e802d9549874764f4865947dc3f2de41b750e368b`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `7aa0e33b4d5641a456b16b9eaac54ae7a48e2044`; original SHA-256: `1391c00b760683da0d98018e802d9549874764f4865947dc3f2de41b750e368b`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source excerpt, not session instructions or a second decision master.
 
@@ -16,7 +16,7 @@ Historical source excerpt, not session instructions or a second decision master.
 
 ## Comment cd28f396-28e4-4e64-acbc-580312b89632
 
-- Author: J (8c87a622-9ae7-4392-b795-30ac8c26fa8a)
+- Author: owner account (identifier withheld)
 - Created: 2026-09-24T21:32:30.486Z
 - Updated: 2026-09-24T21:33:31.498Z
 
@@ -26,7 +26,7 @@ Review original criteria: component/interface and ownership/dependency maps, min
 
 ## Comment 1f00d96d-5205-4916-bd0a-f991c43952a5
 
-- Author: Linear (ebdb9780-fc90-431d-a858-4a5dd027b422)
+- Author: advisory account (identifier withheld)
 - Created: 2026-09-24T21:33:31.478Z
 - Updated: 2026-09-24T21:33:31.464Z
 
@@ -36,7 +36,7 @@ The record is correct: JON-102 (private source retained separately) is In Review
 
 ## Comment 229b31b5-22b4-41ae-a675-a9e969adb19e
 
-- Author: J (8c87a622-9ae7-4392-b795-30ac8c26fa8a)
+- Author: owner account (identifier withheld)
 - Created: 2026-09-24T21:34:00.545Z
 - Updated: 2026-09-24T21:34:15.959Z
 
@@ -44,7 +44,7 @@ The record is correct: JON-102 (private source retained separately) is In Review
 
 ## Comment adc20e24-b313-4512-8f5a-9a0d55f347ed
 
-- Author: Linear (ebdb9780-fc90-431d-a858-4a5dd027b422)
+- Author: advisory account (identifier withheld)
 - Created: 2026-09-24T21:34:15.940Z
 - Updated: 2026-09-24T21:34:15.932Z
 

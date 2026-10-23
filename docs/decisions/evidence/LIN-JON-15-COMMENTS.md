@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-15 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `d92b400a9dc50d550a03e91989dac6db98ee8bd2`; original SHA-256: `d11d254622ccce9fd25fbf26f9c302164c22766e474dd013f0da72bbfc8ed539`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `d92b400a9dc50d550a03e91989dac6db98ee8bd2`; original SHA-256: `d11d254622ccce9fd25fbf26f9c302164c22766e474dd013f0da72bbfc8ed539`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -15,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Comment 55b3eb73-c356-4319-9476-ee9d048ffc50
 
-Date: 2026-09-18T02:02:31.491Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:02:31.491Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 ## Independent acceptance — PASS
 
@@ -36,7 +36,7 @@ Evidence:
 
 ## Comment 2ddf0742-5453-442b-8e6c-8e6b3b9f5fca
 
-Date: 2026-09-18T02:01:14.082Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:01:14.082Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Independent acceptance review — PASS
 

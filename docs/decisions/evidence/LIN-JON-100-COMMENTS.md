@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-100 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `49c7e7f8b4332f3d9946ea7060b9f3e781bce690`; original SHA-256: `fe1db3daaa00efde1d9bf5a9a48047f2d51a79fa9d4fb70c2956c95cc96a3008`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `49c7e7f8b4332f3d9946ea7060b9f3e781bce690`; original SHA-256: `fe1db3daaa00efde1d9bf5a9a48047f2d51a79fa9d4fb70c2956c95cc96a3008`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -103,7 +103,7 @@ Deliverable: amended artifact/PR or, if no code/doc edit is possible, an exact p
 
 ## Comment 1a3a780f-9652-4b4d-90d4-7f214a87f067
 
-Date: 2026-09-17T07:43:03.221Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-17T07:43:03.221Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 JON-105 measurement-validity hand-off after reviewing the delivered instrumentation contract.
 
@@ -121,7 +121,7 @@ The response/opportunity material must be limited to lawfully available evidence
 
 ## Comment f03b20a6-95d2-40d4-b868-3273d4adf93e
 
-Date: 2026-09-17T07:40:25.362Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-17T07:40:25.362Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Independent JON-104 leakage review handoff (non-schema scope):
 

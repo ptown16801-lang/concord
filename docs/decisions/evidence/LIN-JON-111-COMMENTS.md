@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-111 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `ba3b2eac7ae4a7b78ec9b3961797c4b888154aa2`; original SHA-256: `e03a90270b2f9e4f062381ce7d9b31d54cbb4b5986360c53e5a3e6af1d46b669`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `ba3b2eac7ae4a7b78ec9b3961797c4b888154aa2`; original SHA-256: `e03a90270b2f9e4f062381ce7d9b31d54cbb4b5986360c53e5a3e6af1d46b669`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -37,7 +37,7 @@ This thread is for an agent session with linear.
 
 ## Comment 5882de93-3d99-47db-81c2-37451b4a8059
 
-Date: 2026-09-18T02:02:15.127Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:02:15.127Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Lane C acceptance review is complete.
 

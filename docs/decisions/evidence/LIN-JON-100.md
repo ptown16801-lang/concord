@@ -1,6 +1,6 @@
 # Evidence snapshot: Coin model D — hidden research instrumentation contract
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `f0e62e78dc8348da0adfe45691444d27467172e6`; original SHA-256: `3bb04cc6aecdbf1c3d4c784f26fb7012cfcb97febf7180034cc0d33c14043deb`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `f0e62e78dc8348da0adfe45691444d27467172e6`; original SHA-256: `3bb04cc6aecdbf1c3d4c784f26fb7012cfcb97febf7180034cc0d33c14043deb`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -19,7 +19,7 @@ Independent Linear ACCEPT (private source reference withheld) at `f1254c6b89259d
 
 ## ECON-02 amendment delivered — September 24, 2026
 
-Owner-adopted refusal/voluntary-return/free-choice terms are incorporated in existing ptown16801-lang/concord#23 (private source reference withheld) at `8bd957e6437d2c1da70a65d94249f66f108ca4f6`. This bounded amendment is submitted for <user id="ebdb9780-fc90-431d-a858-4a5dd027b422">linear</user> checking on this issue. Whitespace checks and published Node 22/24 CI pass; these do not prove behavioral or scientific validity. Preserve earlier review obligations, JON-97 (private source reference withheld)'s pending acceptance, and JON-102 (private source reference withheld) dependencies. Full subsystem acceptance and runtime implementation are not claimed.
+Owner-adopted refusal/voluntary-return/free-choice terms are incorporated in existing ptown16801-lang/concord#23 (private source reference withheld) at `8bd957e6437d2c1da70a65d94249f66f108ca4f6`. This bounded amendment is submitted for the recorded advisory reviewer checking on this issue. Whitespace checks and published Node 22/24 CI pass; these do not prove behavioral or scientific validity. Preserve earlier review obligations, JON-97 (private source reference withheld)'s pending acceptance, and JON-102 (private source reference withheld) dependencies. Full subsystem acceptance and runtime implementation are not claimed.
 
 ## Review/revision checkpoint — 2026-09-17
 

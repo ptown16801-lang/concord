@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-110 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `7acff235b0e29c24b834c739a1ccb98aa79fd0e5`; original SHA-256: `e9ee9c3f5e13b5f7b7774641990ffcd2258dcd6126449133aaaa5129975c495b`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `7acff235b0e29c24b834c739a1ccb98aa79fd0e5`; original SHA-256: `e9ee9c3f5e13b5f7b7774641990ffcd2258dcd6126449133aaaa5129975c495b`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -34,7 +34,7 @@ This thread is for an agent session with linear.
 
 ## Comment e149edb5-6903-4dd4-b6cd-47e6c4896f52
 
-Date: 2026-09-18T02:01:07.589Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:01:07.589Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Lane B completed with one canonical disposition per target.
 

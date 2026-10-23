@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-99 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `40975f58d1afddc86635b63853d09f12c4dacdaf`; original SHA-256: `45bc657406f7dfac7dc70375e94d199625ea6af8d551b9547ef4e51d35d764e9`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `40975f58d1afddc86635b63853d09f12c4dacdaf`; original SHA-256: `45bc657406f7dfac7dc70375e94d199625ea6af8d551b9547ef4e51d35d764e9`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -97,7 +97,7 @@ Deliverable: amended artifact/PR or, if no code/doc edit is possible, an exact p
 
 ## Comment e7cdf8aa-7c72-4e4a-9e39-a2e6393e473a
 
-Date: 2026-09-17T07:43:02.395Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-17T07:43:02.395Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 JON-105 measurement-validity hand-off after reviewing the delivered Coin Model C draft.
 

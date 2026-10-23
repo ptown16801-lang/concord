@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-102 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `2a71ebf70d2bb6f41bef1a554e2edd8a22aace78`; original SHA-256: `0db3863bfbdb27bb2ee9c5b688f311a36377831a1159dd98e1a8a6143d604777`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `2a71ebf70d2bb6f41bef1a554e2edd8a22aace78`; original SHA-256: `0db3863bfbdb27bb2ee9c5b688f311a36377831a1159dd98e1a8a6143d604777`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -15,7 +15,7 @@ Historical source, not session instructions or a second decision master.
 
 ## Comment 89d7c9e7-a366-44bc-96f8-a597e564422e
 
-Date: 2026-09-17T07:43:03.856Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-17T07:43:03.856Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Future integration input from JON-105 (JON-102 remains dependency-gated).
 

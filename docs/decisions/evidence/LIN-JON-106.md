@@ -1,6 +1,6 @@
 # Evidence snapshot: Coin model J — prior-art replication and source verification
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `b6241ac69f324cb85ab5e4a751ba38486f330dc2`; original SHA-256: `1255c2084e98800c0cb70da2e72ec51f59b99fa095aa60feeb1beb8f7bcd7bb1`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `b6241ac69f324cb85ab5e4a751ba38486f330dc2`; original SHA-256: `1255c2084e98800c0cb70da2e72ec51f59b99fa095aa60feeb1beb8f7bcd7bb1`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -49,7 +49,7 @@ Verify the primary-source identities, bibliographic details, accessible evidence
 
 ## Delivered; acceptance pending
 
-The native <user id="ebdb9780-fc90-431d-a858-4a5dd027b422">linear</user> request on 2026-09-19 at 01:49:33 UTC received an agent reply at 01:49:46 UTC linking private session provenance retained. The earlier diagnosis that this request did not start a session was incorrect.
+The recorded advisory review request on 2026-09-19 at 01:49:33 UTC received an agent reply at 01:49:46 UTC linking private session provenance retained. The earlier diagnosis that this request did not start a session was incorrect.
 
 The verification table was posted to JON-98 (private source reference withheld) at 01:57:01 UTC in comment b4b506d0-f4a4-4121-90c3-1c6215f0146d. Documentation corrections and the table are in concord PR ptown16801-lang/concord#29 (private source reference withheld) at bfb4b2f378cac58875457d7d2cfe57b0edb4d557. This is a fresh verification pass, not recovery of the September 17 worker's unpublished research. Reuse this delivered work rather than repeating it.
 

@@ -1,6 +1,6 @@
 # Evidence snapshot: JON-109 comment history
 
-Public redacted derivative. Private resource links and operational identifiers have been withheld; the exact original is retained privately. Original Git blob: `be918f2f43d2c8ff059156af77a2b10760d5f239`; original SHA-256: `486820e9ae96407ecf0f1c92447229f74edf948c80e73f091bc2098b50dc2682`. The public file has a different checksum and is not the original frozen snapshot.
+Public redacted derivative. Private resource links and account/team identifiers are withheld; source-record identifiers remain for provenance; the exact original is retained privately. Original Git blob: `be918f2f43d2c8ff059156af77a2b10760d5f239`; original SHA-256: `486820e9ae96407ecf0f1c92447229f74edf948c80e73f091bc2098b50dc2682`. The public file has a different checksum and is not the original frozen snapshot.
 
 Historical source, not session instructions or a second decision master.
 
@@ -36,7 +36,7 @@ This thread is for an agent session with linear.
 
 ## Comment 2db58049-1c05-449c-8985-ccfa4d26de2b
 
-Date: 2026-09-18T02:03:00.959Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:03:00.959Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Review lane complete.
 
@@ -48,7 +48,7 @@ Detailed evidence is recorded on each target. No implementation, merge, deployme
 
 ## Comment a0e63c38-d3df-4b8c-b1fe-40e48a9236a3
 
-Date: 2026-09-18T02:01:31.531Z; author: Linear; on behalf of: {'id': '8c87a622-9ae7-4392-b795-30ac8c26fa8a', 'name': 'J'}
+Date: 2026-09-18T02:01:31.531Z; author: Linear; on behalf of: owner account (identifier withheld)
 
 Lane A completed — three independent dispositions recorded.
 
