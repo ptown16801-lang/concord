@@ -6,6 +6,14 @@ and relevant entries in [DECISIONS.md](DECISIONS.md). Later explicit owner
 corrections take precedence. Historical prompts, source snapshots and review
 packets record earlier work; they do not authorize new actions.
 
+## Owner approval required for AGENTS.md changes
+
+No agent may make any change to `AGENTS.md` without the owner's explicit prior
+approval for that specific change. This includes edits, additions, removals,
+replacements, renaming, moving, deletion, and changes to this rule itself.
+General authorization to perform other work does not constitute approval to
+change `AGENTS.md`.
+
 ## Scope and preservation
 
 Identify the checkout, branch, revision, remotes, worktrees and existing edits
