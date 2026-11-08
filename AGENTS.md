@@ -1,10 +1,9 @@
 # Concord project instructions
 
-These instructions apply to changes in this repository. Read the current task,
-the [project overview](docs/OVERVIEW.md), [development status](docs/PROJECT_STATUS.md),
-and relevant entries in [DECISIONS.md](DECISIONS.md). Later explicit owner
-corrections take precedence. Historical prompts, source snapshots and review
-packets record earlier work; they do not authorize new actions.
+These instructions apply to changes in this repository. Read the task's Linear
+issue and the files it lists. Later explicit owner corrections take precedence.
+Historical prompts, source snapshots and review packets record earlier work; they
+do not authorize new actions.
 
 ## Owner approval required for AGENTS.md changes
 
@@ -32,20 +31,25 @@ edit them as an incidental part of implementation. Propose exact changes and
 retain their sources, acceptance limits and supersession. Routine implementation
 does not need an invented policy entry; report **No decision change** when applicable.
 
+**Linear:** follow the owner's guide "How I use Linear". Concord's issues are in
+team `JON`; when a check is needed is set in
+[Build and review](docs/decisions/WORKFLOW.md#build-and-review).
+
 ## Authoring and review
 
-Local Codex implements bounded, owner-authorized changes. State the intended
-files, checks and stopping point before editing. Other collaborators provide
-bounded, non-authoring advice only when authorized. Do not infer permission for
-provider dispatch, disclosure, paid use, new services or a disabled review route.
+Claude builds most bounded, owner-assigned work; Codex builds when the owner
+picks it for its model's strengths (owner, 2026-11-07). State the intended files,
+checks and stopping point before editing. Do not infer permission for provider
+dispatch, disclosure or new services.
 
-No role may approve its own work. Preserve the qualifying-independence rules in
-CON-070: a separate session or a passing test does not establish independent
-acceptance. A non-authoring reviewer identifies the exact diff and sources,
-reports observed checks and unresolved findings, and does not silently fix its
-own review target. Human review assesses acceptance, completeness and semantic
-contradictions. Review findings are distinct from owner acceptance and permission
-to merge or deploy.
+No session approves its own work. A check is done by a different model in a fresh
+session that sees only the Linear issue and the PR diff, so it has no prior
+contribution ([CON-070](DECISIONS.md#CON-070)). It does not fix what it reviews.
+Findings go on the PR as a review; a one-line verdict and link go on the Linear
+check sub-issue; the owner accepts. Small or low-risk work may skip the check. A
+passing test is not independent acceptance, and review findings are not
+permission to merge or deploy. Detail:
+[WORKFLOW.md](docs/decisions/WORKFLOW.md#build-and-review).
 
 One designated integrator writes an integration surface at a time. Compare
 expected HEAD and existing edits immediately before committing. Check semantic
@@ -68,12 +72,6 @@ checked, committed, pushed, reviewed, merged and deployed, with exact revisions
 and remaining limitations. Complete already-authorized commits after the
 required checks; explain the precise next action when a commit remains pending.
 Commit permission alone does not establish push, merge or deployment permission.
-
-Current holds remain in effect: quizzes are deferred, held Research Library work
-is not reopened, and completed component work does not authorize its residual
-scope. Do not enable autonomous sessions, loops or dormant prototypes through
-documentation maintenance. Follow applicable sandbox and recovery rules; do not
-relax isolation to manufacture a passing result.
 
 ## Public information
 
