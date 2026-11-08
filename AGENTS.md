@@ -1,10 +1,9 @@
 # Concord project instructions
 
-These instructions apply to changes in this repository. Read the current task,
-the [project overview](docs/OVERVIEW.md), [development status](docs/PROJECT_STATUS.md),
-and relevant entries in [DECISIONS.md](DECISIONS.md). Later explicit owner
-corrections take precedence. Historical prompts, source snapshots and review
-packets record earlier work; they do not authorize new actions.
+These instructions apply to changes in this repository. Read the task's Linear
+issue and the files it lists. Later explicit owner corrections take precedence.
+Historical prompts, source snapshots and review packets record earlier work; they
+do not authorize new actions.
 
 ## Owner approval required for AGENTS.md changes
 
@@ -41,7 +40,7 @@ team `JON`; when a check is needed is set in
 Claude builds most bounded, owner-assigned work; Codex builds when the owner
 picks it for its model's strengths (owner, 2026-11-07). State the intended files,
 checks and stopping point before editing. Do not infer permission for provider
-dispatch, disclosure, paid use, new services or a retired review route.
+dispatch, disclosure or new services.
 
 No session approves its own work. A check is done by a different model in a fresh
 session that sees only the Linear issue and the PR diff, so it has no prior
@@ -73,13 +72,6 @@ checked, committed, pushed, reviewed, merged and deployed, with exact revisions
 and remaining limitations. Complete already-authorized commits after the
 required checks; explain the precise next action when a commit remains pending.
 Commit permission alone does not establish push, merge or deployment permission.
-
-Current holds remain in effect: quizzes are deferred, held Research Library work
-is not reopened, The Form and the Moltbook integration wait until Concord has
-runnable, testable code in beta, and completed component work does not authorize
-its residual scope. Do not enable autonomous sessions, loops or dormant
-prototypes through documentation maintenance. Follow applicable sandbox and recovery rules; do not
-relax isolation to manufacture a passing result.
 
 ## Public information
 
