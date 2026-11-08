@@ -94,6 +94,21 @@ and obtain whatever review/merge authority applies. The author’s checks are no
 qualifying independent review. A proposed JON-163 detailed rule is not silently
 activated by this workflow; the agreed independence framework remains applicable.
 
+## Build and review
+
+Owner decision, 2026-11-07.
+
+1. The owner assigns the Linear issue to Claude or Codex; that agent builds and
+   opens the pull request.
+2. When a check is needed, a check sub-issue blocks the next step and the main
+   issue moves to "In review". Small or low-risk work may skip the check.
+3. The reviewer is a different model in a fresh session that sees only the issue
+   and the pull-request diff.
+4. Findings go on the pull request as a review; a one-line verdict and link go on
+   the check sub-issue.
+5. The owner accepts. On a reject, the work returns to the builder on the same
+   issue.
+
 ## Derived summaries and handoffs
 
 `npm run decisions:generate` writes CURRENT_DECISIONS.md deterministically from the
