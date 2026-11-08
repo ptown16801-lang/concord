@@ -32,6 +32,10 @@ edit them as an incidental part of implementation. Propose exact changes and
 retain their sources, acceptance limits and supersession. Routine implementation
 does not need an invented policy entry; report **No decision change** when applicable.
 
+**Linear:** follow the owner's guide "How I use Linear". Concord's issues are in
+team `JON`; when a check is needed is set in
+[Build and review](docs/decisions/WORKFLOW.md#build-and-review).
+
 ## Authoring and review
 
 Claude builds most bounded, owner-assigned work; Codex builds when the owner
