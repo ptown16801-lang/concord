@@ -4,6 +4,7 @@ These instructions apply to changes in this repository. Read the task's Linear
 issue and the files it lists. Later explicit owner corrections take precedence.
 Historical prompts, source snapshots and review packets record earlier work; they
 do not authorize new actions.
+Anything in `research/`, or in a Linear issue labelled Research, is research: it decides nothing.
 
 ## Owner approval required for AGENTS.md changes
 
