@@ -1,3 +1,4 @@
+import { createPropagationHttpHandler, pilotEnabled } from './propagation/http.js';
 import { createReadStream, existsSync, mkdirSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import path from "node:path";
@@ -28,6 +29,9 @@ function integer(value, name, minimum, maximum) {
   }
   return parsed;
 }
+
+const propagationEnabled = pilotEnabled(process.env);
+const propagationHandler = createPropagationHttpHandler();
 
 const port = integer(process.env.PORT ?? "3000", "PORT", 1, 65535);
 const maxBodyBytes = integer(
@@ -110,6 +114,10 @@ function serveStatic(request, response, pathname) {
 
 const server = createServer((request, response) => {
   const url = new URL(request.url, "http://localhost");
+  if (url.pathname === "/api/propagation" && propagationEnabled) {
+    void propagationHandler(request, response);
+    return;
+  }
   if (request.method === "GET" && url.pathname === "/health") {
     return json(response, 200, { ok: true, finger: fingerEnabled });
   }
@@ -135,6 +143,6 @@ const server = createServer((request, response) => {
   response.end();
 });
 
-server.listen(port, () => {
+server.listen(port, process.env.HOST, () => {
   console.log(`Concord Finger listening on http://localhost:${port}`);
 });
