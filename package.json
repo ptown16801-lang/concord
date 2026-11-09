@@ -7,14 +7,9 @@
   "engines": {
     "node": ">=22.5"
   },
-  "exports": {
-    "./finger": "./src/finger/index.js",
-    "./finger/processing": "./src/finger/processing/index.js"
-  },
   "scripts": {
-    "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/server.js && node --check src/finger/index.js && node --check src/finger/persistent-store.js && node --check src/finger/processing/processor.js && node --check public/finger-collector.js",
+    "check": "node --check scripts/decisions.mjs",
     "decisions:check": "node scripts/decisions.mjs check",
     "decisions:generate": "node scripts/decisions.mjs generate",
     "decisions:test": "node --test test/decisions.test.js",
