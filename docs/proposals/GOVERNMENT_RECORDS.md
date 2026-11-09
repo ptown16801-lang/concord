@@ -103,7 +103,6 @@ The owner column names component responsibility, not a new appointment or grant.
 | **Hidden research layer** | Hidden research / CON-051 | Coin and other research observations | Everything agent-visible; may never leak into errors, timing, counts or handles |
 | **Artifact archive** | Artifact archive component | Reference artifact identity/hashes/locations | Public ledger (not a competing one) |
 | **Research Library** | Research Library component | GOV bibliographic identities; Drive is canonical for PDFs | Any governance store |
-| **Finger behavioral capture** | Finger | Already-built SQLite/object store | Governance identity (an anonymous cookie is not an identity) |
 
 Two design choices need explicit qualification:
 

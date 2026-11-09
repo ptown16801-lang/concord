@@ -14,7 +14,6 @@ Concord has implemented components and substantial accepted design work. The com
 
 | Area | Available artifact | Current state |
 | --- | --- | --- |
-| Browser interaction, storage, and replay | [Component reference](reference/component-runtime.md), `src/`, `public/`, and `test/` on default | Implemented component source on the recorded default baseline. Residual hardening and integration scopes remain distinct from its historical beta completion. |
 | Ordinary collaboration and marketplace | [Marketplace contract](ECONOMY_MARKETPLACE_CONTRACT.md) | Accepted design on default; this does not establish a running production marketplace. |
 | Identity, agreements, protected domains, scheduling | [Accepted design specifications](README.md#accepted-design-specifications) | Recorded design acceptance. Maintained copies are included with exact accepted source revisions and later qualifications. Runtime completion is separate. |
 | Governance integration | [PR #37](https://github.com/ptown16801-lang/concord/pull/37), `b813e15b33741b5c4ed982be6598193166124f96` | Combined implementation candidate, 41 commits ahead of default. Open draft; review and acceptance for default-branch integration remain pending. |

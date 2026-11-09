@@ -242,12 +242,12 @@ Later evidence changes the interpretation from “a believable society emerged�
 
 ### 8.1 Authoritative project evidence
 
-The current repository implements Finger capture/persistence/analysis, not the full governance workbench. Its append-only raw-event and analysis-generation approach is a useful local correspondence. Current Linear contracts establish designed owners: JON-15 identity/memory/succession; JON-16 scheduler/checker/continuity; JON-17 domain authorization/stores; JON-18 Archivist/publication; JON-19 agreements; JON-21 relational observatory; JON-24 decision replay; JON-25 economy; JON-58/JON-78 population; and JON-96–105 coin/emergence instrumentation. “Done” design issues and draft/recovery PRs are not represented here as deployed production capability.
+The current repository contains design and research documentation, not the governance workbench or any runtime for it. Current Linear contracts establish designed owners: JON-15 identity/memory/succession; JON-16 scheduler/checker/continuity; JON-17 domain authorization/stores; JON-18 Archivist/publication; JON-19 agreements; JON-21 relational observatory; JON-24 decision replay; JON-25 economy; JON-58/JON-78 population; and JON-96–105 coin/emergence instrumentation. “Done” design issues and draft/recovery PRs are not represented here as deployed production capability.
 
 | Concern | Paper | Concord correspondence/difference | Assessment |
 | --- | --- | --- | --- |
 | Persistent identity | Prompted persona plus cached generated summary | JON-15 separates durable governance identity, private memory, keys, residency, and successor identity. | Fundamental difference; never let a generated summary become identity authority. |
-| Audit history | Natural-language memory stream; reflection evidence pointers | Repository Finger store preserves attributable raw events and immutable derived generations; JON-18 requires append-only publication/corrections. | Adapt provenance pattern; retain raw/event-time truth separately from inference. |
+| Audit history | Natural-language memory stream; reflection evidence pointers | JON-18 requires append-only publication/corrections. | Adapt provenance pattern; retain raw/event-time truth separately from inference. |
 | Memory | One associative stream mixes observation, plan, reflection | Concord requires private/authorized domains and known-at-the-time distinctions. | Adapt into typed, access-controlled layers; do not copy a single blended stream. |
 | Planning | LLM hierarchy and reactive replanning | JON-16 makes scheduler privileged/mechanical and checker independent; lawful urgency is external. | Investigate advisory agent plans only; reject plans as schedule/legality authority. |
 | Coordination | Conversation, proximity, shared event | Concord includes scheduling, agreements, discussion and institutional routes. | Measure mechanisms separately; paper does not validate formal coordination. |
@@ -258,11 +258,11 @@ The current repository implements Finger capture/persistence/analysis, not the f
 | Scheduling | Agent-generated daily plans; sequential simulator clock | JON-16 separates allocation, eligibility, legality, protected envelopes, and continuity. | LLM plan may be a request; mechanical system owns commitments. |
 | Security | Authors flag prompt/memory hacking; code is research prototype | JON-17 requires isolated domains, capabilities, writers, version checks, fail-closed recovery. | Reject direct reuse in protected paths; sandbox experiments. |
 | Institutional records | Memory is subjective and revisable | JON-18 requires authenticated source, sole Archivist publisher, correction/supersession, protected ledgers. | Fundamental epistemic difference: memory claims are evidence, never the ledger. |
-| Observability/replay | Replay and inspectable memories | Finger and JON-21/JON-24 preserve raw/derived provenance and replay goals. | Strong product correspondence, subject to privacy and observer-effect controls. |
+| Observability/replay | Replay and inspectable memories | JON-21/JON-24 preserve raw/derived provenance and replay goals. | Strong product correspondence, subject to privacy and observer-effect controls. |
 
 ### 8.2 Present, missing, and novel
 
-- **Present in this repository:** immutable-ish raw capture/object storage, queryable attributable events, append-only derived-analysis metadata, replay/heat-map processing, version stamps, and audited purge. These apply to Finger, not general agents.
+- **Not implemented in this repository:** the patterns above exist only as design requirements; no runtime implements them.
 - **Designed elsewhere/current Linear owners:** persistent governance identity, scheduler/checker, security domains, Archivist, agreements, population cap, relational observatory, replay, economy, and hidden coin ground truth.
 - **Missing from this repository and not proven deployed:** generative-agent runtime, typed autobiographical memory, retrieval/reflection/planning, multi-agent experiment runner, intervention assignment, outcome metric pipeline, model/prompt registry, and institutional simulator integration.
 - **Genuinely novel candidate relative to inspected Concord records:** a reusable, authority-separated factorial experiment harness for memory/reflection/planning and orchestration interventions. It remains an investigation option, not an authorized implementation task.
@@ -308,7 +308,7 @@ Benchmark anchors should include paper interview questions, SOTOPIA-hard social 
 
 | Mechanism/module | Class | Candidate interface/data changes | Dependencies/integration | Cost/risk | Decision and acceptance gate |
 | --- | --- | --- | --- | --- | --- |
-| Typed event/provenance envelope | **Adopt** | immutable `event_id`, actor/source, event/ingest time, visibility, source hash, claim/ground-truth type, supersession; derived record cites inputs | JON-17/18; reuse Finger generation provenance | Medium; privacy/volume | Adopt as a design requirement, not paper code. Pass if raw, derived, and authority records cannot be confused and replay is complete. |
+| Typed event/provenance envelope | **Adopt** | immutable `event_id`, actor/source, event/ingest time, visibility, source hash, claim/ground-truth type, supersession; derived record cites inputs | JON-17/18 | Medium; privacy/volume | Adopt as a design requirement, not paper code. Pass if raw, derived, and authority records cannot be confused and replay is complete. |
 | Model/prompt/run manifest | **Adopt** | model snapshot, prompt hashes, parameters, seed, code/environment/schema SHAs, retry/cost log | JON-18/28/39 | Low–medium; vendor opacity | Required before any behavioral claim. A rerun must resolve every recorded artifact or report unavailability. |
 | Associative retrieval | **Investigate** | read-only adapter over authorized memory; typed query; ranked results plus component scores | JON-15/17, experiment harness | Medium; leakage/bias | E1 must beat lexical/recency baselines without protected-data leakage. No production authority role. |
 | Reflection service | **Investigate** | derived hypothesis with evidence edges, confidence, model/prompt version; never overwrite source | JON-15/18/21 | Medium–high; recursive error | E1/E3 must quantify accuracy and amplification. Label output inference. |

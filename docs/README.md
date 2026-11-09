@@ -32,10 +32,6 @@ Read each candidate's scope and the [status page](PROJECT_STATUS.md) before trea
 - [Generative Agents analysis](GENERATIVE_AGENTS_ANALYSIS.md) — literature analysis and recommendations.
 - [Adversarial governance fixtures](../qa/jon58/README.md) — fixture pack and validator; not yet connected to the governance implementation.
 
-## Current component reference
-
-The [browser interaction component reference](reference/component-runtime.md) documents the server, configuration, storage, replay, and data-handling details available on the default branch. It preserves the relevant technical material previously placed on the homepage.
-
 ## Decisions and provenance
 
 The [decision register](../DECISIONS.md), [project record](../PROJECT_RECORD.md), and [source register](decisions/SOURCES.md) preserve detailed requirements and origins. Historical snapshots include superseded descriptions and dated review results. They support traceability; they are not the primary introduction to Concord.

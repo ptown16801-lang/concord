@@ -14,6 +14,12 @@ without repeating or merging it. See `docs/decisions/RECONCILIATION_AUDIT_2026-0
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## 2026-11-09 — Finger removed
+
+### Removed
+
+- Removed Finger (the browser interaction-capture demo) from the repository: `src/finger/`, `src/server.js`, the `public/` demo files, the four Finger test files, the `package.json` Finger exports and `start` script, and the Finger component reference. The project owner decided Finger is not part of Concord. Earlier entries below and the dated records under `docs/` are unchanged historical records; git history keeps the removed files. The default branch no longer has a runnable application or a startup command.
+
 ## Unreleased — reconciliation audit, 2026-09-16
 
 ### Added
