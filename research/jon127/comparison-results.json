@@ -1,0 +1,638 @@
+{
+  "sourceRevision": "e4b979dea42e606bc8ac0b64b458bb084d8ad3a6",
+  "purpose": "Synthetic offline comparison only; no lawful urgency ranking, GP, LLM, approved policy selection, real checker, shadow run, or canary.",
+  "results": [
+    {
+      "id": "normal",
+      "baseline": {
+        "assignments": 2,
+        "completed": 2,
+        "unassignedTaskRounds": 0,
+        "continuations": 0,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "one": 0,
+          "two": 0
+        },
+        "agentAssignments": {
+          "a": 1,
+          "b": 1
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "one",
+            "a",
+            0,
+            null
+          ],
+          [
+            0,
+            "two",
+            "b",
+            0,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 2,
+        "completed": 2,
+        "unassignedTaskRounds": 0,
+        "continuations": 0,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "one": 0,
+          "two": 0
+        },
+        "agentAssignments": {
+          "a": 1,
+          "b": 1
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "one",
+            "a",
+            0,
+            null
+          ],
+          [
+            0,
+            "two",
+            "b",
+            0,
+            null
+          ]
+        ]
+      }
+    },
+    {
+      "id": "overload",
+      "baseline": {
+        "assignments": 4,
+        "completed": 2,
+        "unassignedTaskRounds": 3,
+        "continuations": 2,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 3,
+        "firstService": {
+          "a-long": 0,
+          "z-wait": 3
+        },
+        "agentAssignments": {
+          "a": 4
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "a-long",
+            "a",
+            2,
+            null
+          ],
+          [
+            0,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            1,
+            "a-long",
+            "a",
+            1,
+            null
+          ],
+          [
+            1,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            2,
+            "a-long",
+            "a",
+            0,
+            null
+          ],
+          [
+            2,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            3,
+            "z-wait",
+            "a",
+            0,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 4,
+        "completed": 2,
+        "unassignedTaskRounds": 2,
+        "continuations": 2,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 1,
+        "firstService": {
+          "a-long": 0,
+          "z-wait": 1
+        },
+        "agentAssignments": {
+          "a": 4
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "a-long",
+            "a",
+            2,
+            null
+          ],
+          [
+            0,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            1,
+            "a-long",
+            null,
+            2,
+            "capacity-or-eligibility"
+          ],
+          [
+            1,
+            "z-wait",
+            "a",
+            0,
+            null
+          ],
+          [
+            2,
+            "a-long",
+            "a",
+            1,
+            null
+          ],
+          [
+            3,
+            "a-long",
+            "a",
+            0,
+            null
+          ]
+        ]
+      }
+    },
+    {
+      "id": "scarce-protected",
+      "baseline": {
+        "assignments": 2,
+        "completed": 2,
+        "unassignedTaskRounds": 0,
+        "continuations": 0,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "private": 0,
+          "public": 0
+        },
+        "agentAssignments": {
+          "protected": 1,
+          "public": 1
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "private",
+            "protected",
+            0,
+            null
+          ],
+          [
+            0,
+            "public",
+            "public",
+            0,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 2,
+        "completed": 2,
+        "unassignedTaskRounds": 0,
+        "continuations": 0,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "private": 0,
+          "public": 0
+        },
+        "agentAssignments": {
+          "protected": 1,
+          "public": 1
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "private",
+            "protected",
+            0,
+            null
+          ],
+          [
+            0,
+            "public",
+            "public",
+            0,
+            null
+          ]
+        ]
+      }
+    },
+    {
+      "id": "starvation-handoff",
+      "baseline": {
+        "assignments": 4,
+        "completed": 2,
+        "unassignedTaskRounds": 3,
+        "continuations": 3,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 3,
+        "firstService": {
+          "a-long": 0,
+          "z-wait": 3
+        },
+        "agentAssignments": {
+          "a": 4,
+          "b": 0
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "a-long",
+            "a",
+            2,
+            null
+          ],
+          [
+            0,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            1,
+            "a-long",
+            "a",
+            1,
+            null
+          ],
+          [
+            1,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            2,
+            "a-long",
+            "a",
+            0,
+            null
+          ],
+          [
+            2,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            3,
+            "z-wait",
+            "a",
+            0,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 4,
+        "completed": 2,
+        "unassignedTaskRounds": 1,
+        "continuations": 2,
+        "handoffs": 1,
+        "maxTotalWaitRounds": 1,
+        "firstService": {
+          "a-long": 0,
+          "z-wait": 1
+        },
+        "agentAssignments": {
+          "a": 2,
+          "b": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "a-long",
+            "a",
+            2,
+            null
+          ],
+          [
+            0,
+            "z-wait",
+            null,
+            1,
+            "capacity-or-eligibility"
+          ],
+          [
+            1,
+            "a-long",
+            "b",
+            1,
+            null
+          ],
+          [
+            1,
+            "z-wait",
+            "a",
+            0,
+            null
+          ],
+          [
+            2,
+            "a-long",
+            "b",
+            0,
+            null
+          ]
+        ]
+      }
+    },
+    {
+      "id": "authority-change",
+      "baseline": {
+        "assignments": 3,
+        "completed": 1,
+        "unassignedTaskRounds": 0,
+        "continuations": 2,
+        "handoffs": 1,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "continuing": 0
+        },
+        "agentAssignments": {
+          "a": 1,
+          "b": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "continuing",
+            "a",
+            2,
+            null
+          ],
+          [
+            1,
+            "continuing",
+            "b",
+            1,
+            null
+          ],
+          [
+            2,
+            "continuing",
+            "b",
+            0,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 3,
+        "completed": 1,
+        "unassignedTaskRounds": 0,
+        "continuations": 2,
+        "handoffs": 1,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "continuing": 0
+        },
+        "agentAssignments": {
+          "a": 1,
+          "b": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "continuing",
+            "a",
+            2,
+            null
+          ],
+          [
+            1,
+            "continuing",
+            "b",
+            1,
+            null
+          ],
+          [
+            2,
+            "continuing",
+            "b",
+            0,
+            null
+          ]
+        ]
+      }
+    },
+    {
+      "id": "checker-outage",
+      "baseline": {
+        "assignments": 2,
+        "completed": 0,
+        "unassignedTaskRounds": 1,
+        "continuations": 1,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 1,
+        "firstService": {
+          "continuing": 0
+        },
+        "agentAssignments": {
+          "a": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 1,
+        "recordSequence": [
+          [
+            0,
+            "continuing",
+            "a",
+            2,
+            null
+          ],
+          [
+            1,
+            "continuing",
+            null,
+            2,
+            "checker-unavailable"
+          ],
+          [
+            2,
+            "continuing",
+            "a",
+            1,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 2,
+        "completed": 0,
+        "unassignedTaskRounds": 1,
+        "continuations": 1,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 1,
+        "firstService": {
+          "continuing": 0
+        },
+        "agentAssignments": {
+          "a": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 1,
+        "recordSequence": [
+          [
+            0,
+            "continuing",
+            "a",
+            2,
+            null
+          ],
+          [
+            1,
+            "continuing",
+            null,
+            2,
+            "checker-unavailable"
+          ],
+          [
+            2,
+            "continuing",
+            "a",
+            1,
+            null
+          ]
+        ]
+      }
+    },
+    {
+      "id": "candidate-failure",
+      "baseline": {
+        "assignments": 2,
+        "completed": 1,
+        "unassignedTaskRounds": 0,
+        "continuations": 1,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "work": 0
+        },
+        "agentAssignments": {
+          "a": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "work",
+            "a",
+            1,
+            null
+          ],
+          [
+            1,
+            "work",
+            "a",
+            0,
+            null
+          ]
+        ]
+      },
+      "waitingFirst": {
+        "assignments": 2,
+        "completed": 1,
+        "unassignedTaskRounds": 0,
+        "continuations": 1,
+        "handoffs": 0,
+        "maxTotalWaitRounds": 0,
+        "firstService": {
+          "work": 0
+        },
+        "agentAssignments": {
+          "a": 2
+        },
+        "checkerRejections": 0,
+        "checkerFailures": 0,
+        "recordSequence": [
+          [
+            0,
+            "work",
+            "a",
+            1,
+            null
+          ],
+          [
+            1,
+            "work",
+            "a",
+            0,
+            null
+          ]
+        ]
+      }
+    }
+  ]
+}
