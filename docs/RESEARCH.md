@@ -14,7 +14,7 @@ Observation is designed to remain separate from participant-facing behavior. Hid
 
 The mechanism and related designs have recorded acceptance. Participant model choices, concrete workloads, allocations, observation windows, sample-size reasoning, and final comparisons still need a study-specific protocol. No completed experiment or demonstrated economic outcome is claimed here.
 
-Read the [mechanism specification](https://github.com/ptown16801-lang/concord/pull/21), [observer design](https://github.com/ptown16801-lang/concord/pull/23), and [integration plan](https://github.com/ptown16801-lang/concord/blob/e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06/docs/COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md). The [ordinary marketplace contract](ECONOMY_MARKETPLACE_CONTRACT.md) is a separate design; its settlement authority must not be silently attributed to the experimental objects.
+Read the [mechanism specification](COIN_MODEL_A_V0.1.md), [observer design](COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md), and [integration plan](COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md). The [ordinary marketplace contract](ECONOMY_MARKETPLACE_CONTRACT.md) is a separate design; its settlement authority must not be silently attributed to the experimental objects.
 
 The [detailed experiment guide](research/coin-experiment/README.md) links the full [observer-boundary matrix](research/coin-experiment/OBSERVER_BOUNDARIES.md) and [measurement/protocol requirements](research/coin-experiment/MEASUREMENT_PROTOCOL.md). These retain unresolved study choices and distinguish specified isolation from demonstrated runtime behavior.
 
@@ -30,6 +30,6 @@ The [local propagation pilot](https://github.com/ptown16801-lang/concord/blob/d7
 
 The Research Library design separates bibliographic identity from attached files and keeps citation, semantic, authorship, and other relationship layers inspectable. Some bounded work has been reported complete; broader Library integration and quiz work are deferred.
 
-The [Generative Agents analysis](https://github.com/ptown16801-lang/concord/blob/27a50b02481199a2de6ccd74c06bdf35ec6ee8bc/docs/GENERATIVE_AGENTS_ANALYSIS.md) provides related literature analysis and proposed directions. External research, recommendations, replicated experiments, and Concord-specific results require separate evidence.
+The [Generative Agents analysis](GENERATIVE_AGENTS_ANALYSIS.md) provides related literature analysis and proposed directions. External research, recommendations, replicated experiments, and Concord-specific results require separate evidence.
 
 See [development status](PROJECT_STATUS.md) before treating any research artifact as an integrated capability.

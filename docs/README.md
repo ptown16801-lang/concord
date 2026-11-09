@@ -27,8 +27,10 @@ Read each candidate's scope and the [status page](PROJECT_STATUS.md) before trea
 - [Governance integration](https://github.com/ptown16801-lang/concord/pull/37) — combined governance components and subsequent repairs.
 - [Synthetic scheduler evaluation](https://github.com/ptown16801-lang/concord/blob/e4b979dea42e606bc8ac0b64b458bb084d8ad3a6/test/scheduler/README.md) — evaluation harness, not a selected production scheduler.
 - [Decision propagation pilot](https://github.com/ptown16801-lang/concord/blob/d72b8c1db1daa465e3f8e462f504918219be4e1a/docs/design/JON-24-LOCAL-PILOT.md) — bounded local synthetic implementation.
-- [Coin integration design](https://github.com/ptown16801-lang/concord/blob/e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06/docs/COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md) — implementation plan and study requirements.
-- [Generative Agents analysis](https://github.com/ptown16801-lang/concord/blob/27a50b02481199a2de6ccd74c06bdf35ec6ee8bc/docs/GENERATIVE_AGENTS_ANALYSIS.md) — literature analysis and recommendations.
+- [Coin integration design](COIN_MODEL_F_INTEGRATION_PLAN_V0.1.md) — implementation plan and study requirements.
+- Coin model documents: [formal specification](COIN_MODEL_A_V0.1.md), [prior-art audit](JON-98_EXACT_MODEL_PRIOR_ART_AUDIT.md) with its [source verification](JON-98_SOURCE_VERIFICATION.md), [threat and emergence model](COIN_MODEL_C_THREAT_EMERGENCE_V0.1.md), [hidden research instrumentation](COIN_MODEL_D_HIDDEN_INSTRUMENTATION_V0.1.md), and [agent-facing interface](COIN_MODEL_E_INTERFACE_V0.1.md).
+- [Generative Agents analysis](GENERATIVE_AGENTS_ANALYSIS.md) — literature analysis and recommendations.
+- [Adversarial governance fixtures](../qa/jon58/README.md) — fixture pack and validator; not yet connected to the governance implementation.
 
 ## Current component reference
 
