@@ -771,7 +771,7 @@ Refusal alone neither destroys nor automatically returns a coin. A recipient may
 - Acceptance date: 2026-09-24
 - Sources: [LIN-REGISTER](docs/decisions/evidence/LIN-REGISTER.md), [LIN-JON-98-COMMENTS](docs/decisions/evidence/LIN-JON-98-COMMENTS.md), [LIN-JON-103-COMMENTS](docs/decisions/evidence/LIN-JON-103-COMMENTS.md), [LIN-JON-105](docs/decisions/evidence/LIN-JON-105.md), [GH-PR-29](docs/decisions/evidence/GH-PR-29.md)
 - Supersedes: None
-- Implementation: PR29 merged into PR25’s feature branch, not Develo; later current head fb74e6d. JON-98/106 bounded acceptance is recorded, not repudiated.
+- Implementation: PR29 merged into PR25’s feature branch, not Develo; later current head fb74e6d. JON-98/106 bounded acceptance is recorded, not repudiated. The fb74e6d audit and source-verification files were copied unchanged into Develo by PR62 (JON-250, 2026-11-09).
 - Verification: Prior contradictory rejection and audit correction retained in source comment snapshots.
 - Rationale: Preserve the recorded boundary without adding policy.
 
@@ -820,7 +820,7 @@ Instructions expose mechanics only: create/give, transfer, inspect, sign, alter/
 - Acceptance date: 2026-09-24
 - Sources: [LIN-REGISTER-R4](docs/decisions/evidence/LIN-REGISTER-R4.md), [LIN-JON-102-ACCEPTANCE](docs/decisions/evidence/LIN-JON-102-ACCEPTANCE.md), [LIN-JON-102-ACCEPTED](docs/decisions/evidence/LIN-JON-102-ACCEPTED.md), [LOCAL-COIN-PLAN](docs/decisions/evidence/LOCAL-COIN-PLAN.md), [LIN-REGISTER](docs/decisions/evidence/LIN-REGISTER.md), [LIN-JON-102](docs/decisions/evidence/LIN-JON-102.md)
 - Supersedes: None
-- Implementation: Accepted design published in PR40 at e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06; unmerged. No coin runtime implementation or experiment follows from design acceptance.
+- Implementation: Accepted design published in PR40 at e24ce9f54c300652a0315ceb1fb9b2e1f9aa7a06; PR40 itself was not merged; the file was copied unchanged into Develo by PR62 (JON-250, 2026-11-09). No coin runtime implementation or experiment follows from design acceptance.
 - Verification: Existing review explicitly attests separate read-only acceptance of that exact head; subsequent comment adc20e24-b313-4512-8f5a-9a0d55f347ed confirms the design-only transition. This author reconciled that evidence, without repeating or independently certifying the review.
 - Rationale: Reuse the completed design/acceptance chain and preserve its runtime evidence gates.
 
