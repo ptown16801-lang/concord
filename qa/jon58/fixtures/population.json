@@ -1,0 +1,47 @@
+[
+  {
+    "id": "POP-CAP-299-300",
+    "sourceRule": "JON-58/JON-78: the authoritative population ceiling is 300 identities.",
+    "initialState": { "populationCount": 299, "identities": ["synthetic-existing-001..299"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "create synthetic-standard-300" },
+      { "step": 2, "mode": "ordered", "operation": "create synthetic-standard-301" }
+    ],
+    "expected": { "status": "DEFINED", "accepted": ["synthetic-standard-300"], "rejected": ["synthetic-standard-301"], "populationCount": 300 },
+    "adapterObserves": ["atomic decision for each creation", "authoritative count remains 300", "rejection reason identifies the ceiling"]
+  },
+  {
+    "id": "POP-CAP-RACE",
+    "sourceRule": "JON-58/JON-78: concurrent creations must not bypass the 300 ceiling.",
+    "initialState": { "populationCount": 299, "identities": ["synthetic-existing-001..299"] },
+    "schedule": [
+      { "step": 1, "mode": "concurrent", "operation": "create synthetic-racer-a", "group": "race-1" },
+      { "step": 1, "mode": "concurrent", "operation": "create synthetic-racer-b", "group": "race-1" }
+    ],
+    "expected": { "status": "DEFINED", "acceptedCount": 1, "rejectedCount": 1, "populationCount": 300, "winner": "EITHER_RACER" },
+    "adapterObserves": ["one committed creation and one ceiling rejection", "no transient or durable count of 301"]
+  },
+  {
+    "id": "POP-DUPLICATE-ROLLBACK",
+    "sourceRule": "JON-58/JON-78: identity uniqueness and population changes share an atomic transaction boundary.",
+    "initialState": { "populationCount": 42, "identities": ["synthetic-duplicate"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "create synthetic-duplicate" },
+      { "step": 2, "mode": "ordered", "operation": "create synthetic-rollback then inject persistence failure before commit" }
+    ],
+    "expected": { "status": "DEFINED", "rejected": ["synthetic-duplicate", "synthetic-rollback"], "populationCount": 42, "rollbackLeavesNoIdentity": "synthetic-rollback" },
+    "adapterObserves": ["duplicate-specific rejection", "failed transaction leaves neither identity nor count increment", "retry is distinguishable from the failed transaction"]
+  },
+  {
+    "id": "POP-SPECIAL-CLASSES-CAP",
+    "sourceRule": "JON-58/JON-78: special identity classes count toward the same population ceiling.",
+    "initialState": { "populationCount": 298, "identities": ["synthetic-existing-001..298"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "create synthetic-special-agent-299 with class special-agent" },
+      { "step": 2, "mode": "ordered", "operation": "create synthetic-special-office-300 with class office-holder" },
+      { "step": 3, "mode": "ordered", "operation": "create synthetic-special-exempt-301 with class claimed-exempt" }
+    ],
+    "expected": { "status": "DEFINED", "acceptedCount": 2, "rejectedCount": 1, "populationCount": 300 },
+    "adapterObserves": ["all identity classes use one authoritative counter", "claimed exemption cannot bypass ceiling"]
+  }
+]
