@@ -14,7 +14,7 @@ The current contract builds on [security domains](../SECURITY_DOMAIN_CONTRACT.md
 
 ## R2. Standalone boundary, ownership and protected inputs
 
-The standalone component models publication behavior behind an explicit test-only writer interface. Its fixture namespace, data directories, signing roots and outputs must be visibly synthetic and disposable. Nothing is registered as a production service. No real credentials, institutional records, network service, scheduler infrastructure, JON-23 search service, Research Library data are used. A stub index consumer suffices.
+The standalone component models publication behavior behind an explicit test-only writer interface. Its fixture namespace, data directories, signing roots and outputs must be visibly synthetic and disposable. Nothing is registered as a production service. No real credentials, institutional records, network service, scheduler infrastructure, JON-23 search service or Research Library data are used. A stub index consumer suffices.
 
 | Concern | Owner and standalone representation |
 | -- | -- |

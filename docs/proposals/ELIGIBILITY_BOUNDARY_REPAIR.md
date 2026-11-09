@@ -24,9 +24,11 @@ The September 30 inspection recorded the following at exact PR7 head `51a1022597
 * IDENTITY_REGISTERED creates local reducer state without a JON-78 registration reference.
 * test/eligibility.test.js contains nine reducer tests covering semantics, in-memory rollback/versioning and historical queries. They do not exercise process restart, real authentication or consumer ordering. They were read, not rerun.
 * src/governance/index.js exports the reducer types.
-* Use built-in node:sqlite, parameterized statements and BEGIN IMMEDIATE/COMMIT/ROLLBACK patterns (as the former Finger demo, since removed from the repository, did). Reuse no other component's database, schema, data or authority.
-* An anonymous session cookie does not establish judicial/institutional competence and must not be repurposed as a governance authority verifier.
+* src/finger/sqlite-repository.js already uses built-in node:sqlite, parameterized statements and BEGIN IMMEDIATE/COMMIT/ROLLBACK patterns. Reuse that established dependency/pattern, not Finger's database, schema, data or authority.
+* src/finger/identity.js authenticates a Finger cookie. It does not establish judicial/institutional competence and must not be repurposed as a governance authority verifier.
 * No usable governance authority-verification or JON-78 adapter implementation exists in this exact PR tree. That absence is a concrete binding dependency, not permission for a permissive stub in production.
+
+Note, 2026-11-09: `src/finger/` was removed from Develo by JON-256, so the two `src/finger/` files named above no longer exist there.
 
 ## 3. Smallest proposed file set
 
