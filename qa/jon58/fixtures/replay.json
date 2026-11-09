@@ -1,0 +1,40 @@
+[
+  {
+    "id": "REPLAY-RESTART-DETERMINISM",
+    "sourceRule": "JON-58/JON-82: authoritative state reconstruction is deterministic across restart and replay.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-replay-a", "synthetic-replay-b"], "eligible": ["synthetic-replay-a", "synthetic-replay-b"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "accept YES from synthetic-replay-a as event replay-1" },
+      { "step": 2, "mode": "ordered", "operation": "persist checkpoint and crash" },
+      { "step": 3, "mode": "ordered", "operation": "restart and replay durable events" },
+      { "step": 4, "mode": "ordered", "operation": "redeliver replay-1" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": ["synthetic-replay-a"], "U": ["synthetic-replay-b"], "D": 2 }, "replayRunsEqual": true, "acceptedBallotCount": 1 },
+    "adapterObserves": ["same canonical snapshot before and after restart", "duplicate event delivery is idempotent"]
+  },
+  {
+    "id": "REPLAY-CRASH-BOUNDARIES",
+    "sourceRule": "JON-58/JON-82: a crash cannot expose a partially committed population or ballot transition.",
+    "initialState": { "populationCount": 299, "poll": "open", "openingRoll": ["synthetic-crash-voter"], "eligible": ["synthetic-crash-voter"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "crash before population transaction commit" },
+      { "step": 2, "mode": "ordered", "operation": "restart and retry population transaction to commit synthetic-crash-300" },
+      { "step": 3, "mode": "ordered", "operation": "crash after durable ballot commit but before acknowledgement" },
+      { "step": 4, "mode": "ordered", "operation": "restart and retry ballot delivery" }
+    ],
+    "expected": { "status": "DEFINED", "populationCount": 300, "acceptedBallotCount": 1, "partialStatesVisible": false },
+    "adapterObserves": ["pre-commit population write is absent after restart", "post-commit ballot retry resolves to the original receipt"]
+  },
+  {
+    "id": "REPLAY-EXCLUDE-SOCIAL-SIGNALS",
+    "sourceRule": "JON-58/JON-82: forum reactions and helpfulness signals never enter constitutional ballot state.",
+    "initialState": { "poll": "open", "openingRoll": ["synthetic-social"], "eligible": ["synthetic-social"] },
+    "schedule": [
+      { "step": 1, "mode": "ordered", "operation": "record forum upvote by synthetic-social" },
+      { "step": 2, "mode": "ordered", "operation": "record helpfulness=true for synthetic-social" },
+      { "step": 3, "mode": "ordered", "operation": "record reaction=approve for synthetic-social" }
+    ],
+    "expected": { "status": "DEFINED", "snapshot": { "B": [], "U": ["synthetic-social"], "D": 1 }, "constitutionalBallotEvents": 0 },
+    "adapterObserves": ["no social/helpfulness event is accepted as a ballot", "B remains empty"]
+  }
+]
