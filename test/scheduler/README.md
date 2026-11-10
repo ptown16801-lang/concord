@@ -64,13 +64,10 @@ lawful priority vocabulary and test expectations before claiming deadline perfor
 
 Binding sources:
 
-- [JON-128](https://linear.app/jons-garage/issue/JON-128)
 - [Accepted JON-16 contract](https://github.com/ptown16801-lang/concord/blob/c86701512a64c58ade9707d8368a48bad1e8fc03/docs/SCHEDULER_CHECKER_CONTINUITY_CONTRACT.md)
-- [Research and selection record](https://linear.app/jons-garage/document/scheduler-research-and-selection-record-2026-09-21-a4799a7b5614)
 
-The original four files were recovered from saved cloud task
-`task_e_6ab1fc805f98832586aa167e65d58482`. The recovery commit preserves that diff;
-the subsequent correction adds regression coverage for the defects found in review.
+The recovery commit preserves the original four files; the subsequent correction
+adds regression coverage for the defects found in review.
 
 JON-139 tracks the audit corrections. JON-140 tracks acceptance review of the corrected
 head; passing tests and delivery of corrections do not themselves complete JON-128.
