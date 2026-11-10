@@ -39,11 +39,6 @@ authorization, and archival publication remain with their named owners.
   authoritative population lifecycle fact. JON-15 preserves the history and
   rejects reconstruction as that identity after the terminal fact is observed.
 
-The signed anonymous cookie currently used by Finger is a capture-association
-identifier, not a governance identity or governance credential. A Finger
-`subject_key` can reference an authenticated Concord identity only after the
-trusted integration boundary has established that association.
-
 ## 2. Durable state boundaries
 
 | Boundary | Contents | Authority and mutability | Retention / recovery role |
@@ -261,11 +256,6 @@ a historical view but expose no start/recover action.
   append-only correction, protected failure/disclosure, retention, and public
   search semantics. JON-15 supplies identity-history provenance to those
   interfaces and does not publish directly.
-
-The current Finger persistence stack remains a separate behavioral-capture
-store. Its immutable raw artifacts and analysis provenance are compatible source
-references, but Finger capture association, purge policy, and summary links do
-not become governance identity, autobiographical memory, or authorization.
 
 ## 11. Design acceptance cases
 

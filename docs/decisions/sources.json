@@ -4138,5 +4138,16 @@
     "relationship": "Preserve documented corrections and provenance limits; owner-controlled register integration remains separate.",
     "snapshot": "docs/decisions/sources/REPAIR-REGISTER-PUBLICATION-20261022.md",
     "sha256": "f7adafbc876354f9a3500ce1b35daeba8ca35ba1c9b5df5d807d021c921681c7"
+  },
+  "OWNER-FINGER-REMOVAL-20261109": {
+    "title": "Owner decision: Finger is not part of Concord",
+    "location": "docs/decisions/sources/OWNER-FINGER-REMOVAL-20261109.md",
+    "version": "Sanitized summary of owner decision, 2026-11-09",
+    "date": "2026-11-09",
+    "classification": "Sanitized summary of a direct owner decision recorded in a private tracker; not unchanged original",
+    "scope": "Finger removal only",
+    "relationship": "Records the owner decision that supersedes CON-064 and removes Finger from the CON-001 workstream list.",
+    "snapshot": "docs/decisions/sources/OWNER-FINGER-REMOVAL-20261109.md",
+    "sha256": "e31cdb7fada8fa15a42227cceafdfdaf2d69970ce6f5e8809360dd009a11f26a"
   }
 }

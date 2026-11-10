@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This summary describes the decision file in this checkout. Read entry scope, acceptance and implementation limits; publication does not establish acceptance or deployment.
 
-Master SHA-256 (exact UTF-8 bytes): `16732ad98de1e05067304c0d8a75c1c915d816c1338c800d188544597368814a`
+Master SHA-256 (exact UTF-8 bytes): `a8c258e7126f15181143e185ac328542f16d8268f1e759a9d34de4c7294372cb`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -60,7 +60,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-061](DECISIONS.md#CON-061) | Accepted | Relational observatory |
 | [CON-062](DECISIONS.md#CON-062) | Accepted | Visualization, checkpoints and propagation |
 | [CON-063](DECISIONS.md#CON-063) | Accepted | Interaction and artwork boundaries |
-| [CON-064](DECISIONS.md#CON-064) | Accepted | Finger completed beta and residual work |
+| [CON-064](DECISIONS.md#CON-064) | Superseded | Finger completed beta and residual work |
 | [CON-065](DECISIONS.md#CON-065) | Accepted | Archives and research-library storage |
 | [CON-066](DECISIONS.md#CON-066) | Accepted | Research and reusable evidence |
 | [CON-070](DECISIONS.md#CON-070) | Accepted | Roles and qualifying independence |
@@ -72,6 +72,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-093](DECISIONS.md#CON-093) | Accepted | Manual spending approval and included subscription use |
 | [CON-094](DECISIONS.md#CON-094) | Accepted | Isolated execution for separately authorized Claude advice |
 | [CON-095](DECISIONS.md#CON-095) | Accepted | Moltbook repository placement and participant boundaries |
+| [CON-096](DECISIONS.md#CON-096) | Accepted | Finger is not part of Concord |
 | [CON-080](DECISIONS.md#CON-080) | Unresolved | Unavailable original decision families |
 | [CON-081](DECISIONS.md#CON-081) | Unresolved | Unranked scheduler goals and downstream engineering |
 | [CON-082](DECISIONS.md#CON-082) | Accepted | C3 Senate conviction uses clear and convincing evidence |

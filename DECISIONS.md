@@ -57,7 +57,7 @@ instruction below. These are distinct source decisions, not renumbered CON entri
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Concord and The Form are separate peer projects. Vote is their folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence, Visualization and Finger are bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
+Concord and The Form are separate peer projects. Vote is their folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
 
 <a id="CON-002"></a>
 ### CON-002 — Linux deployment
@@ -683,7 +683,7 @@ Keep proposals, motions, ballots, minutes, directives, cases, agreements, commun
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Preserve failed publication/authentication/security attempts in a separate append-only secret failure ledger limited to authorized special-investigator/grand-jury processes. Record exact redacted/authorized disclosure packages and authority in a separate append-only disclosure ledger. Security audit, Finger behavioral records, public publication and hidden coin research are distinct authorities and stores.
+Preserve failed publication/authentication/security attempts in a separate append-only secret failure ledger limited to authorized special-investigator/grand-jury processes. Record exact redacted/authorized disclosure packages and authority in a separate append-only disclosure ledger. Security audit, public publication and hidden coin research are distinct authorities and stores.
 
 <a id="CON-045"></a>
 ### CON-045 — Admission survives cancellation, revocation and expiry
@@ -895,7 +895,7 @@ Touch/gesture/MIDI and shared audio/input interfaces remain separate from graph 
 <a id="CON-064"></a>
 ### CON-064 — Finger completed beta and residual work
 
-- Status: Accepted
+- Status: Superseded
 - Scope: Finger
 - Acceptance: Recorded beta completion and preserved later residual scopes.
 - Acceptance date: 2026-09-16 (beta reconciliation); later residual records through 2026-09-24
@@ -903,7 +903,7 @@ Touch/gesture/MIDI and shared audio/input interfaces remain separate from graph 
 - Supersedes: None
 - Implementation: Beta source exists on integration base; no Finger modification or fresh product tests in this task.
 - Verification: Source reconciliation only; no product-runtime verification performed.
-- Rationale: Preserve the recorded boundary without adding policy.
+- Rationale: Preserve the recorded boundary without adding policy. Superseded in full by CON-096 (owner decision, 2026-11-09): Finger is not part of Concord.
 
 Preserve the completed deployable beta. Its canonical persistence foundation uses server-generated capture IDs, signed HttpOnly anonymous identity, authenticated identity hook, SQLite history, content-addressed immutable object storage, server-owned versions, append-only analysis generations and audited purge. Collector/replay code was selectively reconciled with that backend; discarded alternate stores are not another authority. Do not recreate the beta milestone or infer full acceptance of all residual collector, ingestion, replay, admin comparison and hardening criteria. JON-70/71/73/74/75 retain only their separately authorized residual scope; JON-129’s delivered integer-grid correction is separately reviewable.
 
@@ -1128,6 +1128,21 @@ merge and deployment authority remain reserved. Preparation and synthetic checks
 do not establish live isolation, authentication, governmental participation or
 production acceptance. No retired dispatcher, new provider run, implementation,
 merge or deployment is authorized by this entry.
+
+<a id="CON-096"></a>
+### CON-096 — Finger is not part of Concord
+
+- Status: Accepted
+- Scope: Finger; Concord workstream list
+- Acceptance: Owner decision recorded in Linear issue JON-256; the owner approved this entry's exact text before it was written (CON-074).
+- Acceptance date: 2026-11-09
+- Sources: [OWNER-FINGER-REMOVAL-20261109](docs/decisions/sources/OWNER-FINGER-REMOVAL-20261109.md)
+- Supersedes: CON-064
+- Implementation: The JON-256 pull request removes Finger's code, tests, demo files and component reference from Develo. It takes effect only when merged; git history keeps the removed files.
+- Verification: Author's checks only (npm run check, npm test, decisions:generate/check/test). The independent check is a separate sub-issue and has not been done.
+- Rationale: Owner decision; Concord is research and design documentation.
+
+Finger, the browser interaction-capture demo, is not part of Concord. It is no longer a Concord workstream. [CON-064](#CON-064) is superseded in full. [CON-001](#CON-001) and [CON-043](#CON-043) no longer name Finger; CON-001 previously read "…Visualization and Finger are bounded Concord workstreams."
 
 ## Unresolved evidence and preserved history
 

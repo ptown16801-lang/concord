@@ -10,7 +10,7 @@ Repair the authenticated, durable eligibility event boundary around the existing
 
 Historical repair-scope source: the JON-79 planning contract inspected September 30, 2026. Required remediation in that plan: FAIL 878f4d1f. JON-91's older conditional domain acceptance is not a durable-authentication PASS.
 
-Allowed future repair subsystem: src/governance eligibility boundary, its isolated local persistence, domain authorization/registry binding interfaces, delivery contract and focused tests. Excluded: constitutional changes, policy adoption, identity issuance, real ballot acceptance/counting, JON-62 terminal-authorization design, Finger behavior/storage/identity, servers/UI, paid APIs, hosted execution, provider substitution, billing changes, merge/deploy. JON-141 retains integration ownership. JON-85's bounded Done acceptance is not reopened.
+Allowed future repair subsystem: src/governance eligibility boundary, its isolated local persistence, domain authorization/registry binding interfaces, delivery contract and focused tests. Excluded: constitutional changes, policy adoption, identity issuance, real ballot acceptance/counting, JON-62 terminal-authorization design, servers/UI, paid APIs, hosted execution, provider substitution, billing changes, merge/deploy. JON-141 retains integration ownership. JON-85's bounded Done acceptance is not reopened.
 
 ## 2. Observed baseline and reuse
 
@@ -28,6 +28,8 @@ The September 30 inspection recorded the following at exact PR7 head `51a1022597
 * src/finger/identity.js authenticates a Finger cookie. It does not establish judicial/institutional competence and must not be repurposed as a governance authority verifier.
 * No usable governance authority-verification or JON-78 adapter implementation exists in this exact PR tree. That absence is a concrete binding dependency, not permission for a permissive stub in production.
 
+Note, 2026-11-09: `src/finger/` was removed from Develo by JON-256, so the two `src/finger/` files named above no longer exist there.
+
 ## 3. Smallest proposed file set
 
 These are intended future paths; new files do not exist at PR7 head.
@@ -36,7 +38,7 @@ These are intended future paths; new files do not exist at PR7 head.
 | -- | -- |
 | src/governance/eligibility.js | Preserve transition meanings; expose controlled deterministic replay/reduction to the boundary, validate all required IDs including proceeding IDs, preserve in-memory class only as explicitly non-authoritative domain/testing surface |
 | src/governance/eligibility-boundary.js (new) | Single admitted write path: verified authority/registration, durable identity lookup, expected-version transaction, source-order validation, result and outbox creation |
-| src/governance/eligibility-store.js (new) | Dedicated node:sqlite store, transactions, append-only events/results, restart reconstruction and delivery/checkpoint state; no Finger DB reuse |
+| src/governance/eligibility-store.js (new) | Dedicated node:sqlite store, transactions, append-only events/results, restart reconstruction and delivery/checkpoint state; no reuse of any other component's database |
 | src/governance/eligibility-contract.js (new) | Versioned typed envelope/result/canonicalization, exact field validation and adapter interfaces; no legal policy inference |
 | src/governance/migrations/001_eligibility.sql (new) | Event/result uniqueness, ordered sequence, outbox and consumer acknowledgements; immutable evidence protected separately from mutable delivery state |
 | src/governance/index.js | Export the guarded boundary/contract; distinguish raw reducer from an authenticated authoritative entry point |
@@ -59,7 +61,7 @@ The boundary constructor receives trusted local composition-time dependencies, n
 * receiptAuthorizer: checks current access to protected prior results on retries/readback.
 * delivery consumer bindings: authenticated domain-specific JON-80/81 recipients and stable receipt/acknowledgement contracts.
 
-Fail construction or admission when a mandatory trusted binding is absent, invalid, out of scope or version-incompatible. No default allow, auto-generated legal credential, header-trust shortcut or fallback to Finger identity.
+Fail construction or admission when a mandatory trusted binding is absent, invalid, out of scope or version-incompatible. No default allow, auto-generated legal credential, header-trust shortcut or fallback to an anonymous cookie identity.
 
 Exact production binding implementations and accepted pins are **UNKNOWN at the inspected PR7 head**. The integrator must supply attributable existing implementations or separately bounded work before production acceptance. This plan does not label test-adapter success as clearing that dependency.
 

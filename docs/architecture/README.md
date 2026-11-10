@@ -12,6 +12,6 @@ The accepted design separates these responsibilities:
 
 Publication records, private memory, current operational state, research observations, and user-interface projections have different access and authority. A historical record or visible dashboard must not manufacture permission to act. Observation and hypothetical replay must remain distinguishable from actual institutional events.
 
-These contracts are engineering designs. The default runtime currently implements the [browser interaction component](../reference/component-runtime.md); governance integration and synthetic pilots have their own public candidates and review boundaries.
+These contracts are engineering designs. The default branch contains no runtime implementation; governance integration and synthetic pilots have their own public candidates and review boundaries.
 
 Further design references cover [population and voting](POPULATION_AND_VOTING.md), [cross-component boundaries](../design/POPULATION_VOTING_BOUNDARIES.md), [controlled publication](../design/ARCHIVIST_PUBLICATION.md), and [checkpoint exploration](../design/CHECKPOINT_NEIGHBORHOOD.md). Each identifies its own acceptance and implementation limits.

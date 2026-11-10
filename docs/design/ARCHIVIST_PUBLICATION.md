@@ -14,7 +14,7 @@ The current contract builds on [security domains](../SECURITY_DOMAIN_CONTRACT.md
 
 ## R2. Standalone boundary, ownership and protected inputs
 
-The standalone component models publication behavior behind an explicit test-only writer interface. Its fixture namespace, data directories, signing roots and outputs must be visibly synthetic and disposable. Nothing is registered as a production service. No real credentials, institutional records, network service, scheduler infrastructure, JON-23 search service, Finger store or Research Library data are used. A stub index consumer suffices.
+The standalone component models publication behavior behind an explicit test-only writer interface. Its fixture namespace, data directories, signing roots and outputs must be visibly synthetic and disposable. Nothing is registered as a production service. No real credentials, institutional records, network service, scheduler infrastructure, JON-23 search service or Research Library data are used. A stub index consumer suffices.
 
 | Concern | Owner and standalone representation |
 | -- | -- |
@@ -80,7 +80,7 @@ Stale expected versions after admission pause the immutable operation; no auto-m
 
 ### Store and trust boundary
 
-Choose one disposable SQLite test-domain store for the test public entries and its private operation/outcome/reservation/audit bookkeeping. Public reads expose only the approved entry projection. This does not combine investigatory originals, failure/disclosure ledgers, Finger, or other domains into a shared database. Separate synthetic collector/failure/disclosure adapters keep those contracts distinct.
+Choose one disposable SQLite test-domain store for the test public entries and its private operation/outcome/reservation/audit bookkeeping. Public reads expose only the approved entry projection. This does not combine investigatory originals, failure/disclosure ledgers, or other domains into a shared database. Separate synthetic collector/failure/disclosure adapters keep those contracts distinct.
 
 Schema-level guards deny UPDATE/DELETE of committed public entries and immutable request/outcome/audit evidence. Use durable unique keys for R3 operation/publication identity, entry ID and public position; guard INSERT OR REPLACE/UPSERT collision paths, including hidden `rowid`, `_rowid_` and `oid` aliases where rowid tables are used. Prefer explicit `WITHOUT ROWID` immutable tables where appropriate, and still test all accessible replacement paths. Existing schema guards in the candidate are a reference, not proof that a new table is guarded.
 
