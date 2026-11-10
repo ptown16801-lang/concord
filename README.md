@@ -35,4 +35,8 @@ npm test
 
 These commands inspect and test the checked-out version. The default branch has no startup command, and there is no single startup command for the complete designed environment.
 
+## Governance sandbox (AGT)
+
+The default branch includes the AGT governance sandbox, a local, synthetic test environment for how agents are controlled in Concord. It uses `@microsoft/agent-governance-sdk` and does not establish production authority. Run `npm run governance:test` for its tests and `npm run governance:demo` for a demonstration. See the [runbook](docs/GOVERNANCE_SANDBOX.md), the [audit record](docs/GOVERNANCE_AUDIT_2026-09-23.md) and the [admission contract](contracts/ADMISSION_KERNEL.md).
+
 See [Contributing](CONTRIBUTING.md) for focused changes, validation, and review.
