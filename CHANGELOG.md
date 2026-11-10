@@ -14,6 +14,14 @@ without repeating or merging it. See `docs/decisions/RECONCILIATION_AUDIT_2026-0
 
 This file consolidates the implementation history that was previously split across divergent Finger branches and pull-request descriptions. Historical branches/commits remain available as provenance; this log records the reconciled state rather than rewriting those histories.
 
+## 2026-11-10 — AGT governance sandbox
+
+### Added
+
+- Added the AGT governance sandbox: admission contracts in `contracts/`, local examples in `examples/agt-local/`, the adapter, policy worker, policy evidence and sandbox runtime in `src/governance/`, three AGT test files, and the sandbox, audit and JON-132 rowid-repair documents. AGT files are identical to the head of PR #50 (`9e40e86`), which carries the audit fixes from PR #34 and the rowid approval repair.
+- Added the `@microsoft/agent-governance-sdk` 5.0.0 dependency (with a `js-yaml` override), its lockfile entries, the `governance:*` scripts, and `npm ci --ignore-scripts` in CI.
+- Nothing else from draft PR #37 (voting, bootstrap impeachment, population, eligibility, archive verifier, runtime preflight, review workflow, decision register changes) is included. No decision change.
+
 ## 2026-11-09 — Finger removed
 
 ### Removed

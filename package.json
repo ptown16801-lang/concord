@@ -10,9 +10,21 @@
   "scripts": {
     "test": "node --test",
     "check": "node --check scripts/decisions.mjs",
+    "governance:test": "node --test test/agt-admission.test.js test/agt-sandbox.test.js test/agt-audit-regressions.test.js",
+    "governance:demo": "node examples/agt-local/demo.js",
+    "governance:isolation": "node examples/agt-local/isolation.js",
+    "governance:isolated-demo": "node examples/agt-local/isolated-workflow.js",
     "decisions:check": "node scripts/decisions.mjs check",
     "decisions:generate": "node scripts/decisions.mjs generate",
     "decisions:test": "node --test test/decisions.test.js",
     "decisions:preflight": "node scripts/decisions.mjs preflight"
+  },
+  "dependencies": {
+    "@microsoft/agent-governance-sdk": "5.0.0"
+  },
+  "overrides": {
+    "@microsoft/agent-governance-sdk": {
+      "js-yaml": "5.4.2"
+    }
   }
 }
