@@ -27,9 +27,9 @@ recorded in [JON-135 comment b7159e51](https://linear.app/jons-garage/issue/JON-
 Original retained reviewer evidence was verified before implementation and was not
 modified:
 
-- `probe.mjs` (in a temporary directory, not kept) — SHA-256
+- `probe.mjs` (temporary directory; path not recorded here) — SHA-256
   `6cb27afc699c1e194132aa03687f1078fa0578fb3773e86a20d00d2a38819c09`.
-- `report.json` (in a temporary directory, not kept) — SHA-256
+- `report.json` (temporary directory; path not recorded here) — SHA-256
   `b9638e898a1222d7ded4eb152d98b81128b1f05b53d57f940de8d3f40a431aeb`.
 
 Fresh Linear readback identified JON-132 as **In Review**, assigned to J, with

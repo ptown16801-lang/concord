@@ -18,8 +18,8 @@ This file consolidates the implementation history that was previously split acro
 
 ### Added
 
-- Added the AGT governance sandbox: admission contracts in `contracts/`, local examples in `examples/agt-local/`, the adapter, policy worker, policy evidence and sandbox runtime in `src/governance/`, three AGT test files, and the sandbox, audit and JON-132 rowid-repair documents. AGT files are identical to the head of PR #50 (`9e40e86`), which carries the audit fixes from PR #34 and the rowid approval repair.
-- Added the `@microsoft/agent-governance-sdk` 5.0.0 dependency (with a `js-yaml` override), its lockfile entries, the `governance:*` scripts, and `npm ci --ignore-scripts` in CI.
+- Added the AGT governance sandbox: admission contracts in `contracts/`, local examples in `examples/agt-local/`, the adapter, policy worker, policy evidence and sandbox runtime in `src/governance/`, three AGT test files, and the sandbox, audit and JON-132 rowid-repair documents. AGT files are identical to the head of PR #50 (`9e40e86`), which carries the audit fixes from PR #34 and the rowid approval repair, except `examples/agt-local/isolation.js` and `docs/decisions/JON132_ROWID_REPAIR_20261014.md`, which have machine paths removed.
+- Added the `@microsoft/agent-governance-sdk` 5.0.0 dependency (with a `js-yaml` 5.4.2 override of the SDK's pinned 5.2.1, kept from PR #34 to address the YAML denial-of-service advisory GHSA-pm4m-ph32-ghv5), its lockfile entries, the `governance:*` scripts, and `npm ci --ignore-scripts` in CI.
 - Nothing else from draft PR #37 (voting, bootstrap impeachment, population, eligibility, archive verifier, runtime preflight, review workflow, decision register changes) is included. No decision change.
 
 ## 2026-11-09 — Finger removed

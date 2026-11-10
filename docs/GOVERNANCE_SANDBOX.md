@@ -26,7 +26,7 @@ fresh in-memory test identities; they are not a production key-storage solution.
 The isolation probe additionally requires Linux, `bwrap` (bubblewrap), permitted
 unprivileged user namespaces and permission to create a local test listener.
 It exits unsuccessfully when those prerequisites are missing; it does not skip
-and report a pass. The HTTP regression tests also require localhost binding.
+and report a pass.
 
 ## Components and ownership
 
@@ -41,7 +41,7 @@ and report a pass. The HTTP regression tests also require localhost binding.
 - `examples/agt-local/fixture.js` supplies synthetic policy roots, actors and
   permissions. `demo.js` composes the workflow. `crash-worker.js` is test-only.
 - `test/agt-sandbox.test.js` exercises the integrated controls, including real
-  process termination. The existing admission and Finger tests remain separate.
+  process termination. The admission tests (`test/agt-admission.test.js`) remain separate.
 - `examples/agt-local/isolation.js` proves a limited real Linux boundary: an
   isolated agent cannot access protected host paths, write its read-only runtime,
   or connect to a listener running on the host loopback interface.
