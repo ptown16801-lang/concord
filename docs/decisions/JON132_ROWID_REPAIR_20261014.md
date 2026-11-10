@@ -11,7 +11,7 @@ Decision impact: No decision change
   trusted-SQL physical-row-identifier approval-preservation repair. This builder
   is not the independent verifier, master integrator, release steward or accepting
   authority.
-- Worktree: `/home/cornholio/.codex/worktrees/468d/concord`.
+- Worktree: a local Codex worktree (path not recorded here).
 - Branch: `codex/jon132-rowid-approval-repair-20261014`.
 - Exact source base: `55c91208a451099609af6b7820a2381c99f6f6dd`.
 - Cached `origin/Develo`: `4b6e41fd8d211746a81e870955e34475e66d02a3`.
@@ -27,9 +27,9 @@ recorded in [JON-135 comment b7159e51](https://linear.app/jons-garage/issue/JON-
 Original retained reviewer evidence was verified before implementation and was not
 modified:
 
-- `/tmp/jon135-approval-preservation-20261014-yd7wTB/probe.mjs` — SHA-256
+- `probe.mjs` (in a temporary directory, not kept) — SHA-256
   `6cb27afc699c1e194132aa03687f1078fa0578fb3773e86a20d00d2a38819c09`.
-- `/tmp/jon135-approval-preservation-20261014-yd7wTB/report.json` — SHA-256
+- `report.json` (in a temporary directory, not kept) — SHA-256
   `b9638e898a1222d7ded4eb152d98b81128b1f05b53d57f940de8d3f40a431aeb`.
 
 Fresh Linear readback identified JON-132 as **In Review**, assigned to J, with

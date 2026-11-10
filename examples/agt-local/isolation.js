@@ -1,15 +1,17 @@
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import assert from 'node:assert/strict';
 const root=mkdtempSync(join(tmpdir(),'concord-agent-isolation-'));
 const secret=join(root,'domain-secret');
 writeFileSync(secret,'synthetic protected data',{mode:0o600});
 const probe=join(root,'probe.cjs');
+const repoPackage=fileURLToPath(new URL('../../package.json',import.meta.url));
 writeFileSync(probe,`
 const fs=require('node:fs'),net=require('node:net'),assert=require('node:assert/strict');
-for(const file of [${JSON.stringify(secret)},'/home/cornholio/projects/concord/package.json']) {
+for(const file of [${JSON.stringify(secret)},${JSON.stringify(repoPackage)}]) {
  assert.throws(()=>fs.readFileSync(file),e=>e.code==='ENOENT'||e.code==='EACCES');
  assert.throws(()=>fs.writeFileSync(file,'bypass'),e=>['ENOENT','EACCES','EROFS'].includes(e.code));
 }
