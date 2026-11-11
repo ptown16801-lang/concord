@@ -47,7 +47,7 @@ function unique(rows, key) {
   }
   return map;
 }
-function validateSnapshot(snapshot, caseId, accusationParticipants) {
+function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPanelSourceEventId) {
   for (const source of SOURCE_NAMES) {
     const s = snapshot?.[source];
     check(s && typeof s.snapshotId === 'string' && s.snapshotId.length > 0, 'MISSING_SNAPSHOT');
@@ -76,14 +76,16 @@ function validateSnapshot(snapshot, caseId, accusationParticipants) {
   check(Array.isArray(snapshot.conflicts.sourceEventIds) && snapshot.conflicts.sourceEventIds.length > 0
     && snapshot.conflicts.sourceEventIds.every(x => typeof x === 'string' && x.length > 0), 'MISSING_CONFLICT_PROVENANCE');
   check(Array.isArray(snapshot.participation.events), 'MISSING_PARTICIPATION_LEDGER');
-  const historical = new Set(accusationParticipants);
+  // identityId -> source event: the ledger's own event (smallest when several), else the case's frozen accusation panel event.
+  const historical = new Map([...(accusationParticipants ?? [])].map(id => [id, accusationPanelSourceEventId])), ledger = new Map();
   for (const e of snapshot.participation.events) {
     check(e && typeof e.identityId === 'string' && people.has(e.identityId)
       && typeof e.sourceEventId === 'string' && e.sourceEventId.trim().length > 0
       && e.sourceEventId === e.sourceEventId.trim() && ['ACCUSATION', 'TRIAL'].includes(e.stage)
       && ['SERVED', 'DELIBERATED', 'BALLOT'].includes(e.eventType), 'INVALID_PARTICIPATION');
-    if (e.stage === 'ACCUSATION') historical.add(e.identityId);
+    if (e.stage === 'ACCUSATION' && !(ledger.get(e.identityId) <= e.sourceEventId)) ledger.set(e.identityId, e.sourceEventId);
   }
+  for (const [id, sourceEventId] of ledger) historical.set(id, sourceEventId);
   for (const institution of ['HOUSE', 'SENATE']) {
     const r = snapshot.rules[institution];
     check(r && [r.quorum, r.threshold, r.denominator].every(x => Number.isSafeInteger(x) && x > 0)
@@ -94,28 +96,33 @@ function validateSnapshot(snapshot, caseId, accusationParticipants) {
 
 /** Plan one stage. The provisional trial capacity is never an assigned roster. */
 export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
-  accusationParticipants = [], validateAssignment }) {
+  accusationParticipants = [], accusedSourceEventId, accusationPanelSourceEventId, validateAssignment }) {
   requireId(caseId); requireId(accusedId); requireId(seed);
   if (!['ACCUSATION', 'TRIAL'].includes(stage)) fail('INVALID_STAGE');
   if (typeof validateAssignment !== 'function') fail('ASSIGNMENT_VALIDATOR_REQUIRED');
   const exclusions = [], drawAudit = [];
   try {
-    const { people, offices, roles, historical } = validateSnapshot(snapshot, caseId, accusationParticipants);
+    const { people, offices, roles, historical } = validateSnapshot(snapshot, caseId, accusationParticipants, accusationPanelSourceEventId);
     check(people.has(accusedId), 'UNKNOWN_ACCUSED');
     const institution = stage === 'ACCUSATION' ? 'HOUSE' : 'SENATE';
     const candidates = [], trialIds = new Set();
     for (const p of [...people.values()].sort((a, b) => a.identityId < b.identityId ? -1 : a.identityId > b.identityId ? 1 : 0)) {
-      const held = [...offices.values()].filter(o => o.holderIdentityId === p.identityId && o.serving);
+      const held = [...offices.values()].filter(o => o.holderIdentityId === p.identityId && o.serving).sort((a, b) => a.officeId < b.officeId ? -1 : 1);
       const judge = held.some(o => JUDICIARY.has(o.institution));
       if ('servingJudge' in p) check(p.servingJudge === judge, 'JUDICIAL_SOURCE_CONFLICT');
-      const reasons = [];
-      if (p.identityId === accusedId) reasons.push('ACCUSED');
-      if (judge) reasons.push('SERVING_JUDICIARY');
-      if (!p.alive) reasons.push('NOT_LIVING');
-      if (!p.willing) reasons.push('UNWILLING');
-      if (p.jailed) reasons.push('JAILED');
-      if (p.disenfranchised) reasons.push('DISENFRANCHISED');
-      if (held.some(o => o.recused)) reasons.push('RECUSED');
+      const reasons = [], reasonSources = [];
+      // One attributable source event per recorded reason; a missing one is a discrepancy, never invented.
+      const exclude = (reasonCode, sourceEventId, missing) => {
+        check(typeof sourceEventId === 'string' && sourceEventId.trim().length > 0 && sourceEventId === sourceEventId.trim(), missing);
+        reasons.push(reasonCode); reasonSources.push({ reasonCode, sourceEventId });
+      };
+      if (p.identityId === accusedId) exclude('ACCUSED', accusedSourceEventId, 'MISSING_CASE_PROVENANCE');
+      if (judge) exclude('SERVING_JUDICIARY', held.find(o => JUDICIARY.has(o.institution)).sourceEventIds?.serving, 'MISSING_OFFICE_PROVENANCE');
+      if (!p.alive) exclude('NOT_LIVING', p.sourceEventIds?.alive, 'MISSING_POPULATION_PROVENANCE');
+      if (!p.willing) exclude('UNWILLING', p.sourceEventIds?.willing, 'MISSING_POPULATION_PROVENANCE');
+      if (p.jailed) exclude('JAILED', p.sourceEventIds?.jailed, 'MISSING_POPULATION_PROVENANCE');
+      if (p.disenfranchised) exclude('DISENFRANCHISED', p.sourceEventIds?.disenfranchised, 'MISSING_POPULATION_PROVENANCE');
+      if (held.some(o => o.recused)) exclude('RECUSED', held.find(o => o.recused).sourceEventIds?.recused, 'MISSING_OFFICE_PROVENANCE');
       const r = roles.get(p.identityId);
       const accPermanent = held.some(o => o.institution === 'HOUSE' && o.permanentSeat && !o.recused);
       const trialPermanent = held.some(o => o.institution === 'SENATE' && o.permanentSeat && !o.recused);
@@ -126,10 +133,18 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
       if (trialEligible) trialIds.add(p.identityId);
       const eligible = stage === 'ACCUSATION' ? accEligible : trialEligible;
       if (!eligible) {
-        if (!r[stage === 'ACCUSATION' ? 'accusation' : 'trial']) reasons.push('ROLE_INELIGIBLE', ...r.reasonCodes);
-        if (!p.citizen && !(stage === 'ACCUSATION' ? accPermanent : trialPermanent)) reasons.push('NOT_CIVILIAN_OR_MEMBER');
-        if (stage === 'TRIAL' && trialConflict) reasons.push(historical.has(p.identityId) ? 'ACCUSATION_PARTICIPANT' : 'KNOWN_TRIAL_CONFLICT');
-        exclusions.push({ identityId: p.identityId, reasonCodes: reasons, sourceIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId) });
+        const flag = stage === 'ACCUSATION' ? 'accusation' : 'trial';
+        if (!r[flag]) {
+          exclude('ROLE_INELIGIBLE', r.sourceEventIds?.[flag], 'MISSING_ELIGIBILITY_PROVENANCE');
+          for (const code of r.reasonCodes) exclude(code, r.reasonSourceEventIds?.[code], 'MISSING_ELIGIBILITY_PROVENANCE');
+        }
+        if (!p.citizen && !(stage === 'ACCUSATION' ? accPermanent : trialPermanent)) exclude('NOT_CIVILIAN_OR_MEMBER', p.sourceEventIds?.citizen, 'MISSING_POPULATION_PROVENANCE');
+        if (stage === 'TRIAL' && trialConflict) {
+          const conflictEvent = snapshot.conflicts.identitySourceEventIds?.[p.identityId];
+          if (historical.has(p.identityId)) exclude('ACCUSATION_PARTICIPANT', historical.get(p.identityId), 'MISSING_CASE_PROVENANCE');
+          else exclude('KNOWN_TRIAL_CONFLICT', snapshot.conflicts.sourceEventIds.includes(conflictEvent) ? conflictEvent : undefined, 'MISSING_CONFLICT_PROVENANCE');
+        }
+        exclusions.push({ identityId: p.identityId, reasonCodes: reasons, reasonSources, sourceIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId) });
       }
       if (eligible) candidates.push({ identityId: p.identityId, divisionId: p.divisionId,
         permanent: stage === 'ACCUSATION' ? accPermanent : trialPermanent });

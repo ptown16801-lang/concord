@@ -18,6 +18,9 @@ export function replayImpeachment(events) {
   if (!events.length) fail('CASE_NOT_FOUND');
   const state = { caseId: events[0].caseId, accusedId: events[0].accusedId, status: 'REPORTED', stage: 'ACCUSATION',
     panels: {}, commitments: {}, accusationParticipants: [], version: events.length, decisions: [] };
+  // Cite a journal event only when it is stamped; an absent reference makes the planner fail closed.
+  const cite = (key, event) => { if (Number.isSafeInteger(event.version)) state[key] = `impeachment-event:case:${state.caseId}:${event.version}`; };
+  if (events[0].type === 'CASE_OPENED') cite('accusedSourceEventId', events[0]);
   for (const event of events) {
     switch (event.type) {
       case 'SEED_COMMITTED': state.commitments[event.stage] = event; break;
@@ -30,7 +33,10 @@ export function replayImpeachment(events) {
         }
         if (event.plan.status === `${event.stage}_EMPANELED`) {
           state.panels[event.stage] = event.plan;
-          if (event.stage === 'ACCUSATION') state.accusationParticipants = [...new Set([...state.accusationParticipants, ...event.plan.roster])];
+          if (event.stage === 'ACCUSATION') {
+            state.accusationParticipants = [...new Set([...state.accusationParticipants, ...event.plan.roster])];
+            cite('accusationPanelSourceEventId', event);
+          }
         }
         break;
       case 'INPUT_DISCREPANCY':
@@ -156,6 +162,9 @@ export class BootstrapImpeachmentService {
     for (const name of SOURCE_NAMES) {
       // Eligibility role decisions, conflicts and participation are case-specific.
       const scope = ['eligibility', 'conflicts', 'participation'].includes(name) ? `${state.caseId}:${name}` : name;
+      // A source built from several authorities is first remembered per authority: a rollback or
+      // unversioned change in one must not pass because another advanced.
+      for (const [authority, own] of Object.entries(snapshot[name]?.authoritySources ?? {})) this.#store.rememberSource(`${scope}/${authority}`, own);
       this.#store.rememberSource(scope, snapshot[name]);
     }
     return structuredClone(snapshot);
@@ -177,6 +186,7 @@ export class BootstrapImpeachmentService {
     if (state.lastAttempt?.stage === state.stage && canonical(versions) === canonical(state.lastAttempt.sourceVersions)) fail('SOURCE_VERSION_UNCHANGED');
     const plan = planBootstrapStage({ snapshot, caseId: state.caseId, accusedId: state.accusedId, stage: state.stage, seed: command.seed,
       accusationParticipants: state.accusationParticipants,
+      accusedSourceEventId: state.accusedSourceEventId, accusationPanelSourceEventId: state.accusationPanelSourceEventId,
       validateAssignment: (identityId, stage) => this.#sources.validateAssignment(identityId, stage, structuredClone(snapshot), db) });
     if (digest(this.#capture(state, db)) !== digest(snapshot)) fail('INPUT_DISCREPANCY', 'SOURCE_CHANGED_DURING_ASSIGNMENT');
     plan.createdBy = principal.id; plan.createdAt = new Date().toISOString();

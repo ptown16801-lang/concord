@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { generateKeyPairSync, sign } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 import { PopulationRegistry } from '../src/population/index.js';
-import { BootstrapImpeachmentService, ImpeachmentStore, createCommandAuthenticator, DurableEligibility,
+import { BootstrapImpeachmentService, ImpeachmentStore, createCommandAuthenticator, DurableEligibility, replayImpeachment,
   captureRegistryInputs, planBootstrapStage, seedCommitment, accusationThreshold, trialThreshold, bootstrapPanelSizes } from '../src/governance/index.js';
 import { canonical, digest } from '../src/governance/bootstrap-impeachment.js';
 
@@ -26,8 +26,10 @@ function snapshot(n = 17) {
   };
 }
 const valid = id => ({ valid: true, sourceEventId: `validation:${id}` });
-function plan(s, stage = 'ACCUSATION', extra = {}) { return planBootstrapStage({ snapshot: s, caseId: 'case', accusedId: 'accused', stage, seed: 'fixed-seed', validateAssignment: valid, ...extra }); }
-function office(s, id, institution = 'HOUSE', extra = {}) { s.office.offices.push({ officeId: `${institution}:${id}`, holderIdentityId: id, institution, serving: true, permanentSeat: true, recused: false, ...extra }); }
+function plan(s, stage = 'ACCUSATION', extra = {}) { return planBootstrapStage({ snapshot: s, caseId: 'case', accusedId: 'accused', stage, seed: 'fixed-seed', validateAssignment: valid,
+  accusedSourceEventId: 'impeachment-event:case:case:1', accusationPanelSourceEventId: 'impeachment-event:case:case:3', ...extra }); }
+function office(s, id, institution = 'HOUSE', extra = {}) { s.office.offices.push({ officeId: `${institution}:${id}`, holderIdentityId: id, institution, serving: true, permanentSeat: true, recused: false,
+  sourceEventIds: { serving: `office-event:${institution}:${id}` }, ...extra }); }
 function bump(s, name) { s[name].version++; s[name].snapshotId = `${name}:${s[name].version}`; }
 
 test('S1-S4 exact independent capacity sizes and all threshold cutovers', () => {
@@ -60,6 +62,9 @@ test('S7 separation includes every served/deliberated/voting accusation identity
   s.participation.events = ['SERVED', 'DELIBERATED', 'BALLOT'].map((eventType, i) => ({ identityId: `p${i + 1}`, stage: 'ACCUSATION', eventType, sourceEventId: `event:${i}` }));
   const p = plan(s, 'TRIAL', { accusationParticipants: ['p4'] });
   assert.ok(p.roster.every(id => !['p1', 'p2', 'p3', 'p4'].includes(id))); assert.equal(p.targetSize, 12);
+  // An explicit null from a direct caller is an empty accusation roster, not a crash.
+  const none = plan(snapshot(17), 'TRIAL', { accusationParticipants: null });
+  assert.equal(none.status, 'TRIAL_EMPANELED'); assert.equal(none.capacity, 17);
 });
 test('S8 stratification uses population proportions rather than equal division rotation', () => {
   const s = snapshot(17);
@@ -93,12 +98,13 @@ test('permanent members have priority during bootstrap and role-specific trial c
   assert.equal(plan(s).roster[0], 'p1');
   for (const r of s.eligibility.roleEligibility) { r.trial = !['p1', 'p2'].includes(r.identityId); }
   const result = plan(s); assert.deepEqual(new Set(result.roster), new Set(['p1', 'p2']));
-  s.eligibility.roleEligibility.find(r => r.identityId === 'p2').accusation = false;
+  Object.assign(s.eligibility.roleEligibility.find(r => r.identityId === 'p2'), { accusation: false, sourceEventIds: { accusation: 'role-decision:p2' } });
   assert.equal(plan(s).status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS');
 });
 test('S13-S14 fresh trial eligibility, known investigator/conflict exclusion', () => {
   const s = snapshot(8), acc = plan(s);
   s.conflicts.knownInvestigators = [s.population.identities.find(p => p.identityId !== 'accused' && !acc.roster.includes(p.identityId)).identityId];
+  s.conflicts.identitySourceEventIds = { [s.conflicts.knownInvestigators[0]]: 'conflict-check:1' };
   const trial = plan(s, 'TRIAL', { accusationParticipants: acc.roster });
   assert.equal(trial.targetSize, 5); assert.equal(trial.status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS');
   assert.deepEqual(acc.roster.length, 2);
@@ -240,7 +246,7 @@ test('registry integration uses actual accepted population and durable eligibili
   durable = new DurableEligibility({ eventStore: f.store, authenticate: f.authenticate });
   assert.equal(durable.projection().version, 9);
   const metadata = f.s.population.identities.map(p => ({ ...p, accusation: true, trial: true }));
-  f.sources.capture = (state, db) => ({ ...structuredClone(f.s), ...captureRegistryInputs(db, durable.projection(), { roleMetadata: metadata, rulesetVersion: 'r1', eligibilityVersion: 1 }) });
+  f.sources.capture = (state, db) => ({ ...structuredClone(f.s), ...captureRegistryInputs(db, durable.projection(), { roleMetadata: metadata, rulesetVersion: 'r1', roleMetadataVersion: 1 }) });
   await f.run('OPEN', { accusedId: 'accused' }); assert.equal((await f.empanel()).panels.ACCUSATION.roster.length, 2);
   // A partially observed cross-authority terminal transition must not guess a panel.
   pop.markTerminal({ id: 'p1', reason: 'death', actorId: 'owner', authorityReference: 'death:1', occurredAt: '2026-02-01T00:00:00Z' });
@@ -426,8 +432,288 @@ test('F1 genuine trial WAITING still retries changed sources without a reviewer'
   const f = fixture(t, snapshot(8)); await f.run('OPEN', { accusedId: 'accused' });
   const accusation = await f.empanel('accusation'); await f.run('CLOSE_STAGE');
   const candidate = f.s.population.identities.find(p => p.identityId !== 'accused' && !accusation.panels.ACCUSATION.roster.includes(p.identityId));
-  candidate.willing = false; bump(f.s, 'population'); bump(f.s, 'eligibility'); f.s.eligibility.populationVersion = f.s.population.version;
+  candidate.willing = false; candidate.sourceEventIds = { willing: 'membership-event:1' }; bump(f.s, 'population'); bump(f.s, 'eligibility'); f.s.eligibility.populationVersion = f.s.population.version;
   assert.equal((await f.empanel('trial')).status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS');
   candidate.willing = true; bump(f.s, 'population'); bump(f.s, 'eligibility'); f.s.eligibility.populationVersion = f.s.population.version;
   assert.equal((await f.empanel('retry')).status, 'TRIAL_EMPANELED');
+});
+
+// Snapshot identity and exclusion provenance. The real population registry, durable
+// eligibility projection and captureRegistryInputs sit behind the service.
+async function registry(t, n = 17, mutate = () => {}) {
+  const f = fixture(t, snapshot(n)), pop = new PopulationRegistry(f.filename); t.after(() => pop.close());
+  for (const p of f.s.population.identities) pop.createIdentity({ id: p.identityId, division: p.divisionId, identityClass: 'ordinary', creationRoute: 'founding', createdBy: 'owner', authorityReference: 'founding:1', createdAt: '2026-01-01T00:00:00Z' });
+  const durable = new DurableEligibility({ eventStore: f.store, authenticate: f.authenticate });
+  let applied = 0;
+  const eligibility = async commands => { const c = { type: 'ELIGIBILITY', commandId: `eligibility${applied}`, expectedVersion: applied++, commands }; await durable.apply(c, f.credential(c)); };
+  await eligibility(f.s.population.identities.map(p => ({ type: 'IDENTITY_REGISTERED', identityId: p.identityId, effectiveAt: '2026-01-01T00:00:00Z' })));
+  const metadata = f.s.population.identities.map(p => ({ ...p, accusation: true, trial: true })); mutate(metadata);
+  Object.assign(f, { pop, eligibility, metadata, roleMetadataVersion: 1, rulesetVersion: 'r1', projection: () => durable.projection() });
+  f.sources.capture = (state, db) => (f.last = { ...structuredClone(f.s), conflicts: { ...f.s.conflicts, caseId: state.caseId }, participation: { ...f.s.participation, caseId: state.caseId },
+    ...captureRegistryInputs(db, f.projection(), { roleMetadata: f.metadata, rulesetVersion: f.rulesetVersion, roleMetadataVersion: f.roleMetadataVersion }) });
+  return f;
+}
+const outsideAccusation = (f, state) => f.metadata.find(p => p.identityId !== 'accused' && !state.panels.ACCUSATION.roster.includes(p.identityId));
+const reasonSources = (panel, id) => panel.exclusions.find(e => e.identityId === id).reasonSources;
+
+test('P1 felony conviction between accusation and trial gives fresh attributable snapshots and a trial panel, not discrepancy review', async t => {
+  const f = await registry(t); await f.run('OPEN', { accusedId: 'accused' });
+  const accusation = await f.empanel('accusation'), before = structuredClone(f.last); await f.run('CLOSE_STAGE');
+  const convicted = outsideAccusation(f, accusation).identityId;
+  await f.eligibility([{ type: 'FELONY_CONVICTION_ENTERED', identityId: convicted, convictionId: 'conviction:1', effectiveAt: '2026-02-01T00:00:00Z' }]);
+  const committed = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('trial') });
+  assert.equal(committed.discrepancy, undefined); assert.equal(committed.status, 'CHARGED');
+  const trial = await f.run('ENTER_STAGE', { seed: 'trial' });
+  assert.equal(trial.status, 'TRIAL_EMPANELED'); assert.equal(trial.panels.TRIAL.roster.length, 11);
+  assert.ok(!trial.panels.TRIAL.roster.includes(convicted));
+  for (const name of ['population', 'eligibility']) {
+    assert.notEqual(f.last[name].snapshotId, before[name].snapshotId); assert.ok(f.last[name].version > before[name].version);
+    assert.deepEqual(before[name].authorityVersions, { population: 18, eligibility: 18, roleMetadata: 1 });
+    assert.deepEqual(f.last[name].authorityVersions, { population: 18, eligibility: 19, roleMetadata: 1 });
+  }
+  assert.deepEqual([before.population.snapshotId, before.eligibility.snapshotId, f.last.population.snapshotId, f.last.eligibility.snapshotId],
+    ['population:p18.e18.r1', 'eligibility:p18.e18.r1', 'population:p18.e19.r1', 'eligibility:p18.e19.r1']);
+  assert.equal(f.last.eligibility.populationVersion, f.last.population.version);
+  assert.deepEqual(trial.panels.TRIAL.snapshotIds.slice(0, 3), ['population:p18.e19.r1', 'office:1', 'eligibility:p18.e19.r1']);
+  assert.deepEqual(reasonSources(trial.panels.TRIAL, convicted), [{ reasonCode: 'DISENFRANCHISED', sourceEventId: 'eligibility-event:19' },
+    { reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'eligibility-event:19' }, { reasonCode: 'PERMANENT_FELONY_BAR', sourceEventId: 'eligibility-event:19' }]);
+});
+test('P1 willingness change after a shortage wait lets the retry empanel without a reviewer', async t => {
+  const f = await registry(t, 8, m => Object.assign(m[1], { willing: false, sourceEventIds: { willing: 'membership-event:1' } }));
+  await f.run('OPEN', { accusedId: 'accused' });
+  assert.equal((await f.empanel('first')).status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS');
+  Object.assign(f.metadata[1], { willing: true, sourceEventIds: { willing: 'membership-event:2' } }); f.roleMetadataVersion = 2;
+  const retry = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('retry') });
+  assert.equal(retry.discrepancy, undefined);
+  assert.equal((await f.run('ENTER_STAGE', { seed: 'retry' })).status, 'ACCUSATION_EMPANELED');
+});
+test('P1 role-eligibility change between stages gets a new eligibility snapshot and a sourced exclusion', async t => {
+  const f = await registry(t); await f.run('OPEN', { accusedId: 'accused' });
+  const accusation = await f.empanel('accusation'), before = structuredClone(f.last); await f.run('CLOSE_STAGE');
+  const row = outsideAccusation(f, accusation);
+  Object.assign(row, { trial: false, sourceEventIds: { trial: 'role-decision:7' } }); f.roleMetadataVersion = 2;
+  const committed = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('trial') });
+  assert.equal(committed.discrepancy, undefined);
+  const trial = await f.run('ENTER_STAGE', { seed: 'trial' });
+  assert.equal(trial.status, 'TRIAL_EMPANELED'); assert.equal(trial.panels.TRIAL.roster.length, 11);
+  assert.ok(f.last.eligibility.version > before.eligibility.version); assert.equal(f.last.eligibility.snapshotId, 'eligibility:p18.e18.r2');
+  assert.deepEqual(reasonSources(trial.panels.TRIAL, row.identityId), [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'role-decision:7' }]);
+});
+test('P1 a second case after a role-metadata change captures the shared population scope without discrepancy', async t => {
+  const f = await registry(t); await f.run('OPEN', { accusedId: 'accused' });
+  const first = await f.empanel('first-accusation'); await f.run('CLOSE_STAGE');
+  Object.assign(outsideAccusation(f, first), { willing: false, sourceEventIds: { willing: 'membership-event:2' } }); f.roleMetadataVersion = 2;
+  const other = (type, extra) => f.run(type, { caseId: 'other-case', expectedVersion: f.store.load('case:other-case').length, ...extra });
+  await other('OPEN', { accusedId: 'accused' });
+  const committed = await other('COMMIT_SEED', { seedCommitment: seedCommitment('other') });
+  assert.equal(committed.discrepancy, undefined);
+  assert.equal((await other('ENTER_STAGE', { seed: 'other' })).status, 'ACCUSATION_EMPANELED');
+  // The first case then reads the same shared population snapshot for its trial.
+  const trial = await f.empanel('first-trial');
+  assert.equal(trial.status, 'TRIAL_EMPANELED'); assert.equal(trial.panels.TRIAL.roster.length, 11);
+});
+test('P1 guard: changed content under unchanged authority versions is still NON_IDEMPOTENT_SOURCE', async t => {
+  for (const change of [{ jailed: true, sourceEventIds: { jailed: 'custody-event:1' } }, { trial: false, sourceEventIds: { trial: 'role-decision:1' } }]) {
+    const f = await registry(t, 8); await f.run('OPEN', { accusedId: 'accused' });
+    await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    Object.assign(f.metadata[1], change);
+    const state = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'NON_IDEMPOTENT_SOURCE');
+    assert.deepEqual(state.panels, {});
+  }
+});
+test('P1 guard: lowered, masked, provenance-only and missing role-metadata versions fail closed', async t => {
+  const committed = async version => { const f = await registry(t, 8); f.roleMetadataVersion = version; await f.run('OPEN', { accusedId: 'accused' });
+    return [f, await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') })]; };
+  const [lowered] = await committed(5);
+  assert.deepEqual([lowered.last.population.snapshotId, lowered.last.eligibility.snapshotId, lowered.last.population.version, lowered.last.eligibility.version, lowered.last.eligibility.populationVersion],
+    ['population:p9.e9.r5', 'eligibility:p9.e9.r5', 23, 23, 23]);
+  lowered.roleMetadataVersion = 4;
+  assert.equal((await lowered.run('ENTER_STAGE', { seed: 'seed' })).discrepancy, 'STALE_SOURCE');
+  // An equal sum from a different set of authority versions is not the same snapshot: the role record went back.
+  const [masked] = await committed(5);
+  await masked.eligibility([{ type: 'ALLEGATION_RECORDED', identityId: 'p1', allegationId: 'allegation:1', effectiveAt: '2026-02-01T00:00:00Z' }]); masked.roleMetadataVersion = 4;
+  assert.equal((await masked.run('ENTER_STAGE', { seed: 'seed' })).discrepancy, 'STALE_SOURCE');
+  const [provenance] = await committed(1);
+  provenance.metadata[1].sourceEventIds = { willing: 'membership-event:9' };
+  assert.equal((await provenance.run('ENTER_STAGE', { seed: 'seed' })).discrepancy, 'NON_IDEMPOTENT_SOURCE');
+  for (const version of [undefined, null, '1', 1.5, -1]) {
+    const [f, state] = await committed(version);
+    assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'MISSING_ROLE_METADATA_VERSION');
+    assert.deepEqual(state.commitments, {}); assert.equal(f.last, undefined);
+  }
+});
+test('P1 guard: an advance in one authority cannot hide a rollback or unversioned change in another', async t => {
+  const unwilling = { willing: false, sourceEventIds: { willing: 'membership-event:1' } }, willing = { willing: true, sourceEventIds: { willing: 'membership-event:2' } };
+  const allegation = (f, n) => f.eligibility([{ type: 'ALLEGATION_RECORDED', identityId: 'p5', allegationId: `allegation:${n}`, effectiveAt: '2026-02-01T00:00:00Z' }]);
+  // Every scenario starts from a shortage wait, so the next accepted snapshot would decide a panel.
+  const waiting = async (version = 1) => { const f = await registry(t, 8, m => Object.assign(m[1], unwilling)); f.roleMetadataVersion = version; await f.run('OPEN', { accusedId: 'accused' });
+    assert.equal((await f.empanel('first')).status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS'); return f; };
+  const retry = async (f, seed = 'retry') => { const state = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment(seed) });
+    if (state.discrepancy) { assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.deepEqual(state.panels, {}); return state.discrepancy; }
+    return (await f.run('ENTER_STAGE', { seed })).status; };
+  // Control: both authorities advance and the role record carries its new version.
+  const versioned = await waiting(); Object.assign(versioned.metadata[1], willing); versioned.roleMetadataVersion = 2; await allegation(versioned, 1);
+  assert.equal(await retry(versioned), 'ACCUSATION_EMPANELED');
+  assert.deepEqual([versioned.last.population.snapshotId, versioned.last.population.version, versioned.last.population.authorityVersions], ['population:p9.e10.r2', 21, { population: 9, eligibility: 10, roleMetadata: 2 }]);
+  // A role fact (population scope), then a role decision (case scope), changed under the old version while an unrelated eligibility event arrived.
+  const unversioned = await waiting(); unversioned.metadata[1].willing = true; await allegation(unversioned, 1);
+  assert.equal(await retry(unversioned), 'NON_IDEMPOTENT_SOURCE');
+  const decision = await waiting(); decision.metadata[2].trial = false; await allegation(decision, 1);
+  assert.equal(await retry(decision), 'NON_IDEMPOTENT_SOURCE');
+  // The ruleset is caller-supplied under the same counter.
+  const ruleset = await waiting(); ruleset.rulesetVersion = 'r2'; await allegation(ruleset, 1);
+  assert.equal(await retry(ruleset), 'NON_IDEMPOTENT_SOURCE');
+  // An older role record offered after a newer one was used; two eligibility events make the sum larger.
+  const rolledBack = await waiting(6); Object.assign(rolledBack.metadata[1], willing); rolledBack.roleMetadataVersion = 5; await allegation(rolledBack, 1); await allegation(rolledBack, 2);
+  assert.equal(await retry(rolledBack), 'STALE_SOURCE');
+  // A stale eligibility projection offered after a newer one was used, behind a larger role-metadata advance.
+  const stale = await waiting(), projection = stale.projection(); await allegation(stale, 1);
+  assert.equal(await retry(stale, 'second'), 'WAITING_FOR_INDEPENDENT_PARTICIPANTS'); assert.equal(stale.last.population.snapshotId, 'population:p9.e10.r1');
+  stale.projection = () => projection; Object.assign(stale.metadata[1], willing); stale.roleMetadataVersion = 3;
+  assert.equal(await retry(stale, 'third'), 'STALE_SOURCE');
+});
+
+// One identity per exclusion reason at trial entry; p4 and p13 are on the frozen accusation roster.
+function adverse() {
+  const s = snapshot(20), person = id => s.population.identities.find(p => p.identityId === id), role = id => s.eligibility.roleEligibility.find(r => r.identityId === id);
+  office(s, 'p1', 'DISTRICT', { sourceEventIds: { serving: 'appointment:district' } }); office(s, 'p1', 'CIRCUIT', { sourceEventIds: { serving: 'appointment:circuit' } });
+  office(s, 'p2', 'SENATE', { recused: true, sourceEventIds: { serving: 'election:2', recused: 'recusal:2' } });
+  s.participation.events = [{ identityId: 'p3', stage: 'ACCUSATION', eventType: 'BALLOT', sourceEventId: 'ballot-event:7' }, { identityId: 'p3', stage: 'ACCUSATION', eventType: 'SERVED', sourceEventId: 'assign-event:2' },
+    { identityId: 'p13', stage: 'ACCUSATION', eventType: 'SERVED', sourceEventId: 'assign-event:13' }];
+  Object.assign(s.conflicts, { knownInvestigators: ['p5'], independentlyDisqualified: ['p12'], sourceEventIds: ['conflict-check:1', 'investigation:5', 'disqualification:12'],
+    identitySourceEventIds: { p5: 'investigation:5', p12: 'disqualification:12' } });
+  Object.assign(person('p6'), { alive: false, sourceEventIds: { alive: 'population-event:30' } });
+  Object.assign(person('p7'), { willing: false, sourceEventIds: { willing: 'membership-event:7' } });
+  Object.assign(person('p8'), { jailed: true, sourceEventIds: { jailed: 'custody-event:8' } });
+  Object.assign(person('p9'), { disenfranchised: true, sourceEventIds: { disenfranchised: 'eligibility-event:40' } });
+  Object.assign(person('p10'), { citizen: false, sourceEventIds: { citizen: 'membership-event:10' } });
+  Object.assign(role('p11'), { trial: false, reasonCodes: ['FORMAL_PROCEEDING'], sourceEventIds: { trial: 'eligibility-event:41' }, reasonSourceEventIds: { FORMAL_PROCEEDING: 'eligibility-event:41' } });
+  return { s, person, role, office: id => s.office.offices.find(o => o.officeId === id) };
+}
+const trialPlan = (s, extra = {}) => plan(s, 'TRIAL', { accusationParticipants: ['p4', 'p13'], ...extra });
+
+test('P2 every exclusion reason in the panel carries exactly one source event, independent of input order', () => {
+  const { s, role } = adverse(), result = trialPlan(s);
+  assert.equal(result.status, 'TRIAL_EMPANELED'); assert.equal(result.roster.length, 7);
+  assert.deepEqual(Object.fromEntries(result.exclusions.map(e => [e.identityId, e.reasonSources])), {
+    accused: [{ reasonCode: 'ACCUSED', sourceEventId: 'impeachment-event:case:case:1' }],
+    p1: [{ reasonCode: 'SERVING_JUDICIARY', sourceEventId: 'appointment:circuit' }],
+    p2: [{ reasonCode: 'RECUSED', sourceEventId: 'recusal:2' }],
+    p3: [{ reasonCode: 'ACCUSATION_PARTICIPANT', sourceEventId: 'assign-event:2' }],
+    p4: [{ reasonCode: 'ACCUSATION_PARTICIPANT', sourceEventId: 'impeachment-event:case:case:3' }],
+    p5: [{ reasonCode: 'KNOWN_TRIAL_CONFLICT', sourceEventId: 'investigation:5' }],
+    p6: [{ reasonCode: 'NOT_LIVING', sourceEventId: 'population-event:30' }],
+    p7: [{ reasonCode: 'UNWILLING', sourceEventId: 'membership-event:7' }],
+    p8: [{ reasonCode: 'JAILED', sourceEventId: 'custody-event:8' }],
+    p9: [{ reasonCode: 'DISENFRANCHISED', sourceEventId: 'eligibility-event:40' }],
+    p10: [{ reasonCode: 'NOT_CIVILIAN_OR_MEMBER', sourceEventId: 'membership-event:10' }],
+    p11: [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'eligibility-event:41' }, { reasonCode: 'FORMAL_PROCEEDING', sourceEventId: 'eligibility-event:41' }],
+    p12: [{ reasonCode: 'KNOWN_TRIAL_CONFLICT', sourceEventId: 'disqualification:12' }],
+    p13: [{ reasonCode: 'ACCUSATION_PARTICIPANT', sourceEventId: 'assign-event:13' }] });
+  for (const e of result.exclusions) {
+    assert.deepEqual(e.reasonSources.map(x => x.reasonCode), e.reasonCodes);
+    assert.deepEqual(e.sourceIds, ['population:1', 'office:1', 'eligibility:1', 'conflicts:1', 'rules:1', 'participation:1']);
+  }
+  const reordered = structuredClone(s); reordered.participation.events.reverse(); reordered.office.offices.reverse();
+  assert.deepEqual(trialPlan(reordered).exclusions, result.exclusions);
+  // The accusation stage reads the accusation role decision's own event.
+  Object.assign(role('p14'), { accusation: false, sourceEventIds: { accusation: 'role-decision:14' } });
+  assert.deepEqual(plan(s).exclusions.find(e => e.identityId === 'p14').reasonSources, [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'role-decision:14' }]);
+});
+test('P2 missing or unattributable exclusion provenance fails closed for the affected authority; nothing is invented', () => {
+  const cases = [
+    ['accused', 'MISSING_CASE_PROVENANCE', (c, extra) => { extra.accusedSourceEventId = undefined; }],
+    ['serving judiciary', 'MISSING_OFFICE_PROVENANCE', c => { delete c.office('CIRCUIT:p1').sourceEventIds; }],
+    ['recusal', 'MISSING_OFFICE_PROVENANCE', c => { delete c.office('SENATE:p2').sourceEventIds.recused; }],
+    ['frozen roster', 'MISSING_CASE_PROVENANCE', (c, extra) => { extra.accusationPanelSourceEventId = ' '; }],
+    ['conflict unmapped', 'MISSING_CONFLICT_PROVENANCE', c => { delete c.s.conflicts.identitySourceEventIds; }],
+    ['conflict event outside the snapshot list', 'MISSING_CONFLICT_PROVENANCE', c => { c.s.conflicts.identitySourceEventIds.p12 = 'elsewhere:1'; }],
+    ['not living', 'MISSING_POPULATION_PROVENANCE', c => { delete c.person('p6').sourceEventIds; }],
+    ['unwilling, non-string id', 'MISSING_POPULATION_PROVENANCE', c => { c.person('p7').sourceEventIds.willing = 7; }],
+    ['jailed, empty id', 'MISSING_POPULATION_PROVENANCE', c => { c.person('p8').sourceEventIds.jailed = ''; }],
+    ['disenfranchised', 'MISSING_POPULATION_PROVENANCE', c => { delete c.person('p9').sourceEventIds.disenfranchised; }],
+    ['not citizen, only another fact sourced', 'MISSING_POPULATION_PROVENANCE', c => { c.person('p10').sourceEventIds = { willing: 'membership-event:10' }; }],
+    ['not citizen, untrimmed id', 'MISSING_POPULATION_PROVENANCE', c => { c.person('p10').sourceEventIds.citizen = ' membership-event:10 '; }],
+    ['role flag', 'MISSING_ELIGIBILITY_PROVENANCE', c => { delete c.role('p11').sourceEventIds.trial; }],
+    ['eligibility reason', 'MISSING_ELIGIBILITY_PROVENANCE', c => { delete c.role('p11').reasonSourceEventIds.FORMAL_PROCEEDING; }],
+  ];
+  for (const [name, code, mutate] of cases) {
+    const c = adverse(), extra = {}; mutate(c, extra); const result = trialPlan(c.s, extra);
+    assert.equal(result.status, 'TRIAL_INPUT_DISCREPANCY_REVIEW', name); assert.equal(result.reason, code, name); assert.deepEqual(result.roster, [], name);
+  }
+});
+test('P2 the journaled frozen panels attribute ACCUSED and prior participation to the case events', async t => {
+  const f = fixture(t, snapshot(17)); await f.run('OPEN', { accusedId: 'accused' });
+  const accusation = (await f.empanel('accusation')).panels.ACCUSATION; await f.run('CLOSE_STAGE');
+  const trial = (await f.empanel('trial')).panels.TRIAL, journal = f.store.load('case:case');
+  assert.deepEqual([journal[0].type, journal[0].version, journal[2].type, journal[2].stage, journal[2].version], ['CASE_OPENED', 1, 'STAGE_PLANNED', 'ACCUSATION', 3]);
+  assert.deepEqual(reasonSources(accusation, 'accused'), [{ reasonCode: 'ACCUSED', sourceEventId: 'impeachment-event:case:case:1' }]);
+  assert.deepEqual(reasonSources(trial, 'accused'), [{ reasonCode: 'ACCUSED', sourceEventId: 'impeachment-event:case:case:1' }]);
+  for (const id of accusation.roster) assert.deepEqual(reasonSources(trial, id), [{ reasonCode: 'ACCUSATION_PARTICIPANT', sourceEventId: 'impeachment-event:case:case:3' }]);
+  assert.equal(trial.exclusions.length, 6);
+  for (const e of [...accusation.exclusions, ...trial.exclusions]) assert.deepEqual(e.reasonSources.map(x => x.reasonCode), e.reasonCodes);
+  assert.deepEqual(journal.at(-1).plan.exclusions, trial.exclusions);
+  f.restart(); assert.deepEqual((await f.run('READ')).panels.TRIAL.exclusions, trial.exclusions);
+  // An unstamped event has no journal reference to cite.
+  assert.equal('accusedSourceEventId' in replayImpeachment([{ type: 'CASE_OPENED', caseId: 'case', accusedId: 'accused' }]), false);
+});
+test('P2 registry adapter cites real population and eligibility events and passes role-authority events through', async t => {
+  const f = await registry(t, 20), row = id => f.metadata.find(p => p.identityId === id); await f.run('OPEN', { accusedId: 'accused' });
+  const at = '2026-02-01T00:00:00Z', proceeding = (type, identityId, proceedingId) => ({ type: `FORMAL_PROCEEDING_${type}`, identityId, proceedingId, effectiveAt: at });
+  // p1: a later proceeding has closed, so the open one is not the latest opening. p10: the open proceeding was closed once and reopened.
+  await f.eligibility([proceeding('OPENED', 'p1', 'proceeding:1'), proceeding('OPENED', 'p1', 'proceeding:0'), proceeding('CLOSED', 'p1', 'proceeding:0')]);
+  await f.eligibility([{ type: 'C4_CREATION_EVENT_OPEN', affectedIdentityIds: ['p2', 'p3'], proceedingId: 'c4:1', effectiveAt: at }]);
+  await f.eligibility([{ type: 'DEATH_RECORDED', identityId: 'p4', effectiveAt: at }]);
+  f.pop.markTerminal({ id: 'p4', reason: 'death', actorId: 'owner', authorityReference: 'death:1', occurredAt: at });
+  await f.eligibility([{ type: 'FELONY_CONVICTION_ENTERED', identityId: 'p7', convictionId: 'conviction:7', effectiveAt: at }]);
+  // p12: convicted, then deceased; its terminal row is the latest population event, p4's is not.
+  await f.eligibility([{ type: 'FELONY_CONVICTION_ENTERED', identityId: 'p12', convictionId: 'conviction:12', effectiveAt: at }, { type: 'DEATH_RECORDED', identityId: 'p12', effectiveAt: at }]);
+  f.pop.markTerminal({ id: 'p12', reason: 'death', actorId: 'owner', authorityReference: 'death:2', occurredAt: at });
+  await f.eligibility([proceeding('OPENED', 'p10', 'proceeding:10'), proceeding('CLOSED', 'p10', 'proceeding:10'), proceeding('OPENED', 'p10', 'proceeding:10')]);
+  assert.deepEqual(f.projection().auditLog({ afterVersion: 21 }).map(e => [e.version, e.type, e.identityId ?? e.affectedIdentityIds, e.proceedingId ?? null]), [
+    [22, 'FORMAL_PROCEEDING_OPENED', 'p1', 'proceeding:1'], [23, 'FORMAL_PROCEEDING_OPENED', 'p1', 'proceeding:0'], [24, 'FORMAL_PROCEEDING_CLOSED', 'p1', 'proceeding:0'],
+    [25, 'C4_CREATION_EVENT_OPEN', ['p2', 'p3'], 'c4:1'], [26, 'DEATH_RECORDED', 'p4', null], [27, 'FELONY_CONVICTION_ENTERED', 'p7', null],
+    [28, 'FELONY_CONVICTION_ENTERED', 'p12', null], [29, 'DEATH_RECORDED', 'p12', null],
+    [30, 'FORMAL_PROCEEDING_OPENED', 'p10', 'proceeding:10'], [31, 'FORMAL_PROCEEDING_CLOSED', 'p10', 'proceeding:10'], [32, 'FORMAL_PROCEEDING_OPENED', 'p10', 'proceeding:10']]);
+  Object.assign(row('p5'), { jailed: true, sourceEventIds: { jailed: 'custody:5' } });
+  Object.assign(row('p6'), { citizen: false, sourceEventIds: { citizen: 'membership:6' } });
+  Object.assign(row('p8'), { willing: false, sourceEventIds: { willing: 'membership:8' } });
+  Object.assign(row('p9'), { accusation: false, sourceEventIds: { accusation: 'role-decision:9' } });
+  Object.assign(row('p10'), { accusation: false, sourceEventIds: { accusation: 'role-decision:10' } });
+  const state = await f.empanel('accusation'); assert.equal(state.status, 'ACCUSATION_EMPANELED', state.discrepancy);
+  const sources = id => reasonSources(state.panels.ACCUSATION, id), event = n => `eligibility-event:${n}`;
+  assert.deepEqual(sources('p1'), [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: event(22) }, { reasonCode: 'FORMAL_PROCEEDING', sourceEventId: event(22) }]);
+  for (const id of ['p2', 'p3']) assert.deepEqual(sources(id), [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: event(25) }, { reasonCode: 'C4_TEMPORARY_RESTRICTION', sourceEventId: event(25) }]);
+  assert.deepEqual(sources('p4'), [{ reasonCode: 'NOT_LIVING', sourceEventId: 'population-event:22' }, { reasonCode: 'ROLE_INELIGIBLE', sourceEventId: event(26) }, { reasonCode: 'DECEASED', sourceEventId: event(26) }]);
+  assert.deepEqual(sources('p5'), [{ reasonCode: 'JAILED', sourceEventId: 'custody:5' }]);
+  assert.deepEqual(sources('p6'), [{ reasonCode: 'NOT_CIVILIAN_OR_MEMBER', sourceEventId: 'membership:6' }]);
+  assert.deepEqual(sources('p7'), [{ reasonCode: 'DISENFRANCHISED', sourceEventId: event(27) }, { reasonCode: 'ROLE_INELIGIBLE', sourceEventId: event(27) }, { reasonCode: 'PERMANENT_FELONY_BAR', sourceEventId: event(27) }]);
+  // The conviction stays the source of disenfranchisement after death becomes the franchise reason.
+  assert.deepEqual(sources('p12'), [{ reasonCode: 'NOT_LIVING', sourceEventId: 'population-event:23' }, { reasonCode: 'DISENFRANCHISED', sourceEventId: event(28) },
+    { reasonCode: 'ROLE_INELIGIBLE', sourceEventId: event(29) }, { reasonCode: 'DECEASED', sourceEventId: event(29) }]);
+  assert.deepEqual(sources('p8'), [{ reasonCode: 'UNWILLING', sourceEventId: 'membership:8' }]);
+  assert.deepEqual(sources('p9'), [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'role-decision:9' }]);
+  assert.deepEqual(sources('p10'), [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'role-decision:10' }, { reasonCode: 'FORMAL_PROCEEDING', sourceEventId: event(32) }]);
+  // The cited events exist in their authorities; an unaffected identity gets no source at all.
+  assert.deepEqual(f.pop.getEvents('p4').map(e => [e.sequence, e.eventType]), [[5, 'created'], [22, 'terminal']]);
+  assert.deepEqual(f.pop.getEvents('p12').map(e => [e.sequence, e.eventType]), [[13, 'created'], [23, 'terminal']]);
+  assert.deepEqual(f.last.population.identities.find(p => p.identityId === 'p4').sourceEventIds, { alive: 'population-event:22' });
+  assert.deepEqual(f.last.population.identities.find(p => p.identityId === 'p11').sourceEventIds, {});
+  assert.deepEqual(f.last.eligibility.roleEligibility.find(r => r.identityId === 'p11'), { identityId: 'p11', accusation: true, trial: true, reasonCodes: [], sourceEventIds: {}, reasonSourceEventIds: {} });
+});
+test('P2 a role-authority fact without a source event fails closed through the service', async t => {
+  // A value that is not a string, including one canonical JSON cannot carry, is no source event: same review, not a rejected command.
+  const unusable = [NaN, Infinity, 10n, 5, null].flatMap(id => [[{ jailed: true, sourceEventIds: { jailed: id } }, 'MISSING_POPULATION_PROVENANCE'],
+    [{ accusation: false, sourceEventIds: { accusation: id } }, 'MISSING_ELIGIBILITY_PROVENANCE']]);
+  for (const [change, code] of [[{ jailed: true }, 'MISSING_POPULATION_PROVENANCE'], [{ accusation: false }, 'MISSING_ELIGIBILITY_PROVENANCE'], ...unusable]) {
+    const f = await registry(t, 17, m => Object.assign(m[1], change)); await f.run('OPEN', { accusedId: 'accused' });
+    const state = await f.empanel('accusation');
+    assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, code); assert.deepEqual(state.panels, {});
+  }
+  // On a fact that excludes nobody it is left out of the snapshot, never recorded or replaced.
+  const f = await registry(t, 17, m => Object.assign(m[1], { sourceEventIds: { willing: NaN, citizen: 10n, trial: Infinity } })); await f.run('OPEN', { accusedId: 'accused' });
+  assert.equal((await f.empanel('accusation')).status, 'ACCUSATION_EMPANELED');
+  assert.deepEqual(f.last.population.identities.find(p => p.identityId === 'p1').sourceEventIds, {});
+  assert.deepEqual(f.last.eligibility.roleEligibility.find(r => r.identityId === 'p1').sourceEventIds, {});
 });

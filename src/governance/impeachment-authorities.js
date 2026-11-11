@@ -1,5 +1,5 @@
 import { EligibilityRegistry, EligibilityEventType } from './eligibility.js';
-import { fail, requireId } from './bootstrap-impeachment.js';
+import { digest, fail, requireId } from './bootstrap-impeachment.js';
 
 /** Durable command log around the unchanged JON-79 reducer. */
 export class DurableEligibility {
@@ -46,35 +46,72 @@ export class DurableEligibility {
   }
 }
 
+const FRANCHISE_EVENTS = { DECEASED: 'DEATH_RECORDED', CAPITAL_TERMINATED: 'CAPITAL_TERMINATION_RECORDED', PERMANENT_FELONY_BAR: 'FELONY_CONVICTION_ENTERED',
+  FORMAL_PROCEEDING: 'FORMAL_PROCEEDING_OPENED', C4_TEMPORARY_RESTRICTION: 'C4_CREATION_EVENT_OPEN' };
+// canonical() rejects undefined and non-JSON values, so a fact without a source event ID (a string) has no key at all.
+const sourced = object => Object.fromEntries(Object.entries(object).filter(([, value]) => typeof value === 'string'));
+function eligibilityEvent(log, identityId, type, proceedingId) {
+  const event = log.findLast(e => e.type === type && (e.identityId === identityId || e.affectedIdentityIds?.includes(identityId))
+    && (proceedingId === undefined || e.proceedingId === proceedingId));
+  return event && `eligibility-event:${event.version}`;
+}
+
 /** Read the accepted JON-78 tables and JON-79 projection in the journal transaction.
  * Membership/office/conflict authorities must supply explicit role metadata;
  * identityClass never silently becomes citizenship or role eligibility.
+ * roleMetadataVersion is ONE authority-wide, monotonic counter (the population scope is
+ * shared by every case); it must advance on any change to roleMetadata, including its
+ * sourceEventIds, or to rulesetVersion. Source events are cited from real records only.
+ * authoritySources gives each authority's own record, so the store can also reject a rollback
+ * or unversioned change in one authority that an advance in another would otherwise hide.
  */
-export function captureRegistryInputs(db, eligibility, { roleMetadata, rulesetVersion, eligibilityVersion }) {
+export function captureRegistryInputs(db, eligibility, { roleMetadata, roleMetadataVersion, rulesetVersion }) {
   const rows = db.prepare('SELECT id, division, terminal_at FROM population_identities ORDER BY id').all();
-  const populationVersion = db.prepare('SELECT COALESCE(MAX(sequence),0) AS n FROM population_events').get().n;
+  // Every authority that contributes content contributes to the snapshot ID and version.
+  if (!Number.isSafeInteger(roleMetadataVersion) || roleMetadataVersion < 0) fail('INPUT_DISCREPANCY', 'MISSING_ROLE_METADATA_VERSION');
+  if (!Number.isSafeInteger(eligibility.version) || eligibility.version < 0) fail('INPUT_DISCREPANCY', 'INVALID_SOURCE_VERSION');
+  const authorityVersions = { population: db.prepare('SELECT COALESCE(MAX(sequence),0) AS n FROM population_events').get().n,
+    eligibility: eligibility.version, roleMetadata: roleMetadataVersion };
+  const version = authorityVersions.population + authorityVersions.eligibility + authorityVersions.roleMetadata;
+  const tag = `p${authorityVersions.population}.e${authorityVersions.eligibility}.r${authorityVersions.roleMetadata}`;
+  const terminal = new Map(db.prepare("SELECT identity_id, sequence FROM population_events WHERE event_type='terminal'").all().map(e => [e.identity_id, `population-event:${e.sequence}`]));
+  const log = eligibility.auditLog();
   const byId = new Map();
   for (const row of roleMetadata) {
     if (byId.has(row.identityId)) fail('INPUT_DISCREPANCY', 'DUPLICATE_ROLE_METADATA');
     byId.set(row.identityId, row);
   }
   if (byId.size !== rows.length) fail('INPUT_DISCREPANCY', 'INCOMPLETE_ROLE_METADATA');
-  const roleEligibility = [], identities = [];
+  const roleEligibility = [], identities = [], asserted = { population: [], eligibility: [] };
   for (const row of rows) {
     const role = byId.get(row.id), franchise = eligibility.stateAt(row.id);
     if (!role || !franchise) fail('INPUT_DISCREPANCY', 'MISSING_ELIGIBILITY_IDENTITY');
     const alive = row.terminal_at === null;
     if (franchise.living !== alive) fail('INPUT_DISCREPANCY', 'POPULATION_ELIGIBILITY_LIFECYCLE_MISMATCH');
     if (![role.citizen, role.willing, role.jailed, role.accusation, role.trial].every(x => typeof x === 'boolean')) fail('INPUT_DISCREPANCY', 'INCOMPLETE_ROLE_METADATA');
+    const given = role.sourceEventIds ?? {};
+    // What the role authority itself asserts in each snapshot, kept under its own version.
+    asserted.population.push([row.id, role.citizen, role.willing, role.jailed, sourced({ citizen: given.citizen, willing: given.willing, jailed: given.jailed })]);
+    asserted.eligibility.push([row.id, role.accusation, role.trial, sourced({ accusation: given.accusation, trial: given.trial })]);
+    // The franchise event behind the projection's reason; a stage flag the role authority set false cites that authority instead.
+    const franchiseEvent = franchise.reason ? eligibilityEvent(log, row.id, FRANCHISE_EVENTS[franchise.reason],
+      { FORMAL_PROCEEDING: franchise.openFormalProceedingIds[0], C4_TEMPORARY_RESTRICTION: franchise.openC4RestrictionIds[0] }[franchise.reason]) : undefined;
     identities.push({ identityId: row.id, alive, divisionId: row.division,
-      citizen: role.citizen, willing: role.willing, jailed: role.jailed, disenfranchised: franchise.permanentlyDisenfranchised });
+      citizen: role.citizen, willing: role.willing, jailed: role.jailed, disenfranchised: franchise.permanentlyDisenfranchised,
+      sourceEventIds: sourced({ alive: alive ? undefined : terminal.get(row.id), citizen: given.citizen, willing: given.willing, jailed: given.jailed,
+        disenfranchised: franchise.permanentlyDisenfranchised ? eligibilityEvent(log, row.id, 'FELONY_CONVICTION_ENTERED') : undefined }) });
     roleEligibility.push({ identityId: row.id,
       accusation: role.accusation && franchise.eligible, trial: role.trial && franchise.eligible,
-      reasonCodes: franchise.reason ? [franchise.reason] : [] });
+      reasonCodes: franchise.reason ? [franchise.reason] : [],
+      sourceEventIds: sourced({ accusation: role.accusation ? franchiseEvent : given.accusation, trial: role.trial ? franchiseEvent : given.trial }),
+      reasonSourceEventIds: sourced(franchise.reason ? { [franchise.reason]: franchiseEvent } : {}) });
   }
+  // The population and eligibility logs are fixed by their version; role metadata only by what it asserted.
+  const own = name => ({ snapshotId: `${name}:${authorityVersions[name]}`, version: authorityVersions[name] });
+  const authoritySources = roleFacts => ({ population: own('population'), eligibility: own('eligibility'), roleMetadata: { ...own('roleMetadata'), digest: digest(roleFacts) } });
   return {
-    population: { snapshotId: `population:${populationVersion}`, version: populationVersion, identities },
-    eligibility: { snapshotId: `eligibility:${eligibilityVersion}`, version: eligibilityVersion,
-      populationVersion, rulesetVersion, roleEligibility },
+    population: { snapshotId: `population:${tag}`, version, authorityVersions, authoritySources: authoritySources(asserted.population), identities },
+    eligibility: { snapshotId: `eligibility:${tag}`, version, authorityVersions, authoritySources: authoritySources([rulesetVersion, asserted.eligibility]),
+      populationVersion: version, rulesetVersion, roleEligibility },
   };
 }
