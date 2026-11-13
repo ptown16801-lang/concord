@@ -154,6 +154,236 @@ This was not an exhaustive full-text review of every historical source, branch o
 
 The result is a source-qualified description of existing work and specific unverified connections. It does not establish a new architecture, new institutional powers, revised accepted interfaces, completed production integration or permission to start implementation.
 
+## Addendum — political-model source reconciliation (November 12, 2026)
+
+This addendum connects the existing records to the requested political map and
+records three specific compatibility questions. It preserves the earlier audit's
+date and findings. It is source analysis, not a new canonical schema, adopted
+procedure, implementation acceptance, or replacement work assignment.
+
+### Revisions and historical research
+
+The starting audit revision is `9e05ffa4c5aab442443da4c9826e14e8290f51e2`.
+The live public default was checked at
+[Develo `ef3f393a266989fb7af4f044e6f4f96bc814be05`][add-default].
+Compared with the earlier `77836f6` baseline, its only file change is the added
+[institution map, revision 4][add-map]. The decision register and contracts cited
+below are unchanged between those two default-branch revisions. The earlier
+full-SHA source links therefore remain applicable; the map is linked at the
+newer default revision rather than copied into this audit.
+
+The [recovered October architecture research][add-research] is pinned at
+`8fc2bcbf0fd6e0dc5123539237036935838c9c15`. Its recovery account dates the research
+to October 16 and recovery/publication to November 12, America/New_York. It is an
+edited historical derivative. Its [published review][add-research-review] says
+**needs qualification**, with no actionable documentation defect established in
+the checked evidence. That review did not independently authenticate the original
+conversation date, complete working tree, recovery completeness or fidelity, or
+exact historical vendor-page versions. Those limits remain; the review does not
+accept this addendum or establish architecture acceptance.
+
+The useful carry-forward is the report's connected-dependency evaluation: identify
+authoritative sources, rule versions, ordering and permitted views, then reuse
+existing artifacts to test a precise question. Its shared-core preference and
+named modeling tools remain historical hypotheses and candidates. No platform,
+universal runtime, new authority, or current vendor capability is adopted here.
+A connected ballot history is one possible later evaluation; it cannot establish
+coverage of every political family.
+
+At this addendum's inspection, PR74 was open, non-draft and unmerged at `8fc2bcb`;
+PR70 was open and unmerged at `21e6a09`; PR73 was merged through `ef3f393`.
+The map's [focused revision-3 review][add-map-review] says ACCEPT at
+`cc545329a0890057710557c22b4b74bddf498ec3`, with three P3 notes. That verdict does
+not extend to every unchanged row, unread source, or revision 4. Reading the
+complete revision-3-to-4 diff establishes its changes, not an independent check
+of this addendum or acceptance of research gaps as new decisions.
+
+### Existing responsibilities and whole-system coverage
+
+The dated [JON-61 contract][add-j61] already assigns a source-qualified
+state/interface map for offices, succession, judiciary, divisions and proceedings.
+[JON-22][add-j22] owns the atlas/checkpoint projection contract;
+[JON-24][add-j24] owns institutional transitions and replay. The
+[population/voting contract][boundaries] assigns distinct population, franchise,
+ballot-receipt and accounting producers, with JON-82 coordinating their integration.
+These are source-recorded responsibilities, not verified current Linear status,
+completion, staffing or permission to start another workstream.
+
+| Requested family | Existing source disposition | Remaining boundary at these revisions |
+| --- | --- | --- |
+| Figures / enduring identities | [Identity contract][identity] and [population identity envelope][add-identity-envelope] distinguish identities, sessions, credentials and checkpoints. | Use exact producer-issued identity references; field-name translation cannot merge people or confer office or franchise. “Figure” here is a display term, not a new identity class. |
+| Voters and representation | [Voting contract][boundaries] separates opening roll, ordered eligibility, attempts, immutable receipts and accounting; [sealed census][census] defines representation. | A division or representation link is not voting eligibility. Source revisions and election order are required; later disqualification does not erase an accepted ballot. |
+| Institutions, offices and seats | [Revision-4 inventory][add-map], [office-term rules][add-terms], [institutional agreement continuity][agreements] and [bootstrap office snapshots][bootstrap-spec] supply existing records. | Institution, office, separately identified seat and holder are distinct. Appointment/election, vacancy, succession, serving status and recusal need their own source evidence; an `officeId` does not prove a universal registry. |
+| Powers and lawful effects | [Security request/admission contract][security] requires authenticated identity, express grant, jurisdiction, procedure, versions and protected writer evidence. | Authority may belong to a body or electorate as well as an officeholder. A graph citation or coordinator cannot authorize an effect. Actual institutional-grant derivation remains separately evidenced. |
+| Judges and adjudication | [Recorded judicial/office rules][add-terms], CON-013/016/017 in the [register][decisions], and [bootstrap interfaces][bootstrap-spec] distinguish office and case/stage service. | Tenure, assignment, recusal, quorum, accusation, conviction, removal and appeal are distinct. Serving judges cannot supply general non-judicial staffing; later removal/appeal execution is outside the candidate service's handoff. |
+| Investigators and proceedings | [Sealed investigator lifecycle][census], [case/conflict snapshots][bootstrap-spec] and [grand-jury authority][add-grand-jury] already connect identities, roles and cases. | E/L secret identities differ from ordinary investigative participation and grand-jury service. A case's `knownInvestigators` list is not a general mission registry or public roster. See seam 2. |
+| Formal and observed relationships | [Agreement continuity][agreements], [checkpoint relationships][checkpoint] and [observatory][observatory] have different source and inference semantics. | Agreement, office, participation, evidence and observed similarity are not interchangeable. The six accepted checkpoint type names do not supply every atlas edge; detailed directions/interfaces remain proposed. |
+| Change over time and available knowledge | [Identity history][add-history], [event envelope][add-identity-envelope] and agreement provenance distinguish effective, observed and recorded information. | Preserve source order, revisions and supersession; later knowledge cannot become earlier knowledge. Hypothetical replay stays separate from authoritative history, and present read permission is rechecked. |
+| Publication and public views | [Archivist custody][add-publication-custody] and [checkpoint projection][add-projection] define separate approved packages and authorized views. | Publication is not enactment or a release grant. Exact publication-remedy actors and limits remain [unbound dependencies][archivist], not proof of an absent institutional model. |
+
+The table accounts for source coverage, not complete implementation. In
+particular, institutional agreements, election/appointment, tenure/succession,
+investigation/adjudication, restrictions/appeals and protected publication remain
+separate pathways. Their existence does not demonstrate a combined accepted
+runtime, and an unresolved connection does not block unrelated authorized work.
+
+### Seam 1 — bootstrap source meanings and candidate inputs
+
+**Source/consumer and status.** The frozen specification's section 5 and candidate
+`bootstrap-impeachment.js` are both pinned at
+`21e6a09f39f63f82d192aaff5d0ac14236b004d3` ([specification][bootstrap-spec],
+[consumer validation][add-bootstrap-validation], [exclusion evidence][add-bootstrap-exclusions]).
+Specification approval and frozen scope are recorded in CON-017; that does not
+accept this candidate or its external source integrations. The
+[service constructor][add-bootstrap-service] requires supplied authoritative
+sources; its [outcome][add-bootstrap-handoff] is a removal/appeal handoff.
+
+**Demonstrated differences.** The specification uses `populationVersion` and
+`officeVersion`, status fields `citizenshipStatus`, `disenfranchisementStatus` and
+`recusalStatus`, and eligibility rows carrying identity, case and stage. The consumer
+requires integer `version` fields on six sources, boolean `citizen`,
+`disenfranchised` and `recused`, and one role row per identity containing
+`accusation` and `trial` booleans. It also requires population/eligibility version
+coherence and per-reason source-event mappings, including conflict identity-to-event
+attribution. A common spelling or a boolean alone cannot establish equal meaning.
+
+**Reconciliation needed.** Pin each actual producer schema/version and its exact
+consumer adapter; define status-to-boolean semantics, case/stage selection,
+identity mapping, snapshot/effective order, version compatibility, reason codes
+and source-event attribution. Preserve source-issued identities without silent
+normalization, and preserve serving-judiciary and accusation/trial exclusions.
+Missing or incompatible evidence remains a discrepancy for the affected authority,
+not permission to guess a roster or edit the frozen specification.
+
+The evidence needed to close this seam is a source-owned, versioned mapping plus
+reviewable cases for contradictory/stale sources, duplicate identities, serving
+judges, stage changes and missing reason provenance. This addendum neither builds
+nor tests that adapter. Existing governance coordination is recorded under JON-61;
+JON-82 owns combined boundary reconciliation. Franchise authority under JON-79
+must not silently become authority over every case-specific role-eligibility rule.
+The exact office, case-role and conflict producer bindings remain to be evidenced.
+
+### Seam 2 — protected conflict evidence to panels and public projections
+
+**Source/consumer and status.** The same candidate's conflict input and exclusion
+output carry identity and source-event evidence. The proposal's
+[panel/conflict flow, section 5.4][add-protected-conflicts], at `77836f6`, suggests
+case-scoped attestations and coarse public reason classes. It is a proposed
+transfer, not an accepted adapter. The [projection contract][add-projection] and
+[Archivist custody contract][add-publication-custody], also at `77836f6`, require
+separately permitted public objects/packages. CON-034 in the [register][decisions]
+keeps sealed investigative refusal and its revealing metadata protected.
+
+**Unbound connection.** An internal list sufficient for lawful exclusion is not
+a public graph input. Real conflict reasons, source IDs, snapshot references,
+seed/replay evidence, counts and timing can reveal an investigator or a sealed
+case even if names are hidden. Neither a raw source reference nor a deterministic
+hash establishes permission to publish it. Pseudonyms and coarse reasons in the
+proposal require their own inference assessment; this addendum does not adopt them.
+
+**Reconciliation needed.** Identify the protected custodian-to-proceedings transfer,
+its recipient/purpose/field scope, authorized reviewer access to exact exclusion
+and replay evidence, and a distinct public derivative. Public relationships,
+endpoints and provenance need independent authorization before queries, counts,
+layout, caching or export. Revalidate current access when reading history.
+The source custody, JON-17 authorization, JON-22 projection and JON-18 publication
+boundaries remain separate; JON-59 supplies sealed-lifecycle policy.
+
+Closure needs pinned source/consumer manifests and permission evidence, followed
+by the contract's comparison of two histories with equal permitted content but
+different protected content. Payloads, errors, counts, pagination, identifiers and
+layout must not reveal the difference; timing/resource leakage needs measured
+evidence. No such experiment or production disclosure path is verified here.
+
+### Seam 3 — finality certificate, administrative interval and terminal effects
+
+**Source/consumer and status.** The proposed [C4 flow, section 5.5][add-c4-flow],
+`77836f6`, places the certificate after appeals plus an administrative turn.
+CON-020/021 in the [register][decisions] and the
+[finality source, lines 50–65][add-finality], at the same revision, require actual
+appeal opportunities and a valid finality certificate followed by a further
+complete administrative-review turn. This is a source-text mismatch in an
+unaccepted proposal, not a demonstrated runtime defect.
+
+**Controlling requirements for reuse.** Preserve the following distinct records
+and gates rather than copying the proposal's compressed ordering. These are
+source constraints, not a replacement complete procedure:
+
+- The appropriate merits decision and its controlling proof standard.
+- Actual notice and admissible-record access, genuine defense access and the
+  required complete defense turns; notice issuance alone does not start the clock.
+- Applicable appeal windows, filings, dispositions and stays. A timely C4 event
+  appeal/petition stays every dependent derivative termination.
+- A valid finality certificate recording the actual notices, windows, filings,
+  rulings and authorized sanction, followed by one further complete
+  administrative-review turn. The certificate alone does not execute anything.
+- Continued validity and absence of stays, exact-resolution proposer/affirmative
+  ballot attribution with the permitted narrow correction review, and separately
+  authorized terminal operations through the proper domain writers. This list
+  does not invent a relative timing rule for attribution review beyond its source.
+
+C4 attribution excludes NO, abstention, nonvote and malformed/rejected ballots.
+Office removal, future-office disqualification, a conviction's franchise bar and
+irreversible termination are distinct consequences. Retained valid ballots and
+historical evidence survive terminal effects. The old C3 preponderance wording in
+LIN-JON-62 is superseded by CON-082's clear-and-convincing requirement; C4 keeps
+its separate standard. This addendum changes neither rule nor frozen source.
+
+JON-62's dated contract supplies capital/finality rules, JON-68 appellate
+procedures, JON-67 restrictions and JON-60 terminal effects, coordinated by JON-61.
+Closure requires an explicit source-to-consumer transition mapping with separate
+certificate and post-certificate-interval evidence, actual-access clocks, stays,
+attribution and terminal authorization. The inspected bootstrap service only emits
+a handoff; it does not prove that these later producers/consumers are implemented.
+
+### Institution-map gap reconciliation and reading limits
+
+The map's gap labels describe what its author found in a bounded reading; its
+“owner-level” column is expressly inference. This addendum checked the map and
+its revision-3-to-4 diff, then targeted the previously unread bootstrap interfaces,
+publication, identity, security, population/voting and government-records passages.
+It also searched LIN-JON-18/37/58/59/62 and LIN-BOOTSTRAP for allocation, vacancy,
+selection and role terms. Those keyword searches are not full readings or a
+repository-wide proof that an answer does not exist.
+
+| Map item | Disposition after this bounded reconciliation | Exact evidence or remaining source question |
+| --- | --- | --- |
+| G1–G2: House/College allocation and College procedure | Still source questions; no new owner choice established. | [R census][census] and [LIN-JON-59:40][add-j59-census] identify the input. [GOVERNMENT_RECORDS:300][add-allocation] names a certified allocation output, not its formula, elector selection or contingent procedure. Recover the controlling allocation/procedure text before proposing a rule. |
+| G3: judicial vacancies | Replacement is already recorded; its detailed binding remains unverified here. | [CON-036][add-terms] and [LIN-JON-36:26][add-j36] require the separately defined replacement process. Neither a phase election nor the initial nomination/confirmation rule may be substituted for it. |
+| G4: grand jury, clerk, Archivist, CRA and chief selection | No closure established by the targeted sources; do not group all selection mechanics into one owner interview. | [Grand-jury authority][add-grand-jury] defines jurisdiction and self-rule, not a complete filling rule. [Publication dependencies][archivist] identify particular unbound actors/limits, not appointment of an Archivist. Seek each role's controlling selection source and apply CON-004's boundary to any actual residual conflict. |
+| G5: original constitutional text | Source recovery, not a new drafting or ratification decision. | CON-080 in the [register][decisions] retains unavailable-original limits. Recovering text cannot manufacture its acceptance. |
+| G6: L-COAIA chamber scope | Already closed in the map; do not reopen it. | [LIN-JON-59:52–57][add-j59-chambers] and [LIN-JON-62:56][add-finality] cover each chamber's own creation records and proposing presiding officer. Preserve exact proposal, clearance, quorum and affirmative-authorization evidence. |
+| G7: ordinary Executive powers | Positive grants need their own sources; caretaker exclusions remain clues. | The map's rows 9/9a distinguish recorded grants from inference. [Security][security] requires express jurisdiction and scope; it cannot turn an exclusion list into a grant. |
+| G8: CRA expansion and holder selection | Neither acronym expansion nor a complete selection rule established in the checked passages. | [Capacity contract][boundaries] establishes accounting/reconciliation limits and [sealed census][census] its capacity/lifecycle treatment. Do not invent an expansion or infer appointment power from accounting duties. |
+| G9: institution/office/seat IDs | Engineering reconciliation within existing ownership, not a newly required constitutional choice. | [Agreement continuity][agreements] uses stable institution identity; [bootstrap interfaces][bootstrap-spec] use `officeId`; [CON-036][add-terms] requires separate Senate seats. Pin their identifier relationships. CON-004 and CON-081 in the [register][decisions] retain delegated representation mechanics. |
+
+Revision 4 preserves inference labels for applying the House majority formula to
+L-COAIA creation and for registry-clerk eligibility interpretation, while adding
+designation timing and caretaker triggers. These refinements do not establish
+unrecorded general appointment or Executive powers. Unread historical sources,
+original constitutional bytes and live private issue corrections remain explicit
+limits; none is treated as absent or replaced by this addendum.
+
+### Verification and disposition of this addendum
+
+The source conclusions above use public, revision-pinned repository records and
+the published review bodies. The historical report was read in full; the
+compatibility analysis used the exact specification/code and cited contract
+passages. Gap searches and focused source reading are bounded as stated above.
+No private coordination original is reproduced or made a public dependency.
+
+Documentation verification covers cited Git objects/line targets, reference
+links, original-text preservation, whitespace and private-material patterns, plus
+the repository's decision-documentation checks and revision preflight. These
+checks establish neither runtime behavior nor independent acceptance. No runtime
+test, simulation, platform selection, full implementation PR review, deployment,
+merge or Linear write is part of this addendum. It remains draft source analysis.
+
+The remaining technical work is the three explicit mappings/evidence questions
+above, with actual producer pins and current task ownership verified before any
+separate assignment. This record introduces no umbrella schema, new authority,
+project-wide hold or replacement acceptance gate. **No decision change.**
+
 [baseline]: https://github.com/ptown16801-lang/concord/tree/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce
 [decisions]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md
 [identity]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/IDENTITY_PERSISTENCE_CONTRACT.md#L16
@@ -175,3 +405,29 @@ The result is a source-qualified description of existing work and specific unver
 [pr48]: https://github.com/ptown16801-lang/concord/pull/48
 [pr69]: https://github.com/ptown16801-lang/concord/pull/69
 [pr70]: https://github.com/ptown16801-lang/concord/pull/70
+
+[add-default]: https://github.com/ptown16801-lang/concord/tree/ef3f393a266989fb7af4f044e6f4f96bc814be05
+[add-map]: https://github.com/ptown16801-lang/concord/blob/ef3f393a266989fb7af4f044e6f4f96bc814be05/docs/research/INSTITUTION_MAP_2026-11-12.md
+[add-research]: https://github.com/ptown16801-lang/concord/blob/8fc2bcbf0fd6e0dc5123539237036935838c9c15/docs/research/CONCORD_ARCHITECTURE_RESEARCH_2026-10-16.md
+[add-research-review]: https://github.com/ptown16801-lang/concord/pull/74#pullrequestreview-5885301263
+[add-map-review]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5885296256
+[add-j61]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-61.md#L22
+[add-j22]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-22.md#L22
+[add-j24]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-24.md#L22
+[add-identity-envelope]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/POPULATION_VOTING_BOUNDARIES.md#L22
+[add-terms]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L570
+[add-grand-jury]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-37.md#L20
+[add-history]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/IDENTITY_PERSISTENCE_CONTRACT.md#L189
+[add-publication-custody]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/ARCHIVIST_PUBLICATION.md#L19
+[add-projection]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/CHECKPOINT_NEIGHBORHOOD.md#L54
+[add-bootstrap-validation]: https://github.com/ptown16801-lang/concord/blob/21e6a09f39f63f82d192aaff5d0ac14236b004d3/src/governance/bootstrap-impeachment.js#L50
+[add-bootstrap-exclusions]: https://github.com/ptown16801-lang/concord/blob/21e6a09f39f63f82d192aaff5d0ac14236b004d3/src/governance/bootstrap-impeachment.js#L109
+[add-bootstrap-service]: https://github.com/ptown16801-lang/concord/blob/21e6a09f39f63f82d192aaff5d0ac14236b004d3/src/governance/impeachment-service.js#L64
+[add-bootstrap-handoff]: https://github.com/ptown16801-lang/concord/blob/21e6a09f39f63f82d192aaff5d0ac14236b004d3/src/governance/impeachment-service.js#L123
+[add-protected-conflicts]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/proposals/GOVERNMENT_RECORDS.md#L327
+[add-c4-flow]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/proposals/GOVERNMENT_RECORDS.md#L340
+[add-finality]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-62.md#L50
+[add-j59-census]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-59.md#L40
+[add-allocation]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/proposals/GOVERNMENT_RECORDS.md#L300
+[add-j36]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-36.md#L26
+[add-j59-chambers]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-59.md#L52
