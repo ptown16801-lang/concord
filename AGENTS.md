@@ -74,6 +74,9 @@ and remaining limitations. Complete already-authorized commits after the
 required checks; explain the precise next action when a commit remains pending.
 Commit permission alone does not establish push, merge or deployment permission.
 
+Concord's own technical records (audits, specifications, assessments, verification reports) live in this repository; Linear holds the work brief and links to the pull request.
+Research from outside sources is filed privately under the owner's research guide, not in this repository.
+
 ## Public information
 
 Give readers explanations and supporting repository material that are usable
