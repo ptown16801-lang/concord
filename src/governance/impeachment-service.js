@@ -157,8 +157,12 @@ export class BootstrapImpeachmentService {
     return replayImpeachment(history);
   }
   #capture(state, db) {
-    const snapshot = this.#sources.capture(structuredClone(state), db);
-    if (!snapshot || snapshot.then) fail('INPUT_DISCREPANCY', 'SYNCHRONOUS_SNAPSHOT_REQUIRED');
+    const captured = this.#sources.capture(structuredClone(state), db);
+    if (!captured || captured.then) fail('INPUT_DISCREPANCY', 'SYNCHRONOUS_SNAPSHOT_REQUIRED');
+    // Source data that cannot be copied or canonically hashed (undefined, NaN, BigInt, functions, cycles)
+    // is a defective source for independent review, not a caller error that leaves the committed seed usable.
+    let snapshot;
+    try { snapshot = structuredClone(captured); canonical(snapshot); } catch { fail('INPUT_DISCREPANCY', 'MALFORMED_SOURCE_SNAPSHOT'); }
     for (const name of SOURCE_NAMES) {
       // Eligibility role decisions, conflicts and participation are case-specific.
       const scope = ['eligibility', 'conflicts', 'participation'].includes(name) ? `${state.caseId}:${name}` : name;
@@ -167,7 +171,7 @@ export class BootstrapImpeachmentService {
       for (const [authority, own] of Object.entries(snapshot[name]?.authoritySources ?? {})) this.#store.rememberSource(`${scope}/${authority}`, own);
       this.#store.rememberSource(scope, snapshot[name]);
     }
-    return structuredClone(snapshot);
+    return snapshot;
   }
   #enter(command, state, db, principal) {
     const snapshot = this.#capture(state, db);

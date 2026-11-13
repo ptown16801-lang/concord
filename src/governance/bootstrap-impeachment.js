@@ -37,6 +37,8 @@ const JUDICIARY = new Set(['DISTRICT', 'CIRCUIT', 'SUPREME_BOARD']);
 const INSTITUTIONS = new Set(['HOUSE', 'SENATE', ...JUDICIARY]);
 function check(condition, code) { if (!condition) fail('INPUT_DISCREPANCY', code); }
 const bool = value => typeof value === 'boolean';
+// A usable identifier or code: a non-blank string with no surrounding whitespace.
+const attributable = value => typeof value === 'string' && value.trim().length > 0 && value === value.trim();
 function unique(rows, key) {
   check(Array.isArray(rows), 'MISSING_ROWS');
   const map = new Map();
@@ -64,6 +66,8 @@ function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPa
     check(p.divisionId === null || typeof p.divisionId === 'string', 'INVALID_DIVISION');
     const role = roles.get(p.identityId);
     check(role && [role.accusation, role.trial].every(bool) && Array.isArray(role.reasonCodes), 'MISSING_ROLE_ELIGIBILITY');
+    // Reason codes are frozen into panel records; anything but a plain code is defective eligibility metadata.
+    check(role.reasonCodes.every(attributable), 'INVALID_ELIGIBILITY_REASON');
   }
   for (const id of roles.keys()) check(people.has(id), 'UNKNOWN_ELIGIBILITY_IDENTITY');
   for (const o of offices.values()) {
@@ -113,7 +117,7 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
       const reasons = [], reasonSources = [];
       // One attributable source event per recorded reason; a missing one is a discrepancy, never invented.
       const exclude = (reasonCode, sourceEventId, missing) => {
-        check(typeof sourceEventId === 'string' && sourceEventId.trim().length > 0 && sourceEventId === sourceEventId.trim(), missing);
+        check(attributable(sourceEventId), missing);
         reasons.push(reasonCode); reasonSources.push({ reasonCode, sourceEventId });
       };
       if (p.identityId === accusedId) exclude('ACCUSED', accusedSourceEventId, 'MISSING_CASE_PROVENANCE');
@@ -186,7 +190,7 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
           if ([...trialIds].filter(id => !used.has(id)).length < 6) { drawAudit.push({ ...record, result: 'RESERVED_TRIAL_CAPACITY' }); continue; }
         }
         const validation = validateAssignment(candidate.p.identityId, stage);
-        check(validation && !validation.then && bool(validation.valid) && typeof validation.sourceEventId === 'string' && validation.sourceEventId.length > 0, 'INVALID_ASSIGNMENT_VALIDATION');
+        check(validation && !validation.then && bool(validation.valid) && attributable(validation.sourceEventId), 'INVALID_ASSIGNMENT_VALIDATION');
         if (!validation.valid) {
           check(typeof validation.reasonCode === 'string' && validation.reasonCode.length > 0, 'MISSING_REPLACEMENT_REASON');
           drawAudit.push({ ...record, result: 'REJECTED', reasonCode: validation.reasonCode, sourceEventId: validation.sourceEventId }); continue;

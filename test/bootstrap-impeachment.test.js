@@ -717,3 +717,80 @@ test('P2 a role-authority fact without a source event fails closed through the s
   assert.deepEqual(f.last.population.identities.find(p => p.identityId === 'p1').sourceEventIds, {});
   assert.deepEqual(f.last.eligibility.roleEligibility.find(r => r.identityId === 'p1').sourceEventIds, {});
 });
+
+// JON-279 re-check findings (PR #70 review 5866725650).
+test('JON-279 P2 a malformed authoritative snapshot is journaled for independent review; its committed seed cannot empanel without it', async t => {
+  for (const malformed of [undefined, NaN, 10n]) {
+    const review = {};
+    const f = fixture(t, snapshot(17), { review }); await f.run('OPEN', { accusedId: 'accused' });
+    await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    f.s.population.identities[1].sourceEventIds = { willing: malformed };
+    const blocked = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.equal(blocked.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(blocked.discrepancy, 'MALFORMED_SOURCE_SNAPSHOT');
+    assert.deepEqual(blocked.panels, {});
+    const held = f.store.load('case:case');
+    assert.deepEqual([held.length, held.at(-1).type, held.at(-1).stage, held.at(-1).actorId, held.at(-1).version], [3, 'INPUT_DISCREPANCY', 'ACCUSATION', 'clerk', 3]);
+    // Repairing the source does not release the hold: the same committed seed still needs the review.
+    delete f.s.population.identities[1].sourceEventIds;
+    f.restart();
+    for (const [type, extra] of [['ENTER_STAGE', { seed: 'seed' }], ['COMMIT_SEED', { seedCommitment: seedCommitment('fresh') }]]) {
+      await assert.rejects(f.run(type, extra), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+      assert.deepEqual(f.store.load('case:case'), held);
+    }
+    review.assess = discrepancyReceipt;
+    const resolved = await f.run('RESOLVE_REVIEW');
+    assert.equal(resolved.status, 'REPORTED'); assert.equal(resolved.commitments.ACCUSATION, undefined);
+    assert.equal(f.store.load('case:case').at(-1).receipt.discrepancyVersion, 3);
+    await assert.rejects(f.run('ENTER_STAGE', { seed: 'seed' }), { code: 'SEED_NOT_COMMITTED' });
+    assert.equal((await f.empanel('fresh')).status, 'ACCUSATION_EMPANELED');
+  }
+  // The same holds when the malformed snapshot is first seen at seed commitment.
+  const f = fixture(t, snapshot(17)); await f.run('OPEN', { accusedId: 'accused' });
+  f.s.office.offices = [undefined];
+  const blocked = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  assert.equal(blocked.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(blocked.discrepancy, 'MALFORMED_SOURCE_SNAPSHOT');
+  assert.deepEqual(blocked.commitments, {});
+});
+test('JON-279 P2 an assignment validation with a blank or untrimmed source event goes to discrepancy review, never into the draw audit', async t => {
+  const s = snapshot(17), first = plan(s).roster[0];
+  for (const sourceEventId of ['   ', '\t', ' vacancy:1 ', '', 7]) {
+    for (const accepted of [false, true]) {
+      const result = plan(s, 'ACCUSATION', { validateAssignment: id => id === first ? { valid: accepted, reasonCode: 'NEW_VACANCY', sourceEventId } : valid(id) });
+      assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(result.reason, 'INVALID_ASSIGNMENT_VALIDATION');
+      assert.deepEqual(result.roster, []); assert.deepEqual(result.drawAudit, []);
+    }
+  }
+  // Through the service the replacement is held for review instead of freezing a whitespace-only ID.
+  const sources = { capture: () => structuredClone(s), validateAssignment: id => id === first ? { valid: false, reasonCode: 'NEW_VACANCY', sourceEventId: '   ' } : valid(id) };
+  const f = fixture(t, s, { sources }); await f.run('OPEN', { accusedId: 'accused' });
+  const state = await f.empanel('fixed-seed');
+  assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'INVALID_ASSIGNMENT_VALIDATION'); assert.deepEqual(state.panels, {});
+  assert.ok(f.store.load('case:case').every(e => !canonical(e).includes('"   "')));
+  await assert.rejects(f.run('ENTER_STAGE', { seed: 'fixed-seed' }), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+});
+test('JON-279 P2 malformed eligibility reason codes go to discrepancy review, never into frozen reasonCodes or reasonSources', async t => {
+  const role = (s, id) => s.eligibility.roleEligibility.find(r => r.identityId === id);
+  for (const code of [{ protected: 'payload' }, ['FORMAL_PROCEEDING'], 42, null, true, '', '  ', ' FORMAL_PROCEEDING ']) {
+    // The reason is rejected on an ineligible role and on one it would not (yet) exclude.
+    for (const accusation of [false, true]) {
+      const s = snapshot(17);
+      Object.assign(role(s, 'p1'), { accusation, reasonCodes: [code], sourceEventIds: { accusation: 'role-decision:p1' }, reasonSourceEventIds: { [code]: 'role-decision:p1' } });
+      const result = plan(s);
+      assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(result.reason, 'INVALID_ELIGIBILITY_REASON');
+      assert.deepEqual(result.roster, []); assert.deepEqual(result.exclusions, []);
+    }
+  }
+  // A well-formed reason is still recorded with its source.
+  const ok = snapshot(17);
+  Object.assign(role(ok, 'p1'), { accusation: false, reasonCodes: ['FORMAL_PROCEEDING'], sourceEventIds: { accusation: 'role-decision:p1' }, reasonSourceEventIds: { FORMAL_PROCEEDING: 'proceeding:1' } });
+  assert.deepEqual(plan(ok).exclusions.find(e => e.identityId === 'p1').reasonSources,
+    [{ reasonCode: 'ROLE_INELIGIBLE', sourceEventId: 'role-decision:p1' }, { reasonCode: 'FORMAL_PROCEEDING', sourceEventId: 'proceeding:1' }]);
+  // Through the service nothing of the arbitrary object reaches the journal, and no panel is frozen.
+  const s = snapshot(17);
+  Object.assign(role(s, 'p1'), { accusation: false, reasonCodes: [{ protected: 'payload' }], sourceEventIds: { accusation: 'role-decision:p1' }, reasonSourceEventIds: { '[object Object]': 'role-decision:p1' } });
+  const f = fixture(t, s); await f.run('OPEN', { accusedId: 'accused' });
+  const state = await f.empanel();
+  assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'INVALID_ELIGIBILITY_REASON'); assert.deepEqual(state.panels, {});
+  assert.ok(f.store.load('case:case').every(e => !canonical(e).includes('payload')));
+  await assert.rejects(f.run('ENTER_STAGE', { seed: 'seed' }), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+});
