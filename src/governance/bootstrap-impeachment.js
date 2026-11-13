@@ -192,7 +192,7 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
         const validation = validateAssignment(candidate.p.identityId, stage);
         check(validation && !validation.then && bool(validation.valid) && attributable(validation.sourceEventId), 'INVALID_ASSIGNMENT_VALIDATION');
         if (!validation.valid) {
-          check(typeof validation.reasonCode === 'string' && validation.reasonCode.length > 0, 'MISSING_REPLACEMENT_REASON');
+          check(attributable(validation.reasonCode), 'MISSING_REPLACEMENT_REASON');
           drawAudit.push({ ...record, result: 'REJECTED', reasonCode: validation.reasonCode, sourceEventId: validation.sourceEventId }); continue;
         }
         selected.push(candidate.p.identityId); accepted++;

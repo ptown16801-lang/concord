@@ -64,6 +64,8 @@ export class ImpeachmentStore {
   }
   rememberSource(scope, source) {
     if (!Number.isSafeInteger(source?.version) || source.version < 0 || !source.snapshotId) fail('INPUT_DISCREPANCY', 'INVALID_SOURCE_VERSION');
+    // Only a string can be bound and compared as an ID; anything else is a defective source, not a database error.
+    if (typeof source.snapshotId !== 'string') fail('INPUT_DISCREPANCY', 'INVALID_SNAPSHOT_ID');
     const hash = digest(source);
     const latest = this.#db.prepare("SELECT MAX(version) AS version FROM impeachment_sources WHERE scope=?").get(scope);
     if (latest.version !== null && source.version < latest.version) fail("INPUT_DISCREPANCY", "STALE_SOURCE");
