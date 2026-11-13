@@ -76,12 +76,12 @@ test('S8 stratification uses population proportions rather than equal division r
 });
 test('S9 lawful replacement during empanelment records reason and source without changing target', () => {
   const s = snapshot(17), first = plan(s).roster[0];
-  const result = plan(s, 'ACCUSATION', { validateAssignment: id => id === first ? { valid: false, reasonCode: 'NEW_VACANCY', sourceEventId: 'vacancy:1' } : valid(id) });
+  const result = plan(s, 'ACCUSATION', { validateAssignment: id => id === first ? { valid: false, reasonCode: 'RECUSED', sourceEventId: 'vacancy:1' } : valid(id) });
   assert.equal(result.roster.length, 5); assert.equal(result.affirmativeThreshold, 3); assert.ok(!result.roster.includes(first));
-  assert.ok(result.drawAudit.some(e => e.reasonCode === 'NEW_VACANCY' && e.sourceEventId === 'vacancy:1'));
+  assert.ok(result.drawAudit.some(e => e.reasonCode === 'RECUSED' && e.sourceEventId === 'vacancy:1'));
 });
 test('S10 exhausted validation draws wait, never publish partial panel or reduce threshold', () => {
-  const result = plan(snapshot(8), 'TRIAL', { validateAssignment: id => ['p1', 'p2', 'p3'].includes(id) ? { valid: false, reasonCode: 'UNAVAILABLE', sourceEventId: `event:${id}` } : valid(id) });
+  const result = plan(snapshot(8), 'TRIAL', { validateAssignment: id => ['p1', 'p2', 'p3'].includes(id) ? { valid: false, reasonCode: 'UNWILLING', sourceEventId: `event:${id}` } : valid(id) });
   assert.equal(result.status, 'WAITING_FOR_INDEPENDENT_PARTICIPANTS'); assert.equal(result.targetSize, 8);
   assert.equal(result.affirmativeThreshold, 6); assert.deepEqual(result.roster, []);
 });
@@ -755,13 +755,13 @@ test('JON-279 P2 an assignment validation with a blank or untrimmed source event
   const s = snapshot(17), first = plan(s).roster[0];
   for (const sourceEventId of ['   ', '\t', ' vacancy:1 ', '', 7]) {
     for (const accepted of [false, true]) {
-      const result = plan(s, 'ACCUSATION', { validateAssignment: id => id === first ? { valid: accepted, reasonCode: 'NEW_VACANCY', sourceEventId } : valid(id) });
+      const result = plan(s, 'ACCUSATION', { validateAssignment: id => id === first ? { valid: accepted, reasonCode: 'RECUSED', sourceEventId } : valid(id) });
       assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(result.reason, 'INVALID_ASSIGNMENT_VALIDATION');
       assert.deepEqual(result.roster, []); assert.deepEqual(result.drawAudit, []);
     }
   }
   // Through the service the replacement is held for review instead of freezing a whitespace-only ID.
-  const sources = { capture: () => structuredClone(s), validateAssignment: id => id === first ? { valid: false, reasonCode: 'NEW_VACANCY', sourceEventId: '   ' } : valid(id) };
+  const sources = { capture: () => structuredClone(s), validateAssignment: id => id === first ? { valid: false, reasonCode: 'RECUSED', sourceEventId: '   ' } : valid(id) };
   const f = fixture(t, s, { sources }); await f.run('OPEN', { accusedId: 'accused' });
   const state = await f.empanel('fixed-seed');
   assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'INVALID_ASSIGNMENT_VALIDATION'); assert.deepEqual(state.panels, {});
@@ -902,4 +902,80 @@ test('JON-261 P3 identity, division, conflict and principal values must be plain
   f.authenticate = undefined;
   const odd = new BootstrapImpeachmentService({ eventStore: f.store, authenticate: () => ({ id: ' clerk ' }), sources: f.sources });
   await assert.rejects(odd.execute({ type: 'READ', caseId: 'case', commandId: 'c1' }, {}), { code: 'UNAUTHORIZED' });
+});
+
+// JON-314 re-check findings (PR #70, Claude Haiku). Reason codes come from a fixed list (owner decision, relayed 2026-11-13).
+const ELIGIBILITY_CODES = ['DECEASED', 'CAPITAL_TERMINATED', 'PERMANENT_FELONY_BAR', 'FORMAL_PROCEEDING', 'C4_TEMPORARY_RESTRICTION', 'NOT_REGISTERED'];
+const REPLACEMENT_CODES = ['NOT_LIVING', 'UNWILLING', 'JAILED', 'DISENFRANCHISED', 'RECUSED', 'SERVING_JUDICIARY', 'KNOWN_TRIAL_CONFLICT', 'ROLE_INELIGIBLE', 'NOT_CIVILIAN_OR_MEMBER'];
+const freeText = ['Private note: prior plea discussed with counsel', 'Defendant saw the vote at the rally on Tuesday', 'NEW_VACANCY', 'UNAVAILABLE', 'INCOMPATIBLE', 'formal_proceeding', 'ACCUSED'];
+test('JON-314 P2 only listed eligibility reason codes reach a panel; free text goes to discrepancy review', async t => {
+  const role = (s, id) => s.eligibility.roleEligibility.find(r => r.identityId === id);
+  const withCode = code => { const s = snapshot(17);
+    Object.assign(role(s, 'p1'), { accusation: false, reasonCodes: [code], sourceEventIds: { accusation: 'role-decision:p1' }, reasonSourceEventIds: { [code]: 'eligibility-event:1' } }); return s; };
+  for (const code of ELIGIBILITY_CODES) {
+    const result = plan(withCode(code)); assert.equal(result.status, 'ACCUSATION_EMPANELED', code);
+    assert.deepEqual(result.exclusions.find(e => e.identityId === 'p1').reasonCodes, ['ROLE_INELIGIBLE', code]);
+  }
+  for (const code of freeText) {
+    const result = plan(withCode(code));
+    assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', code); assert.equal(result.reason, 'INVALID_ELIGIBILITY_REASON', code);
+    assert.deepEqual(result.exclusions, []); assert.deepEqual(result.roster, []);
+  }
+  // Through the service the free text never reaches the journal.
+  const f = fixture(t, withCode(freeText[0])); await f.run('OPEN', { accusedId: 'accused' });
+  const state = await f.empanel();
+  assert.equal(state.discrepancy, 'INVALID_ELIGIBILITY_REASON'); assert.deepEqual(state.panels, {});
+  assert.ok(f.store.load('case:case').every(e => !canonical(e).includes('plea')));
+});
+test('JON-314 P2 only listed replacement reasons reach the draw audit; free text goes to discrepancy review', async t => {
+  const s = snapshot(17), first = plan(s).roster[0];
+  const rejectFirst = reasonCode => id => id === first ? { valid: false, reasonCode, sourceEventId: 'validation:replace' } : valid(id);
+  for (const code of REPLACEMENT_CODES) {
+    const result = plan(s, 'ACCUSATION', { validateAssignment: rejectFirst(code) });
+    assert.equal(result.status, 'ACCUSATION_EMPANELED', code); assert.ok(result.drawAudit.some(e => e.result === 'REJECTED' && e.reasonCode === code), code);
+  }
+  for (const code of freeText) {
+    const result = plan(s, 'ACCUSATION', { validateAssignment: rejectFirst(code) });
+    assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', code); assert.equal(result.reason, 'MISSING_REPLACEMENT_REASON', code);
+    assert.deepEqual(result.drawAudit, []);
+  }
+  const f = fixture(t, s, { sources: { capture: () => structuredClone(s), validateAssignment: rejectFirst(freeText[1]) } });
+  await f.run('OPEN', { accusedId: 'accused' });
+  const state = await f.empanel('fixed-seed');
+  assert.equal(state.discrepancy, 'MISSING_REPLACEMENT_REASON'); assert.deepEqual(state.panels, {});
+  assert.ok(f.store.load('case:case').every(e => !canonical(e).includes('rally')));
+});
+test('JON-314 P3 an eligibility command carrying a field its type does not use is rejected and never journaled', async t => {
+  const f = fixture(t), pop = new PopulationRegistry(f.filename); t.after(() => pop.close());
+  pop.createIdentity({ id: 'p1', division: 'd1', identityClass: 'ordinary', creationRoute: 'founding', createdBy: 'owner', authorityReference: 'founding:1', createdAt: '2026-01-01T00:00:00Z' });
+  const durable = new DurableEligibility({ eventStore: f.store, authenticate: f.authenticate });
+  let n = 0;
+  const apply = commands => { const c = { type: 'ELIGIBILITY', commandId: `e${n}`, expectedVersion: f.store.load('eligibility').length, commands }; n++; return durable.apply(c, f.credential(c)); };
+  await apply([{ type: 'IDENTITY_REGISTERED', identityId: 'p1', effectiveAt: '2026-01-01T00:00:00Z' }]);
+  const at = '2026-01-02T00:00:00Z';
+  for (const command of [{ type: 'DEATH_RECORDED', identityId: 'p1', proceedingId: 0 }, { type: 'DEATH_RECORDED', identityId: 'p1', proceedingId: 'proceeding:1' },
+    { type: 'IDENTITY_REGISTERED', identityId: 'p1', convictionId: 'conviction:1' }, { type: 'FELONY_CONVICTION_ENTERED', identityId: 'p1', convictionId: 'conviction:1', allegationId: '' },
+    { type: 'FORMAL_PROCEEDING_OPENED', identityId: 'p1', proceedingId: 'proceeding:1', affectedIdentityIds: ['p1'] }]) {
+    const before = f.store.load('eligibility');
+    await assert.rejects(apply([{ ...command, effectiveAt: at }]), { code: 'UNEXPECTED_FIELD' });
+    assert.deepEqual(f.store.load('eligibility'), before);
+  }
+  // A field that belongs to its type is still kept.
+  const saved = await apply([{ type: 'FELONY_CONVICTION_ENTERED', identityId: 'p1', convictionId: 'conviction:1', effectiveAt: at }]);
+  assert.equal(saved.at(-1).commands[0].convictionId, 'conviction:1');
+});
+test('JON-314 P3 identifiers with control characters (newline, NUL, DEL) go to discrepancy review, never into a panel', async t => {
+  for (const bad of ['a\nb', 'a\u0000b', 'a\u007fb', 'a\tb', 'a\rb']) {
+    for (const defect of [s => { s.office.snapshotId = `office${bad}`; }, s => { s.eligibility.rulesetVersion = `r${bad}`; },
+      s => { s.conflicts.sourceEventIds = [`conflict${bad}`]; }, s => { s.population.identities[1].divisionId = `d${bad}`; }]) {
+      const s = snapshot(17); defect(s); const result = plan(s);
+      assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', JSON.stringify(bad)); assert.deepEqual(result.roster, []);
+    }
+    const result = plan(snapshot(17), 'ACCUSATION', { validateAssignment: id => ({ valid: true, sourceEventId: `validation${bad}` }) });
+    assert.equal(result.reason, 'INVALID_ASSIGNMENT_VALIDATION');
+  }
+  const f = fixture(t, snapshot(17)); await f.run('OPEN', { accusedId: 'accused' });
+  f.s.office.snapshotId = 'office\u00001';
+  const state = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.deepEqual(state.commitments, {});
 });

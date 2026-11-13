@@ -1,6 +1,15 @@
 import { EligibilityRegistry, EligibilityEventType } from './eligibility.js';
 import { digest, fail, requireId } from './bootstrap-impeachment.js';
 
+// The fields each eligibility command type uses. A field outside its type's list is rejected, never journaled.
+const T = EligibilityEventType;
+const COMMAND_FIELDS = {
+  [T.IDENTITY_REGISTERED]: ['identityId'], [T.ALLEGATION_RECORDED]: ['identityId', 'allegationId'],
+  [T.FORMAL_PROCEEDING_OPENED]: ['identityId', 'proceedingId'], [T.FORMAL_PROCEEDING_CLOSED]: ['identityId', 'proceedingId'],
+  [T.C4_CREATION_EVENT_OPEN]: ['affectedIdentityIds', 'proceedingId'], [T.C4_RESTRICTION_CLOSED]: ['identityId', 'proceedingId'],
+  [T.DEATH_RECORDED]: ['identityId'], [T.CAPITAL_TERMINATION_RECORDED]: ['identityId'], [T.FELONY_CONVICTION_ENTERED]: ['identityId', 'convictionId'],
+};
+
 /** Durable command log around the unchanged JON-79 reducer. */
 export class DurableEligibility {
   #store; #authenticate;
@@ -24,6 +33,8 @@ export class DurableEligibility {
       if (!Array.isArray(command.commands) || !command.commands.length) fail('EMPTY_BATCH');
       const normalized = command.commands.map(c => {
         if (!Object.values(EligibilityEventType).includes(c.type)) fail('UNKNOWN_TRANSITION');
+        const fields = COMMAND_FIELDS[c.type];
+        for (const key of ['identityId', 'affectedIdentityIds', 'proceedingId', 'allegationId', 'convictionId']) if (key in c && !fields.includes(key)) fail('UNEXPECTED_FIELD');
         if (typeof c.effectiveAt !== 'string' || !Number.isFinite(Date.parse(c.effectiveAt))) fail('INVALID_TIME');
         const time = new Date(c.effectiveAt).toISOString();
         if (Date.parse(time) > Date.now()) fail('FUTURE_TRANSITION');
@@ -36,7 +47,7 @@ export class DurableEligibility {
         if (['FORMAL_PROCEEDING_OPENED', 'FORMAL_PROCEEDING_CLOSED', 'C4_CREATION_EVENT_OPEN', 'C4_RESTRICTION_CLOSED'].includes(c.type)) requireId(c.proceedingId);
         // Never persist caller authentication assertions or arbitrary substantive evidence.
         const result = { type: c.type, effectiveAt: time };
-        for (const key of ['identityId', 'affectedIdentityIds', 'proceedingId', 'allegationId', 'convictionId']) if (c[key] !== undefined) result[key] = c[key];
+        for (const key of fields) if (c[key] !== undefined) result[key] = c[key];
         if (c.type === EligibilityEventType.C4_CREATION_EVENT_OPEN) result.authentication = { authorityId: principal.id };
         return result;
       });

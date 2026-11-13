@@ -37,8 +37,15 @@ const JUDICIARY = new Set(['DISTRICT', 'CIRCUIT', 'SUPREME_BOARD']);
 const INSTITUTIONS = new Set(['HOUSE', 'SENATE', ...JUDICIARY]);
 function check(condition, code) { if (!condition) fail('INPUT_DISCREPANCY', code); }
 const bool = value => typeof value === 'boolean';
-// A usable identifier or code: a non-blank string of at most 256 characters with no surrounding whitespace.
-export const attributable = value => typeof value === 'string' && value.trim().length > 0 && value.length <= 256 && value === value.trim();
+// A usable identifier or code: a non-blank string of at most 256 characters with no surrounding whitespace
+// and no control characters (newline, tab, NUL, DEL).
+export const attributable = value => typeof value === 'string' && value.trim().length > 0 && value.length <= 256 && value === value.trim()
+  && !/[\u0000-\u001f\u007f]/.test(value);
+// Owner decision (relayed 2026-11-13, JON-314): reason codes come from fixed lists, never free text (spec 5.3, 5.5).
+// Eligibility reasons are the ones the eligibility projection produces.
+export const ELIGIBILITY_REASON_CODES = Object.freeze(['DECEASED', 'CAPITAL_TERMINATED', 'PERMANENT_FELONY_BAR', 'FORMAL_PROCEEDING', 'C4_TEMPORARY_RESTRICTION', 'NOT_REGISTERED']);
+// Replacement reasons are the planner's own exclusion codes for the spec's exclusion categories.
+export const REPLACEMENT_REASON_CODES = Object.freeze(['NOT_LIVING', 'UNWILLING', 'JAILED', 'DISENFRANCHISED', 'RECUSED', 'SERVING_JUDICIARY', 'KNOWN_TRIAL_CONFLICT', 'ROLE_INELIGIBLE', 'NOT_CIVILIAN_OR_MEMBER']);
 function unique(rows, key) {
   check(Array.isArray(rows), 'MISSING_ROWS');
   const map = new Map();
@@ -67,7 +74,7 @@ function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPa
     const role = roles.get(p.identityId);
     check(role && [role.accusation, role.trial].every(bool) && Array.isArray(role.reasonCodes), 'MISSING_ROLE_ELIGIBILITY');
     // Reason codes are frozen into panel records; anything but a plain code is defective eligibility metadata.
-    check(role.reasonCodes.every(attributable), 'INVALID_ELIGIBILITY_REASON');
+    check(role.reasonCodes.every(code => ELIGIBILITY_REASON_CODES.includes(code)), 'INVALID_ELIGIBILITY_REASON');
   }
   for (const id of roles.keys()) check(people.has(id), 'UNKNOWN_ELIGIBILITY_IDENTITY');
   for (const o of offices.values()) {
@@ -191,7 +198,7 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
         const validation = validateAssignment(candidate.p.identityId, stage);
         check(validation && !validation.then && bool(validation.valid) && attributable(validation.sourceEventId), 'INVALID_ASSIGNMENT_VALIDATION');
         if (!validation.valid) {
-          check(attributable(validation.reasonCode), 'MISSING_REPLACEMENT_REASON');
+          check(REPLACEMENT_REASON_CODES.includes(validation.reasonCode), 'MISSING_REPLACEMENT_REASON');
           drawAudit.push({ ...record, result: 'REJECTED', reasonCode: validation.reasonCode, sourceEventId: validation.sourceEventId }); continue;
         }
         selected.push(candidate.p.identityId); accepted++;
