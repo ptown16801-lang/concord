@@ -140,7 +140,7 @@ PR70 documents several bounded limitations: real office, conflict, ordinary-rule
 
 The Archivist contract identifies particular unbound actors, jurisdiction, eligibility criteria, timing, independent review and appeal details for publication remedies. These are explicit residual bindings within an existing design, not evidence that institutional architecture is absent. [Archivist production dependencies][archivist].
 
-The older project-status snapshot calls PR37 an open draft; the live PR was closed and unmerged at inspection. Broad introductory statements that no runtime components exist must also be read against the merged sandbox. Neither correction establishes a complete application or deployment. [Published status snapshot][project-status]; [PR37][pr37]; [PR69][pr69].
+The older project-status snapshot calls PR37 an open draft; the live PR was closed and unmerged at inspection. That correction does not establish a complete application or deployment. [Published status snapshot][project-status]; [PR37][pr37].
 
 The bounded propagation pilot is implemented work, but does not establish a source-validated complete historical pathway catalog or a production political-event pipeline. [PR48][pr48].
 
@@ -244,12 +244,12 @@ accept this candidate or its external source integrations. The
 sources; its [outcome][add-bootstrap-handoff] is a removal/appeal handoff.
 
 **Existing work.** [PR70's Gaps item 3][add-pr70-gaps] already discloses the
-field-shape differences and extra adapter inputs below. That description was
-checked November 12 against candidate `21e6a09`; it is mutable PR metadata, not
-a separately versioned specification. PR70 is explicitly tied to JON-261, and its
-[published re-check][add-pr70-review] names JON-279. This entry cross-references
-that existing implementation work; it does not discover a new adapter task or
-transfer it to another workstream.
+three status booleans, the exclusion-record shape and the extra source-event
+inputs. That description was checked November 12 against candidate `21e6a09`;
+it is mutable PR metadata, not a separately versioned specification. PR70 is
+explicitly tied to JON-261, and its [published re-check][add-pr70-review] names
+JON-279. This entry cross-references that existing implementation work; it does
+not discover a new adapter task or transfer it to another workstream.
 
 **Demonstrated differences.** The specification uses `populationVersion` and
 `officeVersion`, status fields `citizenshipStatus`, `disenfranchisementStatus` and
@@ -258,7 +258,11 @@ requires integer `version` fields on six sources, boolean `citizen`,
 `disenfranchised` and `recused`, and one role row per identity containing
 `accusation` and `trial` booleans. It also requires population/eligibility version
 coherence and per-reason source-event mappings, including conflict identity-to-event
-attribution. A common spelling or a boolean alone cannot establish equal meaning.
+attribution. The `populationVersion`/`officeVersion` versus integer `version`
+difference, one-role-row-per-identity shape and population/eligibility version
+check are this audit's own observations at `21e6a09`
+([consumer validation, lines 50–66][add-bootstrap-validation]).
+A common spelling or a boolean alone cannot establish equal meaning.
 
 **Reconciliation needed.** Pin each actual producer schema/version and its exact
 consumer adapter; define status-to-boolean semantics, case/stage selection,
@@ -274,9 +278,9 @@ judges, stage changes and missing reason provenance. This addendum neither build
 nor tests that adapter. JON-261 is the implementation work identified by PR70;
 JON-61's governance coordination and JON-82's combined boundary reconciliation
 remain wider contract responsibilities, not replacement assignments for this
-already disclosed gap. Franchise authority under JON-79 must not silently become
-authority over every case-specific role-eligibility rule. The exact office,
-case-role and conflict producer bindings remain to be evidenced.
+already disclosed gap. This audit infers that franchise authority under JON-79
+must not silently become authority over every case-specific role-eligibility rule.
+The exact office, case-role and conflict producer bindings remain to be evidenced.
 
 ### Seam 2 — protected conflict evidence to panels and public projections
 
@@ -365,14 +369,14 @@ repository-wide proof that an answer does not exist.
 
 | Map item | Disposition after this bounded reconciliation | Exact evidence or remaining source question |
 | --- | --- | --- |
-| G1–G2: House/College allocation and College procedure | Still source questions; no new owner choice established. | [R census][census] and [LIN-JON-59:40][add-j59-census] identify the input. [GOVERNMENT_RECORDS:300][add-allocation] names a certified allocation output, not its formula, elector selection or contingent procedure. Recover the controlling allocation/procedure text before proposing a rule. |
-| G3: judicial vacancies | Replacement is already recorded; its detailed binding remains unverified here. | [CON-036 judicial tenure/vacancies][add-judicial-tenure] and [LIN-JON-36:26][add-j36] require the separately defined replacement process. Neither a phase election nor the initial nomination/confirmation rule may be substituted for it. |
+| G1–G2: House/College allocation and College procedure | Inference of this audit: still source questions; no new owner choice established. This departs from the map's “Yes — cross-institution (I)”. | [R census][census] and [LIN-JON-59:40][add-j59-census] identify the input. [GOVERNMENT_RECORDS:300][add-allocation] names a certified allocation output, not its formula, elector selection or contingent procedure. Recover the controlling allocation/procedure text before proposing a rule. |
+| G3: judicial vacancies | The process is recorded as existing (map row 14, R); its text is still missing (map gap G3). | [CON-036 judicial tenure/vacancies][add-judicial-tenure] and [LIN-JON-36:26][add-j36] require the separately defined replacement process rather than regular phase leadership elections. |
 | G4: grand jury, clerk, Archivist, CRA and chief selection | No closure established by the targeted sources; do not group all selection mechanics into one owner interview. | [Grand-jury authority][add-grand-jury] defines jurisdiction and self-rule, not a complete filling rule. [Publication dependencies][archivist] identify particular unbound actors/limits, not appointment of an Archivist. Seek each role's controlling selection source and apply CON-004's boundary to any actual residual conflict. |
 | G5: original constitutional text | Source recovery, not a new drafting or ratification decision. | CON-080 in the [register][decisions] retains unavailable-original limits. Recovering text cannot manufacture its acceptance. |
 | G6: L-COAIA chamber scope | Already closed in the map; do not reopen it. | [LIN-JON-59:52–57][add-j59-chambers] and [LIN-JON-62:56][add-j62-proposer] cover each chamber's own creation records and proposing presiding officer. Preserve exact proposal, clearance, quorum and affirmative-authorization evidence. |
 | G7: ordinary Executive powers | Positive grants need their own sources; caretaker exclusions remain clues. | The map's rows 9/9a distinguish recorded grants from inference. [Security][security] requires express jurisdiction and scope; it cannot turn an exclusion list into a grant. |
 | G8: CRA expansion and holder selection | Neither acronym expansion nor a complete selection rule established in the checked passages. | [Capacity contract][boundaries] establishes accounting/reconciliation limits and [sealed census][census] its capacity/lifecycle treatment. Do not invent an expansion or infer appointment power from accounting duties. |
-| G9: institution/office/seat IDs | Engineering reconciliation within existing ownership, not a newly required constitutional choice. | [Agreement continuity][agreements] uses stable institution identity; [bootstrap interfaces][bootstrap-spec] use `officeId`; [CON-036:574][add-seats] requires separate Senate seats. Pin their identifier relationships. CON-004 and CON-081 in the [register][decisions] retain delegated representation mechanics. |
+| G9: institution/office/seat IDs | Inference (as in the map's I label): engineering reconciliation within existing ownership, not a newly required constitutional choice. | [Agreement continuity][agreements] uses stable institution identity; [bootstrap interfaces][bootstrap-spec] use `officeId`; [CON-036:574][add-seats] requires separate Senate seats. Pin their identifier relationships. CON-004 and CON-081 in the [register][decisions] retain delegated representation mechanics. |
 
 Revision 4 preserves inference labels for applying the House majority formula to
 L-COAIA creation and for registry-clerk eligibility interpretation, while adding
