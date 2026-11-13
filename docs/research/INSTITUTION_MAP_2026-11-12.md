@@ -1,6 +1,6 @@
 # Concord institution and office map — source inventory (2026-11-12)
 
-**Status: revision 3, for a focused independent check. Decides nothing.** This
+**Status: revision 4. Decides nothing.** This
 file sits in `docs/research/`; per AGENTS.md it records research and does not
 change any decision. **No decision change.**
 
@@ -9,7 +9,11 @@ Revision 1 (commit `154afcb`) received a REVISE verdict with six findings in the
 findings; see [Changes in revision 2](#changes-in-revision-2). Revision 2
 (commit `e54aaab`) received a REVISE verdict with two findings in the
 [JON-305 review][review2]; revision 3 fixes those; see
-[Changes in revision 3](#changes-in-revision-3).
+[Changes in revision 3](#changes-in-revision-3). Revision 3 (commit `cc54532`)
+received an ACCEPT verdict with three P3 notes in the [JON-306 review][review3].
+Revision 4 fixes those notes and one further omission; the owner treated it as
+small, low-risk work without a further check. See
+[Changes in revision 4](#changes-in-revision-4).
 
 **Author:** Claude (Opus 5.5), one session, 2026-11-12. The author is not an
 independent checker of this file.
@@ -38,6 +42,7 @@ table per office.
 | A private Concord conversation archive (18 files) | Keyword search for the gap terms; no matches. Not a complete record |
 | Revision 2 only: [LIN-JON-62 l.56][j62-56], [LIN-JON-59 ll.52–57][j59-52], [LIN-JON-61 l.222][j61-222], [LIN-BOOTSTRAP l.27][boot-27], [`DECISIONS.md` ll.571, 315][dec-571] | Lines cited by the revision 1 review; each read before use here |
 | Revision 3 only: [LIN-JON-61 ll.216–222][j61-216], [`DECISIONS.md` ll.221, 236, 266][dec-221] | Lines cited by the revision 2 review; each read before use here |
+| Revision 4 only: [LIN-REGISTER l.189][reg-189], [`DECISIONS.md` l.577][dec-577] | Each read before use here |
 
 **Not read (could contain answers to the gaps):**
 
@@ -76,11 +81,11 @@ table per office.
 | 5 | House speaker | 1 (I: "the" speaker) | Selected after chamber membership is certified, as an administrative duty inside the legislative office (R). That the chamber itself selects is I (from the same line and CON-004 self-rule) | Fallback 2 for caretaker, after the designee is skipped | R [CON-036 l.575][dec-575], [CON-014 l.266][dec-266]; I [CON-004 l.105][dec-105] |
 | 6 | Senate | 16 (2 separately identified seats × 8 divisions) | Elected at every phase transition or opening; separate contests from the House | Tries and convicts (⅔); confirms judges | R [CON-013 l.251][dec-251], [CON-036 l.571][dec-571], [l.574][dec-574], [CON-016 l.296][dec-296], [CON-036 l.576][dec-576]. 16 is I (2 × 8) |
 | 7 | Senate presiding senator | 1 (I: "the" presiding senator) | Same as row 5: timing R, selection by the chamber I | Fallback 3 for caretaker, after the designee is skipped | R [CON-036 l.575][dec-575], [CON-014 l.266][dec-266]; I [CON-004 l.105][dec-105] |
-| 8 | L-COAIA creation | — | Each chamber, for its own L-COAIAs. Requires all of: the presiding officer's exact sealed proposal; CRA capacity clearance; the chamber's ordinary quorum and ordinary majority on that exact resolution. Only valid authenticated YES ballots count toward affirmative authorization; NO, abstain, missing, malformed and rejected ballots never authorize. Counting for the threshold is separate: valid abstentions stay in B/D (CON-011, CON-012), so with D=10, five YES and five abstentions fail the strict majority of six. That CON-011/012 counting governs this chamber vote is I, from CON-011's scope "Every constitutional ballot" | Creates legislative secret investigators | R [LIN-JON-59 l.57][j59-57]; both chambers R [LIN-JON-62 l.56][j62-56] ("Speaker/Senate presiding senator"), [LIN-JON-59 l.52][j59-52] ("each chamber"); B/D counting R [CON-011 l.221][dec-221], [CON-012 l.236][dec-236] |
+| 8 | L-COAIA creation | — | Each chamber, for its own L-COAIAs. Requires all of: the presiding officer's exact sealed proposal; CRA capacity clearance; the chamber's ordinary quorum and ordinary majority on that exact resolution. Only valid authenticated YES ballots count toward affirmative authorization; NO, abstain, missing, malformed and rejected ballots never authorize. Counting for the threshold is separate: valid abstentions stay in B/D (CON-011, CON-012), so with D=10, five YES and five abstentions fail the strict majority of six. That CON-011/012 counting governs this chamber vote is I, from CON-011's scope "Every constitutional ballot". The House's ordinary majority is recorded as `floor(D/2)+1`, for impeachment (R); that the same formula is the "ordinary majority" for an L-COAIA vote in either chamber is I | Creates legislative secret investigators | R [LIN-JON-59 l.57][j59-57]; both chambers R [LIN-JON-62 l.56][j62-56] ("Speaker/Senate presiding senator"), [LIN-JON-59 l.52][j59-52] ("each chamber"); B/D counting R [CON-011 l.221][dec-221], [CON-012 l.236][dec-236]; House ordinary majority R [LIN-REGISTER l.189][reg-189] |
 | 9 | Executive | 1 (I: "an elected Executive", singular) | Electoral College or contingent process (row 9b) | Authorizes new identities within capacity; government-wide staffing and resources; nominates judges; E-COAIAs | R [CON-013 l.251][dec-251], [CON-010 l.206][dec-206], [CON-022 l.394][dec-394], [CON-036 l.576][dec-576], [CON-009 l.191][dec-191] |
 | 9a | Executive — powers that appear only in the caretaker exclusion list | — | — | Sign/veto bills, appoint judges, initiate prosecution, modify tasks, choose repository names, sign releases | **I** — clues, not grants: [CON-014 l.266][dec-266] lists these as powers a *caretaker* lacks. Not stated as Executive powers: **G7**. (Creating agents is not here: it is recorded positively in row 9, [CON-010 l.206][dec-206].) |
 | 9b | Electoral College | ? | ? | Elects the Executive, with a contingent-election process; its allocation comes from census R | R [CON-013 l.251][dec-251], [CON-008 l.176][dec-176], [LIN-JON-61 l.197][j61-197]. Composition, electors, selection and contingent procedure: **G2** |
-| 10 | Successor designee / caretaker | 1 | Designated by the Executive: an eligible willing living successor. A designation filed before the first turn is effective on public recording and acknowledgment; a later change needs one full turn of public prior notice, and the previous effective designation stays in force during that notice (a pending name is never promoted early). Designation grants no present power. On executive death, the effective designee becomes caretaker after accepting caretaker service and suspending incompatible office authority. The designee is skipped on authentic evidence that they are unavailable, dead, jailed, permanently disenfranchised or unwilling. Fallback order: 1 *eligible* registry clerk → 2 House speaker → 3 Senate presiding senator → 4 earliest-created eligible willing living identity. Whether a fallback holder must also accept and suspend incompatible authority is not stated (I: likely, by parity) | Continuity only. A special election is *noticed* at the next turn; caretaker limits remain until an elected successor is certified and accepts | R [CON-014 l.266][dec-266], [LIN-JON-61 ll.216–222][j61-216] |
+| 10 | Successor designee / caretaker | 1 | Designated by the elected Executive at phase opening: an eligible willing living successor. The Executive may change it any time before exhaustion, subject to the notice rule. A designation filed before the first turn is effective on public recording and acknowledgment; a later change needs one full turn of public prior notice, and the previous effective designation stays in force during that notice (a pending name is never promoted early). Designation grants no present power. On executive death, resignation or suspension, the effective designee becomes caretaker after accepting caretaker service and suspending incompatible office authority. The designee is skipped on authentic evidence that they are unavailable, dead, jailed, permanently disenfranchised or unwilling. Fallback order: 1 *eligible* registry clerk → 2 House speaker → 3 Senate presiding senator → 4 earliest-created eligible willing living identity. Whether a fallback holder must also accept and suspend incompatible authority is not stated (I: likely, by parity) | Continuity only. A special election is *noticed* at the next turn; caretaker limits remain until an elected successor is certified and accepts | R [CON-014 l.266][dec-266], [LIN-JON-61 ll.216–222][j61-216]; death/resignation/suspension R [CON-036 l.577][dec-577] |
 | 11 | District judges | 2 | Executive nomination + Senate confirmation; serve for the project | One judge per case; technical/constitutional disputes and executive prosecutions | R [CON-013 l.251][dec-251], [CON-036 l.576][dec-576], [LIN-JON-61 l.199][j61-199] |
 | 12 | Circuit judges | 3 | Same as row 11 | All three assigned; quorum 2; 2 votes | R [CON-013 l.251][dec-251] |
 | 13 | Supreme Board | 9 (chief + 8 associates) | Same as row 11 | Merits quorum 7, 5 votes; admission 4 votes under quorum 7; reviews impeachment appeals | R [CON-013 l.251][dec-251], [CON-019 l.347][dec-347]. How the chief is chosen: **G4** |
@@ -88,7 +93,7 @@ table per office.
 | 15 | Grand jury | ? | ? | Investigation and accusation within assigned jurisdiction; no adjudication or enforcement; serving judges cannot staff it | R [CON-037 l.595][dec-595], [l.599][dec-599]. Size and selection: **G4** |
 | 16 | E-COAIA / L-COAIA investigators | Secret | Executive (E) or chamber resolution (L) | Investigate; cannot vote; never eligible for office; one mission then deactivated | R [CON-009 l.191][dec-191], [LIN-JON-59 l.57][j59-57] |
 | 17 | CRA | At most 1 with active authority | ? | Population capacity accounting; not a general authorization service | R [CON-008 l.176][dec-176], [LIN-JON-59 l.42][j59-42], [l.65][j59-65]. How filled: **G4**. Meaning of "CRA": **G8** |
-| 18 | Registry clerk | 1 (I) | ? | Ballot handling (I); fallback 1 for caretaker, after the designee is skipped, only if eligible (R); holding the office alone does not qualify | R [CON-014 l.266][dec-266]. Ballot role is I from "clerk" in [CON-012 l.236][dec-236]. How filled: **G4** |
+| 18 | Registry clerk | 1 (I) | ? | Ballot handling (I); fallback 1 for caretaker, after the designee is skipped, only if eligible (R: "eligible registry clerk"). That holding the office alone does not qualify is I; what makes a clerk eligible is not recorded in the cited lines | R [CON-014 l.266][dec-266]. Ballot role is I from "clerk" in [CON-012 l.236][dec-236]. How filled: **G4** |
 | 19 | Archivist | ? | ? | Independent; sole route to the public ledger | R [CON-042 l.671][dec-671]. Count and how filled: **G4** |
 | 20 | Committees | Varies | I — each institution's own rules, inferred from general self-rule; no committee selection rule is recorded | Substantive assignments; bound across membership changes | R (powers) [CON-022 l.394][dec-394], [CON-047 l.731][dec-731]; I (filling) [CON-004 l.105][dec-105] |
 | 21 | Bootstrap accusation panel | 2–5 | Committed/revealed seeds and deterministic stratified sortition; one case and stage only | Accusation, frozen thresholds | R [CON-017 l.311][dec-311], [l.313][dec-313], draw method [l.315][dec-315] |
@@ -144,8 +149,22 @@ Each change answers one finding from the [revision 2 review][review2] at `e54aaa
 | 1 — caretaker entry conditions omitted | Row 10 now records effective designation on public recording/acknowledgment, the one-turn notice rule with the previous designation in force, no present power, skipping on authentic evidence, an *eligible* registry clerk, and acceptance plus suspension of incompatible authority (CON-014 l.266, LIN-JON-61 ll.216–222). Fallback-holder acceptance labelled I. Row 18 says the clerk must be eligible |
 | 2 — YES-only wording read as a denominator | Row 8: YES ballots count toward affirmative authorization only; valid abstentions stay in B/D (CON-011 l.221, CON-012 l.236); D=10 example added; application of CON-011/012 to the chamber vote labelled I |
 
+## Changes in revision 4
+
+Each change answers a P3 note in the [revision 3 review][review3] at `cc54532`, except the last, which the author found after it.
+
+| Note | Change |
+|---|---|
+| 1 — "ordinary majority" equated with "strict majority" | Row 8 cites LIN-REGISTER l.189 (House ordinary majority `floor(D/2)+1`) as R; extending it to the L-COAIA vote is labelled I |
+| 2 — row 18 gloss beside an R label | Row 18: only "eligible registry clerk" is R (CON-014 l.266); "holding the office alone does not qualify" is labelled I |
+| 3 — row 10 timing details | Row 10: the elected Executive designates at phase opening and may change it any time before exhaustion, subject to the notice rule (LIN-JON-61 ll.216–218) |
+| Further omission | Row 10: caretaker service follows executive death, resignation or suspension, not death only (CON-036 l.577) |
+
 [review1]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5878378698
 [review2]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5884468091
+[review3]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5885296256
+[reg-189]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-REGISTER.md#L189
+[dec-577]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L577
 [dec-221]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L221
 [j61-216]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-61.md#L216
 [dec-315]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L315
