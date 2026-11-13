@@ -836,3 +836,70 @@ test('JON-312 P3 a replacement with a blank or untrimmed reason code goes to dis
   assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'MISSING_REPLACEMENT_REASON'); assert.deepEqual(state.panels, {});
   assert.ok(f.store.load('case:case').every(e => !canonical(e).includes(' NEW_VACANCY ')));
 });
+
+// JON-261 PR #70 review 5899484550: receipt and snapshot values are validated before they are frozen into the journal.
+const badStrings = ['   ', ' x ', 'x\n', 42, { secret: 'x' }, ['x'], true, '', null];
+test('JON-261 P2 a ballot receipt with an unusable source event ID is rejected and never reaches the journal', async t => {
+  for (const bad of badStrings) {
+    const f = fixture(t, snapshot(8)); await f.run('OPEN', { accusedId: 'accused' }); await f.empanel();
+    const close = f.ballots.close; f.ballots.close = (...a) => ({ ...close(...a), sourceEventId: bad });
+    const length = f.store.load('case:case').length;
+    await assert.rejects(f.run('CLOSE_STAGE'), { code: 'INVALID_BALLOT_RECEIPT' });
+    assert.equal(f.store.load('case:case').length, length);
+  }
+});
+test('JON-261 P2 an evidence attestation with an unusable source event ID is rejected and never reaches the journal', async t => {
+  for (const bad of badStrings) {
+    const f = fixture(t, snapshot(8)); await f.run('OPEN', { accusedId: 'accused' }); await f.empanel(); await f.run('CLOSE_STAGE'); await f.empanel('trial');
+    const assess = f.evidence.assess; f.evidence.assess = (...a) => ({ ...assess(...a), sourceEventId: bad });
+    const length = f.store.load('case:case').length;
+    await assert.rejects(f.run('CLOSE_STAGE'), { code: 'INVALID_EVIDENCE_ATTESTATION' });
+    assert.equal(f.store.load('case:case').length, length);
+  }
+});
+test('JON-261 P2 a post-freeze review receipt with an unusable source event ID cannot start or release the hold', async t => {
+  let id = 'lawful-review:1';
+  const review = { assess: state => ({ caseId: state.caseId, sourceEventId: id, independentlyAuthorized: true, conflictDiscoveryAlone: false }) };
+  const f = fixture(t, snapshot(), { review }); await f.run('OPEN', { accusedId: 'accused' }); await f.empanel();
+  for (const bad of badStrings) {
+    id = bad; const length = f.store.load('case:case').length;
+    await assert.rejects(f.run('POST_FREEZE_WAIT'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+    assert.equal(f.store.load('case:case').length, length);
+  }
+  id = 'lawful-review:1'; await f.run('POST_FREEZE_WAIT');
+  for (const bad of badStrings) {
+    id = bad; const length = f.store.load('case:case').length;
+    await assert.rejects(f.run('RESOLVE_REVIEW'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+    assert.equal(f.store.load('case:case').length, length);
+  }
+  assert.equal((await f.run('READ')).status, 'POST_FREEZE_REVIEW');
+});
+test('JON-261 P3 snapshot IDs and ruleset versions must be usable strings; others go to discrepancy review, never into a panel', async t => {
+  const long = 'x'.repeat(5000);
+  const defects = [s => { s.office.snapshotId = ' x '; }, s => { s.rules.snapshotId = '   '; }, s => { s.office.snapshotId = 'office\n'; },
+    s => { s.eligibility.rulesetVersion = ' r1 '; }, s => { s.eligibility.rulesetVersion = 5; }, s => { s.eligibility.rulesetVersion = '  '; }];
+  for (const defect of defects) {
+    const s = snapshot(17); defect(s);
+    const result = plan(s);
+    assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.deepEqual(result.roster, []); assert.equal(result.snapshotIds, undefined);
+  }
+  // An oversized value is not a plain identifier or code either.
+  for (const defect of [s => { s.office.snapshotId = long; }, s => { s.eligibility.rulesetVersion = long; }]) {
+    const f = fixture(t, snapshot(17)); await f.run('OPEN', { accusedId: 'accused' }); defect(f.s);
+    // A bad snapshot ID is caught when the seed is committed; a bad ruleset version when the stage is planned.
+    let state = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    if (state.status !== 'ACCUSATION_INPUT_DISCREPANCY_REVIEW') state = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.deepEqual(state.panels, {});
+    assert.ok(f.store.load('case:case').every(e => !canonical(e).includes(long)));
+  }
+});
+test('JON-261 P3 identity, division, conflict and principal values must be plain identifiers before they are frozen', async t => {
+  for (const defect of [s => { s.population.identities[1].identityId = ' p1 '; s.eligibility.roleEligibility[1].identityId = ' p1 '; },
+    s => { s.population.identities[1].divisionId = '   '; }, s => { s.conflicts.sourceEventIds = [' conflict-check:1 ']; }]) {
+    const s = snapshot(17); defect(s); assert.equal(plan(s).status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW');
+  }
+  const f = fixture(t, snapshot(8)); await f.run('OPEN', { accusedId: 'accused' });
+  f.authenticate = undefined;
+  const odd = new BootstrapImpeachmentService({ eventStore: f.store, authenticate: () => ({ id: ' clerk ' }), sources: f.sources });
+  await assert.rejects(odd.execute({ type: 'READ', caseId: 'case', commandId: 'c1' }, {}), { code: 'UNAUTHORIZED' });
+});

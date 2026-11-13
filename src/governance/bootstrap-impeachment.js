@@ -37,13 +37,13 @@ const JUDICIARY = new Set(['DISTRICT', 'CIRCUIT', 'SUPREME_BOARD']);
 const INSTITUTIONS = new Set(['HOUSE', 'SENATE', ...JUDICIARY]);
 function check(condition, code) { if (!condition) fail('INPUT_DISCREPANCY', code); }
 const bool = value => typeof value === 'boolean';
-// A usable identifier or code: a non-blank string with no surrounding whitespace.
-const attributable = value => typeof value === 'string' && value.trim().length > 0 && value === value.trim();
+// A usable identifier or code: a non-blank string of at most 256 characters with no surrounding whitespace.
+export const attributable = value => typeof value === 'string' && value.trim().length > 0 && value.length <= 256 && value === value.trim();
 function unique(rows, key) {
   check(Array.isArray(rows), 'MISSING_ROWS');
   const map = new Map();
   for (const row of rows) {
-    check(row && typeof row[key] === 'string' && row[key].length > 0, 'INVALID_IDENTITY_ROW');
+    check(row && attributable(row[key]), 'INVALID_IDENTITY_ROW');
     if (map.has(row[key])) check(canonical(map.get(row[key])) === canonical(row), 'CONTRADICTORY_DUPLICATE');
     map.set(row[key], row);
   }
@@ -52,18 +52,18 @@ function unique(rows, key) {
 function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPanelSourceEventId) {
   for (const source of SOURCE_NAMES) {
     const s = snapshot?.[source];
-    check(s && typeof s.snapshotId === 'string' && s.snapshotId.length > 0, 'MISSING_SNAPSHOT');
+    check(s && attributable(s.snapshotId), 'MISSING_SNAPSHOT');
     check(Number.isSafeInteger(s.version) && s.version >= 0, 'INVALID_SOURCE_VERSION');
   }
   check(snapshot.eligibility.populationVersion === snapshot.population.version, 'POPULATION_ELIGIBILITY_VERSION_MISMATCH');
-  check(typeof snapshot.eligibility.rulesetVersion === 'string' && snapshot.eligibility.rulesetVersion.length > 0, 'MISSING_RULESET');
+  check(attributable(snapshot.eligibility.rulesetVersion), 'MISSING_RULESET');
   check(snapshot.conflicts.caseId === caseId && snapshot.participation.caseId === caseId, 'WRONG_CASE');
   const people = unique(snapshot.population.identities, 'identityId');
   const offices = unique(snapshot.office.offices, 'officeId');
   const roles = unique(snapshot.eligibility.roleEligibility, 'identityId');
   for (const p of [...people.values()].sort((a, b) => a.identityId < b.identityId ? -1 : a.identityId > b.identityId ? 1 : 0)) {
     check([p.alive, p.citizen, p.willing, p.jailed, p.disenfranchised].every(bool), 'INCOMPLETE_POPULATION');
-    check(p.divisionId === null || typeof p.divisionId === 'string', 'INVALID_DIVISION');
+    check(p.divisionId === null || attributable(p.divisionId), 'INVALID_DIVISION');
     const role = roles.get(p.identityId);
     check(role && [role.accusation, role.trial].every(bool) && Array.isArray(role.reasonCodes), 'MISSING_ROLE_ELIGIBILITY');
     // Reason codes are frozen into panel records; anything but a plain code is defective eligibility metadata.
@@ -75,17 +75,16 @@ function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPa
     check(people.has(o.holderIdentityId), 'UNKNOWN_OFFICE_HOLDER');
   }
   for (const key of ['knownInvestigators', 'independentlyDisqualified']) {
-    check(Array.isArray(snapshot.conflicts[key]) && snapshot.conflicts[key].every(x => typeof x === 'string' && people.has(x)), 'INVALID_CONFLICTS');
+    check(Array.isArray(snapshot.conflicts[key]) && snapshot.conflicts[key].every(x => attributable(x) && people.has(x)), 'INVALID_CONFLICTS');
   }
   check(Array.isArray(snapshot.conflicts.sourceEventIds) && snapshot.conflicts.sourceEventIds.length > 0
-    && snapshot.conflicts.sourceEventIds.every(x => typeof x === 'string' && x.length > 0), 'MISSING_CONFLICT_PROVENANCE');
+    && snapshot.conflicts.sourceEventIds.every(attributable), 'MISSING_CONFLICT_PROVENANCE');
   check(Array.isArray(snapshot.participation.events), 'MISSING_PARTICIPATION_LEDGER');
   // identityId -> source event: the ledger's own event (smallest when several), else the case's frozen accusation panel event.
   const historical = new Map([...(accusationParticipants ?? [])].map(id => [id, accusationPanelSourceEventId])), ledger = new Map();
   for (const e of snapshot.participation.events) {
-    check(e && typeof e.identityId === 'string' && people.has(e.identityId)
-      && typeof e.sourceEventId === 'string' && e.sourceEventId.trim().length > 0
-      && e.sourceEventId === e.sourceEventId.trim() && ['ACCUSATION', 'TRIAL'].includes(e.stage)
+    check(e && attributable(e.identityId) && people.has(e.identityId)
+      && attributable(e.sourceEventId) && ['ACCUSATION', 'TRIAL'].includes(e.stage)
       && ['SERVED', 'DELIBERATED', 'BALLOT'].includes(e.eventType), 'INVALID_PARTICIPATION');
     if (e.stage === 'ACCUSATION' && !(ledger.get(e.identityId) <= e.sourceEventId)) ledger.set(e.identityId, e.sourceEventId);
   }

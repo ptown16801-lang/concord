@@ -1,5 +1,5 @@
 import { verify } from 'node:crypto';
-import { ALGORITHM_VERSION, SOURCE_NAMES, canonical, digest, fail, requireId, seedCommitment, planBootstrapStage } from './bootstrap-impeachment.js';
+import { ALGORITHM_VERSION, attributable, SOURCE_NAMES, canonical, digest, fail, requireId, seedCommitment, planBootstrapStage } from './bootstrap-impeachment.js';
 
 /** Keys and permissions come from trusted configuration, never from the command. */
 export function createCommandAuthenticator(principals) {
@@ -77,7 +77,7 @@ export class BootstrapImpeachmentService {
     const command = structuredClone(input);
     requireId(command.caseId); requireId(command.commandId);
     const principal = await this.#authenticate(structuredClone(command), credential);
-    if (!principal || typeof principal.id !== 'string' || !principal.id) fail('UNAUTHORIZED');
+    if (!principal || !attributable(principal.id)) fail('UNAUTHORIZED');
     if (command.type === 'READ') return replayImpeachment(this.#store.load(`case:${command.caseId}`));
     const history = this.#store.transact({ ...command, stream: `case:${command.caseId}` }, principal, (events, db) => {
       if (command.type === 'OPEN') {
@@ -102,7 +102,7 @@ export class BootstrapImpeachmentService {
         if (!this.#ballots?.close) fail('BALLOT_AUTHORITY_REQUIRED');
         const receipt = this.#ballots.close(structuredClone(state), db);
         if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
-          || receipt.panelDigest !== digest(panel) || receipt.closed !== true || !receipt.sourceEventId
+          || receipt.panelDigest !== digest(panel) || receipt.closed !== true || !attributable(receipt.sourceEventId)
           || !Array.isArray(receipt.ballots)) fail('INVALID_BALLOT_RECEIPT');
         const ids = new Set(); let yes = 0;
         for (const ballot of receipt.ballots) {
@@ -117,7 +117,7 @@ export class BootstrapImpeachmentService {
           if (!this.#evidence?.assess) fail('EVIDENCE_AUTHORITY_REQUIRED');
           const proof = this.#evidence.assess(structuredClone(state), db);
           if (!proof || proof.then || proof.caseId !== state.caseId || proof.panelDigest !== digest(panel)
-            || proof.standard !== 'CLEAR_AND_CONVINCING' || typeof proof.satisfied !== 'boolean' || !proof.sourceEventId) fail('INVALID_EVIDENCE_ATTESTATION');
+            || proof.standard !== 'CLEAR_AND_CONVINCING' || typeof proof.satisfied !== 'boolean' || !attributable(proof.sourceEventId)) fail('INVALID_EVIDENCE_ATTESTATION');
           passed = proof.satisfied; evidenceReference = proof.sourceEventId;
         }
         const outcome = state.stage === 'ACCUSATION' ? (passed ? 'CHARGED' : 'CHARGE_REJECTED') : (passed ? 'CONVICTED' : 'ACQUITTED');
@@ -129,7 +129,6 @@ export class BootstrapImpeachmentService {
       if (command.type === 'RESOLVE_REVIEW' && state.inputDiscrepancy) {
         if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
         const receipt = this.#review.assess(structuredClone(state), command.type, db);
-        const attributable = value => typeof value === 'string' && value.trim().length > 0 && value === value.trim();
         if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
           || receipt.discrepancyVersion !== state.inputDiscrepancy.version || receipt.reviewedStateVersion !== state.version
           || receipt.resolution !== 'RESUME' || receipt.independentlyAuthorized !== true || receipt.competent !== true
@@ -148,7 +147,7 @@ export class BootstrapImpeachmentService {
         if (command.type === 'RESOLVE_REVIEW' && state.status !== 'POST_FREEZE_REVIEW') fail('WRONG_STAGE');
         if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
         const receipt = this.#review.assess(structuredClone(state), command.type, db);
-        if (!receipt || receipt.then || receipt.caseId !== state.caseId || !receipt.sourceEventId || receipt.independentlyAuthorized !== true
+        if (!receipt || receipt.then || receipt.caseId !== state.caseId || !attributable(receipt.sourceEventId) || receipt.independentlyAuthorized !== true
           || receipt.conflictDiscoveryAlone !== false) fail('INDEPENDENT_REVIEW_REQUIRED');
         return [{ type: command.type === 'POST_FREEZE_WAIT' ? 'POST_FREEZE_WAIT' : 'REVIEW_RESOLVED', sourceEventId: receipt.sourceEventId }];
       }
