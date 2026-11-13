@@ -10,3 +10,10 @@ The [simulation and resilience study](SIMULATION_AND_RESILIENCE.md) includes a
 standard-library Python simulator and selected results from an invented queue
 model. It demonstrates reproducible analysis; it is not a measurement of a
 running Concord deployment or a production scheduling recommendation.
+
+The [October 16 architecture and modeling research](CONCORD_ARCHITECTURE_RESEARCH_2026-10-16.md)
+was recovered for publication on November 12, 2026 (November 13 UTC). It preserves
+the historical governance-engine, scheduler, cross-domain modeling, and software
+findings, including the date correction from the requested October 17 label,
+revision-pinned evidence, and unresolved questions. It adopts no architecture or
+product and does not report new runtime validation.
