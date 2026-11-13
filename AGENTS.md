@@ -74,10 +74,6 @@ and remaining limitations. Complete already-authorized commits after the
 required checks; explain the precise next action when a commit remains pending.
 Commit permission alone does not establish push, merge or deployment permission.
 
-For new work, keep Concord-generated technical records—audits, architecture and database assessments, specifications, and verification reports—in this Git repository; GitHub is their published home.
-Linear holds the bounded work brief and links to the exact repository file/revision; external-source research follows the existing Notion research-filing guide.
-Keep one canonical record and link rather than duplicate it; private evidence and credentials stay in authorized private locations, and existing commit, publication, review and acceptance permissions still apply.
-
 ## Public information
 
 Give readers explanations and supporting repository material that are usable
