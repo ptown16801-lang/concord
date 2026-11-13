@@ -192,6 +192,11 @@ coverage of every political family.
 
 At this addendum's inspection, PR74 was open, non-draft and unmerged at `8fc2bcb`;
 PR70 was open and unmerged at `21e6a09`; PR73 was merged through `ef3f393`.
+The [published PR70 re-check][add-pr70-review] names JON-261/JON-279 and rejects
+`21e6a09` with three P2 findings. Its findings were not independently reproduced
+for this audit. PR70's description still says that re-check has not happened;
+that description and the earlier audit's outstanding-re-check observation must
+not be substituted for the published review. Live Linear state remains unverified.
 The map's [focused revision-3 review][add-map-review] says ACCEPT at
 `cc545329a0890057710557c22b4b74bddf498ec3`, with three P3 notes. That verdict does
 not extend to every unchanged row, unread source, or revision 4. Reading the
@@ -215,7 +220,7 @@ completion, staffing or permission to start another workstream.
 | Voters and representation | [Voting contract][boundaries] separates opening roll, ordered eligibility, attempts, immutable receipts and accounting; [sealed census][census] defines representation. | A division or representation link is not voting eligibility. Source revisions and election order are required; later disqualification does not erase an accepted ballot. |
 | Institutions, offices and seats | [Revision-4 inventory][add-map], [office-term rules][add-terms], [institutional agreement continuity][agreements] and [bootstrap office snapshots][bootstrap-spec] supply existing records. | Institution, office, separately identified seat and holder are distinct. Appointment/election, vacancy, succession, serving status and recusal need their own source evidence; an `officeId` does not prove a universal registry. |
 | Powers and lawful effects | [Security request/admission contract][security] requires authenticated identity, express grant, jurisdiction, procedure, versions and protected writer evidence. | Authority may belong to a body or electorate as well as an officeholder. A graph citation or coordinator cannot authorize an effect. Actual institutional-grant derivation remains separately evidenced. |
-| Judges and adjudication | [Recorded judicial/office rules][add-terms], CON-013/016/017 in the [register][decisions], and [bootstrap interfaces][bootstrap-spec] distinguish office and case/stage service. | Tenure, assignment, recusal, quorum, accusation, conviction, removal and appeal are distinct. Serving judges cannot supply general non-judicial staffing; later removal/appeal execution is outside the candidate service's handoff. |
+| Judges and adjudication | [Judicial tenure][add-judicial-tenure], CON-013/016/017 in the [register][decisions], and [bootstrap interfaces][bootstrap-spec] distinguish office and case/stage service. | Tenure, assignment, recusal, quorum, accusation, conviction, removal and appeal are distinct. Serving judges cannot supply general non-judicial staffing; later removal/appeal execution is outside the candidate service's handoff. |
 | Investigators and proceedings | [Sealed investigator lifecycle][census], [case/conflict snapshots][bootstrap-spec] and [grand-jury authority][add-grand-jury] already connect identities, roles and cases. | E/L secret identities differ from ordinary investigative participation and grand-jury service. A case's `knownInvestigators` list is not a general mission registry or public roster. See seam 2. |
 | Formal and observed relationships | [Agreement continuity][agreements], [checkpoint relationships][checkpoint] and [observatory][observatory] have different source and inference semantics. | Agreement, office, participation, evidence and observed similarity are not interchangeable. The six accepted checkpoint type names do not supply every atlas edge; detailed directions/interfaces remain proposed. |
 | Change over time and available knowledge | [Identity history][add-history], [event envelope][add-identity-envelope] and agreement provenance distinguish effective, observed and recorded information. | Preserve source order, revisions and supersession; later knowledge cannot become earlier knowledge. Hypothetical replay stays separate from authoritative history, and present read permission is rechecked. |
@@ -238,6 +243,14 @@ accept this candidate or its external source integrations. The
 [service constructor][add-bootstrap-service] requires supplied authoritative
 sources; its [outcome][add-bootstrap-handoff] is a removal/appeal handoff.
 
+**Existing work.** [PR70's Gaps item 3][add-pr70-gaps] already discloses the
+field-shape differences and extra adapter inputs below. That description was
+checked November 12 against candidate `21e6a09`; it is mutable PR metadata, not
+a separately versioned specification. PR70 is explicitly tied to JON-261, and its
+[published re-check][add-pr70-review] names JON-279. This entry cross-references
+that existing implementation work; it does not discover a new adapter task or
+transfer it to another workstream.
+
 **Demonstrated differences.** The specification uses `populationVersion` and
 `officeVersion`, status fields `citizenshipStatus`, `disenfranchisementStatus` and
 `recusalStatus`, and eligibility rows carrying identity, case and stage. The consumer
@@ -258,10 +271,12 @@ not permission to guess a roster or edit the frozen specification.
 The evidence needed to close this seam is a source-owned, versioned mapping plus
 reviewable cases for contradictory/stale sources, duplicate identities, serving
 judges, stage changes and missing reason provenance. This addendum neither builds
-nor tests that adapter. Existing governance coordination is recorded under JON-61;
-JON-82 owns combined boundary reconciliation. Franchise authority under JON-79
-must not silently become authority over every case-specific role-eligibility rule.
-The exact office, case-role and conflict producer bindings remain to be evidenced.
+nor tests that adapter. JON-261 is the implementation work identified by PR70;
+JON-61's governance coordination and JON-82's combined boundary reconciliation
+remain wider contract responsibilities, not replacement assignments for this
+already disclosed gap. Franchise authority under JON-79 must not silently become
+authority over every case-specific role-eligibility rule. The exact office,
+case-role and conflict producer bindings remain to be evidenced.
 
 ### Seam 2 — protected conflict evidence to panels and public projections
 
@@ -298,12 +313,14 @@ evidence. No such experiment or production disclosure path is verified here.
 ### Seam 3 — finality certificate, administrative interval and terminal effects
 
 **Source/consumer and status.** The proposed [C4 flow, section 5.5][add-c4-flow],
-`77836f6`, places the certificate after appeals plus an administrative turn.
-CON-020/021 in the [register][decisions] and the
-[finality source, lines 50–65][add-finality], at the same revision, require actual
-appeal opportunities and a valid finality certificate followed by a further
-complete administrative-review turn. This is a source-text mismatch in an
-unaccepted proposal, not a demonstrated runtime defect.
+`77836f6`, says the certificate is issued after appeals, plus an administrative
+turn. The wording is ambiguous about whether that interval precedes or follows
+the certificate. CON-020/021 in the [register][decisions] and the
+[finality source, lines 50–65][add-finality], at the same revision, explicitly
+require actual appeal opportunities and a valid finality certificate followed by
+a further complete administrative-review turn. The proposal needs that ordering
+made explicit before reuse. The ambiguity establishes neither a source
+contradiction nor a runtime defect.
 
 **Controlling requirements for reuse.** Preserve the following distinct records
 and gates rather than copying the proposal's compressed ordering. These are
@@ -349,13 +366,13 @@ repository-wide proof that an answer does not exist.
 | Map item | Disposition after this bounded reconciliation | Exact evidence or remaining source question |
 | --- | --- | --- |
 | G1–G2: House/College allocation and College procedure | Still source questions; no new owner choice established. | [R census][census] and [LIN-JON-59:40][add-j59-census] identify the input. [GOVERNMENT_RECORDS:300][add-allocation] names a certified allocation output, not its formula, elector selection or contingent procedure. Recover the controlling allocation/procedure text before proposing a rule. |
-| G3: judicial vacancies | Replacement is already recorded; its detailed binding remains unverified here. | [CON-036][add-terms] and [LIN-JON-36:26][add-j36] require the separately defined replacement process. Neither a phase election nor the initial nomination/confirmation rule may be substituted for it. |
+| G3: judicial vacancies | Replacement is already recorded; its detailed binding remains unverified here. | [CON-036 judicial tenure/vacancies][add-judicial-tenure] and [LIN-JON-36:26][add-j36] require the separately defined replacement process. Neither a phase election nor the initial nomination/confirmation rule may be substituted for it. |
 | G4: grand jury, clerk, Archivist, CRA and chief selection | No closure established by the targeted sources; do not group all selection mechanics into one owner interview. | [Grand-jury authority][add-grand-jury] defines jurisdiction and self-rule, not a complete filling rule. [Publication dependencies][archivist] identify particular unbound actors/limits, not appointment of an Archivist. Seek each role's controlling selection source and apply CON-004's boundary to any actual residual conflict. |
 | G5: original constitutional text | Source recovery, not a new drafting or ratification decision. | CON-080 in the [register][decisions] retains unavailable-original limits. Recovering text cannot manufacture its acceptance. |
-| G6: L-COAIA chamber scope | Already closed in the map; do not reopen it. | [LIN-JON-59:52–57][add-j59-chambers] and [LIN-JON-62:56][add-finality] cover each chamber's own creation records and proposing presiding officer. Preserve exact proposal, clearance, quorum and affirmative-authorization evidence. |
+| G6: L-COAIA chamber scope | Already closed in the map; do not reopen it. | [LIN-JON-59:52–57][add-j59-chambers] and [LIN-JON-62:56][add-j62-proposer] cover each chamber's own creation records and proposing presiding officer. Preserve exact proposal, clearance, quorum and affirmative-authorization evidence. |
 | G7: ordinary Executive powers | Positive grants need their own sources; caretaker exclusions remain clues. | The map's rows 9/9a distinguish recorded grants from inference. [Security][security] requires express jurisdiction and scope; it cannot turn an exclusion list into a grant. |
 | G8: CRA expansion and holder selection | Neither acronym expansion nor a complete selection rule established in the checked passages. | [Capacity contract][boundaries] establishes accounting/reconciliation limits and [sealed census][census] its capacity/lifecycle treatment. Do not invent an expansion or infer appointment power from accounting duties. |
-| G9: institution/office/seat IDs | Engineering reconciliation within existing ownership, not a newly required constitutional choice. | [Agreement continuity][agreements] uses stable institution identity; [bootstrap interfaces][bootstrap-spec] use `officeId`; [CON-036][add-terms] requires separate Senate seats. Pin their identifier relationships. CON-004 and CON-081 in the [register][decisions] retain delegated representation mechanics. |
+| G9: institution/office/seat IDs | Engineering reconciliation within existing ownership, not a newly required constitutional choice. | [Agreement continuity][agreements] uses stable institution identity; [bootstrap interfaces][bootstrap-spec] use `officeId`; [CON-036:574][add-seats] requires separate Senate seats. Pin their identifier relationships. CON-004 and CON-081 in the [register][decisions] retain delegated representation mechanics. |
 
 Revision 4 preserves inference labels for applying the House majority formula to
 L-COAIA creation and for registry-clerk eligibility interpretation, while adding
@@ -399,7 +416,7 @@ project-wide hold or replacement acceptance gate. **No decision change.**
 [checkpoint]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/CHECKPOINT_NEIGHBORHOOD.md#L3
 [observatory]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/RELATIONAL_OBSERVATORY.md#L5
 [government-records]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/proposals/GOVERNMENT_RECORDS.md#L3
-[archivist]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/ARCHIVIST_PUBLICATION.md#L155
+[archivist]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/design/ARCHIVIST_PUBLICATION.md#L156
 [project-status]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/PROJECT_STATUS.md
 [pr37]: https://github.com/ptown16801-lang/concord/pull/37
 [pr48]: https://github.com/ptown16801-lang/concord/pull/48
@@ -431,3 +448,8 @@ project-wide hold or replacement acceptance gate. **No decision change.**
 [add-allocation]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/proposals/GOVERNMENT_RECORDS.md#L300
 [add-j36]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-36.md#L26
 [add-j59-chambers]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-59.md#L52
+[add-pr70-gaps]: https://github.com/ptown16801-lang/concord/pull/70#gaps-not-fixed-here-need-an-owner-decision-or-later-work
+[add-pr70-review]: https://github.com/ptown16801-lang/concord/pull/70#pullrequestreview-5866725650
+[add-j62-proposer]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/docs/decisions/evidence/LIN-JON-62.md#L56
+[add-judicial-tenure]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L576
+[add-seats]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L574
