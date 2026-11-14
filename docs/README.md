@@ -45,6 +45,7 @@ These documents identify their accepted boundaries, proposed details, and implem
 - [Population and voting](architecture/POPULATION_AND_VOTING.md) and [cross-component boundaries](design/POPULATION_VOTING_BOUNDARIES.md) — identity, eligibility, electorate, and integration responsibilities.
 - [Sealed census](design/SEALED_CENSUS.md) — population accounting and protected visibility.
 - [Relational observatory](design/RELATIONAL_OBSERVATORY.md) — temporal comparisons and interpretation limits.
+- [Political system representation audit](POLITICAL_SYSTEM_AUDIT_2026-11-11.md) — existing models, candidate implementations, map notation, and source-qualified integration limits.
 - [Search and records](design/SEARCH_AND_RECORDS.md) — authorized discovery, record identity, and guide navigation.
 - [Scheduler selection research](research/SCHEDULER_SELECTION.md) — evaluation requirements; candidates remain unselected.
 - [Simulation and resilience study](research/SIMULATION_AND_RESILIENCE.md) — reproducible synthetic queue model, results, and limits.
