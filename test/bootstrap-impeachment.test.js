@@ -23,7 +23,7 @@ function snapshot(n = 17) {
       roleEligibility: people.map(p => ({ identityId: p.identityId, accusation: true, trial: true, reasonCodes: [] })) },
     conflicts: { snapshotId: 'conflicts:1', version: 1, caseId: 'case', knownInvestigators: [], independentlyDisqualified: [], sourceEventIds: ['conflict-check:1'] },
     participation: { snapshotId: 'participation:1', version: 1, caseId: 'case', events: [] },
-    assignmentValidation: { validReasonCodes: ['NEW_VACANCY', 'UNAVAILABLE'] },
+    assignmentValidation: { snapshotId: 'assignment:1', version: 1, validReasonCodes: ['NEW_VACANCY', 'UNAVAILABLE'] },
     rules: { snapshotId: 'rules:1', version: 1, HOUSE: { quorum: 3, threshold: 3, denominator: 5 }, SENATE: { quorum: 3, threshold: 3, denominator: 4 } },
   };
 }
@@ -137,7 +137,7 @@ function fixture(t, s = snapshot(), options = {}) {
   const keys = generateKeyPairSync('ed25519');
   const authenticate = createCommandAuthenticator({ clerk: { publicKey: keys.publicKey, permissions } });
   const credential = command => ({ principalId: 'clerk', signature: sign(null, Buffer.from(canonical(command)), keys.privateKey).toString('base64') });
-  const sources = options.sources ?? { capture: () => structuredClone(s), validateAssignment: valid };
+  const sources = options.sources ?? { capture: () => structuredClone(s), validateAssignment: valid, assignmentReasonCodes: () => structuredClone(s.assignmentValidation) };
   const ballots = { close: state => ({ caseId: state.caseId, stage: state.stage, panelDigest: digest(state.panels[state.stage]), closed: true,
     quorumSatisfied: true, sourceEventId: `ballot:${state.stage}`, ballots: state.panels[state.stage].roster.map(identityId => ({ identityId, vote: 'YES' })) }) };
   const evidence = { assess: state => ({ caseId: state.caseId, panelDigest: digest(state.panels.TRIAL), standard: 'CLEAR_AND_CONVINCING', satisfied: true, sourceEventId: 'proof:1' }) };
@@ -763,7 +763,7 @@ test('JON-279 P2 an assignment validation with a blank or untrimmed source event
     }
   }
   // Through the service the replacement is held for review instead of freezing a whitespace-only ID.
-  const sources = { capture: () => structuredClone(s), validateAssignment: id => id === first ? { valid: false, reasonCode: 'NEW_VACANCY', sourceEventId: '   ' } : valid(id) };
+  const sources = { capture: () => structuredClone(s), assignmentReasonCodes: () => structuredClone(s.assignmentValidation), validateAssignment: id => id === first ? { valid: false, reasonCode: 'NEW_VACANCY', sourceEventId: '   ' } : valid(id) };
   const f = fixture(t, s, { sources }); await f.run('OPEN', { accusedId: 'accused' });
   const state = await f.empanel('fixed-seed');
   assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'INVALID_ASSIGNMENT_VALIDATION'); assert.deepEqual(state.panels, {});
@@ -832,7 +832,7 @@ test('JON-312 P3 a replacement with a blank or untrimmed reason code goes to dis
     assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(result.reason, 'MISSING_REPLACEMENT_REASON');
     assert.deepEqual(result.roster, []); assert.deepEqual(result.drawAudit, []);
   }
-  const sources = { capture: () => structuredClone(s), validateAssignment: id => id === first ? { valid: false, reasonCode: ' NEW_VACANCY ', sourceEventId: 'vacancy:1' } : valid(id) };
+  const sources = { capture: () => structuredClone(s), assignmentReasonCodes: () => structuredClone(s.assignmentValidation), validateAssignment: id => id === first ? { valid: false, reasonCode: ' NEW_VACANCY ', sourceEventId: 'vacancy:1' } : valid(id) };
   const f = fixture(t, s, { sources }); await f.run('OPEN', { accusedId: 'accused' });
   const state = await f.empanel('fixed-seed');
   assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(state.discrepancy, 'MISSING_REPLACEMENT_REASON'); assert.deepEqual(state.panels, {});
@@ -906,7 +906,7 @@ test('JON-261 P3 identity, division, conflict and principal values must be plain
   await assert.rejects(odd.execute({ type: 'READ', caseId: 'case', commandId: 'c1' }, {}), { code: 'UNAUTHORIZED' });
 });
 
-// JON-314 re-check findings (PR #70, Claude Haiku). Reason codes come from a fixed list (owner decision, relayed 2026-11-13).
+// JON-314 re-check findings (PR #70, Claude Haiku). Reason codes are data: each authority lists its own valid codes (owner decision "Codes as data", 2026-11-13).
 const freeText = ['Private note: prior plea discussed with counsel', 'Defendant saw the vote at the rally on Tuesday', 'new_vacancy', 'NEW VACANCY', 'NEW-VACANCY', '1VACANCY', 'X'.repeat(65)];
 test('JON-314 P2 an eligibility reason code passes only when well formed and listed by the eligibility authority for that snapshot', async t => {
   const role = (s, id) => s.eligibility.roleEligibility.find(r => r.identityId === id);
@@ -931,22 +931,24 @@ test('JON-314 P2 a replacement reason passes only when well formed and listed by
   const first = plan(snapshot(17)).roster[0];
   const rejectFirst = reasonCode => id => id === first ? { valid: false, reasonCode, sourceEventId: 'validation:replace' } : valid(id);
   const withList = list => { const s = snapshot(17); if (list) s.assignmentValidation.validReasonCodes = list; return s; };
-  for (const [code, list] of [['NEW_VACANCY'], ['UNAVAILABLE'], ['RECUSED', ['RECUSED']]]) {
+  for (const [code, list] of [['NEW_VACANCY'], ['UNAVAILABLE'], ['TEMPORARILY_ABSENT', ['TEMPORARILY_ABSENT']]]) {
     const result = plan(withList(list), 'ACCUSATION', { validateAssignment: rejectFirst(code) });
     assert.equal(result.status, 'ACCUSATION_EMPANELED', code); assert.ok(result.drawAudit.some(e => e.result === 'REJECTED' && e.reasonCode === code), code);
   }
-  for (const [code, list] of [['RECUSED'], ['NEW_VACANCY', ['UNAVAILABLE']], ...freeText.map(c => [c, [c]])]) {
+  for (const [code, list] of [['TEMPORARILY_ABSENT'], ['NEW_VACANCY', ['UNAVAILABLE']], ...freeText.map(c => [c, [c]])]) {
     const result = plan(withList(list), 'ACCUSATION', { validateAssignment: rejectFirst(code) });
     assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', code); assert.deepEqual(result.drawAudit, []);
   }
-  const s = withList(), f = fixture(t, s, { sources: { capture: () => structuredClone(s), validateAssignment: rejectFirst(freeText[1]) } });
+  const s = withList(), f = fixture(t, s, { sources: { capture: () => structuredClone(s), assignmentReasonCodes: () => structuredClone(s.assignmentValidation), validateAssignment: rejectFirst(freeText[1]) } });
   await f.run('OPEN', { accusedId: 'accused' });
   const state = await f.empanel('fixed-seed');
   assert.equal(state.discrepancy, 'MISSING_REPLACEMENT_REASON'); assert.deepEqual(state.panels, {});
   assert.ok(f.store.load('case:case').every(e => !canonical(e).includes('rally')));
 });
 test('JON-314 P2 a missing or malformed authority code list is a discrepancy, not an empty list', () => {
-  for (const defect of [s => { delete s.eligibility.validReasonCodes; }, s => { delete s.assignmentValidation; }, s => { s.assignmentValidation.validReasonCodes = 'NEW_VACANCY'; },
+  // With no assignment source at all, the source itself is missing.
+  const none = snapshot(17); delete none.assignmentValidation; assert.equal(plan(none).reason, 'MISSING_SNAPSHOT');
+  for (const defect of [s => { delete s.eligibility.validReasonCodes; }, s => { delete s.assignmentValidation.validReasonCodes; }, s => { s.assignmentValidation.validReasonCodes = 'NEW_VACANCY'; },
     s => { s.eligibility.validReasonCodes = ['FORMAL_PROCEEDING', 'free text']; }, s => { s.assignmentValidation.validReasonCodes = ['NEW_VACANCY', 'NEW_VACANCY']; },
     s => { s.eligibility.validReasonCodes = [42]; }]) {
     const s = snapshot(17); defect(s); const result = plan(s);
@@ -986,4 +988,54 @@ test('JON-314 P3 identifiers with control characters (newline, NUL, DEL) go to d
   f.s.office.snapshotId = 'office\u00001';
   const state = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
   assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.deepEqual(state.commitments, {});
+});
+
+// Independent review of 9acf249 (owner answers, 2026-11-13).
+test('9acf249 review P2 the assignment code list is a versioned source: a changed list under the same version or a rollback goes to review', async t => {
+  for (const [change, reason] of [[l => { l.validReasonCodes = ['NEW_VACANCY']; }, 'NON_IDEMPOTENT_SOURCE'], [l => { l.version = 0; l.snapshotId = 'assignment:0'; }, 'STALE_SOURCE']]) {
+    const f = fixture(t, snapshot(17)); await f.run('OPEN', { accusedId: 'accused' });
+    const accusation = await f.empanel('accusation');
+    assert.equal(accusation.panels.ACCUSATION.reasonCodeSnapshotId, 'assignment:1');
+    await f.run('CLOSE_STAGE');
+    change(f.s.assignmentValidation);
+    const blocked = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('trial') });
+    assert.equal(blocked.status, 'TRIAL_INPUT_DISCREPANCY_REVIEW'); assert.equal(blocked.discrepancy, reason); assert.equal(blocked.commitments.TRIAL, undefined);
+  }
+});
+test('9acf249 review P2 the code list comes from the assignment adapter, never from capture', async t => {
+  // No adapter method: discrepancy review, not an empty list.
+  const s = snapshot(17), f = fixture(t, s, { sources: { capture: () => structuredClone(s), validateAssignment: valid } });
+  await f.run('OPEN', { accusedId: 'accused' });
+  const blocked = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  assert.equal(blocked.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(blocked.discrepancy, 'MISSING_ASSIGNMENT_REASON_CODES');
+  // A list placed in the captured snapshot is replaced by the adapter's own.
+  const first = plan(snapshot(17)).roster[0], forged = snapshot(17); forged.assignmentValidation.validReasonCodes = ['FORGED_REASON'];
+  const g = fixture(t, forged, { sources: { capture: () => structuredClone(forged), assignmentReasonCodes: () => structuredClone(snapshot(17).assignmentValidation),
+    validateAssignment: id => id === first ? { valid: false, reasonCode: 'FORGED_REASON', sourceEventId: 'v:1' } : valid(id) } });
+  await g.run('OPEN', { accusedId: 'accused' });
+  assert.equal((await g.empanel('fixed-seed')).discrepancy, 'MISSING_REPLACEMENT_REASON');
+});
+test('9acf249 review P3 an authority list naming a Concord-derived code, or a person with repeated codes, goes to review', () => {
+  for (const defect of [s => { s.eligibility.validReasonCodes.push('SERVING_JUDICIARY'); }, s => { s.eligibility.validReasonCodes.push('ACCUSED'); },
+    s => { s.assignmentValidation.validReasonCodes.push('RECUSED'); }, s => { s.assignmentValidation.validReasonCodes.push('ROLE_INELIGIBLE'); }]) {
+    const s = snapshot(17); defect(s); const result = plan(s);
+    assert.equal(result.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(result.reason, 'REASON_CODE_COLLISION'); assert.deepEqual(result.roster, []);
+  }
+  const s = snapshot(17);
+  Object.assign(s.eligibility.roleEligibility.find(r => r.identityId === 'p1'), { accusation: false, reasonCodes: ['FORMAL_PROCEEDING', 'FORMAL_PROCEEDING'],
+    sourceEventIds: { accusation: 'role-decision:p1' }, reasonSourceEventIds: { FORMAL_PROCEEDING: 'eligibility-event:1' } });
+  const result = plan(s);
+  assert.equal(result.reason, 'INVALID_ELIGIBILITY_REASON'); assert.deepEqual(result.exclusions, []);
+});
+test('9acf249 review P3 command IDs and authority names with control characters are refused', async t => {
+  const f = fixture(t, snapshot(17));
+  for (const extra of [{ caseId: 'case\nX' }, { caseId: 'case\u0000' }, { accusedId: 'accu\u0000sed' }, { commandId: 'c\r1' }]) {
+    const cmd = { ...f.command('OPEN', { accusedId: 'accused' }), ...extra };
+    await assert.rejects(f.execute(cmd), { code: 'INVALID_IDENTIFIER' });
+  }
+  assert.deepEqual(f.store.load('case:case'), []);
+  await f.run('OPEN', { accusedId: 'accused' });
+  f.s.population.authoritySources = { [`role\nmetadata${'x'.repeat(3000)}`]: { snapshotId: 'role:1', version: 1 } };
+  const blocked = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  assert.equal(blocked.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(blocked.discrepancy, 'INVALID_AUTHORITY_NAME');
 });

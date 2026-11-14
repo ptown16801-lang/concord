@@ -162,14 +162,23 @@ export class BootstrapImpeachmentService {
     // is a defective source for independent review, not a caller error that leaves the committed seed usable.
     let snapshot;
     try { snapshot = structuredClone(captured); canonical(snapshot); } catch { fail('INPUT_DISCREPANCY', 'MALFORMED_SOURCE_SNAPSHOT'); }
+    // Replacement reason codes come from the adapter that issues them, as a versioned source; a list in the
+    // captured snapshot is never trusted.
+    const codes = typeof this.#sources.assignmentReasonCodes === 'function' ? this.#sources.assignmentReasonCodes(structuredClone(state), db) : undefined;
+    if (!codes || codes.then) fail('INPUT_DISCREPANCY', 'MISSING_ASSIGNMENT_REASON_CODES');
+    try { snapshot.assignmentValidation = structuredClone(codes); canonical(codes); } catch { fail('INPUT_DISCREPANCY', 'MALFORMED_SOURCE_SNAPSHOT'); }
     for (const name of SOURCE_NAMES) {
       // Eligibility role decisions, conflicts and participation are case-specific.
       const scope = ['eligibility', 'conflicts', 'participation'].includes(name) ? `${state.caseId}:${name}` : name;
       // A source built from several authorities is first remembered per authority: a rollback or
       // unversioned change in one must not pass because another advanced.
-      for (const [authority, own] of Object.entries(snapshot[name]?.authoritySources ?? {})) this.#store.rememberSource(`${scope}/${authority}`, own);
+      for (const [authority, own] of Object.entries(snapshot[name]?.authoritySources ?? {})) {
+        if (!attributable(authority)) fail('INPUT_DISCREPANCY', 'INVALID_AUTHORITY_NAME');
+        this.#store.rememberSource(`${scope}/${authority}`, own);
+      }
       this.#store.rememberSource(scope, snapshot[name]);
     }
+    this.#store.rememberSource('assignmentValidation', snapshot.assignmentValidation);
     return snapshot;
   }
   #enter(command, state, db, principal) {

@@ -7,7 +7,7 @@ export class BootstrapImpeachmentError extends Error {
 }
 export function fail(code, message) { throw new BootstrapImpeachmentError(code, message); }
 export function requireId(value) {
-  if (typeof value !== 'string' || !value.trim() || value !== value.trim()) fail('INVALID_IDENTIFIER');
+  if (typeof value !== 'string' || !value.trim() || value !== value.trim() || /[\u0000-\u001f\u007f]/.test(value)) fail('INVALID_IDENTIFIER');
   return value;
 }
 export function canonical(value) {
@@ -43,10 +43,15 @@ export const attributable = value => typeof value === 'string' && value.trim().l
   && !/[\u0000-\u001f\u007f]/.test(value);
 // A stable reason code (spec 5.3): capitals, digits and underscores, never free text (5.5).
 const reasonCode = value => typeof value === 'string' && /^[A-Z][A-Z0-9_]{0,63}$/.test(value);
+// Codes the planner derives itself under the spec. An authority may not list them: it cannot assert, say,
+// SERVING_JUDICIARY for someone the office source does not show as a serving judge.
+const CONCORD_CODES = new Set(['ACCUSED', 'SERVING_JUDICIARY', 'NOT_LIVING', 'UNWILLING', 'JAILED', 'DISENFRANCHISED', 'RECUSED',
+  'ROLE_INELIGIBLE', 'NOT_CIVILIAN_OR_MEMBER', 'ACCUSATION_PARTICIPANT', 'KNOWN_TRIAL_CONFLICT']);
 // Reason codes from an authority must be listed by that authority in the same snapshot; Concord does not
 // hard-code them. A missing or malformed list is a defective source, not an empty one.
 function codeList(list) {
   check(Array.isArray(list) && list.every(reasonCode) && new Set(list).size === list.length, 'INVALID_REASON_CODE_LIST');
+  check(!list.some(code => CONCORD_CODES.has(code)), 'REASON_CODE_COLLISION');
   return new Set(list);
 }
 function unique(rows, key) {
@@ -69,7 +74,11 @@ function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPa
   check(attributable(snapshot.eligibility.rulesetVersion), 'MISSING_RULESET');
   check(snapshot.conflicts.caseId === caseId && snapshot.participation.caseId === caseId, 'WRONG_CASE');
   const eligibilityCodes = codeList(snapshot.eligibility.validReasonCodes);
-  const replacementCodes = codeList(snapshot.assignmentValidation?.validReasonCodes);
+  // The assignment authority's code list is its own versioned source, supplied by the adapter that owns validateAssignment.
+  const assignment = snapshot.assignmentValidation;
+  check(assignment && attributable(assignment.snapshotId), 'MISSING_SNAPSHOT');
+  check(Number.isSafeInteger(assignment.version) && assignment.version >= 0, 'INVALID_SOURCE_VERSION');
+  const replacementCodes = codeList(assignment.validReasonCodes);
   const people = unique(snapshot.population.identities, 'identityId');
   const offices = unique(snapshot.office.offices, 'officeId');
   const roles = unique(snapshot.eligibility.roleEligibility, 'identityId');
@@ -79,7 +88,7 @@ function validateSnapshot(snapshot, caseId, accusationParticipants, accusationPa
     const role = roles.get(p.identityId);
     check(role && [role.accusation, role.trial].every(bool) && Array.isArray(role.reasonCodes), 'MISSING_ROLE_ELIGIBILITY');
     // Reason codes are frozen into panel records; anything but a plain code is defective eligibility metadata.
-    check(role.reasonCodes.every(code => eligibilityCodes.has(code)), 'INVALID_ELIGIBILITY_REASON');
+    check(role.reasonCodes.every(code => eligibilityCodes.has(code)) && new Set(role.reasonCodes).size === role.reasonCodes.length, 'INVALID_ELIGIBILITY_REASON');
   }
   for (const id of roles.keys()) check(people.has(id), 'UNKNOWN_ELIGIBILITY_IDENTITY');
   for (const o of offices.values()) {
@@ -175,7 +184,7 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
     const threshold = mature ? ordinary.threshold : stage === 'ACCUSATION' ? accusationThreshold(size) : size >= 6 ? trialThreshold(size) : null;
     const common = { mode, targetSize: size, affirmativeThreshold: threshold, denominator: mature ? ordinary.denominator : size,
       capacity, snapshotIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId), sourceVersions: Object.fromEntries(SOURCE_NAMES.map(k => [k, snapshot[k].version])),
-      rulesetVersion: snapshot.eligibility.rulesetVersion, revealedSeed: seed, seedCommitment: seedCommitment(seed),
+      rulesetVersion: snapshot.eligibility.rulesetVersion, reasonCodeSnapshotId: snapshot.assignmentValidation.snapshotId, revealedSeed: seed, seedCommitment: seedCommitment(seed),
       algorithmVersion: ALGORITHM_VERSION, exclusions, drawAudit };
     const waiting = reason => ({ ...common, status: ImpeachmentStage.WAITING, reason, roster: [], alternates: [] });
     if (!mature && (stage === 'ACCUSATION' ? trialIds.size < 6 || capacity - size < 6 || candidates.length < size : size < 6)) return waiting('INSUFFICIENT_DISJOINT_POOL');
