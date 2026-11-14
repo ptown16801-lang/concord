@@ -4149,5 +4149,16 @@
     "relationship": "Records the owner decision that supersedes CON-064 and removes Finger from the CON-001 workstream list.",
     "snapshot": "docs/decisions/sources/OWNER-FINGER-REMOVAL-20261109.md",
     "sha256": "e31cdb7fada8fa15a42227cceafdfdaf2d69970ce6f5e8809360dd009a11f26a"
+  },
+  "OWNER-RECORDS-AND-FOUNDING-20261114": {
+    "title": "Owner decisions: founding population size and missing historical originals",
+    "location": "docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md",
+    "version": "Sanitized summary of owner decisions, 2026-11-14",
+    "date": "2026-11-14",
+    "classification": "Sanitized summary of direct owner decisions made in a private chat; not unchanged original",
+    "scope": "Founding population size and missing historical originals only",
+    "relationship": "Records the owner decisions behind CON-097, which supersedes CON-007, and CON-098, which supersedes CON-080.",
+    "snapshot": "docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md",
+    "sha256": "4d65b41e7ccb1246c15fd6cc54faee5dac1139e684f2b0ba9a9cc01d48fa6a2a"
   }
 }
