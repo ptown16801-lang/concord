@@ -1,6 +1,6 @@
 # Concord institution and office map — source inventory (2026-11-12)
 
-**Status: revision 4. Decides nothing.** This
+**Status: revision 5. Decides nothing.** This
 file sits in `docs/research/`; per AGENTS.md it records research and does not
 change any decision. **No decision change.**
 
@@ -13,14 +13,17 @@ findings; see [Changes in revision 2](#changes-in-revision-2). Revision 2
 received an ACCEPT verdict with three P3 notes in the [JON-306 review][review3].
 Revision 4 fixes those notes and one further omission; the owner treated it as
 small, low-risk work without a further check. See
-[Changes in revision 4](#changes-in-revision-4).
+[Changes in revision 4](#changes-in-revision-4). Revision 5 updates rows 2
+and 3 for the owner's decision CON-097; see
+[Changes in revision 5](#changes-in-revision-5).
 
 **Author:** Claude (Opus 5.5), one session, 2026-11-12. The author is not an
 independent checker of this file.
 
 **Baseline:** `ptown16801-lang/concord`, branch `Develo`, commit
 [`77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce`][base]. Every line number below
-refers to that commit.
+refers to that commit, except the revision 5 citations, which refer to commit
+[`3b9d080`][base5].
 
 ## Purpose
 
@@ -75,8 +78,8 @@ table per office.
 | # | Institution / office | Seats | How filled | Powers and duties | Label and source |
 |---|---|---|---|---|---|
 | 1 | Owner (Article 0) | — | — | Supremacy; not amendable by government | R [CON-003 l.90][dec-90] |
-| 2 | Permanent divisions | 8; cannot be deleted | — | Active, unwinding or dormant; new division needs amendment plus unanimous eligible population | R [CON-015 l.281][dec-281]; count R [CON-007 l.150][dec-150] |
-| 3 | Founding population | 40 (5 per division); ceiling 300 living | Inherited baseline | — | R [CON-007 l.150][dec-150], [CON-008 l.176][dec-176]; original approval record unresolved (CON-007 status) |
+| 2 | Permanent divisions | 8; cannot be deleted | — | Active, unwinding or dormant; new division needs amendment plus unanimous eligible population | R [CON-015 l.281][dec-281]; count R [CON-015 l.272][r5-272] |
+| 3 | Founding population | Not fixed; the owner sets it before launch. Ceiling 300 living | Owner decision before launch | — | R [CON-097 l.1160][r5-1160], [CON-008 l.176][dec-176]. The earlier forty (five per division) in CON-007 is superseded |
 | 4 | House | Set each phase from census R | Elected at every phase transition or opening; no term limits | Accuses (impeaches) by ordinary majority and quorum | R [CON-013 l.251][dec-251], [CON-008 l.176][dec-176], [CON-036 l.571][dec-571], [l.572][dec-572], [CON-016 l.296][dec-296]. Seat formula: **G1** |
 | 5 | House speaker | 1 (I: "the" speaker) | Selected after chamber membership is certified, as an administrative duty inside the legislative office (R). That the chamber itself selects is I (from the same line and CON-004 self-rule) | Fallback 2 for caretaker, after the designee is skipped | R [CON-036 l.575][dec-575], [CON-014 l.266][dec-266]; I [CON-004 l.105][dec-105] |
 | 6 | Senate | 16 (2 separately identified seats × 8 divisions) | Elected at every phase transition or opening; separate contests from the House | Tries and convicts (⅔); confirms judges | R [CON-013 l.251][dec-251], [CON-036 l.571][dec-571], [l.574][dec-574], [CON-016 l.296][dec-296], [CON-036 l.576][dec-576]. 16 is I (2 × 8) |
@@ -160,6 +163,20 @@ Each change answers a P3 note in the [revision 3 review][review3] at `cc54532`, 
 | 3 — row 10 timing details | Row 10: the elected Executive designates at phase opening and may change it any time before exhaustion, subject to the notice rule (LIN-JON-61 ll.216–218) |
 | Further omission | Row 10: caretaker service follows executive death, resignation or suspension, not death only (CON-036 l.577) |
 
+## Changes in revision 5
+
+The owner's decision CON-097 (2026-11-14) superseded CON-007. Owner-requested
+fix, 2026-11-14.
+
+| Row | Change |
+|---|---|
+| 2 | The count of eight now cites CON-015's scope (l.272) instead of superseded CON-007 |
+| 3 | Founding population is no longer forty (five per division): it is not fixed and the owner sets it before launch (CON-097 l.1160). The 300 ceiling is unchanged (CON-008 l.176) |
+
+[base5]: https://github.com/ptown16801-lang/concord/tree/3b9d080dc166eef1f1417000f55e0147f7874ed5
+[r5-272]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L272
+[r5-1160]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L1160
+
 [review1]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5878378698
 [review2]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5884468091
 [review3]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5885296256
@@ -177,7 +194,6 @@ Each change answers a P3 note in the [revision 3 review][review3] at `cc54532`, 
 [dec]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md
 [dec-90]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L90
 [dec-105]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L105
-[dec-150]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L150
 [dec-176]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L176
 [dec-191]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L191
 [dec-206]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L206
