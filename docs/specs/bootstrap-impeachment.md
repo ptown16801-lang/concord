@@ -226,6 +226,16 @@ They do not amend the frozen specification or establish independent acceptance.
 The historical claims above about unchanged population/eligibility files describe
 their September recovery, before these validation corrections.
 
+Division balancing now follows frozen spec §9.6: only recorded divisions contribute
+to the score, with proportions measured against the entire eligible priority tier.
+Candidates with `divisionId: null` remain eligible but are not a balancing group.
+If a tier has no recorded divisions, every balance score is zero and the unchanged
+hash tie-break determines the draw. The JON-317 regression independently derives
+`[p1, p3]` for seed `s1` with four null candidates and two each in divisions `a`
+and `b`; an all-null tier checks the complete hash-ordered trial roster.
+`ALGORITHM_VERSION` stays `bootstrap-stratified-v1`: this corrects its implementation
+to the frozen specification; no panel has been frozen outside tests (owner, 2026-11-14).
+
 `src/validation.js` defines the identifier predicate shared by the population
 registry, eligibility reducer, durable eligibility commands, and impeachment
 boundaries. IDs must be nonempty, already trimmed strings of at most 256 characters,

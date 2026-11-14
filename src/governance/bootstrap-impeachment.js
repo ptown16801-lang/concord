@@ -255,7 +255,8 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
     let drawIndex = 0;
     for (const tier of tiers) {
       const remaining = [...tier], counts = new Map(), drawn = new Map();
-      for (const p of tier) counts.set(p.divisionId, (counts.get(p.divisionId) ?? 0) + 1);
+      // Only recorded divisions contribute to balance; null candidates stay in the tier.
+      for (const p of tier) if (p.divisionId !== null) counts.set(p.divisionId, (counts.get(p.divisionId) ?? 0) + 1);
       let accepted = 0;
       while (remaining.length) {
         const ranked = remaining.map(p => ({ p,
@@ -282,7 +283,7 @@ export function planBootstrapStage({ snapshot, caseId, accusedId, stage, seed,
           drawAudit.push({ ...record, result: 'REJECTED', reasonCode: validation.reasonCode, sourceEventId: validation.sourceEventId }); continue;
         }
         selected.push(candidate.p.identityId); accepted++;
-        drawn.set(candidate.p.divisionId, (drawn.get(candidate.p.divisionId) ?? 0) + 1);
+        if (candidate.p.divisionId !== null) drawn.set(candidate.p.divisionId, (drawn.get(candidate.p.divisionId) ?? 0) + 1);
         drawAudit.push({ ...record, result: 'ASSIGNED', sourceEventId: validation.sourceEventId });
       }
     }

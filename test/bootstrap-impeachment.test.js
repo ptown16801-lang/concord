@@ -76,6 +76,34 @@ test('S8 stratification uses population proportions rather than equal division r
   for (const p of s.population.identities) p.divisionId = null;
   assert.equal(plan(s, 'TRIAL').roster.length, 12);
 });
+test('JON-317 recorded divisions alone determine balance; null candidates remain eligible', () => {
+  const s = snapshot(8);
+  for (const p of s.population.identities) p.divisionId = ['p5', 'p6'].includes(p.identityId) ? 'a'
+    : ['p7', 'p8'].includes(p.identityId) ? 'b' : null;
+  // Spec 9.6: a and b each have proportion 2/8. At draw 0, a null choice has
+  // deviation 1/2 (scaled 4), a recorded choice 1 (scaled 8). p1 hashes lowest
+  // among the null choices. After p1, every remaining choice has deviation 1
+  // (scaled 8), and p3 has the lowest draw-1 hash across all remaining choices.
+  const result = plan(s, 'ACCUSATION', { seed: 's1' });
+  assert.equal(result.status, 'ACCUSATION_EMPANELED');
+  assert.deepEqual(result.roster, ['p1', 'p3']);
+  assert.deepEqual(result.drawAudit.map(r => r.deviation), [4, 8]);
+  assert.deepEqual(result.drawAudit.map(r => r.hash), [
+    '6501bbdc4a0a38c98b075a5b5014f6f34a74be1fa5fa7d3b9094005697444915',
+    '20fe61a061c9ec6b8b81f50a24ada20321e93af575f03ffd9993aee36c4083ea',
+  ]);
+  assert.equal(result.algorithmVersion, 'bootstrap-stratified-v1');
+});
+test('JON-317 a tier with no recorded divisions draws everyone by the unchanged hash rule', () => {
+  const s = snapshot(8);
+  for (const p of s.population.identities) p.divisionId = null;
+  const result = plan(s, 'TRIAL', { seed: 's1' });
+  assert.equal(result.status, 'TRIAL_EMPANELED');
+  // Independently computed SHA-256 minima for each draw index, removing each winner.
+  assert.deepEqual(result.roster, ['p4', 'p8', 'p5', 'p6', 'p7', 'p1', 'p3', 'p2']);
+  assert.deepEqual(result.drawAudit.map(r => r.deviation), Array(8).fill(0));
+  assert.equal(result.algorithmVersion, 'bootstrap-stratified-v1');
+});
 test('S9 lawful replacement during empanelment records reason and source without changing target', () => {
   const s = snapshot(17), first = plan(s).roster[0];
   const result = plan(s, 'ACCUSATION', { validateAssignment: id => id === first ? { valid: false, reasonCode: 'NEW_VACANCY', sourceEventId: 'vacancy:1' } : valid(id) });
