@@ -1151,15 +1151,17 @@ Finger, the browser interaction-capture demo, is not part of Concord. It is no l
 
 - Status: Unresolved
 - Scope: Recovery gap
-- Acceptance: Unavailable: originals and original acceptance records need recovery.
+- Acceptance: Unavailable: original acceptance records and most originals need recovery; four originals found (see November 14, 2026 update).
 - Acceptance date: Unavailable: original acceptance date not independently recovered
 - Sources: [AUDIT-DIRECTORY](docs/decisions/evidence/AUDIT-DIRECTORY.md), [AUDIT-REPORT](docs/decisions/evidence/AUDIT-REPORT.md)
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
-- Verification: Targeted local filename/session-path and Drive searches completed; no accessible saved-file library reader discovered.
+- Verification: September 24, 2026: targeted local filename/session-path and Drive searches completed; no accessible saved-file library reader discovered. November 14, 2026: four found originals matched the sizes and SHA-256 hashes recorded in AUDIT-REPORT; checked privately.
 - Rationale: Preserve the recorded boundary without adding policy.
 
 Saved-file originals DECISIONS variants, combined copies, CURRENT_DECISIONS.md, both Concord_Codex_Handoff.zip copies, governance prompts and ZKDISCLOSURE_FROZEN_DIRECTIVE.md are identified in AUDIT-DIRECTORY but their original bytes are unavailable through this session’s local/connected sources. Prior audit reports stale identical handoff summaries; that byte identity is prior-audit evidence, not independently rechecked here. Preserve original DEC identifiers and exact-text constitutional clauses when recovered; never invent their acceptance dates or silently map them to new policy.
+
+November 14, 2026 update: four of the originals named above have been found and are kept privately. They are DECISIONS.md, DECISIONS_relational_updated.md and DECISIONS_agreements_updated_20260912.md (recovered September 28, 2026) and the governance prompt AGENT_GOVERNANCE_MODEL_MASTER_PROMPT_v2.1_SELF_CONTAINED.md. Their sizes and SHA-256 hashes match AUDIT-REPORT. Readable text of the v1.1 master prompt, the v0.1.9 constitution and ZKDISCLOSURE_FROZEN_DIRECTIVE.md was recovered on September 30, 2026, but not their original files. Still unavailable: the other DECISIONS variants and combined copies, the historical CURRENT_DECISIONS.md, both Concord_Codex_Handoff.zip copies, the other governance-prompt originals, the original files behind the readable copies, and the original acceptance records. Finding a file is not acceptance: the v2.1 prompt calls itself a proposed governing prompt, and the v0.1.9 constitution calls itself a draft that is not ratified. The paragraph above describes the September 24, 2026 session.
 
 <a id="CON-081"></a>
 ### CON-081 — Unranked scheduler goals and downstream engineering
