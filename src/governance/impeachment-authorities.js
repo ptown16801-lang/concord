@@ -123,6 +123,7 @@ export function captureRegistryInputs(db, eligibility, { roleMetadata, roleMetad
   return {
     population: { snapshotId: `population:${tag}`, version, authorityVersions, authoritySources: authoritySources(asserted.population), identities },
     eligibility: { snapshotId: `eligibility:${tag}`, version, authorityVersions, authoritySources: authoritySources([rulesetVersion, asserted.eligibility]),
-      populationVersion: version, rulesetVersion, roleEligibility },
+      // The eligibility authority's own reason codes: the franchise reasons its projection can report.
+      populationVersion: version, rulesetVersion, validReasonCodes: Object.keys(FRANCHISE_EVENTS), roleEligibility },
   };
 }
