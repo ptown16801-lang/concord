@@ -14,7 +14,7 @@ received an ACCEPT verdict with three P3 notes in the [JON-306 review][review3].
 Revision 4 fixes those notes and one further omission; the owner treated it as
 small, low-risk work without a further check. See
 [Changes in revision 4](#changes-in-revision-4). Revision 5 updates rows 2
-and 3 for the owner's decision CON-097; see
+and 3 for the owner's decision CON-097 and closes gap G5 under CON-098; see
 [Changes in revision 5](#changes-in-revision-5).
 
 **Author:** Claude (Opus 5.5), one session, 2026-11-12. The author is not an
@@ -115,7 +115,7 @@ and whether it looks like an owner decision under CON-004 (that last column is
 | G2 | Electoral College composition, allocation formula, elector selection and the contingent-election procedure (row 9b) | [CON-013 l.251][dec-251]; [LIN-JON-61 l.197][j61-197] | `Electoral College`, `contingent`: references only | Yes — cross-institution |
 | G3 | Judicial vacancy replacement process | [CON-036 l.576][dec-576]; LIN-JON-36 l.26 | `judicial vacanc`, `replacement process`: only these two lines | Likely yes — Executive/Senate/judiciary |
 | G4 | How these are filled: grand jury (and its size), registry clerk, Archivist, CRA, Supreme Board chief | Rows 13, 15, 17, 18, 19 | `grand jury`, `registry clerk`, `Archivist`, `chief`: no selection rule found in the register; ARCHIVIST_PUBLICATION.md and GOVERNMENT_RECORDS.md not read for this | Mixed — some may be institution self-rule |
-| G5 | Original constitutional text, including Articles 20–21 | [CON-003 l.90][dec-90]; [CON-080 l.1162][dec-1162] | Recorded as unavailable | Recovery, not a new decision |
+| G5 | **Closed in revision 5.** Original constitutional text, including Articles 20–21: not required; the register is the authority (CON-098) | [CON-003 l.90][dec-90]; [CON-098 l.1175][r5-1175], which supersedes [CON-080 l.1162][dec-1162] | Recorded as unavailable at baseline | No — answered by CON-098 |
 | G6 | **Closed in revision 2.** Both chambers can create L-COAIAs, each for its own (row 8) | [LIN-JON-62 l.56][j62-56]; [LIN-JON-59 l.52][j59-52] | Found by the revision 1 review in a source this file had not read | No — answered by the record |
 | G7 | Direct list of ordinary Executive powers | Rows 9, 9a | Only the caretaker exclusion list found | Unknown |
 | G8 | What "CRA" stands for and how its holder is chosen | [CON-003 l.90][dec-90]; [LIN-JON-59 l.42][j59-42] | Expansion not found in the lines read | Unknown |
@@ -165,17 +165,19 @@ Each change answers a P3 note in the [revision 3 review][review3] at `cc54532`, 
 
 ## Changes in revision 5
 
-The owner's decision CON-097 (2026-11-14) superseded CON-007. Owner-requested
-fix, 2026-11-14.
+The owner's decisions CON-097 and CON-098 (2026-11-14) superseded CON-007 and
+CON-080. Owner-requested fixes, 2026-11-14.
 
 | Row | Change |
 |---|---|
 | 2 | The count of eight now cites CON-015's scope (l.272) instead of superseded CON-007 |
 | 3 | Founding population is no longer forty (five per division): it is not fixed and the owner sets it before launch (CON-097 l.1160). The 300 ceiling is unchanged (CON-008 l.176) |
+| G5 | Closed: CON-098 (2026-11-14) superseded CON-080; the missing originals are not required and their absence is not a gap (CON-098 l.1175) |
 
 [base5]: https://github.com/ptown16801-lang/concord/tree/3b9d080dc166eef1f1417000f55e0147f7874ed5
 [r5-272]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L272
 [r5-1160]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L1160
+[r5-1175]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L1175
 
 [review1]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5878378698
 [review2]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5884468091
