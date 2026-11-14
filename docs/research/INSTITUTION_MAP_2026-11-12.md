@@ -55,7 +55,7 @@ table per office.
 - `docs/design/POPULATION_VOTING_BOUNDARIES.md`, `docs/SECURITY_DOMAIN_CONTRACT.md`, `docs/IDENTITY_PERSISTENCE_CONTRACT.md`.
 - Evidence files LIN-JON-18, LIN-JON-37, LIN-JON-58, the rest of LIN-JON-62 and LIN-BOOTSTRAP, and every other file under `docs/decisions/evidence/` not named above.
 - Linear issues (none opened for this file). Open PRs other than their titles.
-- The original constitutional text, which [CON-080][dec-1162] records as unavailable.
+- The original constitutional text, which [CON-080][dec-1162] records as unavailable (superseded by CON-098; see G5).
 
 ## Labels
 
@@ -69,7 +69,7 @@ table per office.
 2. **R** — Routine mechanics and "allowed interface representation" are engineering work under subsidiarity, not open constitutional questions. [CON-081, line 1177][dec-1177]
 3. **R** — "Institutions that are adequately staffed use the normal U.S.-style structure." This appears in the bootstrap section of the JON-61 evidence. [LIN-JON-61, line 283][j61-283]
 4. **R** — The six-person trial floor is borrowed from U.S. jury doctrine as an analogy only. [LIN-JON-61, lines 297–299][j61-297]
-5. **R** — The register does not reconstruct missing constitutional text. [CON-003, line 90][dec-90]; originals are unavailable. [CON-080, line 1162][dec-1162]
+5. **R** — The register does not reconstruct missing constitutional text. [CON-003, line 90][dec-90]; originals are unavailable. [CON-080, line 1162][dec-1162] (superseded by CON-098; see G5)
 6. **R** — For impeachment, "the U.S. structure is an analogy for separated functions": the House impeaches and the Senate tries. [LIN-BOOTSTRAP, line 27][boot-27]
 7. **I** — Scope: impeachment only. From rules 3, 4 and 6, the recorded U.S. references are analogies for impeachment's separated functions, not a source of unrecorded rules. No recorded source found here says how far the U.S. model applies to the rest of the government; rules 1–3 do not establish a government-wide reading. Ordinary procedure belongs to each institution under rule 1. A literal search of `DECISIONS.md` for `united states`, `u.s.`, `american` and `federal` found no match.
 
@@ -173,6 +173,7 @@ CON-080. Owner-requested fixes, 2026-11-14.
 | 2 | The count of eight now cites CON-015's scope (l.272) instead of superseded CON-007 |
 | 3 | Founding population is no longer forty (five per division): it is not fixed and the owner sets it before launch (CON-097 l.1160). The 300 ceiling is unchanged (CON-008 l.176) |
 | G5 | Closed: CON-098 (2026-11-14) superseded CON-080; the missing originals are not required and their absence is not a gap (CON-098 l.1175) |
+| Lines 58 and 72 | The two CON-080 citations now say "(superseded by CON-098; see G5)", following the PR #78 review |
 
 [base5]: https://github.com/ptown16801-lang/concord/tree/3b9d080dc166eef1f1417000f55e0147f7874ed5
 [r5-272]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L272
