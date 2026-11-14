@@ -239,10 +239,15 @@ Every array in source data must have an own element at every index. The canonica
 JSON encoder rejects sparse arrays recursively, including unused nested fields;
 it also rejects cycles and non-JSON values. Source validation converts these
 failures into an attributed `INPUT_DISCREPANCY` review hold before a panel can be
-published. Arrays in assignment, ballot, evidence and review receipts receive the
-same check. Repair alone cannot release a hold or reuse its committed seed.
-After a receipt defect on an already frozen stage, independent resolution resumes
-the prior status while preserving the panel and its threshold; it does not redraw.
+published. Assignment validation remains a panel-forming source. Repair alone cannot
+release a source hold or reuse its committed seed.
+
+Ballot, evidence and review receipts are refused with an error for every defect,
+including sparse arrays, non-JSON values and invalid or missing required fields.
+The transaction rolls back with no journal entry, hold or discrepancy event. A bad
+review receipt while a source hold is pending leaves that original hold, including
+its version, reason and source references, unchanged. Receipt-hold resumption and
+`resumeStatus` are removed; panel-source holds retain their independent-review gate.
 
 `SOURCE_NAMES` is the single list used for validation, source storage, seed
 commitments, panel/exclusion source IDs, source-version records and retry guards:
@@ -263,10 +268,13 @@ Each new source-data hold carries `discrepancySources[]`, copied to
 the hold. Cross-source contradictions identify all implicated sources. A composed
 source's own authority records retain their narrower references. Snapshot changes
 are attributed using committed per-source digests, including the assignment source.
+Changes outside the seven named sources are attributed to `compositionCapture`
+in both stale-commit and mid-assignment checks. Auxiliary data has its own committed
+digest; a mixed change identifies the changed named sources and that boundary.
 
 An adapter throwing before it returns a snapshot is attributed to its adapter
-boundary (`compositionCapture`, `assignmentValidation`, `ballots`, `evidence` or
-`review`) with an explicitly missing snapshot ID, unless it supplies valid narrower
+boundary (`compositionCapture` or `assignmentValidation`) with an explicitly missing
+snapshot ID, unless it supplies valid narrower
 `discrepancySources`. The registry adapter supplies its population, eligibility and
 roleMetadata references itself. Adapter error messages that are not stable code
 strings become `MALFORMED_SOURCE_SNAPSHOT`; raw exception text is not journaled.
@@ -274,6 +282,6 @@ The service's own case-journal projection is referenced as
 `case:<caseId>:<journalVersion>`. Older records without attribution remain historical
 records; replay does not invent references for them.
 
-Regression tests named `JON-315` cover the five findings, all versioned sources,
-receipt arrays and frozen-stage resumption, composed-source attribution, the
-durable and standalone eligibility interfaces, and population identifiers.
+Regression tests named `JON-315` and `JON-316` cover the source and identifier
+classes, uniform receipt refusal, preservation of pending holds across restart,
+composed-source attribution and both auxiliary-change checks.

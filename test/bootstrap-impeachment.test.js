@@ -1181,34 +1181,69 @@ test('JON-315 P3 shared identifiers reject every C0, DEL and C1 control, includi
   assert.deepEqual(blocked.inputDiscrepancy.sources, [{ authority: 'assignmentValidation', snapshotId: 'assignment:1' }]);
 });
 
-test('JON-315 P2 sparse ballot, evidence and review receipts hold the affected authority without replacing a frozen panel', async t => {
+test('JON-316 every bad ballot, evidence and review receipt is refused without journaling', async t => {
+  const malformed = [r => ({ ...r, unused: new Array(1), snapshotId: 'undeclared-receipt-value:1' }),
+    r => ({ ...r, unused: undefined }), r => ({ ...r, unused: 1n }), r => ({ ...r, caseId: 'other' }),
+    r => ({ ...r, stage: 'WRONG' }), r => ({ ...r, panelDigest: 'wrong' }), () => ({}), () => null];
   for (const authority of ['ballots', 'evidence', 'review']) {
-    let broken = false;
-    const review = { assess: (state, type) => {
-      if (type === 'RESOLVE_REVIEW' && state.inputDiscrepancy) return discrepancyReceipt(state);
-      return { caseId: state.caseId, independentlyAuthorized: true, conflictDiscoveryAlone: false, sourceEventId: 'review:1',
-        ...(broken ? { unused: new Array(1) } : {}) };
-    } };
-    const f = fixture(t, snapshot(17), { review }); await f.run('OPEN', { accusedId: 'accused' }); await f.empanel('accusation');
+    let alter = r => r;
+    const review = { assess: state => alter({ caseId: state.caseId, sourceEventId: 'review:1', independentlyAuthorized: true, conflictDiscoveryAlone: false }) };
+    const f = fixture(t, snapshot(), { review }); await f.run('OPEN', { accusedId: 'accused' }); await f.empanel('accusation');
     if (authority === 'evidence') { await f.run('CLOSE_STAGE'); await f.empanel('trial'); }
-    const before = await f.run('READ');
-    const provider = authority === 'ballots' ? f.ballots : f.evidence;
-    const method = authority === 'ballots' ? 'close' : 'assess';
-    const original = provider[method];
-    if (authority !== 'review') provider[method] = (...args) => ({ ...original(...args),
-      ...(authority === 'ballots' ? { ballots: new Array(1) } : { unused: { nested: new Array(1) } }) });
-    else broken = true;
-    const held = await f.run(authority === 'review' ? 'POST_FREEZE_WAIT' : 'CLOSE_STAGE');
-    assert.equal(held.status, `${before.stage}_INPUT_DISCREPANCY_REVIEW`);
-    assert.deepEqual(held.inputDiscrepancy.sources, [{ authority, snapshotId: null, snapshotIdStatus: 'MISSING' }]);
-    assert.deepEqual(held.panels, before.panels);
-    f.restart();
-    await assert.rejects(f.run('CLOSE_STAGE'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
-    provider[method] = original; broken = false;
-    const resumed = await f.run('RESOLVE_REVIEW');
-    assert.equal(resumed.status, before.status); assert.deepEqual(resumed.panels, before.panels);
-    if (authority === 'review') assert.equal((await f.run('POST_FREEZE_WAIT')).status, 'POST_FREEZE_REVIEW');
-    else assert.equal((await f.run('CLOSE_STAGE')).status, authority === 'ballots' ? 'CHARGED' : 'CONVICTED');
+    if (authority !== 'review') {
+      const provider = authority === 'ballots' ? f.ballots : f.evidence, key = authority === 'ballots' ? 'close' : 'assess', original = provider[key];
+      provider[key] = (...args) => alter(original(...args));
+    }
+    const mutations = [...malformed];
+    if (authority === 'ballots') mutations.push(r => ({ ...r, ballots: new Array(1) }),
+      r => ({ ...r, ballots: [{ identityId: 'outsider', vote: 'YES' }] }),
+      r => ({ ...r, ballots: [r.ballots[0], r.ballots[0]] }),
+      r => ({ ...r, ballots: [{ ...r.ballots[0], vote: 'INVALID' }] }));
+    for (const mutation of mutations) {
+      alter = mutation;
+      const before = f.store.load('case:case'), state = await f.run('READ');
+      await assert.rejects(f.run(authority === 'review' ? 'POST_FREEZE_WAIT' : 'CLOSE_STAGE'),
+        { code: { ballots: 'INVALID_BALLOT_RECEIPT', evidence: 'INVALID_EVIDENCE_ATTESTATION', review: 'INDEPENDENT_REVIEW_REQUIRED' }[authority] });
+      assert.deepEqual(f.store.load('case:case'), before); assert.deepEqual(await f.run('READ'), state);
+    }
+    alter = r => r;
+    if (authority === 'review') {
+      await f.run('POST_FREEZE_WAIT'); alter = r => ({ ...r, unused: new Array(1) });
+      const before = f.store.load('case:case');
+      await assert.rejects(f.run('RESOLVE_REVIEW'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+      assert.deepEqual(f.store.load('case:case'), before);
+    } else assert.equal((await f.run('CLOSE_STAGE')).status, authority === 'ballots' ? 'CHARGED' : 'CONVICTED');
+  }
+});
+
+test('JON-316 invalid review receipts cannot replace an unresolved source hold', async t => {
+  let alter = r => r;
+  const f = fixture(t, snapshot(), { review: { assess: state => alter(discrepancyReceipt(state)) } });
+  await f.run('OPEN', { accusedId: 'accused' }); await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  f.s.office.offices = null; const held = await f.run('ENTER_STAGE', { seed: 'seed' });
+  const journal = f.store.load('case:case');
+  for (const mutation of [r => ({ ...r, unused: new Array(1), snapshotId: 'undeclared:1' }), r => ({ ...r, unused: 1n }),
+    r => ({ ...r, caseId: 'wrong' }), r => ({ ...r, discrepancyVersion: held.version + 1 }), () => ({})]) {
+    alter = mutation;
+    await assert.rejects(f.run('RESOLVE_REVIEW'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+    assert.deepEqual(f.store.load('case:case'), journal);
+    assert.deepEqual((await f.run('READ')).inputDiscrepancy, held.inputDiscrepancy);
+    f.restart(); assert.deepEqual((await f.run('READ')).inputDiscrepancy, held.inputDiscrepancy);
+  }
+  f.s.office.offices = []; alter = r => r;
+  await f.run('RESOLVE_REVIEW'); assert.equal((await f.empanel('fresh')).status, 'ACCUSATION_EMPANELED');
+});
+
+test('JON-316 auxiliary snapshot changes identify compositionCapture at both stale-commit and mid-assignment checks', async t => {
+  for (const during of [false, true]) for (const namedToo of [false, true]) {
+    const f = fixture(t); f.s.auxiliary = { value: 1 }; await f.run('OPEN', { accusedId: 'accused' });
+    await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    const change = () => { f.s.auxiliary.value = 2; if (namedToo && f.s.office.version === 1) bump(f.s, 'office'); };
+    if (during) f.sources.validateAssignment = id => { change(); return valid(id); }; else change();
+    const held = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.equal(held.discrepancy, during ? 'SOURCE_CHANGED_DURING_ASSIGNMENT' : 'STALE_COMMITTED_SNAPSHOT');
+    assert.deepEqual(held.inputDiscrepancy.sources, [...(namedToo ? [{ authority: 'office', snapshotId: 'office:2' }] : []),
+      { authority: 'compositionCapture', snapshotId: null, snapshotIdStatus: 'MISSING' }]);
   }
 });
 
