@@ -137,7 +137,7 @@ Total Recall changes residency/resources for a living identity; it is not death,
 <a id="CON-007"></a>
 ### CON-007 — Inherited founding baseline and original provenance
 
-- Status: Unresolved
+- Status: Superseded
 - Scope: Inherited founding population; unresolved original numeric-approval provenance only
 - Acceptance: Retained decision and architecture records preserve forty as the inherited baseline; exact original numeric-approval evidence remains unavailable.
 - Acceptance date: Unavailable: original numeric-approval date not recovered; September 30, 2026 is recovery time, not adoption.
@@ -145,7 +145,7 @@ Total Recall changes residency/resources for a living identity; it is not death,
 - Supersedes: None
 - Implementation: Forty-founder design baseline retained; no runtime or protected-census implementation certified.
 - Verification: Project recovery and preserved register reconciled; no conversation audit or product test.
-- Rationale: Correct the stronger claim that forty is merely a new proposal without inventing an original adoption date.
+- Rationale: Correct the stronger claim that forty is merely a new proposal without inventing an original adoption date. Superseded in full by CON-097 (owner decision, 2026-11-14): the founding number will be set before launch.
 
 Retain forty genuine ordinary governance identities as the inherited founding
 baseline. The architecture register specifies five in each of eight permanent
@@ -1144,12 +1144,42 @@ merge or deployment is authorized by this entry.
 
 Finger, the browser interaction-capture demo, is not part of Concord. It is no longer a Concord workstream. [CON-064](#CON-064) is superseded in full. [CON-001](#CON-001) and [CON-043](#CON-043) no longer name Finger; CON-001 previously read "…Visualization and Finger are bounded Concord workstreams."
 
+<a id="CON-097"></a>
+### CON-097 — Founding population size decided before launch
+
+- Status: Accepted
+- Scope: Founding population size only
+- Acceptance: Owner decision in chat, 2026-11-14; the owner approved this entry's exact text before it was written (CON-074).
+- Acceptance date: 2026-11-14
+- Sources: [OWNER-RECORDS-AND-FOUNDING-20261114](docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md)
+- Supersedes: CON-007
+- Implementation: No code change. The code sets no founding count; it enforces only the 300 ceiling.
+- Verification: Author's checks only (decisions:generate/check/test).
+- Rationale: Owner decision; the owner expects to start with fewer than forty.
+
+The number of founding governance identities is not fixed. The owner will set it before launch. Forty is no longer the baseline, and the missing record of its original approval is no longer needed. This entry does not change the 300 ceiling or the permanent divisions ([CON-015](#CON-015)).
+
+<a id="CON-098"></a>
+### CON-098 — Missing historical originals are not required
+
+- Status: Accepted
+- Scope: Historical originals and original approval records listed in CON-080
+- Acceptance: Owner decision in chat, 2026-11-14; the owner approved this entry's exact text before it was written (CON-074).
+- Acceptance date: 2026-11-14
+- Sources: [OWNER-RECORDS-AND-FOUNDING-20261114](docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md)
+- Supersedes: CON-080
+- Implementation: No code change.
+- Verification: Author's checks only (decisions:generate/check/test).
+- Rationale: Owner decision; the owner does not have the missing originals and does not need them.
+
+This register is the authority. The originals and original approval records that [CON-080](#CON-080) lists as missing are not required, and their absence is not a gap. Do not search for them unless a specific question needs one. Missing original dates elsewhere in this register are history, not open work. If an original is found, keep it privately, keep its original decision IDs, and do not invent its approval date.
+
 ## Unresolved evidence and preserved history
 
 <a id="CON-080"></a>
 ### CON-080 — Unavailable original decision families
 
-- Status: Unresolved
+- Status: Superseded
 - Scope: Recovery gap
 - Acceptance: Unavailable: original acceptance records and most originals need recovery; four originals found (see November 14, 2026 update).
 - Acceptance date: Unavailable: original acceptance date not independently recovered
@@ -1157,7 +1187,7 @@ Finger, the browser interaction-capture demo, is not part of Concord. It is no l
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
 - Verification: September 24, 2026: targeted local filename/session-path and Drive searches completed; no accessible saved-file library reader discovered. November 14, 2026: four found originals matched the sizes and SHA-256 hashes recorded in AUDIT-REPORT; checked privately.
-- Rationale: Preserve the recorded boundary without adding policy.
+- Rationale: Preserve the recorded boundary without adding policy. Superseded in full by CON-098 (owner decision, 2026-11-14): the missing originals are not required.
 
 Saved-file originals DECISIONS variants, combined copies, CURRENT_DECISIONS.md, both Concord_Codex_Handoff.zip copies, governance prompts and ZKDISCLOSURE_FROZEN_DIRECTIVE.md are identified in AUDIT-DIRECTORY but their original bytes are unavailable through this session’s local/connected sources. Prior audit reports stale identical handoff summaries; that byte identity is prior-audit evidence, not independently rechecked here. Preserve original DEC identifiers and exact-text constitutional clauses when recovered; never invent their acceptance dates or silently map them to new policy.
 

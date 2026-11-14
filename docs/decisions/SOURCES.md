@@ -273,5 +273,6 @@ Historical workstation, session and local-discovery inventories are retained pri
 | REPAIR-FOUNDING-BASELINE-20261022 | [Public record](sources/REPAIR-FOUNDING-BASELINE-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
 | REPAIR-MOLTBOOK-BOUNDARY-20261022 | [Public record](sources/REPAIR-MOLTBOOK-BOUNDARY-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
 | OWNER-FINGER-REMOVAL-20261109 | [Public record](sources/OWNER-FINGER-REMOVAL-20261109.md) | public-sanitized-summary | Sanitized summary of an owner decision; not unchanged original |
+| OWNER-RECORDS-AND-FOUNDING-20261114 | [Public record](sources/OWNER-RECORDS-AND-FOUNDING-20261114.md) | public-sanitized-summary | Sanitized summary of owner decisions; not unchanged original |
 | REPAIR-REGISTER-PUBLICATION-20261022 | [Public record](sources/REPAIR-REGISTER-PUBLICATION-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
 | REPAIR-SPENDING-20261022 | [Public record](sources/REPAIR-SPENDING-20261022.md) | public-sanitized-summary | Sanitized reconciliation derivative; not unchanged original or new adoption |
