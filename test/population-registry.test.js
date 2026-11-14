@@ -148,3 +148,22 @@ test("all identity classes share the global ceiling", () => {
   assert.equal(registry.hasCapacity(), false);
   registry.close();
 });
+
+test("JON-315 population IDs and attribution use the same control-character policy before any database write", () => {
+  const registry = new PopulationRegistry();
+  try {
+    for (const bad of ["a\nb", "a\u0000b", "a\u0085b", "a\u009fb", " padded ", "x".repeat(257)]) {
+      for (const field of ["id", "division", "createdBy", "authorityReference"]) {
+        assert.throws(() => registry.createIdentity(creation("p1", { [field]: bad })), TypeError);
+        assert.equal(registry.getPopulation().living, 0);
+      }
+    }
+    assert.throws(() => registry.createIdentity(creation("p1", { details: { nested: new Array(1) } })), { code: "SPARSE_ARRAY" });
+    registry.createIdentity(creation("p1"));
+    for (const field of ["id", "actorId", "authorityReference"]) {
+      assert.throws(() => registry.markTerminal({ id: "p1", reason: "death", actorId: "registrar", authorityReference: "death:1", occurredAt: at,
+        [field]: "a\u0085b" }), TypeError);
+      assert.equal(registry.getIdentity("p1").living, true);
+    }
+  } finally { registry.close(); }
+});

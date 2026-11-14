@@ -1,5 +1,6 @@
 import { EligibilityRegistry, EligibilityEventType } from './eligibility.js';
-import { digest, fail, requireId } from './bootstrap-impeachment.js';
+import { digest, fail, requireId, inputDiscrepancy, sourceReference, sourceData } from './bootstrap-impeachment.js';
+import { attributable, denseArray, assertDenseArrays } from '../validation.js';
 
 // The fields each eligibility command type uses. A field outside its type's list is rejected, never journaled.
 const T = EligibilityEventType;
@@ -10,7 +11,7 @@ const COMMAND_FIELDS = {
   [T.DEATH_RECORDED]: ['identityId'], [T.CAPITAL_TERMINATION_RECORDED]: ['identityId'], [T.FELONY_CONVICTION_ENTERED]: ['identityId', 'convictionId'],
 };
 
-/** Durable command log around the unchanged JON-79 reducer. */
+/** Durable command log around the JON-79 reducer, using the same identifier policy. */
 export class DurableEligibility {
   #store; #authenticate;
   constructor({ eventStore, authenticate }) { this.#store = eventStore; this.#authenticate = authenticate; }
@@ -27,10 +28,11 @@ export class DurableEligibility {
   async apply(input, credential) {
     const command = structuredClone(input);
     if (command.type !== 'ELIGIBILITY') fail('UNKNOWN_COMMAND');
+    requireId(command.commandId);
     const principal = await this.#authenticate(structuredClone(command), credential);
-    if (!principal?.id) fail('UNAUTHORIZED');
+    if (!attributable(principal?.id)) fail('UNAUTHORIZED');
     return this.#store.transact({ ...command, stream: 'eligibility' }, principal, (history, db) => {
-      if (!Array.isArray(command.commands) || !command.commands.length) fail('EMPTY_BATCH');
+      if (!denseArray(command.commands) || !command.commands.length) fail('EMPTY_BATCH');
       const normalized = command.commands.map(c => {
         if (!Object.values(EligibilityEventType).includes(c.type)) fail('UNKNOWN_TRANSITION');
         const fields = COMMAND_FIELDS[c.type];
@@ -39,12 +41,13 @@ export class DurableEligibility {
         const time = new Date(c.effectiveAt).toISOString();
         if (Date.parse(time) > Date.now()) fail('FUTURE_TRANSITION');
         const ids = c.type === EligibilityEventType.C4_CREATION_EVENT_OPEN ? c.affectedIdentityIds : [c.identityId];
-        if (!Array.isArray(ids) || !ids.length) fail('MISSING_IDENTITIES');
+        if (!denseArray(ids) || !ids.length) fail('MISSING_IDENTITIES');
+        // Every scalar field in the command schema is an ID; none bypasses the shared policy.
+        for (const key of fields) if (key !== 'affectedIdentityIds') requireId(c[key]);
         for (const id of ids) {
           requireId(id);
           if (!db.prepare('SELECT id FROM population_identities WHERE id=?').get(id)) fail('UNKNOWN_POPULATION_IDENTITY');
         }
-        if (['FORMAL_PROCEEDING_OPENED', 'FORMAL_PROCEEDING_CLOSED', 'C4_CREATION_EVENT_OPEN', 'C4_RESTRICTION_CLOSED'].includes(c.type)) requireId(c.proceedingId);
         // Never persist caller authentication assertions or arbitrary substantive evidence.
         const result = { type: c.type, effectiveAt: time };
         for (const key of fields) if (c[key] !== undefined) result[key] = c[key];
@@ -78,28 +81,36 @@ function eligibilityEvent(log, identityId, type, proceedingId) {
  */
 export function captureRegistryInputs(db, eligibility, { roleMetadata, roleMetadataVersion, rulesetVersion }) {
   const rows = db.prepare('SELECT id, division, terminal_at FROM population_identities ORDER BY id').all();
-  // Every authority that contributes content contributes to the snapshot ID and version.
-  if (!Number.isSafeInteger(roleMetadataVersion) || roleMetadataVersion < 0) fail('INPUT_DISCREPANCY', 'MISSING_ROLE_METADATA_VERSION');
-  if (!Number.isSafeInteger(eligibility.version) || eligibility.version < 0) fail('INPUT_DISCREPANCY', 'INVALID_SOURCE_VERSION');
   const authorityVersions = { population: db.prepare('SELECT COALESCE(MAX(sequence),0) AS n FROM population_events').get().n,
-    eligibility: eligibility.version, roleMetadata: roleMetadataVersion };
+    eligibility: eligibility?.version, roleMetadata: roleMetadataVersion };
+  const own = name => Number.isSafeInteger(authorityVersions[name]) && authorityVersions[name] >= 0
+    ? { snapshotId: `${name}:${authorityVersions[name]}`, version: authorityVersions[name] } : undefined;
+  const reject = (reason, ...names) => inputDiscrepancy(reason, names.map(name => sourceReference(name, own(name))));
+  // Every contributing authority has its own attributable reference, even when another input is defective.
+  if (!own('roleMetadata')) reject('MISSING_ROLE_METADATA_VERSION', 'roleMetadata');
+  if (!own('eligibility')) reject('INVALID_SOURCE_VERSION', 'eligibility');
+  if (!attributable(rulesetVersion)) reject('MISSING_RULESET', 'roleMetadata');
+  sourceData('roleMetadata', own('roleMetadata'), () => assertDenseArrays(roleMetadata));
+  if (!Array.isArray(roleMetadata)) reject('INCOMPLETE_ROLE_METADATA', 'roleMetadata');
   const version = authorityVersions.population + authorityVersions.eligibility + authorityVersions.roleMetadata;
   const tag = `p${authorityVersions.population}.e${authorityVersions.eligibility}.r${authorityVersions.roleMetadata}`;
   const terminal = new Map(db.prepare("SELECT identity_id, sequence FROM population_events WHERE event_type='terminal'").all().map(e => [e.identity_id, `population-event:${e.sequence}`]));
-  const log = eligibility.auditLog();
+  const log = sourceData('eligibility', own('eligibility'), () => { const events = eligibility.auditLog(); assertDenseArrays(events); return events; });
   const byId = new Map();
   for (const row of roleMetadata) {
-    if (byId.has(row.identityId)) fail('INPUT_DISCREPANCY', 'DUPLICATE_ROLE_METADATA');
+    if (!row || !attributable(row.identityId)) reject('INVALID_ROLE_METADATA', 'roleMetadata');
+    if (byId.has(row.identityId)) reject('DUPLICATE_ROLE_METADATA', 'roleMetadata');
     byId.set(row.identityId, row);
   }
-  if (byId.size !== rows.length) fail('INPUT_DISCREPANCY', 'INCOMPLETE_ROLE_METADATA');
+  if (byId.size !== rows.length) reject('INCOMPLETE_ROLE_METADATA', 'roleMetadata');
   const roleEligibility = [], identities = [], asserted = { population: [], eligibility: [] };
   for (const row of rows) {
     const role = byId.get(row.id), franchise = eligibility.stateAt(row.id);
-    if (!role || !franchise) fail('INPUT_DISCREPANCY', 'MISSING_ELIGIBILITY_IDENTITY');
+    if (!role) reject('MISSING_ELIGIBILITY_IDENTITY', 'roleMetadata');
+    if (!franchise) reject('MISSING_ELIGIBILITY_IDENTITY', 'eligibility');
     const alive = row.terminal_at === null;
-    if (franchise.living !== alive) fail('INPUT_DISCREPANCY', 'POPULATION_ELIGIBILITY_LIFECYCLE_MISMATCH');
-    if (![role.citizen, role.willing, role.jailed, role.accusation, role.trial].every(x => typeof x === 'boolean')) fail('INPUT_DISCREPANCY', 'INCOMPLETE_ROLE_METADATA');
+    if (franchise.living !== alive) reject('POPULATION_ELIGIBILITY_LIFECYCLE_MISMATCH', 'population', 'eligibility');
+    if (![role.citizen, role.willing, role.jailed, role.accusation, role.trial].every(x => typeof x === 'boolean')) reject('INCOMPLETE_ROLE_METADATA', 'roleMetadata');
     const given = role.sourceEventIds ?? {};
     // What the role authority itself asserts in each snapshot, kept under its own version.
     asserted.population.push([row.id, role.citizen, role.willing, role.jailed, sourced({ citizen: given.citizen, willing: given.willing, jailed: given.jailed })]);
@@ -118,7 +129,6 @@ export function captureRegistryInputs(db, eligibility, { roleMetadata, roleMetad
       reasonSourceEventIds: sourced(franchise.reason ? { [franchise.reason]: franchiseEvent } : {}) });
   }
   // The population and eligibility logs are fixed by their version; role metadata only by what it asserted.
-  const own = name => ({ snapshotId: `${name}:${authorityVersions[name]}`, version: authorityVersions[name] });
   const authoritySources = roleFacts => ({ population: own('population'), eligibility: own('eligibility'), roleMetadata: { ...own('roleMetadata'), digest: digest(roleFacts) } });
   return {
     population: { snapshotId: `population:${tag}`, version, authorityVersions, authoritySources: authoritySources(asserted.population), identities },

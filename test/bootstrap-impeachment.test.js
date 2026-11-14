@@ -10,7 +10,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { PopulationRegistry } from '../src/population/index.js';
 import { BootstrapImpeachmentService, ImpeachmentStore, createCommandAuthenticator, DurableEligibility, replayImpeachment,
   captureRegistryInputs, planBootstrapStage, seedCommitment, accusationThreshold, trialThreshold, bootstrapPanelSizes } from '../src/governance/index.js';
-import { canonical, digest } from '../src/governance/bootstrap-impeachment.js';
+import { canonical, digest, attributable, requireId, SOURCE_NAMES } from '../src/governance/bootstrap-impeachment.js';
 
 function snapshot(n = 17) {
   const people = Array.from({ length: n + 1 }, (_, i) => ({ identityId: i ? `p${i}` : 'accused',
@@ -615,7 +615,7 @@ test('P2 every exclusion reason in the panel carries exactly one source event, i
     p13: [{ reasonCode: 'ACCUSATION_PARTICIPANT', sourceEventId: 'assign-event:13' }] });
   for (const e of result.exclusions) {
     assert.deepEqual(e.reasonSources.map(x => x.reasonCode), e.reasonCodes);
-    assert.deepEqual(e.sourceIds, ['population:1', 'office:1', 'eligibility:1', 'conflicts:1', 'rules:1', 'participation:1']);
+    assert.deepEqual(e.sourceIds, ['population:1', 'office:1', 'eligibility:1', 'conflicts:1', 'rules:1', 'participation:1', 'assignment:1']);
   }
   const reordered = structuredClone(s); reordered.participation.events.reverse(); reordered.office.offices.reverse();
   assert.deepEqual(trialPlan(reordered).exclusions, result.exclusions);
@@ -1038,4 +1038,201 @@ test('9acf249 review P3 command IDs and authority names with control characters 
   f.s.population.authoritySources = { [`role\nmetadata${'x'.repeat(3000)}`]: { snapshotId: 'role:1', version: 1 } };
   const blocked = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
   assert.equal(blocked.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW'); assert.equal(blocked.discrepancy, 'INVALID_AUTHORITY_NAME');
+});
+
+// JON-315 / review 5900166376: exercise the input classes, including unused nested data.
+test('JON-315 P2 every source rejects sparse arrays before hashing and retains an attributed review hold across restart', async t => {
+  const mutations = [
+    ['eligibility', s => { s.eligibility.validReasonCodes = new Array(1); }],
+    ['assignmentValidation', s => { s.assignmentValidation.validReasonCodes = new Array(1); }],
+    ['eligibility', s => { Object.assign(s.eligibility.roleEligibility[1], { accusation: false, reasonCodes: new Array(1),
+      sourceEventIds: { accusation: 'role:1' }, reasonSourceEventIds: { undefined: 'eligibility:1' } }); }],
+    ['population', s => { delete s.population.identities[1]; }],
+    ['office', s => { s.office.offices = new Array(1); }],
+    ['conflicts', s => { s.conflicts.knownInvestigators = new Array(1); }],
+    ['conflicts', s => { s.conflicts.independentlyDisqualified = new Array(1); }],
+    ['conflicts', s => { s.conflicts.sourceEventIds = new Array(1); }],
+    ['participation', s => { s.participation.events = new Array(1); }],
+    ...SOURCE_NAMES.map(name => [name, s => { s[name].unused = { nested: [new Array(1)] }; }]),
+  ];
+  for (const [authority, mutate] of mutations) {
+    const s = snapshot(), expectedId = s[authority].snapshotId;
+    const f = fixture(t, s); await f.run('OPEN', { accusedId: 'accused' });
+    await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    const sound = structuredClone(s); mutate(s);
+    const direct = plan(s);
+    assert.equal(direct.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', authority);
+    assert.deepEqual(direct.discrepancySources, [{ authority, snapshotId: expectedId }]);
+    const held = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.equal(held.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', authority);
+    assert.deepEqual(held.inputDiscrepancy.sources, [{ authority, snapshotId: expectedId }]);
+    assert.deepEqual(held.panels, {});
+    Object.assign(s, sound); f.restart();
+    await assert.rejects(f.run('ENTER_STAGE', { seed: 'seed' }), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+    assert.deepEqual((await f.run('READ')).inputDiscrepancy, held.inputDiscrepancy);
+  }
+  assert.throws(() => canonical({ nested: new Array(1) }), { code: 'INVALID_JSON' });
+  assert.throws(() => digest([['ok', , 'bad']]), { code: 'INVALID_JSON' });
+});
+
+test('JON-315 P2 sparse assignment receipts enter review instead of reaching journal serialization', async t => {
+  const f = fixture(t); await f.run('OPEN', { accusedId: 'accused' });
+  f.sources.validateAssignment = id => ({ ...valid(id), unused: { nested: new Array(1) } });
+  const state = await f.empanel();
+  assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW');
+  assert.deepEqual(state.inputDiscrepancy.sources, [{ authority: 'assignmentValidation', snapshotId: 'assignment:1' }]);
+  assert.deepEqual(state.panels, {});
+});
+
+test('JON-315 P2 a changed assignment source alone permits a fresh waiting retry, while all sources share one version list', async t => {
+  const f = fixture(t); f.sources.validateAssignment = id => ({ valid: false, reasonCode: 'UNAVAILABLE', sourceEventId: `unavailable:${id}` });
+  await f.run('OPEN', { accusedId: 'accused' });
+  const waiting = await f.empanel('first');
+  assert.equal(waiting.lastAttempt.plan.reason, 'DRAW_EXHAUSTED');
+  assert.deepEqual(Object.keys(waiting.lastAttempt.sourceVersions), SOURCE_NAMES);
+  assert.equal(waiting.lastAttempt.sourceVersions.assignmentValidation, 1);
+  bump(f.s, 'assignmentValidation'); f.s.assignmentValidation.validReasonCodes.push('TEMPORARILY_ABSENT');
+  f.sources.validateAssignment = valid;
+  const committed = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('retry') });
+  assert.equal(committed.commitments.ACCUSATION.sourceVersions.assignmentValidation, 2);
+  const state = await f.run('ENTER_STAGE', { seed: 'retry' });
+  assert.equal(state.status, 'ACCUSATION_EMPANELED');
+  assert.deepEqual(Object.keys(state.panels.ACCUSATION.sourceVersions), SOURCE_NAMES);
+  assert.equal(state.panels.ACCUSATION.snapshotIds.length, SOURCE_NAMES.length);
+});
+
+test('JON-315 P2 malformed, missing, contradictory and stale source holds retain the responsible authority and snapshot', async t => {
+  const cases = [
+    ['eligibility', s => { s.eligibility.validReasonCodes = 'bad-shape'; }],
+    ['assignmentValidation', s => { s.assignmentValidation.validReasonCodes = 'bad-shape'; }],
+    ['office', s => { s.office.offices = null; }],
+    ['population', s => { s.population.identities.push({ ...s.population.identities[1], alive: false }); }],
+    ['conflicts', s => { s.conflicts.caseId = 'another-case'; }],
+    ['participation', s => { s.participation.events = [null]; }],
+    ['rules', s => { s.rules.SENATE = null; }],
+  ];
+  for (const [authority, mutate] of cases) {
+    const s = snapshot(); mutate(s); const f = fixture(t, s); await f.run('OPEN', { accusedId: 'accused' });
+    const state = await f.empanel();
+    assert.equal(state.status, 'ACCUSATION_INPUT_DISCREPANCY_REVIEW', authority);
+    assert.deepEqual(state.inputDiscrepancy.sources, [{ authority, snapshotId: s[authority].snapshotId }]);
+    const event = f.store.load('case:case').at(-1);
+    assert.deepEqual(event.discrepancySources ?? event.plan.discrepancySources, state.inputDiscrepancy.sources);
+  }
+  for (const [defect, expected] of [[s => { delete s.office; }, { authority: 'office', snapshotId: null, snapshotIdStatus: 'MISSING' }],
+    [s => { s.office.snapshotId = { private: 'do-not-journal' }; }, { authority: 'office', snapshotId: null, snapshotIdStatus: 'INVALID' }]]) {
+    const s = snapshot(); defect(s); const f = fixture(t, s); await f.run('OPEN', { accusedId: 'accused' });
+    const state = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    assert.deepEqual(state.inputDiscrepancy.sources, [expected]);
+    assert.ok(!canonical(f.store.load('case:case')).includes('do-not-journal'));
+  }
+  for (const mutate of [s => { s.office.offices.push({ invalid: true }); }, s => { s.office.version = 0; s.office.snapshotId = 'office:0'; }]) {
+    const f = fixture(t); await f.run('OPEN', { accusedId: 'accused' }); await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    mutate(f.s); const state = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.deepEqual(state.inputDiscrepancy.sources, [{ authority: 'office', snapshotId: f.s.office.snapshotId }]);
+  }
+  const s = snapshot(); s.eligibility.populationVersion = 0;
+  const f = fixture(t, s); await f.run('OPEN', { accusedId: 'accused' });
+  assert.deepEqual((await f.empanel()).inputDiscrepancy.sources, [
+    { authority: 'population', snapshotId: 'population:1' }, { authority: 'eligibility', snapshotId: 'eligibility:1' }]);
+});
+
+test('JON-315 P3 every durable eligibility ID field rejects the reviewed newline/NUL cases and C1 controls before journaling', async t => {
+  const f = fixture(t), pop = new PopulationRegistry(f.filename); t.after(() => pop.close());
+  pop.createIdentity({ id: 'p1', division: 'd1', identityClass: 'ordinary', creationRoute: 'founding', createdBy: 'owner', authorityReference: 'founding:1', createdAt: '2026-01-01T00:00:00Z' });
+  const durable = new DurableEligibility({ eventStore: f.store, authenticate: f.authenticate }); let n = 0;
+  const apply = commands => { const c = { type: 'ELIGIBILITY', commandId: `id${n++}`, expectedVersion: f.store.load('eligibility').length, commands }; return durable.apply(c, f.credential(c)); };
+  const base = { identityId: 'p1', effectiveAt: '2026-01-01T00:00:00Z' };
+  await apply([{ ...base, type: 'IDENTITY_REGISTERED' }]);
+  for (const [type, field] of [['ALLEGATION_RECORDED', 'allegationId'], ['FELONY_CONVICTION_ENTERED', 'convictionId'],
+    ['FORMAL_PROCEEDING_OPENED', 'proceedingId'], ['FORMAL_PROCEEDING_CLOSED', 'proceedingId'], ['C4_RESTRICTION_CLOSED', 'proceedingId'],
+    ['IDENTITY_REGISTERED', 'identityId'], ['DEATH_RECORDED', 'identityId'], ['CAPITAL_TERMINATION_RECORDED', 'identityId']]) {
+    for (const bad of ['a\nb', 'a\u0000b', 'a\u0085b', 'a\u009fb', ' id ', 'x'.repeat(257)]) {
+      const before = f.store.load('eligibility');
+      await assert.rejects(apply([{ ...base, type, [field]: bad }]), { code: 'INVALID_IDENTIFIER' }, `${type}.${field}`);
+      assert.deepEqual(f.store.load('eligibility'), before);
+    }
+  }
+  for (const field of ['proceedingId', 'affectedIdentityIds']) {
+    await assert.rejects(apply([{ type: 'C4_CREATION_EVENT_OPEN', effectiveAt: base.effectiveAt, proceedingId: 'valid', affectedIdentityIds: ['p1'],
+      [field]: field === 'affectedIdentityIds' ? ['a\u0085b'] : 'a\u0085b' }]), { code: 'INVALID_IDENTIFIER' });
+  }
+  const badPrincipal = new DurableEligibility({ eventStore: f.store, authenticate: () => ({ id: 'clerk\u0085bad' }) });
+  await assert.rejects(badPrincipal.apply({ type: 'ELIGIBILITY', commandId: 'bad-principal', expectedVersion: 1,
+    commands: [{ ...base, type: 'ALLEGATION_RECORDED', allegationId: 'a1' }] }), { code: 'UNAUTHORIZED' });
+});
+
+test('JON-315 P3 shared identifiers reject every C0, DEL and C1 control, including authority names and assignment event IDs', async t => {
+  for (const point of [...Array.from({ length: 32 }, (_, i) => i), ...Array.from({ length: 33 }, (_, i) => i + 127)]) {
+    const bad = `a${String.fromCodePoint(point)}b`;
+    assert.equal(attributable(bad), false, `U+${point.toString(16)}`);
+    assert.throws(() => requireId(bad), { code: 'INVALID_IDENTIFIER' });
+  }
+  const f = fixture(t); await f.run('OPEN', { accusedId: 'accused' });
+  f.s.population.authoritySources = { 'role\u0085metadata': { snapshotId: 'role:1', version: 1 } };
+  const held = await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  assert.equal(held.discrepancy, 'INVALID_AUTHORITY_NAME');
+  assert.deepEqual(held.inputDiscrepancy.sources, [{ authority: 'population', snapshotId: 'population:1' }]);
+  const g = fixture(t); await g.run('OPEN', { accusedId: 'accused' });
+  g.sources.validateAssignment = id => ({ valid: true, sourceEventId: `validation:${id}\u0085event` });
+  const blocked = await g.empanel();
+  assert.equal(blocked.discrepancy, 'INVALID_ASSIGNMENT_VALIDATION');
+  assert.deepEqual(blocked.panels, {});
+  assert.deepEqual(blocked.inputDiscrepancy.sources, [{ authority: 'assignmentValidation', snapshotId: 'assignment:1' }]);
+});
+
+test('JON-315 P2 sparse ballot, evidence and review receipts hold the affected authority without replacing a frozen panel', async t => {
+  for (const authority of ['ballots', 'evidence', 'review']) {
+    let broken = false;
+    const review = { assess: (state, type) => {
+      if (type === 'RESOLVE_REVIEW' && state.inputDiscrepancy) return discrepancyReceipt(state);
+      return { caseId: state.caseId, independentlyAuthorized: true, conflictDiscoveryAlone: false, sourceEventId: 'review:1',
+        ...(broken ? { unused: new Array(1) } : {}) };
+    } };
+    const f = fixture(t, snapshot(17), { review }); await f.run('OPEN', { accusedId: 'accused' }); await f.empanel('accusation');
+    if (authority === 'evidence') { await f.run('CLOSE_STAGE'); await f.empanel('trial'); }
+    const before = await f.run('READ');
+    const provider = authority === 'ballots' ? f.ballots : f.evidence;
+    const method = authority === 'ballots' ? 'close' : 'assess';
+    const original = provider[method];
+    if (authority !== 'review') provider[method] = (...args) => ({ ...original(...args),
+      ...(authority === 'ballots' ? { ballots: new Array(1) } : { unused: { nested: new Array(1) } }) });
+    else broken = true;
+    const held = await f.run(authority === 'review' ? 'POST_FREEZE_WAIT' : 'CLOSE_STAGE');
+    assert.equal(held.status, `${before.stage}_INPUT_DISCREPANCY_REVIEW`);
+    assert.deepEqual(held.inputDiscrepancy.sources, [{ authority, snapshotId: null, snapshotIdStatus: 'MISSING' }]);
+    assert.deepEqual(held.panels, before.panels);
+    f.restart();
+    await assert.rejects(f.run('CLOSE_STAGE'), { code: 'INDEPENDENT_REVIEW_REQUIRED' });
+    provider[method] = original; broken = false;
+    const resumed = await f.run('RESOLVE_REVIEW');
+    assert.equal(resumed.status, before.status); assert.deepEqual(resumed.panels, before.panels);
+    if (authority === 'review') assert.equal((await f.run('POST_FREEZE_WAIT')).status, 'POST_FREEZE_REVIEW');
+    else assert.equal((await f.run('CLOSE_STAGE')).status, authority === 'ballots' ? 'CHARGED' : 'CONVICTED');
+  }
+});
+
+test('JON-315 P2 registry capture and every composed authority retain their own discrepancy references', async t => {
+  const sparse = await registry(t); sparse.metadata[1].unused = { nested: new Array(1) };
+  await sparse.run('OPEN', { accusedId: 'accused' });
+  assert.deepEqual((await sparse.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') })).inputDiscrepancy.sources,
+    [{ authority: 'roleMetadata', snapshotId: 'roleMetadata:1' }]);
+  const missing = await registry(t); missing.roleMetadataVersion = undefined;
+  await missing.run('OPEN', { accusedId: 'accused' });
+  assert.deepEqual((await missing.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') })).inputDiscrepancy.sources,
+    [{ authority: 'roleMetadata', snapshotId: null, snapshotIdStatus: 'MISSING' }]);
+  for (const change of [own => { own.version = 0; own.snapshotId = 'role:0'; }, own => { own.fact = 'changed'; }]) {
+    const f = fixture(t); f.s.population.authoritySources = { roleMetadata: { snapshotId: 'role:1', version: 1 } };
+    await f.run('OPEN', { accusedId: 'accused' }); await f.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+    change(f.s.population.authoritySources.roleMetadata);
+    const held = await f.run('ENTER_STAGE', { seed: 'seed' });
+    assert.deepEqual(held.inputDiscrepancy.sources, [{ authority: 'roleMetadata', snapshotId: f.s.population.authoritySources.roleMetadata.snapshotId }]);
+  }
+  const changed = fixture(t); await changed.run('OPEN', { accusedId: 'accused' });
+  await changed.run('COMMIT_SEED', { seedCommitment: seedCommitment('seed') });
+  bump(changed.s, 'office');
+  assert.deepEqual((await changed.run('ENTER_STAGE', { seed: 'seed' })).inputDiscrepancy.sources, [{ authority: 'office', snapshotId: 'office:2' }]);
+  const during = fixture(t); await during.run('OPEN', { accusedId: 'accused' });
+  during.sources.validateAssignment = id => { if (during.s.office.version === 1) bump(during.s, 'office'); return valid(id); };
+  assert.deepEqual((await during.empanel()).inputDiscrepancy.sources, [{ authority: 'office', snapshotId: 'office:2' }]);
 });

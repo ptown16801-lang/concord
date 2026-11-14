@@ -3,6 +3,8 @@
 > **Status (2026-11-10, JON-261):** historical producer notes from September 2026, copied
 > with the code from `codex/jon-141-conflict-integration` at `b813e15`. The code is
 > unaccepted; the test counts and review references below describe that branch, not Develo.
+> The [current input-validation corrections](#input-validation-corrections--2026-11-14)
+> below describe the PR's later adapter contract; the September provenance remains historical.
 
 This is the implementation contract for the [owner-frozen revision 1.0](bootstrap-impeachment-approved-v1.md),
 Linear document `1db79f6f-a631-43e2-ac85-e8f55561b232`, approved in JON-83 comment
@@ -216,3 +218,62 @@ trial WAITING retries. The existing accusation WAITING retry test remains applic
 Before the correction five new tests failed and the WAITING test passed; all six
 pass after the correction. Exact final SHA and full-suite/CI evidence are recorded
 in PR #36 and JON-85/86. Independent retest and acceptance remain with JON-86.
+
+## Input-validation corrections — 2026-11-14
+
+These implementation changes address [PR #70 review 5900166376](https://github.com/ptown16801-lang/concord/pull/70#pullrequestreview-5900166376).
+They do not amend the frozen specification or establish independent acceptance.
+The historical claims above about unchanged population/eligibility files describe
+their September recovery, before these validation corrections.
+
+`src/validation.js` defines the identifier predicate shared by the population
+registry, eligibility reducer, durable eligibility commands, and impeachment
+boundaries. IDs must be nonempty, already trimmed strings of at most 256 characters,
+without C0 controls, DEL or C1 controls (U+0000–U+001F and U+007F–U+009F).
+Allegation, conviction, proceeding, identity, affected-identity, command and
+authenticated-authority IDs all use this predicate; the reducer no longer trims
+an invalid ID into a different one. An invalid caller command is rejected before
+any event is stored. Existing journal records are not rewritten.
+
+Every array in source data must have an own element at every index. The canonical
+JSON encoder rejects sparse arrays recursively, including unused nested fields;
+it also rejects cycles and non-JSON values. Source validation converts these
+failures into an attributed `INPUT_DISCREPANCY` review hold before a panel can be
+published. Arrays in assignment, ballot, evidence and review receipts receive the
+same check. Repair alone cannot release a hold or reuse its committed seed.
+After a receipt defect on an already frozen stage, independent resolution resumes
+the prior status while preserving the panel and its threshold; it does not redraw.
+
+`SOURCE_NAMES` is the single list used for validation, source storage, seed
+commitments, panel/exclusion source IDs, source-version records and retry guards:
+population, office, eligibility, conflicts, rules, participation and
+assignmentValidation. The assignment adapter supplies
+`assignmentReasonCodes(state, db) -> {snapshotId, version, validReasonCodes}`;
+the similarly named field returned by `capture` is replaced. A changed assignment
+source alone can authorize a new waiting attempt, but an unversioned mutation,
+rollback or genuinely unchanged snapshot remains refused. Eligibility supplies
+`validReasonCodes` in its own versioned snapshot. Codes remain authority data,
+checked for format, uniqueness, membership and collision with planner-derived codes.
+
+Each new source-data hold carries `discrepancySources[]`, copied to
+`state.inputDiscrepancy.sources[]`. Each reference contains `authority` and
+`snapshotId`. An absent/unreadable snapshot ID is recorded as `null` with
+`snapshotIdStatus: 'MISSING'`; an unusable supplied ID is `null` with status
+`'INVALID'`. The malformed value and substantive payload are never copied into
+the hold. Cross-source contradictions identify all implicated sources. A composed
+source's own authority records retain their narrower references. Snapshot changes
+are attributed using committed per-source digests, including the assignment source.
+
+An adapter throwing before it returns a snapshot is attributed to its adapter
+boundary (`compositionCapture`, `assignmentValidation`, `ballots`, `evidence` or
+`review`) with an explicitly missing snapshot ID, unless it supplies valid narrower
+`discrepancySources`. The registry adapter supplies its population, eligibility and
+roleMetadata references itself. Adapter error messages that are not stable code
+strings become `MALFORMED_SOURCE_SNAPSHOT`; raw exception text is not journaled.
+The service's own case-journal projection is referenced as
+`case:<caseId>:<journalVersion>`. Older records without attribution remain historical
+records; replay does not invent references for them.
+
+Regression tests named `JON-315` cover the five findings, all versioned sources,
+receipt arrays and frozen-stage resumption, composed-source attribution, the
+durable and standalone eligibility interfaces, and population identifiers.

@@ -1,3 +1,5 @@
+import { attributable, denseArray } from '../validation.js';
+
 const EVENT_TYPES = Object.freeze({
   IDENTITY_REGISTERED: "IDENTITY_REGISTERED",
   ALLEGATION_RECORDED: "ALLEGATION_RECORDED",
@@ -45,7 +47,7 @@ export class EligibilityRegistry {
     if (!Number.isSafeInteger(expectedVersion) || expectedVersion !== this.version) {
       throw transitionError("VERSION_CONFLICT", `Expected version ${expectedVersion}; current version is ${this.version}`);
     }
-    if (!Array.isArray(commands) || commands.length === 0) {
+    if (!denseArray(commands) || commands.length === 0) {
       throw transitionError("EMPTY_BATCH", "At least one transition is required");
     }
 
@@ -129,10 +131,10 @@ function reduceCommand(states, command, effectiveAt) {
   const { type } = command;
   if (type === EVENT_TYPES.C4_CREATION_EVENT_OPEN) {
     const proceedingId = requireId(command.proceedingId, "proceedingId");
-    if (!command.authentication || typeof command.authentication !== "object" || !requireOptionalId(command.authentication.authorityId)) {
+    if (!command.authentication || typeof command.authentication !== "object" || !attributable(command.authentication.authorityId)) {
       throw transitionError("UNAUTHENTICATED_C4", "C4 creation requires authenticated authority evidence");
     }
-    if (!Array.isArray(command.affectedIdentityIds) || command.affectedIdentityIds.length === 0) {
+    if (!denseArray(command.affectedIdentityIds) || command.affectedIdentityIds.length === 0) {
       throw transitionError("EMPTY_AFFECTED_LIST", "C4 creation requires an affected-identity list");
     }
     const ids = command.affectedIdentityIds.map((id) => requireId(id, "affectedIdentityId"));
@@ -152,7 +154,8 @@ function reduceCommand(states, command, effectiveAt) {
     return [{ type, identityId }];
   }
   const state = existingState(states, identityId);
-  const proceedingId = command.proceedingId && requireId(command.proceedingId, "proceedingId");
+  const proceedingId = [EVENT_TYPES.FORMAL_PROCEEDING_OPENED, EVENT_TYPES.FORMAL_PROCEEDING_CLOSED, EVENT_TYPES.C4_RESTRICTION_CLOSED].includes(type)
+    ? requireId(command.proceedingId, "proceedingId") : undefined;
   switch (type) {
     case EVENT_TYPES.ALLEGATION_RECORDED:
       state.allegations += 1;
@@ -229,8 +232,7 @@ function cloneStates(states) { return new Map([...states].map(([id, s]) => [id, 
 function existingState(states, id) { const state = states.get(id); if (!state) throw transitionError("UNKNOWN_IDENTITY", `${id} is not registered`); return state; }
 function livingState(states, id) { const state = existingState(states, id); assertLiving(state); return state; }
 function assertLiving(state) { if (state.terminal) throw transitionError("TERMINAL_IDENTITY", "Death or capital termination is final"); }
-function requireId(value, field) { if (typeof value !== "string" || !value.trim()) throw transitionError("INVALID_IDENTIFIER", `${field} must be a non-empty string`); return value.trim(); }
-function requireOptionalId(value) { return typeof value === "string" && Boolean(value.trim()); }
+function requireId(value, field) { if (!attributable(value)) throw transitionError("INVALID_IDENTIFIER", `${field} must be a plain identifier`); return value; }
 function timestamp(value, field) { const date = value instanceof Date ? value : new Date(value); if (Number.isNaN(date.valueOf())) throw transitionError("INVALID_TIME", `${field} must be a valid date`); return date.toISOString(); }
 function transitionError(code, message) { return new EligibilityTransitionError(code, message); }
 function freeze(value) { return Object.freeze(value); }

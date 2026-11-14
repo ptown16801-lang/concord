@@ -99,3 +99,24 @@ test("historical version reconstruction is auditable", () => {
   assert.equal(registry.stateAt("ordinary-1", { version: 3 }).eligible, true);
   assert.deepEqual(registry.auditLog().map(({ version }) => version), [1, 2, 3]);
 });
+
+test("JON-315 standalone eligibility applies the shared ID policy to all transition and authority fields", () => {
+  for (const bad of ["a\nb", "a\u0000b", "a\u0085b", "a\u009fb", " padded ", "x".repeat(257)]) {
+    const registry = new EligibilityRegistry(); register(registry);
+    const cases = [
+      { type: T.IDENTITY_REGISTERED, identityId: bad },
+      { type: T.ALLEGATION_RECORDED, identityId: "ordinary-1", allegationId: bad },
+      { type: T.FELONY_CONVICTION_ENTERED, identityId: "ordinary-1", convictionId: bad },
+      ...[T.FORMAL_PROCEEDING_OPENED, T.FORMAL_PROCEEDING_CLOSED, T.C4_RESTRICTION_CLOSED].map(type => ({ type, identityId: "ordinary-1", proceedingId: bad })),
+      { type: T.C4_CREATION_EVENT_OPEN, proceedingId: bad, affectedIdentityIds: ["ordinary-1"], authentication: { authorityId: "court" } },
+      { type: T.C4_CREATION_EVENT_OPEN, proceedingId: "p", affectedIdentityIds: [bad], authentication: { authorityId: "court" } },
+    ];
+    for (const command of cases) {
+      assert.throws(() => registry.apply({ ...command, effectiveAt: at(1) }), { code: "INVALID_IDENTIFIER" });
+      assert.equal(registry.version, 1);
+    }
+    assert.throws(() => registry.apply({ type: T.C4_CREATION_EVENT_OPEN, proceedingId: "p", affectedIdentityIds: ["ordinary-1"],
+      authentication: { authorityId: bad }, effectiveAt: at(1) }), { code: "UNAUTHENTICATED_C4" });
+    assert.throws(() => registry.stateAt(bad), { code: "INVALID_IDENTIFIER" });
+  }
+});

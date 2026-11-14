@@ -1,5 +1,5 @@
 import { DatabaseSync } from 'node:sqlite';
-import { attributable, canonical, digest, fail, requireId } from './bootstrap-impeachment.js';
+import { attributable, canonical, digest, fail, requireId, inputDiscrepancy, sourceReference, sourceData } from './bootstrap-impeachment.js';
 
 /** Shared local transaction boundary. Keep the file private to trusted writers. */
 export class ImpeachmentStore {
@@ -62,19 +62,20 @@ export class ImpeachmentStore {
       this.#db.exec('COMMIT'); return response;
     } catch (error) { this.#db.exec('ROLLBACK'); throw error; }
   }
-  rememberSource(scope, source) {
-    if (!Number.isSafeInteger(source?.version) || source.version < 0 || !source.snapshotId) fail('INPUT_DISCREPANCY', 'INVALID_SOURCE_VERSION');
+  rememberSource(scope, source, authority = scope) {
+    const reject = reason => inputDiscrepancy(reason, [sourceReference(authority, source)]);
+    if (!Number.isSafeInteger(source?.version) || source.version < 0 || !source.snapshotId) reject('INVALID_SOURCE_VERSION');
     // Only a plain string can be bound, compared and frozen as an ID; anything else is a defective source, not a database error.
-    if (!attributable(source.snapshotId)) fail('INPUT_DISCREPANCY', 'INVALID_SNAPSHOT_ID');
-    const hash = digest(source);
+    if (!attributable(source.snapshotId)) reject('INVALID_SNAPSHOT_ID');
+    const hash = sourceData(authority, source, () => digest(source));
     const latest = this.#db.prepare("SELECT MAX(version) AS version FROM impeachment_sources WHERE scope=?").get(scope);
-    if (latest.version !== null && source.version < latest.version) fail("INPUT_DISCREPANCY", "STALE_SOURCE");
+    if (latest.version !== null && source.version < latest.version) reject('STALE_SOURCE');
     const existing = this.#db.prepare('SELECT * FROM impeachment_sources WHERE scope=? AND (version=? OR snapshot_id=?)').all(scope, source.version, source.snapshotId);
     if (existing.length) {
-      if (existing.length !== 1 || existing[0].version !== source.version || existing[0].snapshot_id !== source.snapshotId || existing[0].digest !== hash) fail('INPUT_DISCREPANCY', 'NON_IDEMPOTENT_SOURCE');
+      if (existing.length !== 1 || existing[0].version !== source.version || existing[0].snapshot_id !== source.snapshotId || existing[0].digest !== hash) reject('NON_IDEMPOTENT_SOURCE');
     } else {
       const last = this.#db.prepare('SELECT MAX(version) AS version FROM impeachment_sources WHERE scope=?').get(scope);
-      if (last.version !== null && source.version < last.version) fail('INPUT_DISCREPANCY', 'STALE_SOURCE');
+      if (last.version !== null && source.version < last.version) reject('STALE_SOURCE');
       this.#db.prepare('INSERT INTO impeachment_sources VALUES (?,?,?,?)').run(scope, source.version, source.snapshotId, hash);
     }
   }

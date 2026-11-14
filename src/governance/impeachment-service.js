@@ -1,9 +1,10 @@
 import { verify } from 'node:crypto';
-import { ALGORITHM_VERSION, attributable, SOURCE_NAMES, canonical, digest, fail, requireId, seedCommitment, planBootstrapStage } from './bootstrap-impeachment.js';
+import { ALGORITHM_VERSION, attributable, SOURCE_NAMES, canonical, digest, fail, requireId, seedCommitment, planBootstrapStage,
+  inputDiscrepancy, sourceReference, sourceData, copySource } from './bootstrap-impeachment.js';
 
 /** Keys and permissions come from trusted configuration, never from the command. */
 export function createCommandAuthenticator(principals) {
-  const trusted = new Map(Object.entries(principals).map(([id, p]) => [id, { publicKey: p.publicKey, permissions: new Set(p.permissions) }]));
+  const trusted = new Map(Object.entries(principals).map(([id, p]) => [requireId(id), { publicKey: p.publicKey, permissions: new Set(p.permissions) }]));
   return (command, credential) => {
     const authority = trusted.get(credential?.principalId);
     if (!authority || !authority.permissions.has(command.type) || typeof credential.signature !== 'string') fail('UNAUTHORIZED');
@@ -29,7 +30,8 @@ export function replayImpeachment(events) {
         state.status = event.plan.status;
         if (event.plan.status === `${event.stage}_INPUT_DISCREPANCY_REVIEW`) {
           state.discrepancy = event.plan.reason;
-          state.inputDiscrepancy = { stage: event.stage, reason: event.plan.reason, version: event.version, actorId: event.actorId };
+          state.inputDiscrepancy = { stage: event.stage, reason: event.plan.reason, version: event.version, actorId: event.actorId,
+            sources: event.plan.discrepancySources ?? [] };
         }
         if (event.plan.status === `${event.stage}_EMPANELED`) {
           state.panels[event.stage] = event.plan;
@@ -41,13 +43,16 @@ export function replayImpeachment(events) {
         break;
       case 'INPUT_DISCREPANCY':
         state.status = `${event.stage}_INPUT_DISCREPANCY_REVIEW`; state.discrepancy = event.reason;
-        state.inputDiscrepancy = { stage: event.stage, reason: event.reason, version: event.version, actorId: event.actorId };
+        state.inputDiscrepancy = { stage: event.stage, reason: event.reason, version: event.version, actorId: event.actorId,
+          sources: event.discrepancySources ?? [], ...(event.resumeStatus === undefined ? {} : { resumeStatus: event.resumeStatus }) };
         break;
       case 'INPUT_DISCREPANCY_RESOLVED':
-        state.status = event.stage === 'ACCUSATION' ? 'REPORTED' : 'CHARGED';
+        state.status = event.resumeStatus ?? (event.stage === 'ACCUSATION' ? 'REPORTED' : 'CHARGED');
         delete state.inputDiscrepancy; delete state.discrepancy;
-        delete state.commitments[event.stage];
-        if (state.lastAttempt?.stage === event.stage) delete state.lastAttempt;
+        if (!state.panels[event.stage]) {
+          delete state.commitments[event.stage];
+          if (state.lastAttempt?.stage === event.stage) delete state.lastAttempt;
+        }
         break;
       case 'STAGE_DECIDED':
         state.decisions.push(event); state.status = event.outcome;
@@ -86,121 +91,145 @@ export class BootstrapImpeachmentService {
       }
       const state = replayImpeachment(events);
       if (['CHARGE_REJECTED', 'ACQUITTED', 'CONVICTED'].includes(state.status)) fail('CASE_TERMINAL');
-      if (command.type === 'COMMIT_SEED' || command.type === 'ENTER_STAGE') {
-        // New source versions cannot authorize release of an independent-review hold.
-        if (state.inputDiscrepancy) fail('INDEPENDENT_REVIEW_REQUIRED');
-        if (state.panels[state.stage]) fail('PANEL_FROZEN');
-        try { return this.#enter(command, state, db, principal); }
-        catch (error) {
-          if (error.code !== 'INPUT_DISCREPANCY') throw error;
-          return [{ type: 'INPUT_DISCREPANCY', stage: state.stage, reason: error.message }];
+      if (state.inputDiscrepancy && command.type !== 'RESOLVE_REVIEW') fail('INDEPENDENT_REVIEW_REQUIRED');
+      try {
+        if (command.type === 'COMMIT_SEED' || command.type === 'ENTER_STAGE') {
+          // New source versions cannot authorize release of an independent-review hold.
+          if (state.panels[state.stage]) fail('PANEL_FROZEN');
+          return this.#enter(command, state, db, principal);
         }
-      }
-      if (command.type === 'CLOSE_STAGE') {
-        const panel = state.panels[state.stage];
-        if (state.status !== `${state.stage}_EMPANELED` || !panel) fail('WRONG_STAGE');
-        if (!this.#ballots?.close) fail('BALLOT_AUTHORITY_REQUIRED');
-        const receipt = this.#ballots.close(structuredClone(state), db);
-        if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
-          || receipt.panelDigest !== digest(panel) || receipt.closed !== true || !attributable(receipt.sourceEventId)
-          || !Array.isArray(receipt.ballots)) fail('INVALID_BALLOT_RECEIPT');
-        const ids = new Set(); let yes = 0;
-        for (const ballot of receipt.ballots) {
-          if (!panel.roster.includes(ballot.identityId) || ids.has(ballot.identityId)
-            || !['YES', 'NO', 'ABSTAIN'].includes(ballot.vote)) fail('INVALID_BALLOT_RECEIPT');
-          ids.add(ballot.identityId); if (ballot.vote === 'YES') yes++;
+        if (command.type === 'CLOSE_STAGE') {
+          const panel = state.panels[state.stage];
+          if (state.status !== `${state.stage}_EMPANELED` || !panel) fail('WRONG_STAGE');
+          if (!this.#ballots?.close) fail('BALLOT_AUTHORITY_REQUIRED');
+          const receipt = this.#receipt('ballots', () => this.#ballots.close(structuredClone(state), db));
+          if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
+            || receipt.panelDigest !== digest(panel) || receipt.closed !== true || !attributable(receipt.sourceEventId)
+            || !Array.isArray(receipt.ballots)) fail('INVALID_BALLOT_RECEIPT');
+          const ids = new Set(); let yes = 0;
+          for (const ballot of receipt.ballots) {
+            if (!ballot || !attributable(ballot.identityId) || !panel.roster.includes(ballot.identityId) || ids.has(ballot.identityId)
+              || !['YES', 'NO', 'ABSTAIN'].includes(ballot.vote)) fail('INVALID_BALLOT_RECEIPT');
+            ids.add(ballot.identityId); if (ballot.vote === 'YES') yes++;
+          }
+          if (receipt.quorumSatisfied !== true) fail('QUORUM_NOT_SATISFIED');
+          let passed = yes >= panel.affirmativeThreshold;
+          let evidenceReference = null;
+          if (passed && state.stage === 'TRIAL') {
+            if (!this.#evidence?.assess) fail('EVIDENCE_AUTHORITY_REQUIRED');
+            const proof = this.#receipt('evidence', () => this.#evidence.assess(structuredClone(state), db));
+            if (!proof || proof.then || proof.caseId !== state.caseId || proof.panelDigest !== digest(panel)
+              || proof.standard !== 'CLEAR_AND_CONVINCING' || typeof proof.satisfied !== 'boolean' || !attributable(proof.sourceEventId)) fail('INVALID_EVIDENCE_ATTESTATION');
+            passed = proof.satisfied; evidenceReference = proof.sourceEventId;
+          }
+          const outcome = state.stage === 'ACCUSATION' ? (passed ? 'CHARGED' : 'CHARGE_REJECTED') : (passed ? 'CONVICTED' : 'ACQUITTED');
+          return [{ type: 'STAGE_DECIDED', stage: state.stage, outcome, yes,
+            threshold: panel.affirmativeThreshold, ballotSourceEventId: receipt.sourceEventId, evidenceReference,
+            // Explicit handoff, not execution of removal, disqualification or appellate powers.
+            consequence: outcome === 'CONVICTED' ? 'REMOVAL_REQUIRED_APPEAL_AVAILABLE' : null }];
         }
-        if (receipt.quorumSatisfied !== true) fail('QUORUM_NOT_SATISFIED');
-        let passed = yes >= panel.affirmativeThreshold;
-        let evidenceReference = null;
-        if (passed && state.stage === 'TRIAL') {
-          if (!this.#evidence?.assess) fail('EVIDENCE_AUTHORITY_REQUIRED');
-          const proof = this.#evidence.assess(structuredClone(state), db);
-          if (!proof || proof.then || proof.caseId !== state.caseId || proof.panelDigest !== digest(panel)
-            || proof.standard !== 'CLEAR_AND_CONVINCING' || typeof proof.satisfied !== 'boolean' || !attributable(proof.sourceEventId)) fail('INVALID_EVIDENCE_ATTESTATION');
-          passed = proof.satisfied; evidenceReference = proof.sourceEventId;
+        if (command.type === 'RESOLVE_REVIEW' && state.inputDiscrepancy) {
+          if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
+          const receipt = this.#receipt('review', () => this.#review.assess(structuredClone(state), command.type, db));
+          if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
+            || receipt.discrepancyVersion !== state.inputDiscrepancy.version || receipt.reviewedStateVersion !== state.version
+            || receipt.resolution !== 'RESUME' || receipt.independentlyAuthorized !== true || receipt.competent !== true
+            || !attributable(receipt.reviewerId) || !attributable(receipt.authorityReference) || !attributable(receipt.sourceEventId)
+            || receipt.reviewerId === state.inputDiscrepancy.actorId || receipt.reviewerId === state.accusedId) fail('INDEPENDENT_REVIEW_REQUIRED');
+          // Only the trusted adapter supplies the receipt. Caller payload cannot attest
+          // independence or competence. Persist its attribution separately from actorId.
+          return [{ type: 'INPUT_DISCREPANCY_RESOLVED', stage: state.stage,
+            resumeStatus: state.inputDiscrepancy.resumeStatus ?? (state.panels[state.stage] ? `${state.stage}_EMPANELED` : state.stage === 'ACCUSATION' ? 'REPORTED' : 'CHARGED'), receipt: {
+            caseId: receipt.caseId, stage: receipt.stage, discrepancyVersion: receipt.discrepancyVersion,
+            reviewedStateVersion: receipt.reviewedStateVersion, resolution: receipt.resolution,
+            reviewerId: receipt.reviewerId, authorityReference: receipt.authorityReference,
+            sourceEventId: receipt.sourceEventId, independentlyAuthorized: true, competent: true } }];
         }
-        const outcome = state.stage === 'ACCUSATION' ? (passed ? 'CHARGED' : 'CHARGE_REJECTED') : (passed ? 'CONVICTED' : 'ACQUITTED');
-        return [{ type: 'STAGE_DECIDED', stage: state.stage, outcome, yes,
-          threshold: panel.affirmativeThreshold, ballotSourceEventId: receipt.sourceEventId, evidenceReference,
-          // Explicit handoff, not execution of removal, disqualification or appellate powers.
-          consequence: outcome === 'CONVICTED' ? 'REMOVAL_REQUIRED_APPEAL_AVAILABLE' : null }];
+        if (command.type === 'POST_FREEZE_WAIT' || command.type === 'RESOLVE_REVIEW') {
+          if (command.type === 'POST_FREEZE_WAIT' && state.status !== `${state.stage}_EMPANELED`) fail('WRONG_STAGE');
+          if (command.type === 'RESOLVE_REVIEW' && state.status !== 'POST_FREEZE_REVIEW') fail('WRONG_STAGE');
+          if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
+          const receipt = this.#receipt('review', () => this.#review.assess(structuredClone(state), command.type, db));
+          if (!receipt || receipt.then || receipt.caseId !== state.caseId || !attributable(receipt.sourceEventId) || receipt.independentlyAuthorized !== true
+            || receipt.conflictDiscoveryAlone !== false) fail('INDEPENDENT_REVIEW_REQUIRED');
+          return [{ type: command.type === 'POST_FREEZE_WAIT' ? 'POST_FREEZE_WAIT' : 'REVIEW_RESOLVED', sourceEventId: receipt.sourceEventId }];
+        }
+        fail('UNKNOWN_COMMAND');
+      } catch (error) {
+        if (error.code !== 'INPUT_DISCREPANCY') throw error;
+        return [{ type: 'INPUT_DISCREPANCY', stage: state.stage, reason: error.message,
+          discrepancySources: error.discrepancySources,
+          resumeStatus: state.inputDiscrepancy?.resumeStatus ?? state.status }];
       }
-      if (command.type === 'RESOLVE_REVIEW' && state.inputDiscrepancy) {
-        if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
-        const receipt = this.#review.assess(structuredClone(state), command.type, db);
-        if (!receipt || receipt.then || receipt.caseId !== state.caseId || receipt.stage !== state.stage
-          || receipt.discrepancyVersion !== state.inputDiscrepancy.version || receipt.reviewedStateVersion !== state.version
-          || receipt.resolution !== 'RESUME' || receipt.independentlyAuthorized !== true || receipt.competent !== true
-          || !attributable(receipt.reviewerId) || !attributable(receipt.authorityReference) || !attributable(receipt.sourceEventId)
-          || receipt.reviewerId === state.inputDiscrepancy.actorId || receipt.reviewerId === state.accusedId) fail('INDEPENDENT_REVIEW_REQUIRED');
-        // Only the trusted adapter supplies the receipt. Caller payload cannot attest
-        // independence or competence. Persist its attribution separately from actorId.
-        return [{ type: 'INPUT_DISCREPANCY_RESOLVED', stage: state.stage, receipt: {
-          caseId: receipt.caseId, stage: receipt.stage, discrepancyVersion: receipt.discrepancyVersion,
-          reviewedStateVersion: receipt.reviewedStateVersion, resolution: receipt.resolution,
-          reviewerId: receipt.reviewerId, authorityReference: receipt.authorityReference,
-          sourceEventId: receipt.sourceEventId, independentlyAuthorized: true, competent: true } }];
-      }
-      if (command.type === 'POST_FREEZE_WAIT' || command.type === 'RESOLVE_REVIEW') {
-        if (command.type === 'POST_FREEZE_WAIT' && state.status !== `${state.stage}_EMPANELED`) fail('WRONG_STAGE');
-        if (command.type === 'RESOLVE_REVIEW' && state.status !== 'POST_FREEZE_REVIEW') fail('WRONG_STAGE');
-        if (typeof this.#review?.assess !== 'function') fail('INDEPENDENT_REVIEW_REQUIRED');
-        const receipt = this.#review.assess(structuredClone(state), command.type, db);
-        if (!receipt || receipt.then || receipt.caseId !== state.caseId || !attributable(receipt.sourceEventId) || receipt.independentlyAuthorized !== true
-          || receipt.conflictDiscoveryAlone !== false) fail('INDEPENDENT_REVIEW_REQUIRED');
-        return [{ type: command.type === 'POST_FREEZE_WAIT' ? 'POST_FREEZE_WAIT' : 'REVIEW_RESOLVED', sourceEventId: receipt.sourceEventId }];
-      }
-      fail('UNKNOWN_COMMAND');
     });
     return replayImpeachment(history);
   }
+  #receipt(authority, read) {
+    const receipt = sourceData(authority, undefined, read);
+    return sourceData(authority, receipt, () => { if (receipt && !receipt.then) canonical(receipt); return receipt; });
+  }
   #capture(state, db) {
-    const captured = this.#sources.capture(structuredClone(state), db);
-    if (!captured || captured.then) fail('INPUT_DISCREPANCY', 'SYNCHRONOUS_SNAPSHOT_REQUIRED');
-    // Source data that cannot be copied or canonically hashed (undefined, NaN, BigInt, functions, cycles)
-    // is a defective source for independent review, not a caller error that leaves the committed seed usable.
-    let snapshot;
-    try { snapshot = structuredClone(captured); canonical(snapshot); } catch { fail('INPUT_DISCREPANCY', 'MALFORMED_SOURCE_SNAPSHOT'); }
-    // Replacement reason codes come from the adapter that issues them, as a versioned source; a list in the
-    // captured snapshot is never trusted.
-    const codes = typeof this.#sources.assignmentReasonCodes === 'function' ? this.#sources.assignmentReasonCodes(structuredClone(state), db) : undefined;
-    if (!codes || codes.then) fail('INPUT_DISCREPANCY', 'MISSING_ASSIGNMENT_REASON_CODES');
-    try { snapshot.assignmentValidation = structuredClone(codes); canonical(codes); } catch { fail('INPUT_DISCREPANCY', 'MALFORMED_SOURCE_SNAPSHOT'); }
+    const captured = sourceData('compositionCapture', undefined, () => this.#sources.capture(structuredClone(state), db));
+    if (!captured || captured.then || typeof captured !== 'object' || Array.isArray(captured)) {
+      inputDiscrepancy('SYNCHRONOUS_SNAPSHOT_REQUIRED', [sourceReference('compositionCapture', captured)]);
+    }
+    const snapshot = {};
+    for (const name of SOURCE_NAMES) {
+      // The assignment adapter owns this source; a similarly named field in capture is not authoritative.
+      const raw = name === 'assignmentValidation'
+        ? sourceData(name, undefined, () => this.#sources.assignmentReasonCodes?.(structuredClone(state), db)) : captured[name];
+      if (name === 'assignmentValidation' && (!raw || raw.then)) {
+        inputDiscrepancy('MISSING_ASSIGNMENT_REASON_CODES', [sourceReference(name, raw)]);
+      }
+      snapshot[name] = copySource(name, raw);
+    }
+    // Unknown auxiliary fields are not silently exempt from source-data validation.
+    for (const name of Object.keys(captured).filter(name => !SOURCE_NAMES.includes(name))) {
+      snapshot[name] = sourceData('compositionCapture', captured, () => { const copy = structuredClone(captured[name]); canonical(copy); return copy; });
+    }
     for (const name of SOURCE_NAMES) {
       // Eligibility role decisions, conflicts and participation are case-specific.
       const scope = ['eligibility', 'conflicts', 'participation'].includes(name) ? `${state.caseId}:${name}` : name;
       // A source built from several authorities is first remembered per authority: a rollback or
       // unversioned change in one must not pass because another advanced.
       for (const [authority, own] of Object.entries(snapshot[name]?.authoritySources ?? {})) {
-        if (!attributable(authority)) fail('INPUT_DISCREPANCY', 'INVALID_AUTHORITY_NAME');
-        this.#store.rememberSource(`${scope}/${authority}`, own);
+        if (!attributable(authority)) inputDiscrepancy('INVALID_AUTHORITY_NAME', [sourceReference(name, snapshot[name])]);
+        this.#store.rememberSource(`${scope}/${authority}`, own, authority);
       }
-      this.#store.rememberSource(scope, snapshot[name]);
+      this.#store.rememberSource(scope, snapshot[name], name);
     }
-    this.#store.rememberSource('assignmentValidation', snapshot.assignmentValidation);
     return snapshot;
   }
   #enter(command, state, db, principal) {
     const snapshot = this.#capture(state, db);
     const versions = Object.fromEntries(SOURCE_NAMES.map(k => [k, snapshot[k].version]));
+    const sourceDigests = Object.fromEntries(SOURCE_NAMES.map(k => [k, digest(snapshot[k])]));
+    const changedReferences = previous => {
+      const changed = SOURCE_NAMES.filter(name => previous?.[name] !== sourceDigests[name]);
+      return (changed.length ? changed : SOURCE_NAMES).map(name => sourceReference(name, snapshot[name]));
+    };
     const current = state.commitments[state.stage];
     if (command.type === 'COMMIT_SEED') {
       if (typeof command.seedCommitment !== 'string' || !/^[a-f0-9]{64}$/.test(command.seedCommitment)) fail('INVALID_SEED_COMMITMENT');
       if (current && current.snapshotDigest === digest(snapshot)) fail('SEED_ALREADY_COMMITTED');
       if (state.lastAttempt?.stage === state.stage && canonical(versions) === canonical(state.lastAttempt.sourceVersions)) fail('SOURCE_VERSION_UNCHANGED');
       return [{ type: 'SEED_COMMITTED', stage: state.stage, seedCommitment: command.seedCommitment,
-        snapshotDigest: digest(snapshot), snapshotIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId), sourceVersions: versions, algorithmVersion: ALGORITHM_VERSION }];
+        snapshotDigest: digest(snapshot), sourceDigests, snapshotIds: SOURCE_NAMES.map(k => snapshot[k].snapshotId), sourceVersions: versions, algorithmVersion: ALGORITHM_VERSION }];
     }
     if (!current) fail('SEED_NOT_COMMITTED');
     if (current.seedCommitment !== seedCommitment(command.seed)) fail('SEED_MISMATCH');
-    if (current.snapshotDigest !== digest(snapshot)) fail('INPUT_DISCREPANCY', 'STALE_COMMITTED_SNAPSHOT');
+    if (current.snapshotDigest !== digest(snapshot)) inputDiscrepancy('STALE_COMMITTED_SNAPSHOT', changedReferences(current.sourceDigests));
     if (state.lastAttempt?.stage === state.stage && canonical(versions) === canonical(state.lastAttempt.sourceVersions)) fail('SOURCE_VERSION_UNCHANGED');
     const plan = planBootstrapStage({ snapshot, caseId: state.caseId, accusedId: state.accusedId, stage: state.stage, seed: command.seed,
       accusationParticipants: state.accusationParticipants,
       accusedSourceEventId: state.accusedSourceEventId, accusationPanelSourceEventId: state.accusationPanelSourceEventId,
+      caseSnapshot: { snapshotId: `case:${state.caseId}:${state.version}` },
       validateAssignment: (identityId, stage) => this.#sources.validateAssignment(identityId, stage, structuredClone(snapshot), db) });
-    if (digest(this.#capture(state, db)) !== digest(snapshot)) fail('INPUT_DISCREPANCY', 'SOURCE_CHANGED_DURING_ASSIGNMENT');
+    const after = this.#capture(state, db);
+    if (digest(after) !== digest(snapshot)) {
+      const changed = SOURCE_NAMES.filter(name => digest(after[name]) !== sourceDigests[name]);
+      inputDiscrepancy('SOURCE_CHANGED_DURING_ASSIGNMENT', (changed.length ? changed : SOURCE_NAMES).map(name => sourceReference(name, after[name])));
+    }
     plan.createdBy = principal.id; plan.createdAt = new Date().toISOString();
     return [{ type: 'STAGE_PLANNED', stage: state.stage, sourceVersions: versions, plan }];
   }

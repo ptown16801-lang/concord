@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { DatabaseSync } from "node:sqlite";
+import { attributable, assertDenseArrays } from "../validation.js";
 
 export const POPULATION_CEILING = 300;
 export const CREATION_ROUTES = Object.freeze([
@@ -21,6 +22,11 @@ function requiredString(value, name) {
   return value;
 }
 
+function requiredId(value, name) {
+  if (!attributable(value)) throw new TypeError(`${name} must be a plain identifier`);
+  return value;
+}
+
 function timestamp(value, name) {
   requiredString(value, name);
   if (Number.isNaN(Date.parse(value))) throw new TypeError(`${name} must be an ISO timestamp`);
@@ -32,6 +38,7 @@ function details(value) {
   if (typeof value !== "object" || Array.isArray(value)) {
     throw new TypeError("details must be an object");
   }
+  assertDenseArrays(value);
   return JSON.stringify(value);
 }
 
@@ -80,12 +87,12 @@ export class PopulationRegistry {
 
   createIdentity(input) {
     const identity = {
-      id: requiredString(input?.id, "id"),
-      division: requiredString(input?.division, "division"),
+      id: requiredId(input?.id, "id"),
+      division: requiredId(input?.division, "division"),
       identityClass: requiredString(input?.identityClass, "identityClass"),
       creationRoute: requiredString(input?.creationRoute, "creationRoute"),
-      createdBy: requiredString(input?.createdBy, "createdBy"),
-      authorityReference: requiredString(input?.authorityReference, "authorityReference"),
+      createdBy: requiredId(input?.createdBy, "createdBy"),
+      authorityReference: requiredId(input?.authorityReference, "authorityReference"),
       createdAt: timestamp(input?.createdAt, "createdAt"),
       details: details(input?.details),
     };
@@ -133,10 +140,10 @@ export class PopulationRegistry {
 
   markTerminal(input) {
     const transition = {
-      id: requiredString(input?.id, "id"),
+      id: requiredId(input?.id, "id"),
       reason: requiredString(input?.reason, "reason"),
-      actorId: requiredString(input?.actorId, "actorId"),
-      authorityReference: requiredString(input?.authorityReference, "authorityReference"),
+      actorId: requiredId(input?.actorId, "actorId"),
+      authorityReference: requiredId(input?.authorityReference, "authorityReference"),
       occurredAt: timestamp(input?.occurredAt, "occurredAt"),
       details: details(input?.details),
     };
@@ -174,6 +181,7 @@ export class PopulationRegistry {
   }
 
   getIdentity(id) {
+    requiredId(id, "id");
     return mapIdentity(this.database.prepare(`
       SELECT id, division, identity_class AS identityClass,
         creation_route AS creationRoute, created_by AS createdBy,
@@ -185,6 +193,7 @@ export class PopulationRegistry {
   }
 
   getEvents(id) {
+    requiredId(id, "id");
     return this.database.prepare(`
       SELECT sequence, identity_id AS identityId, event_type AS eventType,
         actor_id AS actorId, authority_reference AS authorityReference,
