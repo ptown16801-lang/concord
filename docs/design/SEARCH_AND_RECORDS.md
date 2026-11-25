@@ -18,7 +18,7 @@ Contextual-help controls reuse the same index for exact, near and related passag
 | Artifact archive | Reference artifact identity and provenance | Link to the artifact's authoritative location |
 | Research Library | Canonical GOV identities, attachments, graph and verification state | Index permitted metadata; no app page to deep-link to ([CON-099](../../DECISIONS.md#CON-099)) |
 
-Status 2026-11-25: the Concord app will have no Research Library section, so there is no library route, page or Library layer for search to handle; the papers are kept in folders ([CON-099](../../DECISIONS.md#CON-099)). Earlier text here gave the [Research Library](../research/RESEARCH_LIBRARY.md) its own route and page state. Quiz content, answers, scores and routes are excluded.
+Status 2026-11-25: the Concord app will have no Research Library section, so search has no library route or page to open; the papers are kept in folders, and search may still index permitted metadata about them ([CON-099](../../DECISIONS.md#CON-099)). Earlier text here gave the [Research Library](../research/RESEARCH_LIBRARY.md) its own route and page state. Quiz content, answers, scores and routes are excluded.
 
 ## Institutional guides
 
@@ -28,4 +28,4 @@ Historical records describe a large generated corpus and embedded reader. The or
 
 ## Remaining verification
 
-Current source records identify incomplete proof of full indexing, arbitrary scientific-paper routing beyond exact GOV-ID lookup, multi-match selection across the corpus, and contextual help for all interactive assets. Reader/mobile regression and cross-module deep links also need actual evidence at the chosen implementation revision. See [project status](../PROJECT_STATUS.md).
+Current source records identify incomplete proof of full indexing, arbitrary scientific-paper routing beyond exact GOV-ID lookup, multi-match selection across the corpus, contextual help for all interactive assets, and behavior when Research Library layers are partially unavailable. Reader/mobile regression and cross-module deep links also need actual evidence at the chosen implementation revision. See [project status](../PROJECT_STATUS.md).

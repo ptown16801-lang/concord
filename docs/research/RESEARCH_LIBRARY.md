@@ -1,8 +1,8 @@
 # Research Library
 
-Status 2026-11-25: the app parts of this document are superseded by [CON-099](../../DECISIONS.md#CON-099). The Concord app will have no Research Library section; the page, routes, reader, graph layers and static-artifact client described below, including the recorded completed slices, are history, not a plan. The research papers are kept in folders and remain a Concord workstream; the identity and evidence rules below are unchanged. The reported historical Workbench artifact is not recovered as inspectable bytes in this audit; its filename/hash and earlier static checks do not establish a currently usable public interface.
+Status 2026-11-25: the app parts of this document are superseded by [CON-099](../../DECISIONS.md#CON-099). The Concord app will have no Research Library section; the app page, routes, reader, static-artifact client and in-app graph presentation described below, including the recorded completed slices, are history, not a plan. The research papers are kept in folders and remain a Concord workstream; the identity and evidence rules below are unchanged. The reported historical Workbench artifact is not recovered as inspectable bytes in this audit; its filename/hash and earlier static checks do not establish a currently usable public interface.
 
-The Research Library has its own canonical bibliography and attachment-verification state, but no page or route in the Concord app ([CON-099](../../DECISIONS.md#CON-099)). Search, institutional guides, the artifact archive, public-record publication and the graph presentation layer may link to or consume it; none replaces its identity or owns its records.
+The Research Library has its own canonical bibliography and attachment-verification state, but no page or route in the Concord app ([CON-099](../../DECISIONS.md#CON-099)). Search, institutional guides, the artifact archive, public-record publication and graph presentation may refer to or use its records; none replaces its identity or owns its records.
 
 ## Identity and evidence
 
@@ -12,7 +12,7 @@ PDF-derived citation evidence requires a `PASS_CONFIRMED` attachment. Snippet ma
 
 ## Static artifact contract
 
-The deployment profile consists of schema-versioned static data consumed by a lightweight client:
+The historical deployment profile consisted of schema-versioned static data consumed by a lightweight client:
 
 - `research-papers.json`
 - `research-edges.json`
@@ -25,7 +25,7 @@ The v1 validator requires unique GOV IDs, resolvable edge endpoints, the confirm
 
 ## Page, graph and comparisons
 
-The logical routes are `/research-library` and `/research-library/:govId`; the historical single-file deployment used corresponding hash routes. A page remains addressable when its PDF is missing. Catalog controls cover family, verification state, author, year and journal. Paper detail combines canonical metadata, relevance/taxonomy, attachment state and evidence-backed relationships.
+The historical logical routes were `/research-library` and `/research-library/:govId`; the historical single-file deployment used corresponding hash routes. A page remains addressable when its PDF is missing. Catalog controls cover family, verification state, author, year and journal. Paper detail combines canonical metadata, relevance/taxonomy, attachment state and evidence-backed relationships.
 
 Keep semantic similarity, direct citation, cited-by, shared references/bibliographic coupling, taxonomy, shared authorship, analyst-reviewed relations and mathematical similarity independently inspectable. Available layers toggle separately; unavailable reviewed/math layers remain explicitly unavailable. Do not collapse all signals into one unexplained score. Every edge retains provenance, cross-family links remain distinguishable, and graph identity remains GOV ID.
 
@@ -39,4 +39,4 @@ The compact v1 representation is not an identity failure. Its display-text autho
 
 The retained record reports 324 bibliography records and 9,596 graph edges, dated September 15, 2026. These are historical producer figures, not a newly verified live corpus. It also reports a verified-attachment citation pilot; large-scale scientific embedding inference and mathematical/reviewed graph layers were not established as completed. Historical access/network failures are not asserted as current global failures.
 
-The historical architecture kept PDFs in Google Drive, performed heavy indexing/model work in batches, and served generated static artifacts without requiring a permanent model or vector-database server. Google Drive is no longer the canonical store for the papers, and the register fixes no storage location ([CON-099](../../DECISIONS.md#CON-099)). This public guide contains no private Drive destination or corpus access link. See [project status](../PROJECT_STATUS.md) for the repair's actual published state.
+The historical architecture called for keeping PDFs in Google Drive, doing heavy indexing/model work in batches, and serving generated static artifacts without requiring a permanent model or vector-database server. Google Drive is no longer the canonical store for the papers, and the register fixes no storage location ([CON-099](../../DECISIONS.md#CON-099)). This public guide contains no private Drive destination or corpus access link. See [project status](../PROJECT_STATUS.md) for the repair's actual published state.
