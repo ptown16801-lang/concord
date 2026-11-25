@@ -4160,5 +4160,16 @@
     "relationship": "Records the owner decisions behind CON-097, which supersedes CON-007, and CON-098, which supersedes CON-080.",
     "snapshot": "docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md",
     "sha256": "4d65b41e7ccb1246c15fd6cc54faee5dac1139e684f2b0ba9a9cc01d48fa6a2a"
+  },
+  "OWNER-RESEARCH-LIBRARY-20261125": {
+    "title": "Owner decision: no Research Library section in the Concord app",
+    "location": "docs/decisions/sources/OWNER-RESEARCH-LIBRARY-20261125.md",
+    "version": "Sanitized summary of owner decision, 2026-11-25",
+    "date": "2026-11-25",
+    "classification": "Sanitized summary of a direct owner decision made in a private chat; not unchanged original",
+    "scope": "Research Library app section and canonical PDF storage only",
+    "relationship": "Records the owner decision behind CON-099, which replaces the Research Library parts of CON-001, CON-065 and CON-073.",
+    "snapshot": "docs/decisions/sources/OWNER-RESEARCH-LIBRARY-20261125.md",
+    "sha256": "64b77ccd237aa6740358440f1123f2811f385724c1ba8666c8c6b0580c1d4170"
   }
 }
