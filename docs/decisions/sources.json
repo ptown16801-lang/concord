@@ -4167,9 +4167,9 @@
     "version": "Sanitized summary of owner decision, 2026-11-25",
     "date": "2026-11-25",
     "classification": "Sanitized summary of a direct owner decision made in a private chat; not unchanged original",
-    "scope": "Research Library app section only",
+    "scope": "Research Library app section and canonical PDF storage only",
     "relationship": "Records the owner decision behind CON-099, which replaces the Research Library parts of CON-001, CON-065 and CON-073.",
     "snapshot": "docs/decisions/sources/OWNER-RESEARCH-LIBRARY-20261125.md",
-    "sha256": "d6bae162a0b57b71cd5c64cb44eaab06c646cbd8d4a50c9989a0dc0313e3186b"
+    "sha256": "64b77ccd237aa6740358440f1123f2811f385724c1ba8666c8c6b0580c1d4170"
   }
 }

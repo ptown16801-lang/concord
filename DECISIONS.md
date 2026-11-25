@@ -843,7 +843,7 @@ The initial recovery captured this same plan as an unpublished, unaccepted local
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Use a unified shell with nested explorer, global indexed search/live autocomplete, archive/library readers, permitted discussion surfaces and movable/resizable/stackable/removable/full-screen-snappable windows. Prefer phone primary views without vertical page scrolling when feasible. Unique strong search matches may deep-link; ambiguous terms open ranked choices with context. Index generated text with source/topic/passage anchors. Contextual question-mark help on interactive assets searches exact/near/related indexed material. Preserve already-generated guides and approved artwork rather than reporting them missing. The Institutional Learning Library/generated guide corpus is distinct from the scientific Research Library: cross-links are allowed, but canonical identities, page state, attachment verification and research-graph ownership remain separate. Label fictional examples separately from authoritative records.
+Use a unified shell with nested explorer, global indexed search/live autocomplete, archive/library readers, permitted discussion surfaces and movable/resizable/stackable/removable/full-screen-snappable windows. Prefer phone primary views without vertical page scrolling when feasible. Unique strong search matches may deep-link; ambiguous terms open ranked choices with context. Index generated text with source/topic/passage anchors. Contextual question-mark help on interactive assets searches exact/near/related indexed material. Preserve already-generated guides and approved artwork rather than reporting them missing. The Institutional Learning Library/generated guide corpus is distinct from the scientific Research Library: cross-links are allowed, but canonical identities, page state, attachment verification and research-graph ownership remain separate. [CON-099](#CON-099) retires any Research Library app page or reader; the rest of this rule is unchanged. Label fictional examples separately from authoritative records.
 
 <a id="CON-061"></a>
 ### CON-061 — Relational observatory
@@ -916,7 +916,7 @@ Preserve the completed deployable beta. Its canonical persistence foundation use
 - Acceptance date: Unavailable: original acceptance date not independently recovered
 - Sources: [LIN-JON-26](docs/decisions/evidence/LIN-JON-26.md), [LIN-JON-28](docs/decisions/evidence/LIN-JON-28.md), [DRIVE-INDEX](docs/decisions/evidence/DRIVE-INDEX.md), [LIN-IDENTITY](docs/decisions/evidence/LIN-IDENTITY.md)
 - Supersedes: None
-- Implementation: The Research Library has no app section (CON-099); exact merged Workbench bytes not recovered in this task.
+- Implementation: The Research Library will have no app section (CON-099); exact merged Workbench bytes not recovered in this task.
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
@@ -1003,7 +1003,7 @@ Latest explicit owner scope and issue-specific authority control. Historical bla
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy. Research Library sentence replaced by CON-099 (owner decision, 2026-11-25).
 
-The Research Library app section will not be built ([CON-099](#CON-099)). Its twelve unfinished issues stay unexecuted; what happens to each in Linear is a separate owner step. Completed JON-49/50/51 remain history. All quiz content, implementation, reports, telemetry, fixtures and acceptance inputs remain deferred until explicitly reopened. Historical information-reporting design is observational: reports reference exact content versions, do not mutate answers/scores or adjudicate truth, preserve independent reports, and distinguish private/blind/visible exposure phases. Historical adaptive curriculum (Recognize → Retrieve → Apply → Combine → Handle uncertainty → Transfer → Retain) remains low-priority deferred history, not a current implementation requirement.
+The Research Library app section will not be built ([CON-099](#CON-099)). Its twelve unfinished issues remain Do Not Execute until the owner decides what happens to each in Linear; completed JON-49/50/51 are not reopened. All quiz content, implementation, reports, telemetry, fixtures and acceptance inputs remain deferred until explicitly reopened. Historical information-reporting design is observational: reports reference exact content versions, do not mutate answers/scores or adjudicate truth, preserve independent reports, and distinguish private/blind/visible exposure phases. Historical adaptive curriculum (Recognize → Retrieve → Apply → Combine → Handle uncertainty → Transfer → Retain) remains low-priority deferred history, not a current implementation requirement.
 
 <a id="CON-074"></a>
 ### CON-074 — One master and controlled updates
@@ -1178,18 +1178,18 @@ This register is the authority. The originals and original approval records that
 ### CON-099 — No Research Library section in the Concord app
 
 - Status: Accepted
-- Scope: The Research Library app section; the research itself is not affected
+- Scope: The Research Library app section and the canonical PDF storage rule; the research itself is not affected
 - Acceptance: Owner decision in chat, 2026-11-25; the owner approved this entry's exact text before it was written (CON-074).
 - Acceptance date: 2026-11-25
 - Sources: [OWNER-RESEARCH-LIBRARY-20261125](docs/decisions/sources/OWNER-RESEARCH-LIBRARY-20261125.md)
 - Supersedes: None
 - Implementation: No code change. Linear issue status is not changed by this entry. Design documents that describe the library page are not changed by this entry.
-- Verification: Author's checks only (decisions:generate/check/test).
-- Rationale: Owner decision; the papers are research material organised in folders, not an app feature.
+- Verification: Author's checks (decisions:generate/check/test), 2026-11-25, are the author's record only. The independent check (JON-338) and owner acceptance are recorded separately.
+- Rationale: Owner decision; the papers are research material organised in folders, not an app feature. Supersedes is None because no entry is replaced in full; the partial replacements are listed below.
 
-The Concord app will have no Research Library section. The research papers are kept in folders; this register fixes no storage location. The research library itself, as papers in folders, remains a Concord workstream, and GOV identity remains bibliographic identity ([CON-065](#CON-065)).
+The Concord app will have no Research Library section. The research papers are kept in folders. The owner also decided that Google Drive is no longer the canonical store for the papers; this register fixes no storage location. The research library itself, as papers in folders, remains a Concord workstream, and GOV identity remains bibliographic identity ([CON-065](#CON-065)).
 
-This replaces only the Research Library parts of three entries. [CON-001](#CON-001) previously read "Research Library, Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams." [CON-065](#CON-065) previously read "Google Drive remains canonical scientific-PDF storage" and "Research Library remains held". [CON-073](#CON-073) was titled "Held library and deferred quizzes" and previously read "Research Library’s twelve unfinished held items remain Do Not Execute; completed JON-49/50/51 are not reopened." The deferred quizzes in CON-073 are unchanged. [CON-060](#CON-060)'s references to a Research Library page and research graph are history.
+This replaces only the Research Library parts of three entries. [CON-001](#CON-001) previously read "Research Library, Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams." [CON-065](#CON-065) previously read "Google Drive remains canonical scientific-PDF storage" and "Research Library remains held". [CON-073](#CON-073) was titled "Held library and deferred quizzes" and previously read "Research Library’s twelve unfinished held items remain Do Not Execute; completed JON-49/50/51 are not reopened." The deferred quizzes in CON-073 are unchanged. [CON-060](#CON-060) gains a pointer to this entry; its references to a Research Library page are history.
 
 ## Unresolved evidence and preserved history
 
