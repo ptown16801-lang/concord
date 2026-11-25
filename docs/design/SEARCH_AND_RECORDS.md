@@ -16,9 +16,9 @@ Contextual-help controls reuse the same index for exact, near and related passag
 | Institutional guides | Guide text, stable topic/page identifiers and fictional examples | Index, deep-link and supply contextual help |
 | Archivist/public records | Authenticated publication and append-only record history | Index authorized projections and preserve source/version links |
 | Artifact archive | Reference artifact identity and provenance | Link to the artifact's authoritative location |
-| Research Library | Canonical GOV identities, attachments, graph and verification state | Index permitted metadata and deep-link to its distinct page |
+| Research Library | Canonical GOV identities, attachments, graph and verification state | Index permitted metadata; no app page to deep-link to ([CON-099](../../DECISIONS.md#CON-099)) |
 
-The [Research Library](../research/RESEARCH_LIBRARY.md) retains its own route and page state. It is not a generic search-results subsection. If a Library layer is unavailable, search must represent that state without blocking unrelated modules or fabricating results. Quiz content, answers, scores and routes are excluded.
+Status 2026-11-25: the Concord app will have no Research Library section, so search has no library route or page to open; the papers are kept in folders, and search may still index permitted metadata about them ([CON-099](../../DECISIONS.md#CON-099)). Earlier text here gave the [Research Library](../research/RESEARCH_LIBRARY.md) its own route and page state. Quiz content, answers, scores and routes are excluded.
 
 ## Institutional guides
 

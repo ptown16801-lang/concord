@@ -104,6 +104,8 @@ The owner column names component responsibility, not a new appointment or grant.
 | **Artifact archive** | Artifact archive component | Reference artifact identity/hashes/locations | Public ledger (not a competing one) |
 | **Research Library** | Research Library component | GOV bibliographic identities; Drive is canonical for PDFs | Any governance store |
 
+Status 2026-11-25: [CON-099](../../DECISIONS.md#CON-099) retires the Research Library app section and supersedes this row's claim that Drive is canonical for PDFs; the register fixes no storage location. GOV identity remains bibliographic identity. The rest of the row is historical proposal text; CON-099 does not say whether a records domain is needed for GOV identities. The proposal derives from the October 13, 2026 analysis.
+
 Two design choices need explicit qualification:
 
 - **Ordinary registry and covert identity ownership.** Covert identities must not
