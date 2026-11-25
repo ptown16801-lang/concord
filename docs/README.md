@@ -50,7 +50,7 @@ These documents identify their accepted boundaries, proposed details, and implem
 - [Scheduler selection research](research/SCHEDULER_SELECTION.md) — evaluation requirements; candidates remain unselected.
 - [Simulation and resilience study](research/SIMULATION_AND_RESILIENCE.md) — reproducible synthetic queue model, results, and limits.
 - [Coin experiment references](research/coin-experiment/README.md), [observer boundaries](research/coin-experiment/OBSERVER_BOUNDARIES.md), and [measurement protocol requirements](research/coin-experiment/MEASUREMENT_PROTOCOL.md) — mechanisms, isolation requirements, measurements, and unresolved study choices.
-- [Research Library](research/RESEARCH_LIBRARY.md) — design boundaries and retained holds.
+- [Research Library](research/RESEARCH_LIBRARY.md) — design boundaries. Status 2026-11-25: the library page design is superseded by [CON-099](../DECISIONS.md#CON-099); the app will have no Research Library section, and the papers are kept in folders.
 
 ## Reviewed proposals and repair plans
 

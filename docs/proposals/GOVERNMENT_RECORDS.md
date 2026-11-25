@@ -104,6 +104,8 @@ The owner column names component responsibility, not a new appointment or grant.
 | **Artifact archive** | Artifact archive component | Reference artifact identity/hashes/locations | Public ledger (not a competing one) |
 | **Research Library** | Research Library component | GOV bibliographic identities; Drive is canonical for PDFs | Any governance store |
 
+Status 2026-11-25: the Research Library row is superseded by [CON-099](../../DECISIONS.md#CON-099). The Concord app will have no Research Library section, and Google Drive is no longer the canonical store for the papers; the register fixes no storage location. GOV identity remains bibliographic identity. CON-099 does not say whether a records domain is needed for GOV identities. The row is kept as written in this proposal, which derives from the October 13, 2026 analysis.
+
 Two design choices need explicit qualification:
 
 - **Ordinary registry and covert identity ownership.** Covert identities must not

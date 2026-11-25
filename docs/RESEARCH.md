@@ -28,7 +28,7 @@ The [local propagation pilot](https://github.com/ptown16801-lang/concord/blob/d7
 
 ## Library and related research
 
-The Research Library design separates bibliographic identity from attached files and keeps citation, semantic, authorship, and other relationship layers inspectable. Some bounded work has been reported complete; broader Library integration and quiz work are deferred.
+The Research Library design separates bibliographic identity from attached files and keeps citation, semantic, authorship, and other relationship layers inspectable. Some bounded work has been reported complete. The Concord app will have no Research Library section; the papers are kept in folders, and the earlier library-page design is history ([CON-099](../DECISIONS.md#CON-099)). Quiz work remains deferred.
 
 The [Generative Agents analysis](GENERATIVE_AGENTS_ANALYSIS.md) provides related literature analysis and proposed directions. External research, recommendations, replicated experiments, and Concord-specific results require separate evidence.
 

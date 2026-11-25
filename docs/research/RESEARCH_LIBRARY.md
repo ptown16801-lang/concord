@@ -1,8 +1,8 @@
 # Research Library
 
-Status: held subsystem with recorded completed static-artifact, page and graph slices. Continuation and integration remain held. The reported historical Workbench artifact is not recovered as inspectable bytes in this audit; its filename/hash and earlier static checks do not establish a currently usable public interface.
+Status 2026-11-25: the app parts of this document are superseded by [CON-099](../../DECISIONS.md#CON-099). The Concord app will have no Research Library section; the page, routes, reader, graph layers and static-artifact client described below, including the recorded completed slices, are history, not a plan. The research papers are kept in folders and remain a Concord workstream; the identity and evidence rules below are unchanged. The reported historical Workbench artifact is not recovered as inspectable bytes in this audit; its filename/hash and earlier static checks do not establish a currently usable public interface.
 
-The Research Library has its own page, route, canonical bibliography and attachment-verification state. Search, institutional guides, the artifact archive, public-record publication and the graph presentation layer may link to or consume it; none replaces its identity or owns its records.
+The Research Library has its own canonical bibliography and attachment-verification state, but no page or route in the Concord app ([CON-099](../../DECISIONS.md#CON-099)). Search, institutional guides, the artifact archive, public-record publication and the graph presentation layer may link to or consume it; none replaces its identity or owns its records.
 
 ## Identity and evidence
 
@@ -39,4 +39,4 @@ The compact v1 representation is not an identity failure. Its display-text autho
 
 The retained record reports 324 bibliography records and 9,596 graph edges, dated September 15, 2026. These are historical producer figures, not a newly verified live corpus. It also reports a verified-attachment citation pilot; large-scale scientific embedding inference and mathematical/reviewed graph layers were not established as completed. Historical access/network failures are not asserted as current global failures.
 
-The architecture keeps PDFs in their canonical Drive store, performs heavy indexing/model work in batches, and serves generated static artifacts without requiring a permanent model or vector-database server. This public guide contains no private Drive destination or corpus access link. See [project status](../PROJECT_STATUS.md) for the repair's actual published state.
+The historical architecture kept PDFs in Google Drive, performed heavy indexing/model work in batches, and served generated static artifacts without requiring a permanent model or vector-database server. Google Drive is no longer the canonical store for the papers, and the register fixes no storage location ([CON-099](../../DECISIONS.md#CON-099)). This public guide contains no private Drive destination or corpus access link. See [project status](../PROJECT_STATUS.md) for the repair's actual published state.

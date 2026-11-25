@@ -4,7 +4,7 @@ The [research guide](../RESEARCH.md) introduces Concord's research questions and
 
 Research records should identify the question, method, source or code revision, observations, and limits. Keep proposed studies, synthetic checks, reproduced external findings, and measured Concord results distinct. Historical run logs and private account setup are not research conclusions.
 
-Start with scheduling and continuity, decision propagation and replay, and the issuer-specific coin experiment in the guide. Deferred Library and quiz work remains deferred.
+Start with scheduling and continuity, decision propagation and replay, and the issuer-specific coin experiment in the guide. The Concord app will have no Research Library section ([CON-099](../../DECISIONS.md#CON-099)); quiz work remains deferred.
 
 The [simulation and resilience study](SIMULATION_AND_RESILIENCE.md) includes a
 standard-library Python simulator and selected results from an invented queue

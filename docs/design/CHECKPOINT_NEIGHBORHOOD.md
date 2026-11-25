@@ -18,7 +18,7 @@ This design elaborates the accepted checkpoint-neighborhood foundation: durable 
 | JON-21 | Optional authorized analytical annotations | Owns metrics and uncertainty; similarity does not prove motive or affiliation |
 | JON-23 | Search/help routing over permitted objects | Owns indexing and contextual help |
 
-JON-52 Research Library interfaces remain held and are neither an input requirement nor an implementation shortcut. A disclosure derivative receives its own permitted reference; it does not expose the sealed original's ID, hash, location, event time, relation count or linkage unless each such field is separately authorized.
+JON-52 Research Library interfaces are neither an input requirement nor an implementation shortcut; the Concord app will have no Research Library section ([CON-099](../../DECISIONS.md#CON-099)). A disclosure derivative receives its own permitted reference; it does not expose the sealed original's ID, hash, location, event time, relation count or linkage unless each such field is separately authorized.
 
 ## Proposed data contracts
 
