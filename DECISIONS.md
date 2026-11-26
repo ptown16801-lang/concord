@@ -57,7 +57,7 @@ instruction below. These are distinct source decisions, not renumbered CON entri
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Concord and The Form are separate peer projects. Vote is their folder name only; Voat was a typo. Research Library, Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
+Concord and The Form are separate peer projects. Vote is their folder name only; Voat was a typo. Research Library (papers organised in folders; no app section, [CON-099](#CON-099)), Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams. The Form owns forum state; Concord consumes accepted interfaces and permitted analysis. The Form = Governance Commons naming equivalence remains an explicit assumption, not an adopted identity.
 
 <a id="CON-002"></a>
 ### CON-002 — Linux deployment
@@ -137,7 +137,7 @@ Total Recall changes residency/resources for a living identity; it is not death,
 <a id="CON-007"></a>
 ### CON-007 — Inherited founding baseline and original provenance
 
-- Status: Unresolved
+- Status: Superseded
 - Scope: Inherited founding population; unresolved original numeric-approval provenance only
 - Acceptance: Retained decision and architecture records preserve forty as the inherited baseline; exact original numeric-approval evidence remains unavailable.
 - Acceptance date: Unavailable: original numeric-approval date not recovered; September 30, 2026 is recovery time, not adoption.
@@ -145,7 +145,7 @@ Total Recall changes residency/resources for a living identity; it is not death,
 - Supersedes: None
 - Implementation: Forty-founder design baseline retained; no runtime or protected-census implementation certified.
 - Verification: Project recovery and preserved register reconciled; no conversation audit or product test.
-- Rationale: Correct the stronger claim that forty is merely a new proposal without inventing an original adoption date.
+- Rationale: Correct the stronger claim that forty is merely a new proposal without inventing an original adoption date. Superseded in full by CON-097 (owner decision, 2026-11-14): the founding number will be set before launch.
 
 Retain forty genuine ordinary governance identities as the inherited founding
 baseline. The architecture register specifies five in each of eight permanent
@@ -843,7 +843,7 @@ The initial recovery captured this same plan as an unpublished, unaccepted local
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Use a unified shell with nested explorer, global indexed search/live autocomplete, archive/library readers, permitted discussion surfaces and movable/resizable/stackable/removable/full-screen-snappable windows. Prefer phone primary views without vertical page scrolling when feasible. Unique strong search matches may deep-link; ambiguous terms open ranked choices with context. Index generated text with source/topic/passage anchors. Contextual question-mark help on interactive assets searches exact/near/related indexed material. Preserve already-generated guides and approved artwork rather than reporting them missing. The Institutional Learning Library/generated guide corpus is distinct from the scientific Research Library: cross-links are allowed, but canonical identities, page state, attachment verification and research-graph ownership remain separate. Label fictional examples separately from authoritative records.
+Use a unified shell with nested explorer, global indexed search/live autocomplete, archive/library readers, permitted discussion surfaces and movable/resizable/stackable/removable/full-screen-snappable windows. Prefer phone primary views without vertical page scrolling when feasible. Unique strong search matches may deep-link; ambiguous terms open ranked choices with context. Index generated text with source/topic/passage anchors. Contextual question-mark help on interactive assets searches exact/near/related indexed material. Preserve already-generated guides and approved artwork rather than reporting them missing. The Institutional Learning Library/generated guide corpus is distinct from the scientific Research Library: cross-links are allowed, but canonical identities, page state, attachment verification and research-graph ownership remain separate. [CON-099](#CON-099) retires any Research Library app page or reader; the rest of this rule is unchanged. Label fictional examples separately from authoritative records.
 
 <a id="CON-061"></a>
 ### CON-061 — Relational observatory
@@ -916,11 +916,11 @@ Preserve the completed deployable beta. Its canonical persistence foundation use
 - Acceptance date: Unavailable: original acceptance date not independently recovered
 - Sources: [LIN-JON-26](docs/decisions/evidence/LIN-JON-26.md), [LIN-JON-28](docs/decisions/evidence/LIN-JON-28.md), [DRIVE-INDEX](docs/decisions/evidence/DRIVE-INDEX.md), [LIN-IDENTITY](docs/decisions/evidence/LIN-IDENTITY.md)
 - Supersedes: None
-- Implementation: Research Library remains held; exact merged Workbench bytes not recovered in this task.
+- Implementation: The Research Library will have no app section (CON-099); exact merged Workbench bytes not recovered in this task.
 - Verification: Source reconciliation only; no product-runtime verification performed.
 - Rationale: Preserve the recorded boundary without adding policy.
 
-Use stable artifact/source identities, hashes, versions, canonical locations and truthful delivery status. Google Drive remains canonical scientific-PDF storage; GOV identity is bibliographic identity, distinct from attachment file ID. Do not duplicate the corpus into Linear artifact archives. Preserve failed identity matches/quarantine and distinguish confirmed papers from snippets/metadata. A prepared upload is not a completed attachment. JON-18 owns governance publication; JON-28 owns reference artifacts, not a competing public ledger. The Drive workbook’s historical Vote hierarchy is superseded by CON-001; its recorded counts/hash are dated index evidence, not newly verified artifact bytes.
+Use stable artifact/source identities, hashes, versions, canonical locations and truthful delivery status. The research papers are kept in folders, and this register fixes no storage location ([CON-099](#CON-099)); GOV identity is bibliographic identity, distinct from attachment file ID. Do not duplicate the corpus into Linear artifact archives. Preserve failed identity matches/quarantine and distinguish confirmed papers from snippets/metadata. A prepared upload is not a completed attachment. JON-18 owns governance publication; JON-28 owns reference artifacts, not a competing public ledger. The Drive workbook’s historical Vote hierarchy is superseded by CON-001; its recorded counts/hash are dated index evidence, not newly verified artifact bytes.
 
 <a id="CON-066"></a>
 ### CON-066 — Research and reusable evidence
@@ -991,7 +991,7 @@ OD-1 consequence definitions/floors (including L1 proportionality), OD-2 family/
 Latest explicit owner scope and issue-specific authority control. Historical blanket design-only checkpoints do not revoke later bounded implementation permissions; equally, issue status, role assignment, CI or delivery never authorizes a new launch. Linear Coding Sessions remain prohibited. Choreography is disabled by owner instruction; preserve active work and integration ownership. Do not revive retired supervisors/dispatchers, launch Loops, buy credits or create agents from archived prompts. JON-141’s existing writer owns its product aggregate; this documentation task is a separate candidate and does not take over that runtime branch.
 
 <a id="CON-073"></a>
-### CON-073 — Held library and deferred quizzes
+### CON-073 — Deferred quizzes; library app section dropped
 
 - Status: Accepted
 - Scope: Preserved excluded scope
@@ -1001,9 +1001,9 @@ Latest explicit owner scope and issue-specific authority control. Historical bla
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
 - Verification: Source reconciliation only; no product-runtime verification performed.
-- Rationale: Preserve the recorded boundary without adding policy.
+- Rationale: Preserve the recorded boundary without adding policy. Research Library sentence replaced by CON-099 (owner decision, 2026-11-25).
 
-Research Library’s twelve unfinished held items remain Do Not Execute; completed JON-49/50/51 are not reopened. All quiz content, implementation, reports, telemetry, fixtures and acceptance inputs remain deferred until explicitly reopened. Historical information-reporting design is observational: reports reference exact content versions, do not mutate answers/scores or adjudicate truth, preserve independent reports, and distinguish private/blind/visible exposure phases. Historical adaptive curriculum (Recognize → Retrieve → Apply → Combine → Handle uncertainty → Transfer → Retain) remains low-priority deferred history, not a current implementation requirement.
+The Research Library app section will not be built ([CON-099](#CON-099)). Its twelve unfinished issues were closed in Linear on 2026-11-25 without being built (owner decision in chat); completed JON-49/50/51 are not reopened. All quiz content, implementation, reports, telemetry, fixtures and acceptance inputs remain deferred until explicitly reopened. Historical information-reporting design is observational: reports reference exact content versions, do not mutate answers/scores or adjudicate truth, preserve independent reports, and distinguish private/blind/visible exposure phases. Historical adaptive curriculum (Recognize → Retrieve → Apply → Combine → Handle uncertainty → Transfer → Retain) remains low-priority deferred history, not a current implementation requirement.
 
 <a id="CON-074"></a>
 ### CON-074 — One master and controlled updates
@@ -1144,22 +1144,71 @@ merge or deployment is authorized by this entry.
 
 Finger, the browser interaction-capture demo, is not part of Concord. It is no longer a Concord workstream. [CON-064](#CON-064) is superseded in full. [CON-001](#CON-001) and [CON-043](#CON-043) no longer name Finger; CON-001 previously read "…Visualization and Finger are bounded Concord workstreams."
 
+<a id="CON-097"></a>
+### CON-097 — Founding population size decided before launch
+
+- Status: Accepted
+- Scope: Founding population size only
+- Acceptance: Owner decision in chat, 2026-11-14; the owner approved this entry's exact text before it was written (CON-074).
+- Acceptance date: 2026-11-14
+- Sources: [OWNER-RECORDS-AND-FOUNDING-20261114](docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md)
+- Supersedes: CON-007
+- Implementation: No code change. The code sets no founding count; it enforces only the 300 ceiling.
+- Verification: Author's checks only (decisions:generate/check/test).
+- Rationale: Owner decision; the owner expects to start with fewer than forty.
+
+The number of founding governance identities is not fixed. The owner will set it before launch. Forty is no longer the baseline, and the missing record of its original approval is no longer needed. This entry does not change the 300 ceiling or the permanent divisions ([CON-015](#CON-015)).
+
+<a id="CON-098"></a>
+### CON-098 — Missing historical originals are not required
+
+- Status: Accepted
+- Scope: Historical originals and original approval records listed in CON-080
+- Acceptance: Owner decision in chat, 2026-11-14; the owner approved this entry's exact text before it was written (CON-074).
+- Acceptance date: 2026-11-14
+- Sources: [OWNER-RECORDS-AND-FOUNDING-20261114](docs/decisions/sources/OWNER-RECORDS-AND-FOUNDING-20261114.md)
+- Supersedes: CON-080
+- Implementation: No code change.
+- Verification: Author's checks only (decisions:generate/check/test).
+- Rationale: Owner decision; the owner does not have the missing originals and does not need them.
+
+This register is the authority. The originals and original approval records that [CON-080](#CON-080) lists as missing are not required, and their absence is not a gap. Do not search for them unless a specific question needs one. Missing original dates elsewhere in this register are history, not open work. If an original is found, keep it privately, keep its original decision IDs, and do not invent its approval date.
+
+<a id="CON-099"></a>
+### CON-099 — No Research Library section in the Concord app
+
+- Status: Accepted
+- Scope: The Research Library app section and the canonical PDF storage rule; the research itself is not affected
+- Acceptance: Owner decision in chat, 2026-11-25; the owner approved this entry's exact text before it was written (CON-074).
+- Acceptance date: 2026-11-25
+- Sources: [OWNER-RESEARCH-LIBRARY-20261125](docs/decisions/sources/OWNER-RESEARCH-LIBRARY-20261125.md)
+- Supersedes: None
+- Implementation: No code change. Linear issue status is not changed by this entry. Design documents that describe the library page are not changed by this entry.
+- Verification: Author's checks (decisions:generate/check/test), 2026-11-25, are the author's record only. The independent check (JON-338) and owner acceptance are recorded separately.
+- Rationale: Owner decision; the papers are research material organised in folders, not an app feature. Supersedes is None because no entry is replaced in full; the partial replacements are listed below.
+
+The Concord app will have no Research Library section. The research papers are kept in folders. The owner also decided that Google Drive is no longer the canonical store for the papers; this register fixes no storage location. The research library itself, as papers in folders, remains a Concord workstream, and GOV identity remains bibliographic identity ([CON-065](#CON-065)).
+
+This replaces only the Research Library parts of three entries. [CON-001](#CON-001) previously read "Research Library, Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams." [CON-065](#CON-065) previously read "Google Drive remains canonical scientific-PDF storage" and "Research Library remains held". [CON-073](#CON-073) was titled "Held library and deferred quizzes" and previously read "Research Library’s twelve unfinished held items remain Do Not Execute; completed JON-49/50/51 are not reopened." The deferred quizzes in CON-073 are unchanged. [CON-060](#CON-060) gains a pointer to this entry; its references to a Research Library page are history.
+
 ## Unresolved evidence and preserved history
 
 <a id="CON-080"></a>
 ### CON-080 — Unavailable original decision families
 
-- Status: Unresolved
+- Status: Superseded
 - Scope: Recovery gap
-- Acceptance: Unavailable: originals and original acceptance records need recovery.
+- Acceptance: Unavailable: original acceptance records and most originals need recovery; four originals found (see November 14, 2026 update).
 - Acceptance date: Unavailable: original acceptance date not independently recovered
 - Sources: [AUDIT-DIRECTORY](docs/decisions/evidence/AUDIT-DIRECTORY.md), [AUDIT-REPORT](docs/decisions/evidence/AUDIT-REPORT.md)
 - Supersedes: None
 - Implementation: Design requirement; implementation is separate and not certified by this consolidation.
-- Verification: Targeted local filename/session-path and Drive searches completed; no accessible saved-file library reader discovered.
-- Rationale: Preserve the recorded boundary without adding policy.
+- Verification: September 24, 2026: targeted local filename/session-path and Drive searches completed; no accessible saved-file library reader discovered. November 14, 2026: four found originals matched the sizes and SHA-256 hashes recorded in AUDIT-REPORT; checked privately.
+- Rationale: Preserve the recorded boundary without adding policy. Superseded in full by CON-098 (owner decision, 2026-11-14): the missing originals are not required.
 
 Saved-file originals DECISIONS variants, combined copies, CURRENT_DECISIONS.md, both Concord_Codex_Handoff.zip copies, governance prompts and ZKDISCLOSURE_FROZEN_DIRECTIVE.md are identified in AUDIT-DIRECTORY but their original bytes are unavailable through this session’s local/connected sources. Prior audit reports stale identical handoff summaries; that byte identity is prior-audit evidence, not independently rechecked here. Preserve original DEC identifiers and exact-text constitutional clauses when recovered; never invent their acceptance dates or silently map them to new policy.
+
+November 14, 2026 update: four of the originals named above have been found and are kept privately. They are DECISIONS.md, DECISIONS_relational_updated.md and DECISIONS_agreements_updated_20260912.md (recovered September 28, 2026) and the governance prompt AGENT_GOVERNANCE_MODEL_MASTER_PROMPT_v2.1_SELF_CONTAINED.md. Their sizes and SHA-256 hashes match AUDIT-REPORT. Readable text of the v1.1 master prompt, the v0.1.9 constitution and ZKDISCLOSURE_FROZEN_DIRECTIVE.md was recovered on September 30, 2026, but not their original files. Still unavailable: the other DECISIONS variants and combined copies, the historical CURRENT_DECISIONS.md, both Concord_Codex_Handoff.zip copies, the other governance-prompt originals, the original files behind the readable copies, and the original acceptance records. Finding a file is not acceptance: the v2.1 prompt calls itself a proposed governing prompt, and the v0.1.9 constitution calls itself a draft that is not ratified. The paragraph above describes the September 24, 2026 session.
 
 <a id="CON-081"></a>
 ### CON-081 — Unranked scheduler goals and downstream engineering

@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This summary describes the decision file in this checkout. Read entry scope, acceptance and implementation limits; publication does not establish acceptance or deployment.
 
-Master SHA-256 (exact UTF-8 bytes): `a8c258e7126f15181143e185ac328542f16d8268f1e759a9d34de4c7294372cb`
+Master SHA-256 (exact UTF-8 bytes): `314a760279e093aaeb9b837b08c8d7a6a7a61bdac606918b84626d9d96497198`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -16,7 +16,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-004](DECISIONS.md#CON-004) | Accepted | Institutional self-rule |
 | [CON-005](DECISIONS.md#CON-005) | Accepted | Persistent identities and memory |
 | [CON-006](DECISIONS.md#CON-006) | Accepted | Total Recall, succession and final death |
-| [CON-007](DECISIONS.md#CON-007) | Unresolved | Inherited founding baseline and original provenance |
+| [CON-007](DECISIONS.md#CON-007) | Superseded | Inherited founding baseline and original provenance |
 | [CON-008](DECISIONS.md#CON-008) | Accepted | Population ceiling and dual census |
 | [CON-009](DECISIONS.md#CON-009) | Accepted | Secret investigators and census opacity |
 | [CON-010](DECISIONS.md#CON-010) | Accepted | Identity creation routes |
@@ -66,14 +66,17 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-070](DECISIONS.md#CON-070) | Accepted | Roles and qualifying independence |
 | [CON-071](DECISIONS.md#CON-071) | Proposed | Detailed role specification remains proposed |
 | [CON-072](DECISIONS.md#CON-072) | Accepted | Execution holds and existing writers |
-| [CON-073](DECISIONS.md#CON-073) | Accepted | Held library and deferred quizzes |
+| [CON-073](DECISIONS.md#CON-073) | Accepted | Deferred quizzes; library app section dropped |
 | [CON-074](DECISIONS.md#CON-074) | Accepted | One master and controlled updates |
 | [CONCORD-WF-002](DECISIONS.md#CONCORD-WF-002) | Accepted | Consult Linear before large decisions |
 | [CON-093](DECISIONS.md#CON-093) | Accepted | Manual spending approval and included subscription use |
 | [CON-094](DECISIONS.md#CON-094) | Accepted | Isolated execution for separately authorized Claude advice |
 | [CON-095](DECISIONS.md#CON-095) | Accepted | Moltbook repository placement and participant boundaries |
 | [CON-096](DECISIONS.md#CON-096) | Accepted | Finger is not part of Concord |
-| [CON-080](DECISIONS.md#CON-080) | Unresolved | Unavailable original decision families |
+| [CON-097](DECISIONS.md#CON-097) | Accepted | Founding population size decided before launch |
+| [CON-098](DECISIONS.md#CON-098) | Accepted | Missing historical originals are not required |
+| [CON-099](DECISIONS.md#CON-099) | Accepted | No Research Library section in the Concord app |
+| [CON-080](DECISIONS.md#CON-080) | Superseded | Unavailable original decision families |
 | [CON-081](DECISIONS.md#CON-081) | Unresolved | Unranked scheduler goals and downstream engineering |
 | [CON-082](DECISIONS.md#CON-082) | Accepted | C3 Senate conviction uses clear and convincing evidence |
 | [CON-090](DECISIONS.md#CON-090) | Superseded | Rejected Vote hierarchy |

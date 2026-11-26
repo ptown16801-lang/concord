@@ -1,6 +1,6 @@
 # Concord institution and office map — source inventory (2026-11-12)
 
-**Status: revision 4. Decides nothing.** This
+**Status: revision 5. Decides nothing.** This
 file sits in `docs/research/`; per AGENTS.md it records research and does not
 change any decision. **No decision change.**
 
@@ -13,14 +13,17 @@ findings; see [Changes in revision 2](#changes-in-revision-2). Revision 2
 received an ACCEPT verdict with three P3 notes in the [JON-306 review][review3].
 Revision 4 fixes those notes and one further omission; the owner treated it as
 small, low-risk work without a further check. See
-[Changes in revision 4](#changes-in-revision-4).
+[Changes in revision 4](#changes-in-revision-4). Revision 5 updates rows 2
+and 3 for the owner's decision CON-097 and closes gap G5 under CON-098; see
+[Changes in revision 5](#changes-in-revision-5).
 
 **Author:** Claude (Opus 5.5), one session, 2026-11-12. The author is not an
 independent checker of this file.
 
 **Baseline:** `ptown16801-lang/concord`, branch `Develo`, commit
 [`77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce`][base]. Every line number below
-refers to that commit.
+refers to that commit, except the revision 5 citations, which refer to commit
+[`3b9d080`][base5].
 
 ## Purpose
 
@@ -52,7 +55,7 @@ table per office.
 - `docs/design/POPULATION_VOTING_BOUNDARIES.md`, `docs/SECURITY_DOMAIN_CONTRACT.md`, `docs/IDENTITY_PERSISTENCE_CONTRACT.md`.
 - Evidence files LIN-JON-18, LIN-JON-37, LIN-JON-58, the rest of LIN-JON-62 and LIN-BOOTSTRAP, and every other file under `docs/decisions/evidence/` not named above.
 - Linear issues (none opened for this file). Open PRs other than their titles.
-- The original constitutional text, which [CON-080][dec-1162] records as unavailable.
+- The original constitutional text, which [CON-080][dec-1162] records as unavailable (superseded by CON-098; see G5).
 
 ## Labels
 
@@ -66,7 +69,7 @@ table per office.
 2. **R** — Routine mechanics and "allowed interface representation" are engineering work under subsidiarity, not open constitutional questions. [CON-081, line 1177][dec-1177]
 3. **R** — "Institutions that are adequately staffed use the normal U.S.-style structure." This appears in the bootstrap section of the JON-61 evidence. [LIN-JON-61, line 283][j61-283]
 4. **R** — The six-person trial floor is borrowed from U.S. jury doctrine as an analogy only. [LIN-JON-61, lines 297–299][j61-297]
-5. **R** — The register does not reconstruct missing constitutional text. [CON-003, line 90][dec-90]; originals are unavailable. [CON-080, line 1162][dec-1162]
+5. **R** — The register does not reconstruct missing constitutional text. [CON-003, line 90][dec-90]; originals are unavailable. [CON-080, line 1162][dec-1162] (superseded by CON-098; see G5)
 6. **R** — For impeachment, "the U.S. structure is an analogy for separated functions": the House impeaches and the Senate tries. [LIN-BOOTSTRAP, line 27][boot-27]
 7. **I** — Scope: impeachment only. From rules 3, 4 and 6, the recorded U.S. references are analogies for impeachment's separated functions, not a source of unrecorded rules. No recorded source found here says how far the U.S. model applies to the rest of the government; rules 1–3 do not establish a government-wide reading. Ordinary procedure belongs to each institution under rule 1. A literal search of `DECISIONS.md` for `united states`, `u.s.`, `american` and `federal` found no match.
 
@@ -75,8 +78,8 @@ table per office.
 | # | Institution / office | Seats | How filled | Powers and duties | Label and source |
 |---|---|---|---|---|---|
 | 1 | Owner (Article 0) | — | — | Supremacy; not amendable by government | R [CON-003 l.90][dec-90] |
-| 2 | Permanent divisions | 8; cannot be deleted | — | Active, unwinding or dormant; new division needs amendment plus unanimous eligible population | R [CON-015 l.281][dec-281]; count R [CON-007 l.150][dec-150] |
-| 3 | Founding population | 40 (5 per division); ceiling 300 living | Inherited baseline | — | R [CON-007 l.150][dec-150], [CON-008 l.176][dec-176]; original approval record unresolved (CON-007 status) |
+| 2 | Permanent divisions | 8; cannot be deleted | — | Active, unwinding or dormant; new division needs amendment plus unanimous eligible population | R [CON-015 l.281][dec-281]; count R [CON-015 l.272][r5-272] |
+| 3 | Founding population | Not fixed; the owner sets it before launch. Ceiling 300 living | Owner decision before launch | — | R [CON-097 l.1160][r5-1160], [CON-008 l.176][dec-176]. The earlier forty (five per division) in CON-007 is superseded |
 | 4 | House | Set each phase from census R | Elected at every phase transition or opening; no term limits | Accuses (impeaches) by ordinary majority and quorum | R [CON-013 l.251][dec-251], [CON-008 l.176][dec-176], [CON-036 l.571][dec-571], [l.572][dec-572], [CON-016 l.296][dec-296]. Seat formula: **G1** |
 | 5 | House speaker | 1 (I: "the" speaker) | Selected after chamber membership is certified, as an administrative duty inside the legislative office (R). That the chamber itself selects is I (from the same line and CON-004 self-rule) | Fallback 2 for caretaker, after the designee is skipped | R [CON-036 l.575][dec-575], [CON-014 l.266][dec-266]; I [CON-004 l.105][dec-105] |
 | 6 | Senate | 16 (2 separately identified seats × 8 divisions) | Elected at every phase transition or opening; separate contests from the House | Tries and convicts (⅔); confirms judges | R [CON-013 l.251][dec-251], [CON-036 l.571][dec-571], [l.574][dec-574], [CON-016 l.296][dec-296], [CON-036 l.576][dec-576]. 16 is I (2 × 8) |
@@ -112,7 +115,7 @@ and whether it looks like an owner decision under CON-004 (that last column is
 | G2 | Electoral College composition, allocation formula, elector selection and the contingent-election procedure (row 9b) | [CON-013 l.251][dec-251]; [LIN-JON-61 l.197][j61-197] | `Electoral College`, `contingent`: references only | Yes — cross-institution |
 | G3 | Judicial vacancy replacement process | [CON-036 l.576][dec-576]; LIN-JON-36 l.26 | `judicial vacanc`, `replacement process`: only these two lines | Likely yes — Executive/Senate/judiciary |
 | G4 | How these are filled: grand jury (and its size), registry clerk, Archivist, CRA, Supreme Board chief | Rows 13, 15, 17, 18, 19 | `grand jury`, `registry clerk`, `Archivist`, `chief`: no selection rule found in the register; ARCHIVIST_PUBLICATION.md and GOVERNMENT_RECORDS.md not read for this | Mixed — some may be institution self-rule |
-| G5 | Original constitutional text, including Articles 20–21 | [CON-003 l.90][dec-90]; [CON-080 l.1162][dec-1162] | Recorded as unavailable | Recovery, not a new decision |
+| G5 | **Closed in revision 5.** Original constitutional text, including Articles 20–21: not required; the register is the authority (CON-098) | [CON-003 l.90][dec-90]; [CON-098 l.1175][r5-1175], which supersedes [CON-080 l.1162][dec-1162] | Recorded as unavailable at baseline | No — answered by CON-098 |
 | G6 | **Closed in revision 2.** Both chambers can create L-COAIAs, each for its own (row 8) | [LIN-JON-62 l.56][j62-56]; [LIN-JON-59 l.52][j59-52] | Found by the revision 1 review in a source this file had not read | No — answered by the record |
 | G7 | Direct list of ordinary Executive powers | Rows 9, 9a | Only the caretaker exclusion list found | Unknown |
 | G8 | What "CRA" stands for and how its holder is chosen | [CON-003 l.90][dec-90]; [LIN-JON-59 l.42][j59-42] | Expansion not found in the lines read | Unknown |
@@ -160,6 +163,23 @@ Each change answers a P3 note in the [revision 3 review][review3] at `cc54532`, 
 | 3 — row 10 timing details | Row 10: the elected Executive designates at phase opening and may change it any time before exhaustion, subject to the notice rule (LIN-JON-61 ll.216–218) |
 | Further omission | Row 10: caretaker service follows executive death, resignation or suspension, not death only (CON-036 l.577) |
 
+## Changes in revision 5
+
+The owner's decisions CON-097 and CON-098 (2026-11-14) superseded CON-007 and
+CON-080. Owner-requested fixes, 2026-11-14.
+
+| Row | Change |
+|---|---|
+| 2 | The count of eight now cites CON-015's scope (l.272) instead of superseded CON-007 |
+| 3 | Founding population is no longer forty (five per division): it is not fixed and the owner sets it before launch (CON-097 l.1160). The 300 ceiling is unchanged (CON-008 l.176) |
+| G5 | Closed: CON-098 (2026-11-14) superseded CON-080; the missing originals are not required and their absence is not a gap (CON-098 l.1175) |
+| Lines 58 and 72 | The two CON-080 citations now say "(superseded by CON-098; see G5)", following the PR #78 review |
+
+[base5]: https://github.com/ptown16801-lang/concord/tree/3b9d080dc166eef1f1417000f55e0147f7874ed5
+[r5-272]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L272
+[r5-1160]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L1160
+[r5-1175]: https://github.com/ptown16801-lang/concord/blob/3b9d080dc166eef1f1417000f55e0147f7874ed5/DECISIONS.md#L1175
+
 [review1]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5878378698
 [review2]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5884468091
 [review3]: https://github.com/ptown16801-lang/concord/pull/73#pullrequestreview-5885296256
@@ -177,7 +197,6 @@ Each change answers a P3 note in the [revision 3 review][review3] at `cc54532`, 
 [dec]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md
 [dec-90]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L90
 [dec-105]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L105
-[dec-150]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L150
 [dec-176]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L176
 [dec-191]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L191
 [dec-206]: https://github.com/ptown16801-lang/concord/blob/77836f6a5a4313f1bb0a56ba3fa83e2a6a33a1ce/DECISIONS.md#L206

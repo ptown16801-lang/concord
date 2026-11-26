@@ -45,11 +45,12 @@ These documents identify their accepted boundaries, proposed details, and implem
 - [Population and voting](architecture/POPULATION_AND_VOTING.md) and [cross-component boundaries](design/POPULATION_VOTING_BOUNDARIES.md) — identity, eligibility, electorate, and integration responsibilities.
 - [Sealed census](design/SEALED_CENSUS.md) — population accounting and protected visibility.
 - [Relational observatory](design/RELATIONAL_OBSERVATORY.md) — temporal comparisons and interpretation limits.
+- [Political system representation audit](POLITICAL_SYSTEM_AUDIT_2026-11-11.md) — existing models, candidate implementations, map notation, and source-qualified integration limits.
 - [Search and records](design/SEARCH_AND_RECORDS.md) — authorized discovery, record identity, and guide navigation.
 - [Scheduler selection research](research/SCHEDULER_SELECTION.md) — evaluation requirements; candidates remain unselected.
 - [Simulation and resilience study](research/SIMULATION_AND_RESILIENCE.md) — reproducible synthetic queue model, results, and limits.
 - [Coin experiment references](research/coin-experiment/README.md), [observer boundaries](research/coin-experiment/OBSERVER_BOUNDARIES.md), and [measurement protocol requirements](research/coin-experiment/MEASUREMENT_PROTOCOL.md) — mechanisms, isolation requirements, measurements, and unresolved study choices.
-- [Research Library](research/RESEARCH_LIBRARY.md) — design boundaries and retained holds.
+- [Research Library](research/RESEARCH_LIBRARY.md) — design boundaries. Status 2026-11-25: the library page design is superseded by [CON-099](../DECISIONS.md#CON-099); the app will have no Research Library section, and the papers are kept in folders.
 
 ## Reviewed proposals and repair plans
 
