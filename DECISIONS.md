@@ -1191,6 +1191,21 @@ The Concord app will have no Research Library section. The research papers are k
 
 This replaces only the Research Library parts of three entries. [CON-001](#CON-001) previously read "Research Library, Archive & Records, Storage & Persistence and Visualization are bounded Concord workstreams." [CON-065](#CON-065) previously read "Google Drive remains canonical scientific-PDF storage" and "Research Library remains held". [CON-073](#CON-073) was titled "Held library and deferred quizzes" and previously read "Research Library’s twelve unfinished held items remain Do Not Execute; completed JON-49/50/51 are not reopened." The deferred quizzes in CON-073 are unchanged. [CON-060](#CON-060) gains a pointer to this entry; its references to a Research Library page are history.
 
+<a id="CON-100"></a>
+### CON-100 — Concord is written in Python
+
+- Status: Proposed
+- Scope: The language of Concord's application code and its tests. The repository's decision and check tooling stays JavaScript for now.
+- Acceptance: Owner decision in chat, 2026-11-27; the owner approves this entry's exact text before it is written (CON-074).
+- Acceptance date: 2026-11-27
+- Sources: [OWNER-PYTHON-20261127](docs/decisions/sources/OWNER-PYTHON-20261127.md)
+- Supersedes: None
+- Implementation: Not started; tracked in JON-370. No code change is made by this entry.
+- Verification: The author's checks (decisions:generate/check/test) are the author's record only. The independent check and owner acceptance are recorded separately.
+- Rationale: Owner decision. Concord is still in the planning phase, so changing language now costs least, and most of the outside implementations Concord may draw on are written in Python.
+
+Concord's application code and its tests will be written in Python from now on. The repository's decision and check tooling stays JavaScript for now. The existing JavaScript code dates from the planning phase; it stays in place until it is replaced, and a Python replacement carries over its tests and contracts rather than being taken as equivalent. This decision does not claim that any code has been ported or retired. Outside code is adopted, adapted or rewritten in Python case by case, subject to its licence and the owner's approval.
+
 ## Unresolved evidence and preserved history
 
 <a id="CON-080"></a>

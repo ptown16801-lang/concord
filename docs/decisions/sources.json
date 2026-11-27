@@ -4171,5 +4171,16 @@
     "relationship": "Records the owner decision behind CON-099, which replaces the Research Library parts of CON-001, CON-065 and CON-073.",
     "snapshot": "docs/decisions/sources/OWNER-RESEARCH-LIBRARY-20261125.md",
     "sha256": "64b77ccd237aa6740358440f1123f2811f385724c1ba8666c8c6b0580c1d4170"
+  },
+  "OWNER-PYTHON-20261127": {
+    "title": "Owner decision: Concord is written in Python",
+    "location": "docs/decisions/sources/OWNER-PYTHON-20261127.md",
+    "version": "Sanitized summary of owner decision, 2026-11-27",
+    "date": "2026-11-27",
+    "classification": "Sanitized summary of a direct owner decision made in a private chat; not unchanged original",
+    "scope": "Language of Concord's application code and tests only",
+    "relationship": "Records the owner decision behind CON-100.",
+    "snapshot": "docs/decisions/sources/OWNER-PYTHON-20261127.md",
+    "sha256": "fec9cbe3d0a2ebe7864f43103a460fc5aa480c1d7e2310987ffe7412d9c50b28"
   }
 }
