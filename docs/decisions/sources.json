@@ -4181,6 +4181,6 @@
     "scope": "Language of Concord's application code and tests only",
     "relationship": "Records the owner decision behind CON-100.",
     "snapshot": "docs/decisions/sources/OWNER-PYTHON-20261127.md",
-    "sha256": "fec9cbe3d0a2ebe7864f43103a460fc5aa480c1d7e2310987ffe7412d9c50b28"
+    "sha256": "cd3325148be3e91682839090fe3ea70c62b63d675132f3194f2f98cf6a48d1a5"
   }
 }

@@ -1196,11 +1196,11 @@ This replaces only the Research Library parts of three entries. [CON-001](#CON-0
 
 - Status: Proposed
 - Scope: The language of Concord's application code and its tests. The repository's decision and check tooling stays JavaScript for now.
-- Acceptance: Owner decision in chat, 2026-11-27; the owner approves this entry's exact text before it is written (CON-074).
+- Acceptance: Owner decision in chat, 2026-11-27; the owner approved this entry's exact text before it was written (CON-074).
 - Acceptance date: 2026-11-27
 - Sources: [OWNER-PYTHON-20261127](docs/decisions/sources/OWNER-PYTHON-20261127.md)
 - Supersedes: None
-- Implementation: Not started; tracked in JON-370. No code change is made by this entry.
+- Implementation: Not started; follow-up Linear issues will track the Python work. No code change is made by this entry.
 - Verification: The author's checks (decisions:generate/check/test) are the author's record only. The independent check and owner acceptance are recorded separately.
 - Rationale: Owner decision. Concord is still in the planning phase, so changing language now costs least, and most of the outside implementations Concord may draw on are written in Python.
 
