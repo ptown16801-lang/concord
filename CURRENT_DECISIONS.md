@@ -3,7 +3,7 @@
 DO NOT EDIT. The sole master is [DECISIONS.md](DECISIONS.md) on designated integration branch `Develo` in `ptown16801-lang/concord`.
 This summary describes the decision file in this checkout. Read entry scope, acceptance and implementation limits; publication does not establish acceptance or deployment.
 
-Master SHA-256 (exact UTF-8 bytes): `314a760279e093aaeb9b837b08c8d7a6a7a61bdac606918b84626d9d96497198`
+Master SHA-256 (exact UTF-8 bytes): `7ce3d66e3e6c73d2ae575ca85b2e29f030f0a774d817368c15ad0181a5d3e9b1`
 
 Coverage: 2026-09-24. This is source coverage, not a fresh remote read.
 Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.md`; the content digest is not a commit ID.
@@ -76,6 +76,7 @@ Resolve the containing source commit with `git log -1 --format=%H -- DECISIONS.m
 | [CON-097](DECISIONS.md#CON-097) | Accepted | Founding population size decided before launch |
 | [CON-098](DECISIONS.md#CON-098) | Accepted | Missing historical originals are not required |
 | [CON-099](DECISIONS.md#CON-099) | Accepted | No Research Library section in the Concord app |
+| [CON-100](DECISIONS.md#CON-100) | Proposed | Concord is written in Python |
 | [CON-080](DECISIONS.md#CON-080) | Superseded | Unavailable original decision families |
 | [CON-081](DECISIONS.md#CON-081) | Unresolved | Unranked scheduler goals and downstream engineering |
 | [CON-082](DECISIONS.md#CON-082) | Accepted | C3 Senate conviction uses clear and convincing evidence |
